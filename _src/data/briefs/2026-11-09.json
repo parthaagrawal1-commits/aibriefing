@@ -1,0 +1,172 @@
+{
+  "headline": "Nvidia's board investigates its CEO as agents run both sides of the breach",
+  "intro": "Nvidia's board opened an independent review after Jensen Huang admitted an affair with a Megaspeed executive US intelligence believes was recruited by Beijing. Anthropic reportedly spent $3.4 billion on 1.7 gigawatts of gas generators, a Claude Code convenience button leaked 2,539 secrets to public GitHub, and Check Point and the OpenSSH team showed what autonomous agents now do on offense.",
+  "one_thing": "AI agents are now a line item on both sides of the security ledger. Check Point traced an autonomous ARTEX campaign across 200 organisations in 14 countries, a researcher's agent swarm surfaced a ten-year-old OpenSSH password bypass that was exploited within nine hours of disclosure, and DeepMind's agents found two weaknesses in 1024-bit RSA. The defenders' tools and the attackers' tools are the same tools.",
+  "items": [
+    {
+      "title": "Nvidia's board opens an independent probe after Huang admits an affair with the alleged Megaspeed informant",
+      "summary": "Nvidia's board said on November 8 that independent directors and outside counsel will review CEO Jensen Huang's relationship with Alice Huang, a Megaspeed executive that a US intelligence memo reportedly alleges was recruited by China's Ministry of State Security. In a message to staff, Huang acknowledged the affair and apologised; the board said it has confidence in him and no reason to believe company or national-security secrets were compromised. House committee chairs have asked for a closed-door briefing on November 18.",
+      "why": {
+        "executives": "Key-person governance at the most important supplier in AI is now a live board matter. If Nvidia is on your critical-vendor list, your risk committee should have a one-page view of what a leadership change there would mean.",
+        "finance": "Nvidia lost roughly $450 billion in market value in last week's chip sell-off before this news. Governance risk is now stacked on top of the demand and export questions already in the price.",
+        "security": "The alleged tradecraft here is personal targeting of an executive, not a network intrusion. Insider-threat and executive-protection programmes should cover personal relationships and travel, not only devices.",
+        "beginners": "Nvidia makes the chips almost all AI runs on. Its own directors are now investigating its CEO, which is why this is an AI story and not just a corporate scandal."
+      },
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/"},
+        {"name": "TechCrunch (Sonnenfeld interview)", "url": "https://techcrunch.com/2026/11/08/is-jensen-huangs-job-on-the-line-yales-jeffrey-sonnenfeld-estimates-its-about-a-50-50/"}
+      ],
+      "tags": ["Nvidia", "geopolitics", "security"],
+      "article": "nvidia-board-probe-huang-what-it-means",
+      "developing": true
+    },
+    {
+      "title": "Anthropic reportedly paid $3.4 billion for 1.7 gigawatts of gas generators",
+      "stat": "1.7 GW",
+      "summary": "Anthropic took over OnePWR Solutions' orders for roughly 1.7 gigawatts of Caterpillar gas-fired generators in a deal signed in late September and worth about $3.4 billion, the Financial Times reported on November 8, citing one person familiar with it. The FT called it the largest known single purchase of power equipment by an AI company; neither party commented. Anthropic's amended IPO filing last week disclosed about $895 billion in commitments, almost all for compute and infrastructure.",
+      "why": {
+        "finance": "Power is now a capital expense on an AI lab's balance sheet, not a utility bill. Read the S-1's commitments schedule with this deal in mind before pricing the IPO.",
+        "executives": "If a frontier lab is buying its own generation to avoid grid queues, your own data-centre or colocation plans should assume multi-year interconnection delays and price accordingly.",
+        "ml": "On-site gas means training capacity can come online on the lab's timetable rather than the utility's. Expect the compute gap between labs that can self-power and those that cannot to widen.",
+        "beginners": "Running AI takes enormous amounts of electricity, and the companies can't wait for the power grid to catch up, so Anthropic is buying its own power plants."
+      },
+      "sources": [
+        {"name": "TNW (on the FT report)", "url": "https://thenextweb.com/news/anthropic-3-4bn-gas-generators-onepwr-ft"}
+      ],
+      "tags": ["infrastructure", "Anthropic", "IPO"],
+      "article": "anthropic-gas-generators-1-7-gw-power-is-capex-now"
+    },
+    {
+      "title": "Claude Code's 'don't ask again' button put 2,539 secrets in public GitHub repos",
+      "stat": "2,539",
+      "summary": "Security firm Apiiro found that when a Claude Code user approves a shell command with 'Yes, and don't ask again', the exact command is saved to .claude/settings.local.json in the project, including any password or token typed into it. Scanning 104,185 public copies of the file, Apiiro found 1,122 containing 1,379 live-looking secrets, including 379 database passwords and 23 AWS keys; with older versions and transcripts the total reached 2,539 secrets across 1,994 repositories. Claude Code head Boris Cherny said on Hacker News that Anthropic is looking into it and that the tool has not historically scrubbed secrets.",
+      "why": {
+        "security": "Treat agent configuration folders (.claude, .cursor, .gemini) and agent memory files as secret-bearing, like .env. Add them to pre-commit and CI scanning, including history, because Gitleaks and TruffleHog each missed hundreds of these.",
+        "developers": "Search your org for .claude/settings.local.json in git history, rotate anything it ever contained, then untrack it and approve command patterns (Bash(npm run:*)) instead of literal commands with credentials in them.",
+        "executives": "This is what 'shadow AI' looks like in practice: a convenience feature, not a breach, and the fix is a policy plus a scanner rule. Ask whether your coding-agent rollout included either.",
+        "ml": "Of 16 coding agents Apiiro compared, Claude Code was the only one confirmed to persist full approved commands in a project file by default. Agent UX decisions are security decisions."
+      },
+      "sources": [
+        {"name": "The Hacker News", "url": "https://thehackernews.com/2026/11/claude-codes-dont-ask-again-file.html"},
+        {"name": "iTnews", "url": "https://www.itnews.com.au/news/dont-ask-again-in-anthropics-claude-code-leaks-developer-secrets-630203"}
+      ],
+      "tags": ["security", "agents", "Anthropic"],
+      "article": "claude-code-dont-ask-again-secrets-leak-what-to-do"
+    },
+    {
+      "title": "Check Point: autonomous ARTEX agents hit 200+ organisations in 14 countries since October 17",
+      "stat": "200+",
+      "summary": "An AI-driven intrusion campaign using the ARTEX penetration-testing framework has targeted more than 200 organisations across 14 countries since October 17, compromising at least nine, BleepingComputer reported from CrowdStrike and Check Point research. The agents forged an administrator token to read a Greek ministry's mailboxes, skipped hosts protected by CrowdStrike Falcon on operator instruction, and burned more than 1.4 billion input tokens in a single intrusion. Separately, the Dutch vulnerability-disclosure institute DIVD said ARTEX agents went from initial access to root on its systems in 12 minutes.",
+      "why": {
+        "security": "The attacker's loop is now patch-to-exploit in hours and recon-to-root in minutes, and it is noisy: DIVD logged 450,000 requests. Alert on volume and on authentication anomalies, not only on known signatures.",
+        "executives": "Nation-state capability is now available as an open-source framework plus a commercial API key. Your exposure is defined by unpatched internet-facing systems, not by whether you are a 'target'.",
+        "developers": "The 1.4 billion tokens in one intrusion were paid for by someone. Monitor your API spend and key usage for runaway agent loops; a stolen key is now a weapon as well as a cost.",
+        "beginners": "Hackers are using AI 'agents', programs that act on their own, to break into organisations around the clock. The defence is unglamorous: update software quickly and watch for unusual logins."
+      },
+      "sources": [
+        {"name": "BleepingComputer", "url": "https://bleepingcomputer.com/news/security/chinese-hackers-use-artex-ai-in-automated-attacks-against-200-orgs"},
+        {"name": "Help Net Security (OpenSSH exploitation)", "url": "https://www.helpnetsecurity.com/?p=390599"}
+      ],
+      "tags": ["security", "agents", "geopolitics"]
+    },
+    {
+      "title": "DeepMind says AI agents found two weaknesses in 1024-bit RSA; 2048-bit keys unaffected",
+      "summary": "Google DeepMind said on November 6 that supervised AI agents produced two working papers describing weaknesses in legacy 1024-bit RSA: a signature-forgery method estimated at roughly 1,600 times more efficient than the prior best when the attacker controls part of the signed data, and a batch-factoring approach about 30 times cheaper per additional key than the multiple number field sieve. One agent generated proofs and a second verified them in Lean 4. The papers are not peer reviewed, the forgery gain is a theoretical estimate, and DeepMind says keys of 2048 bits and above are not affected.",
+      "why": {
+        "security": "Inventory anything still signing or encrypting with 1024-bit RSA: old TLS roots, firmware signing, SSH host keys on embedded devices. You should have retired it a decade ago; now there is a dated reason to finish.",
+        "ml": "The research pattern, one agent proposing and another formally verifying in Lean, is the same loop that produced recent maths results. Expect it to be pointed at more cryptographic assumptions.",
+        "finance": "No near-term risk to modern systems, but cryptographic agility is about to show up in due-diligence questionnaires alongside quantum readiness.",
+        "beginners": "Encryption relies on maths problems being too hard to solve. AI just made one old, weak version of that maths easier. Modern encryption is not affected."
+      },
+      "sources": [
+        {"name": "DEV Community (summary of DeepMind's working papers)", "url": "https://dev.to/delimitter/google-deepmind-ai-agents-found-two-weaknesses-in-legacy-1024-bit-rsa-2d5d"}
+      ],
+      "tags": ["research", "security", "Google", "agents"]
+    },
+    {
+      "title": "Thinking Machines ships Inkling 2 Small: 594B-parameter MoE, 17B active, weights promised under Apache 2.0",
+      "stat": "594B",
+      "summary": "Thinking Machines Lab released Inkling 2 Small on November 5, a sparse mixture-of-experts model with 594 billion total and 17 billion active parameters, a 1-million-token context window, and image input. It was pretrained on 8.4 trillion tokens in 68 hours on Nvidia GB300 racks using native NVFP4, then trained with reinforcement learning for nine days on 2,048 GPUs. Inference is available through the company's Tinker platform at a listed $0.30 per million input tokens and $1.00 output; full weights are promised under Apache 2.0 within weeks, conditional on external safety testing.",
+      "why": {
+        "ml": "17B active parameters out of 594B is an aggressive sparsity ratio, and the 68-hour NVFP4 pretraining run is a data point on how cheap frontier-adjacent pretraining has become. The company says it still trails GPT-6.1 Sol on its own alignment evals.",
+        "developers": "At $0.30 / $1.00 this undercuts every current closed mid-tier by a wide margin, but it is only on Tinker for now. Worth a benchmark on your workload, not a migration.",
+        "executives": "A second-generation open-weight model from a two-year-old lab, with a staged release gated on red-teaming, is the new normal. Open weights are not a side show to the closed labs any more.",
+        "finance": "Thinking Machines' model is a direct price attack on the mid-tier where OpenAI and Anthropic make most of their API revenue. Watch for responses in the pricing tracker."
+      },
+      "sources": [
+        {"name": "Thinking Machines Lab", "url": "https://thinkingmachines.ai/inkling/"},
+        {"name": "Unite.AI", "url": "https://www.unite.ai/thinking-machines-lab-launches-inkling-2-small-with-open-weights-pending/"}
+      ],
+      "tags": ["models", "pricing", "research"],
+      "article": "inkling-2-small-594b-moe-open-weights-what-it-changes"
+    },
+    {
+      "title": "OpenAI's GPT-5.6 Sol discount ends November 30; the real price ladder is now GPT-6.1 at $2 / $10",
+      "stat": "Nov 30",
+      "summary": "OpenAI's pricing page confirms that promotional pricing on GPT-5.6 Sol ($4 input / $20 output per million tokens) runs only until November 30, after which the model returns to its $5 / $30 list rate. The same page shows where OpenAI now wants workloads to go: GPT-6.1 Sol at $2 / $10, GPT-6.1 Terra at $1 / $5 and GPT-6 Luna at $0.10 / $0.50, all with 1.05-million-token windows, none of which were in our tracker until today. OpenAI also agreed on November 5 to buy Pierre Computer Company, the small maker of the Trees and Diffs libraries Codex already uses, for an undisclosed sum.",
+      "why": {
+        "developers": "If you are still on gpt-5.6-sol, your bill rises 25–50% on December 1 unless you move. GPT-6.1 Sol is cheaper than the discounted 5.6 Sol and OpenAI says it is close to Astra on complex work; test it this month.",
+        "finance": "Two vendors (Google on Argon, OpenAI on Sol) now have promotional rates expiring within a day of each other. Any AI cost forecast built on autumn list prices needs a December re-base.",
+        "executives": "Introductory pricing with a published end date has become the standard way labs win workloads. Put the expiry dates in your contract calendar the way you would a cloud reserved-instance renewal.",
+        "ml": "The cached-input rate on GPT-6.1 Sol is 5% of input ($0.10), half the ratio on GPT-6 Sol. Prompt caching is where the real discount is hiding."
+      },
+      "sources": [
+        {"name": "OpenAI API pricing", "url": "https://developers.openai.com/api/docs/pricing"},
+        {"name": "InfoWorld (Pierre acquisition)", "url": "https://www.infoworld.com/article/4245719/openai-buys-tiny-software-developer-to-improve-codex.html"}
+      ],
+      "tags": ["pricing", "OpenAI", "M&A"],
+      "article": "openai-price-ladder-gpt-5-6-sol-promo-ends-november-30"
+    },
+    {
+      "title": "Physical AI goes public: Agility Robotics trades on Nasdaq as Axon puts $1.2 billion into Skydio",
+      "stat": "$1.2B",
+      "summary": "Agility Robotics became the first pure-play humanoid company on a US exchange on November 5, trading as AGLT after closing its merger with Churchill Capital Corp XI and raising about $465 million; it reported $174,000 of revenue and a $362 million loss in the first half of 2026 against more than $300 million in committed orders for a Digit 5 robot that ships in 2027. The next day Axon said it would invest a further $1.2 billion in drone maker Skydio at a $5.2 billion pre-money valuation and become its exclusive US and Canadian public-safety distributor.",
+      "why": {
+        "finance": "AGLT is the first public comp for humanoids and it prices a company on 2027 orders, not 2026 revenue. Expect every private humanoid round to be marked against how it trades this month.",
+        "executives": "Agility's Digit has moved 100,000 totes at one GXO site and is at nine customers. If you run warehouses, the question is no longer whether humanoids work but what the pilot costs: Agility charges $500,000 for a proof of concept.",
+        "ml": "Agility is selling against throughput, uptime and placement-accuracy targets it has not yet published for Digit 5. Those are the metrics that matter for embodied AI, far more than demo videos.",
+        "beginners": "A company that makes human-shaped warehouse robots is now listed on the stock market, so anyone can own a piece of it. It is losing a lot of money while it scales up."
+      },
+      "sources": [
+        {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/"},
+        {"name": "Forbes", "url": "https://www.forbes.com/sites/johnkoetsier/2026/11/05/aglt-first-pure-play-humanoid-robot-company-starts-trading-on-nasdaq-today/"},
+        {"name": "sUAS News (Axon release)", "url": "https://www.suasnews.com/2026/11/axon-invests-1-2-billion-in-skydio-to-build-the-future-of-drone-as-first-responder/"}
+      ],
+      "tags": ["IPO", "funding", "robotics"],
+      "article": "agility-robotics-nasdaq-debut-axon-skydio-physical-ai-public"
+    },
+    {
+      "title": "Cassidy's PATIENT AI Act draft would add a third-party FDA review path for health AI; comments due December 1",
+      "stat": "Dec 1",
+      "summary": "Senate HELP Committee chair Bill Cassidy's discussion draft, released October 29 with stakeholder comments requested by December 1, proposes a voluntary FDA preliminary review for software components of 'integrated devices', an accredited third-party review programme for low- and moderate-risk software devices, pre-submitted change-control plans, and a Medicare coverage pathway for AI services. An analysis by the FDA Law Blog published November 8 argues much of the FDA title duplicates authority the agency already has and could add procedure without shortening time to market.",
+      "why": {
+        "executives": "If you sell or buy clinical AI, this is the first serious attempt to legislate how it gets reviewed and paid for. Three weeks remain to shape it.",
+        "finance": "A CMS coverage pathway for AI services is the reimbursement hook health-AI investors have wanted since 2023. The FDA provisions matter less than the Medicare title.",
+        "ml": "Predetermined change-control plans filed during review would formalise how often a deployed model can be updated. Build your model-update cadence around what regulators will accept, not what your pipeline allows.",
+        "beginners": "A senator has drafted rules for how AI used in healthcare would be approved and paid for by Medicare. It is a draft, open for comment until December 1."
+      },
+      "sources": [
+        {"name": "FDA Law Blog", "url": "https://www.thefdalawblog.com/2026/11/the-patient-ai-act-a-new-prescription-for-fda-software-review-or-more-of-the-same/"},
+        {"name": "AACOM", "url": "https://www.aacom.org/news-reports/news/2026/11/02/senate-help-committee-chairman-releases-draft-legislation-on-ai-in-healthcare"}
+      ],
+      "tags": ["regulation", "policy", "health"],
+      "article": "patient-ai-act-draft-fda-review-medicare-what-to-watch"
+    },
+    {
+      "title": "Anthropic tells enterprise customers an outside security firm viewed account data; Korean regulator reviews ~100 accounts",
+      "summary": "Anthropic has emailed enterprise customers that an outside cybersecurity firm accessed internal systems in late October, exposing account and organisation identifiers, business contact details and subscription-plan data but not prompts, outputs or payment information, according to a notice shared on X and reporting in Seoul Economic Daily. The Washington Post reported on October 26 that the startup Cathedral got in through a vulnerability in third-party business software. Anthropic reported the incident to South Korea's privacy regulator on October 31; the PIPC says roughly 100 Korean corporate accounts were affected and it is deciding whether to open a formal investigation.",
+      "why": {
+        "security": "The weak point was a third-party SaaS tool at the vendor, not the model. Add your AI vendors' sub-processor lists to your third-party risk reviews; that is where this class of exposure lives.",
+        "executives": "Contact names, plan tier and spend are enough for a convincing spear-phish against your AI champions. Warn the people who administer your Claude account.",
+        "finance": "A regulator review in Korea weeks before the IPO roadshow is a disclosure item, not a material loss. Watch the risk-factors section of the next S-1 amendment.",
+        "beginners": "Someone got into part of Anthropic's internal systems and could see which companies are customers and what plan they pay for, but not what anyone typed into Claude."
+      },
+      "sources": [
+        {"name": "Seoul Economic Daily", "url": "https://en.sedaily.com/international/2026/11/09/data-breach-at-anthropics-claude-hits-over-100-korean"},
+        {"name": "Runtime Wire", "url": "https://runtimewire.com/article/anthropic-customer-notice-unnamed-security-firm-access"}
+      ],
+      "tags": ["security", "Anthropic", "data"],
+      "developing": true
+    }
+  ]
+}

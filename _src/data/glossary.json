@@ -1,398 +1,448 @@
 [
- {
-  "term": "Token",
-  "short": "The unit models read and write; roughly three-quarters of an English word. Pricing and context limits are counted in tokens.",
-  "long": "A token is a chunk of text produced by the model's tokenizer: common words are one token, rare words or code split into several. A million tokens is about 750,000 words of English. Different models tokenise the same text into different counts, so compare cost per task rather than per token.",
-  "related": [
-   "context",
-   "pricing"
-  ]
- },
- {
-  "term": "Context window",
-  "short": "The maximum text a model can consider in one request: prompt, documents, conversation and answer combined.",
-  "long": "Measured in tokens. Flagship models in 2026 advertise around one million tokens. Everything in the window is billed as input on each request, and accuracy on very long inputs is lower than on short ones.",
-  "related": [
-   "token"
-  ]
- },
- {
-  "term": "Large language model (LLM)",
-  "short": "A neural network trained on vast amounts of text to predict the next token, which turns out to be enough to write, summarise, reason and code.",
-  "long": "LLMs are the engines behind ChatGPT, Claude and Gemini. They are trained in two stages: pre-training on general text, then post-training (instruction tuning and reinforcement learning) to make them helpful and safe.",
-  "related": [
-   "model",
-   "transformer"
-  ]
- },
- {
-  "term": "Agent",
-  "short": "An AI system that pursues a goal by taking actions with tools, in a loop, rather than answering a single question.",
-  "long": "See the explainer [What is an AI agent?](/learn/what-is-an-ai-agent/). The risk and value of an agent both come from the tools and permissions it has.",
-  "related": [
-   "tool",
-   "injection"
-  ]
- },
- {
-  "term": "Prompt",
-  "short": "The text sent to a model: instructions, context and the question.",
-  "long": "Prompts usually have a system part (standing instructions from the developer) and a user part. Prompt design strongly affects output quality and cost.",
-  "related": [
-   "system prompt",
-   "token"
-  ]
- },
- {
-  "term": "System prompt",
-  "short": "Standing instructions a developer gives a model that apply to every conversation, such as persona, rules and output format.",
-  "long": "System prompts are a prime candidate for prompt caching because they repeat across requests.",
-  "related": [
-   "prompt",
-   "caching"
-  ]
- },
- {
-  "term": "Prompt injection",
-  "short": "An attack in which text the model reads, such as a web page or email, contains instructions that hijack its behaviour.",
-  "long": "See [Prompt injection explained](/learn/prompt-injection-explained/). The main security concern for agents.",
-  "related": [
-   "agent",
-   "security"
-  ]
- },
- {
-  "term": "Jailbreak",
-  "short": "A user's attempt to make a model ignore its safety rules through crafted prompts.",
-  "long": "Distinct from prompt injection, which is carried out by a third party through content the model processes.",
-  "related": [
-   "injection",
-   "safety"
-  ]
- },
- {
-  "term": "Hallucination",
-  "short": "A confident, fluent model output that is false or unsupported.",
-  "long": "Reduced by grounding (RAG), by instructing the model to cite sources and say when it does not know, and by verification steps. Not eliminated by any current model.",
-  "related": [
-   "RAG",
-   "grounding"
-  ]
- },
- {
-  "term": "Retrieval-augmented generation (RAG)",
-  "short": "Finding the relevant passages from a document store and giving them to the model with the question, so answers are grounded in your data.",
-  "long": "See [RAG explained for business leaders](/learn/rag-explained-for-business/).",
-  "related": [
-   "embedding",
-   "vector",
-   "hallucination"
-  ]
- },
- {
-  "term": "Embedding",
-  "short": "A list of numbers that represents the meaning of a piece of text, so similar texts have similar numbers.",
-  "long": "Embeddings power semantic search and RAG: documents and questions are embedded, and the nearest documents to the question are retrieved.",
-  "related": [
-   "vector",
-   "RAG"
-  ]
- },
- {
-  "term": "Vector database",
-  "short": "A database optimised for storing embeddings and finding the nearest ones to a query.",
-  "long": "Used as the retrieval layer in RAG systems. Many conventional databases now offer vector search.",
-  "related": [
-   "embedding",
-   "RAG"
-  ]
- },
- {
-  "term": "Fine-tuning",
-  "short": "Further training a model on your own examples to change its behaviour or specialise it.",
-  "long": "Useful for consistent style, narrow tasks and reducing prompt length. Compared with RAG it is slower to update and harder to audit, and does not reliably teach new facts.",
-  "related": [
-   "RAG",
-   "training"
-  ]
- },
- {
-  "term": "Inference",
-  "short": "Running a trained model to produce output. What you pay for when you call an API.",
-  "long": "Inference cost scales with tokens processed and model size, which is why smaller tiers and shorter outputs are cheaper.",
-  "related": [
-   "training",
-   "token"
-  ]
- },
- {
-  "term": "Training",
-  "short": "The process of adjusting a model's parameters on data. Pre-training builds general ability; post-training shapes behaviour.",
-  "long": "Frontier training runs cost hundreds of millions to billions of dollars in compute, which is why only a handful of labs train top-tier models.",
-  "related": [
-   "inference",
-   "pre-training"
-  ]
- },
- {
-  "term": "Parameters",
-  "short": "The numbers inside a model that training adjusts; loosely, its size. Frontier models have hundreds of billions to trillions.",
-  "long": "More parameters generally means more capability and higher inference cost, though training data and technique matter as much.",
-  "related": [
-   "model",
-   "weights"
-  ]
- },
- {
-  "term": "Weights",
-  "short": "Another word for a model's parameters, usually in the context of publishing or downloading them.",
-  "long": "See [open-weight vs closed models](/learn/open-weights-vs-closed-models/).",
-  "related": [
-   "parameters",
-   "open"
-  ]
- },
- {
-  "term": "Open-weight model",
-  "short": "A model whose trained parameters are published for anyone to download and run.",
-  "long": "Not the same as open source: training data and code are usually not released. Examples include Llama, Mistral's open releases, Gemma and DeepSeek.",
-  "related": [
-   "weights",
-   "closed"
-  ]
- },
- {
-  "term": "Closed model",
-  "short": "A model reachable only through its vendor's API; the weights are not published.",
-  "long": "GPT-6 Astra, Claude Fable and Gemini are closed. Advantages: capability, features, no operations. Disadvantages: data leaves your environment and the vendor controls availability.",
-  "related": [
-   "open-weight",
-   "API"
-  ]
- },
- {
-  "term": "Transformer",
-  "short": "The neural network architecture behind nearly all current language models, built around a mechanism called attention.",
-  "long": "Introduced in 2017. Its ability to process sequences in parallel made training on internet-scale text practical.",
-  "related": [
-   "LLM",
-   "attention"
-  ]
- },
- {
-  "term": "Attention",
-  "short": "The mechanism that lets a transformer weigh which earlier tokens matter when producing the next one.",
-  "long": "Attention cost grows with sequence length, which is why very long context windows are expensive and were slow to arrive.",
-  "related": [
-   "transformer",
-   "context"
-  ]
- },
- {
-  "term": "Reasoning model",
-  "short": "A model trained to work through a problem step by step, generating intermediate 'thinking' tokens, before answering.",
-  "long": "Reasoning models score higher on maths, code and planning at the cost of more output tokens and latency. Many vendors expose a reasoning budget or effort setting.",
-  "related": [
-   "inference",
-   "token"
-  ]
- },
- {
-  "term": "Reasoning budget",
-  "short": "A setting that controls how many thinking tokens a reasoning model may use before answering.",
-  "long": "Higher budgets raise accuracy on hard tasks and cost. Benchmark scores often quote the maximum setting.",
-  "related": [
-   "reasoning",
-   "benchmark"
-  ]
- },
- {
-  "term": "Prompt caching",
-  "short": "Charging a reduced rate for the repeated prefix of a prompt, such as a system prompt or a document reused across requests.",
-  "long": "Cache reads cost 2.5% to 10% of the input price at the major vendors. Put stable content first in the prompt to benefit.",
-  "related": [
-   "token",
-   "pricing"
-  ]
- },
- {
-  "term": "Batch API",
-  "short": "A way to submit many requests to be processed asynchronously, usually within hours, at about half price.",
-  "long": "Offered by OpenAI, Anthropic and Google. Ideal for backfills, evaluations and nightly jobs.",
-  "related": [
-   "pricing",
-   "inference"
-  ]
- },
- {
-  "term": "Multimodal",
-  "short": "A model that accepts or produces more than one kind of input or output: text, images, audio, video.",
-  "long": "Most flagship models now read images; audio and video are billed at different token rates.",
-  "related": [
-   "model"
-  ]
- },
- {
-  "term": "Benchmark",
-  "short": "A standard test used to compare models, such as a set of coding tasks or exam questions.",
-  "long": "See [How to read an AI benchmark](/learn/how-to-read-an-ai-benchmark/). Vendor-run results are claims; independent runs are evidence.",
-  "related": [
-   "evaluation"
-  ]
- },
- {
-  "term": "Evaluation (eval)",
-  "short": "A test set with known-good answers used to measure a model or system on your own tasks.",
-  "long": "The single most useful artefact an AI team can build. Fifty to two hundred real examples is enough to start.",
-  "related": [
-   "benchmark"
-  ]
- },
- {
-  "term": "Guardrails",
-  "short": "Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations.",
-  "long": "Guardrails reduce risk but can be bypassed; they complement, rather than replace, careful permissioning of what the system can do.",
-  "related": [
-   "safety",
-   "injection"
-  ]
- },
- {
-  "term": "Alignment",
-  "short": "The broad effort to make models behave as their developers and users intend, including being honest and refusing harmful requests.",
-  "long": "Covers training techniques (such as reinforcement learning from human feedback), evaluations and deployment policies.",
-  "related": [
-   "safety",
-   "RLHF"
-  ]
- },
- {
-  "term": "RLHF",
-  "short": "Reinforcement learning from human feedback: training a model to prefer outputs that human raters rate highly.",
-  "long": "The post-training technique that turned raw language models into usable assistants. Successors use AI feedback and verifiable rewards.",
-  "related": [
-   "alignment",
-   "training"
-  ]
- },
- {
-  "term": "Tool use (function calling)",
-  "short": "A model's ability to request that the surrounding software run a function, such as a search or a database query, and return the result.",
-  "long": "The building block of agents. The model does not execute anything itself; the application does, which is where permissions must be enforced.",
-  "related": [
-   "agent"
-  ]
- },
- {
-  "term": "Model Context Protocol (MCP)",
-  "short": "An open standard for connecting AI applications to tools and data sources through a common interface.",
-  "long": "Lets a tool be written once and used by many AI clients. Security reviews should treat each MCP server as an integration with the permissions it is granted.",
-  "related": [
-   "tool",
-   "agent"
-  ]
- },
- {
-  "term": "Latency",
-  "short": "How long a model takes to respond, usually measured as time to first token and tokens per second.",
-  "long": "Smaller tiers and shorter outputs are faster. Reasoning budgets and long contexts add latency.",
-  "related": [
-   "inference"
-  ]
- },
- {
-  "term": "Rate limit",
-  "short": "The maximum requests or tokens per minute a vendor allows an account, often tiered by spending history.",
-  "long": "A common cause of production failures. Design for retries and consider batch for non-urgent work.",
-  "related": [
-   "API"
-  ]
- },
- {
-  "term": "API",
-  "short": "Application programming interface: the way software calls a model, billed per token, as opposed to a chat app used by a person.",
-  "long": "ChatGPT Plus and Claude Pro are subscriptions for people; the API is what developers build on.",
-  "related": [
-   "pricing",
-   "token"
-  ]
- },
- {
-  "term": "Distillation",
-  "short": "Training a smaller model to imitate a larger one's outputs, capturing much of its capability at lower cost.",
-  "long": "How vendors produce mini, Flash and Haiku tiers, and a point of dispute in vendor terms of service.",
-  "related": [
-   "training",
-   "parameters"
-  ]
- },
- {
-  "term": "Mixture of experts (MoE)",
-  "short": "A model design where only a subset of parameters activates for each token, giving large capacity at lower inference cost.",
-  "long": "Common in frontier and open-weight models. A 'total parameters' figure for an MoE model overstates its per-token compute.",
-  "related": [
-   "parameters",
-   "inference"
-  ]
- },
- {
-  "term": "Synthetic data",
-  "short": "Training data generated by a model rather than collected from humans.",
-  "long": "Used to fill gaps in real data and to train reasoning. Risks include amplifying the generating model's errors.",
-  "related": [
-   "training"
-  ]
- },
- {
-  "term": "Frontier model",
-  "short": "A model at or near the state of the art at the time, typically the newest top tier from a major lab.",
-  "long": "Frontier models are the subject of most safety policies and regulations, which often set capability or compute thresholds.",
-  "related": [
-   "model",
-   "safety"
-  ]
- },
- {
-  "term": "Compute",
-  "short": "The processing power, usually GPU or TPU hours, used to train and run models. The scarce input of the AI industry.",
-  "long": "Data-center capacity, power and chip export controls are compute stories. Most AI infrastructure news is about who can get compute and at what price.",
-  "related": [
-   "training",
-   "inference"
-  ]
- },
- {
-  "term": "GPU",
-  "short": "Graphics processing unit: the chip type, dominated by Nvidia, that performs the parallel arithmetic AI training and inference require.",
-  "long": "GPU supply, pricing and export rules shape which labs and countries can build frontier models.",
-  "related": [
-   "compute"
-  ]
- },
- {
-  "term": "Non-human identity",
-  "short": "A credential used by software, including AI agents, rather than a person, such as a service account or API key.",
-  "long": "Agents multiply non-human identities. Securing their permissions and rotation is an emerging category of security tooling.",
-  "related": [
-   "agent",
-   "security"
-  ]
- },
- {
-  "term": "Deepfake",
-  "short": "Synthetic audio, image or video that convincingly impersonates a real person.",
-  "long": "A fraud and misinformation risk; detection tools exist but lag generation. Verify unusual requests through a second channel.",
-  "related": [
-   "multimodal"
-  ]
- },
- {
-  "term": "Grounding",
-  "short": "Supplying a model with trusted sources (documents, search results) so its answer is tied to evidence rather than memory.",
-  "long": "RAG is one form of grounding; search-augmented answering is another. Grounded answers can cite sources.",
-  "related": [
-   "RAG",
-   "hallucination"
-  ]
- }
+  {
+    "term": "Token",
+    "short": "The unit models read and write; roughly three-quarters of an English word. Pricing and context limits are counted in tokens.",
+    "long": "A token is a chunk of text produced by the model's tokenizer: common words are one token, rare words or code split into several. A million tokens is about 750,000 words of English. Different models tokenise the same text into different counts, so compare cost per task rather than per token.",
+    "related": [
+      "context",
+      "pricing"
+    ]
+  },
+  {
+    "term": "Context window",
+    "short": "The maximum text a model can consider in one request: prompt, documents, conversation and answer combined.",
+    "long": "Measured in tokens. Flagship models in 2026 advertise around one million tokens. Everything in the window is billed as input on each request, and accuracy on very long inputs is lower than on short ones.",
+    "related": [
+      "token"
+    ]
+  },
+  {
+    "term": "Large language model (LLM)",
+    "short": "A neural network trained on vast amounts of text to predict the next token, which turns out to be enough to write, summarise, reason and code.",
+    "long": "LLMs are the engines behind ChatGPT, Claude and Gemini. They are trained in two stages: pre-training on general text, then post-training (instruction tuning and reinforcement learning) to make them helpful and safe.",
+    "related": [
+      "model",
+      "transformer"
+    ]
+  },
+  {
+    "term": "Agent",
+    "short": "An AI system that pursues a goal by taking actions with tools, in a loop, rather than answering a single question.",
+    "long": "See the explainer [What is an AI agent?](/learn/what-is-an-ai-agent/). The risk and value of an agent both come from the tools and permissions it has.",
+    "related": [
+      "tool",
+      "injection"
+    ]
+  },
+  {
+    "term": "Prompt",
+    "short": "The text sent to a model: instructions, context and the question.",
+    "long": "Prompts usually have a system part (standing instructions from the developer) and a user part. Prompt design strongly affects output quality and cost.",
+    "related": [
+      "system prompt",
+      "token"
+    ]
+  },
+  {
+    "term": "System prompt",
+    "short": "Standing instructions a developer gives a model that apply to every conversation, such as persona, rules and output format.",
+    "long": "System prompts are a prime candidate for prompt caching because they repeat across requests.",
+    "related": [
+      "prompt",
+      "caching"
+    ]
+  },
+  {
+    "term": "Prompt injection",
+    "short": "An attack in which text the model reads, such as a web page or email, contains instructions that hijack its behaviour.",
+    "long": "See [Prompt injection explained](/learn/prompt-injection-explained/). The main security concern for agents.",
+    "related": [
+      "agent",
+      "security"
+    ]
+  },
+  {
+    "term": "Jailbreak",
+    "short": "A user's attempt to make a model ignore its safety rules through crafted prompts.",
+    "long": "Distinct from prompt injection, which is carried out by a third party through content the model processes.",
+    "related": [
+      "injection",
+      "safety"
+    ]
+  },
+  {
+    "term": "Hallucination",
+    "short": "A confident, fluent model output that is false or unsupported.",
+    "long": "Reduced by grounding (RAG), by instructing the model to cite sources and say when it does not know, and by verification steps. Not eliminated by any current model.",
+    "related": [
+      "RAG",
+      "grounding"
+    ]
+  },
+  {
+    "term": "Retrieval-augmented generation (RAG)",
+    "short": "Finding the relevant passages from a document store and giving them to the model with the question, so answers are grounded in your data.",
+    "long": "See [RAG explained for business leaders](/learn/rag-explained-for-business/).",
+    "related": [
+      "embedding",
+      "vector",
+      "hallucination"
+    ]
+  },
+  {
+    "term": "Embedding",
+    "short": "A list of numbers that represents the meaning of a piece of text, so similar texts have similar numbers.",
+    "long": "Embeddings power semantic search and RAG: documents and questions are embedded, and the nearest documents to the question are retrieved.",
+    "related": [
+      "vector",
+      "RAG"
+    ]
+  },
+  {
+    "term": "Vector database",
+    "short": "A database optimised for storing embeddings and finding the nearest ones to a query.",
+    "long": "Used as the retrieval layer in RAG systems. Many conventional databases now offer vector search.",
+    "related": [
+      "embedding",
+      "RAG"
+    ]
+  },
+  {
+    "term": "Fine-tuning",
+    "short": "Further training a model on your own examples to change its behaviour or specialise it.",
+    "long": "Useful for consistent style, narrow tasks and reducing prompt length. Compared with RAG it is slower to update and harder to audit, and does not reliably teach new facts.",
+    "related": [
+      "RAG",
+      "training"
+    ]
+  },
+  {
+    "term": "Inference",
+    "short": "Running a trained model to produce output. What you pay for when you call an API.",
+    "long": "Inference cost scales with tokens processed and model size, which is why smaller tiers and shorter outputs are cheaper.",
+    "related": [
+      "training",
+      "token"
+    ]
+  },
+  {
+    "term": "Training",
+    "short": "The process of adjusting a model's parameters on data. Pre-training builds general ability; post-training shapes behaviour.",
+    "long": "Frontier training runs cost hundreds of millions to billions of dollars in compute, which is why only a handful of labs train top-tier models.",
+    "related": [
+      "inference",
+      "pre-training"
+    ]
+  },
+  {
+    "term": "Parameters",
+    "short": "The numbers inside a model that training adjusts; loosely, its size. Frontier models have hundreds of billions to trillions.",
+    "long": "More parameters generally means more capability and higher inference cost, though training data and technique matter as much.",
+    "related": [
+      "model",
+      "weights"
+    ]
+  },
+  {
+    "term": "Weights",
+    "short": "Another word for a model's parameters, usually in the context of publishing or downloading them.",
+    "long": "See [open-weight vs closed models](/learn/open-weights-vs-closed-models/).",
+    "related": [
+      "parameters",
+      "open"
+    ]
+  },
+  {
+    "term": "Open-weight model",
+    "short": "A model whose trained parameters are published for anyone to download and run.",
+    "long": "Not the same as open source: training data and code are usually not released. Examples include Llama, Mistral's open releases, Gemma and DeepSeek.",
+    "related": [
+      "weights",
+      "closed"
+    ]
+  },
+  {
+    "term": "Closed model",
+    "short": "A model reachable only through its vendor's API; the weights are not published.",
+    "long": "GPT-6 Astra, Claude Fable and Gemini are closed. Advantages: capability, features, no operations. Disadvantages: data leaves your environment and the vendor controls availability.",
+    "related": [
+      "open-weight",
+      "API"
+    ]
+  },
+  {
+    "term": "Transformer",
+    "short": "The neural network architecture behind nearly all current language models, built around a mechanism called attention.",
+    "long": "Introduced in 2017. Its ability to process sequences in parallel made training on internet-scale text practical.",
+    "related": [
+      "LLM",
+      "attention"
+    ]
+  },
+  {
+    "term": "Attention",
+    "short": "The mechanism that lets a transformer weigh which earlier tokens matter when producing the next one.",
+    "long": "Attention cost grows with sequence length, which is why very long context windows are expensive and were slow to arrive.",
+    "related": [
+      "transformer",
+      "context"
+    ]
+  },
+  {
+    "term": "Reasoning model",
+    "short": "A model trained to work through a problem step by step, generating intermediate 'thinking' tokens, before answering.",
+    "long": "Reasoning models score higher on maths, code and planning at the cost of more output tokens and latency. Many vendors expose a reasoning budget or effort setting.",
+    "related": [
+      "inference",
+      "token"
+    ]
+  },
+  {
+    "term": "Reasoning budget",
+    "short": "A setting that controls how many thinking tokens a reasoning model may use before answering.",
+    "long": "Higher budgets raise accuracy on hard tasks and cost. Benchmark scores often quote the maximum setting.",
+    "related": [
+      "reasoning",
+      "benchmark"
+    ]
+  },
+  {
+    "term": "Prompt caching",
+    "short": "Charging a reduced rate for the repeated prefix of a prompt, such as a system prompt or a document reused across requests.",
+    "long": "Cache reads cost 2.5% to 10% of the input price at the major vendors. Put stable content first in the prompt to benefit.",
+    "related": [
+      "token",
+      "pricing"
+    ]
+  },
+  {
+    "term": "Batch API",
+    "short": "A way to submit many requests to be processed asynchronously, usually within hours, at about half price.",
+    "long": "Offered by OpenAI, Anthropic and Google. Ideal for backfills, evaluations and nightly jobs.",
+    "related": [
+      "pricing",
+      "inference"
+    ]
+  },
+  {
+    "term": "Multimodal",
+    "short": "A model that accepts or produces more than one kind of input or output: text, images, audio, video.",
+    "long": "Most flagship models now read images; audio and video are billed at different token rates.",
+    "related": [
+      "model"
+    ]
+  },
+  {
+    "term": "Benchmark",
+    "short": "A standard test used to compare models, such as a set of coding tasks or exam questions.",
+    "long": "See [How to read an AI benchmark](/learn/how-to-read-an-ai-benchmark/). Vendor-run results are claims; independent runs are evidence.",
+    "related": [
+      "evaluation"
+    ]
+  },
+  {
+    "term": "Evaluation (eval)",
+    "short": "A test set with known-good answers used to measure a model or system on your own tasks.",
+    "long": "The single most useful artefact an AI team can build. Fifty to two hundred real examples is enough to start.",
+    "related": [
+      "benchmark"
+    ]
+  },
+  {
+    "term": "Guardrails",
+    "short": "Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations.",
+    "long": "Guardrails reduce risk but can be bypassed; they complement, rather than replace, careful permissioning of what the system can do.",
+    "related": [
+      "safety",
+      "injection"
+    ]
+  },
+  {
+    "term": "Alignment",
+    "short": "The broad effort to make models behave as their developers and users intend, including being honest and refusing harmful requests.",
+    "long": "Covers training techniques (such as reinforcement learning from human feedback), evaluations and deployment policies.",
+    "related": [
+      "safety",
+      "RLHF"
+    ]
+  },
+  {
+    "term": "RLHF",
+    "short": "Reinforcement learning from human feedback: training a model to prefer outputs that human raters rate highly.",
+    "long": "The post-training technique that turned raw language models into usable assistants. Successors use AI feedback and verifiable rewards.",
+    "related": [
+      "alignment",
+      "training"
+    ]
+  },
+  {
+    "term": "Tool use (function calling)",
+    "short": "A model's ability to request that the surrounding software run a function, such as a search or a database query, and return the result.",
+    "long": "The building block of agents. The model does not execute anything itself; the application does, which is where permissions must be enforced.",
+    "related": [
+      "agent"
+    ]
+  },
+  {
+    "term": "Model Context Protocol (MCP)",
+    "short": "An open standard for connecting AI applications to tools and data sources through a common interface.",
+    "long": "Lets a tool be written once and used by many AI clients. Security reviews should treat each MCP server as an integration with the permissions it is granted.",
+    "related": [
+      "tool",
+      "agent"
+    ]
+  },
+  {
+    "term": "Latency",
+    "short": "How long a model takes to respond, usually measured as time to first token and tokens per second.",
+    "long": "Smaller tiers and shorter outputs are faster. Reasoning budgets and long contexts add latency.",
+    "related": [
+      "inference"
+    ]
+  },
+  {
+    "term": "Rate limit",
+    "short": "The maximum requests or tokens per minute a vendor allows an account, often tiered by spending history.",
+    "long": "A common cause of production failures. Design for retries and consider batch for non-urgent work.",
+    "related": [
+      "API"
+    ]
+  },
+  {
+    "term": "API",
+    "short": "Application programming interface: the way software calls a model, billed per token, as opposed to a chat app used by a person.",
+    "long": "ChatGPT Plus and Claude Pro are subscriptions for people; the API is what developers build on.",
+    "related": [
+      "pricing",
+      "token"
+    ]
+  },
+  {
+    "term": "Distillation",
+    "short": "Training a smaller model to imitate a larger one's outputs, capturing much of its capability at lower cost.",
+    "long": "How vendors produce mini, Flash and Haiku tiers, and a point of dispute in vendor terms of service.",
+    "related": [
+      "training",
+      "parameters"
+    ]
+  },
+  {
+    "term": "Mixture of experts (MoE)",
+    "short": "A model design where only a subset of parameters activates for each token, giving large capacity at lower inference cost.",
+    "long": "Common in frontier and open-weight models. A 'total parameters' figure for an MoE model overstates its per-token compute.",
+    "related": [
+      "parameters",
+      "inference"
+    ]
+  },
+  {
+    "term": "Synthetic data",
+    "short": "Training data generated by a model rather than collected from humans.",
+    "long": "Used to fill gaps in real data and to train reasoning. Risks include amplifying the generating model's errors.",
+    "related": [
+      "training"
+    ]
+  },
+  {
+    "term": "Frontier model",
+    "short": "A model at or near the state of the art at the time, typically the newest top tier from a major lab.",
+    "long": "Frontier models are the subject of most safety policies and regulations, which often set capability or compute thresholds.",
+    "related": [
+      "model",
+      "safety"
+    ]
+  },
+  {
+    "term": "Compute",
+    "short": "The processing power, usually GPU or TPU hours, used to train and run models. The scarce input of the AI industry.",
+    "long": "Data-center capacity, power and chip export controls are compute stories. Most AI infrastructure news is about who can get compute and at what price.",
+    "related": [
+      "training",
+      "inference"
+    ]
+  },
+  {
+    "term": "GPU",
+    "short": "Graphics processing unit: the chip type, dominated by Nvidia, that performs the parallel arithmetic AI training and inference require.",
+    "long": "GPU supply, pricing and export rules shape which labs and countries can build frontier models.",
+    "related": [
+      "compute"
+    ]
+  },
+  {
+    "term": "Non-human identity",
+    "short": "A credential used by software, including AI agents, rather than a person, such as a service account or API key.",
+    "long": "Agents multiply non-human identities. Securing their permissions and rotation is an emerging category of security tooling.",
+    "related": [
+      "agent",
+      "security"
+    ]
+  },
+  {
+    "term": "Deepfake",
+    "short": "Synthetic audio, image or video that convincingly impersonates a real person.",
+    "long": "A fraud and misinformation risk; detection tools exist but lag generation. Verify unusual requests through a second channel.",
+    "related": [
+      "multimodal"
+    ]
+  },
+  {
+    "term": "Grounding",
+    "short": "Supplying a model with trusted sources (documents, search results) so its answer is tied to evidence rather than memory.",
+    "long": "RAG is one form of grounding; search-augmented answering is another. Grounded answers can cite sources.",
+    "related": [
+      "RAG",
+      "hallucination"
+    ]
+  },
+  {
+    "term": "Active parameters",
+    "short": "In a mixture-of-experts model, the subset of parameters actually used for each token. Inkling 2 Small has 594B total but about 17B active.",
+    "long": "Sparse models route each token to a few of many expert sub-networks, so only a fraction of the weights do work on any given token. Total parameters set memory requirements and, loosely, knowledge capacity; active parameters set per-token compute, latency and serving cost. Comparing models by total parameters alone is misleading when one is sparse and the other dense.",
+    "related": [
+      "mixture",
+      "moe",
+      "parameters"
+    ]
+  },
+  {
+    "term": "Agent harness",
+    "short": "The software around a model that turns it into an agent: tool connections, memory, permissions, retries and the loop that decides what to do next.",
+    "long": "The model supplies judgement; the harness supplies everything else. Open-source harnesses such as DeepSeek Harness, and vendor ones such as Claude Code or Codex, handle tool calling, context management, permission prompts and plugins. Most agent security properties live in the harness rather than the model, which is why a harness default such as saving approved commands to a file can leak secrets regardless of which model is running.",
+    "related": [
+      "agent",
+      "tool use",
+      "non-human"
+    ]
+  },
+  {
+    "term": "Secret scanning",
+    "short": "Automated detection of credentials (API keys, passwords, tokens) in code, configuration and history before or after they are committed.",
+    "long": "Scanners such as Gitleaks and TruffleHog match known key formats and high-entropy strings in repositories, pull requests and CI pipelines. They miss credentials that do not look like keys, for example a password typed inside a shell command, which is why agent configuration files need dedicated rules. Effective programmes scan git history as well as the current tree and rotate anything found rather than just deleting it.",
+    "related": [
+      "non-human",
+      "security",
+      "agent"
+    ]
+  },
+  {
+    "term": "510(k) clearance",
+    "short": "The FDA pathway that lets a device, including AI software, reach market by showing it is substantially equivalent to an already-authorised predicate device.",
+    "long": "Most of the more than a thousand AI-enabled medical devices FDA has authorised went through 510(k) rather than the more demanding de novo or premarket approval routes. The pathway works when the intended use is narrow and a comparable predicate exists; it fits poorly with models that update frequently or systems with broad clinical roles, which is what predetermined change-control plans and proposals such as the PATIENT AI Act try to address.",
+    "related": [
+      "regulation",
+      "health",
+      "fda"
+    ]
+  },
+  {
+    "term": "Staged release",
+    "short": "Publishing a model's weights only after a sequence of gated steps, typically API access, external safety testing and red-teaming, rather than on launch day.",
+    "long": "Because open weights cannot be withdrawn once downloaded, some labs now treat publication as the last step rather than the first. Thinking Machines' framework, used for Inkling 2 Small, makes each stage conditional on evidence from the previous one. Critics note it delays independent evaluation; supporters argue it is the only way to combine open weights with a credible safety process.",
+    "related": [
+      "open-weight",
+      "weights",
+      "alignment"
+    ]
+  }
 ]

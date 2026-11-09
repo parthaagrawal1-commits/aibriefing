@@ -238,7 +238,7 @@ def nav_html(section=""):
     links = [("/brief/", "brief", "Brief"), ("/security/", "security", "Security"), ("/health/", "health", "Health"), ("/markets/", "markets", "Markets"), ("/robotics/", "robotics", "Robotics"), ("/models/", "models", "Models"), ("/policy/", "policy", "Policy"), ("/business/", "business", "Business"), ("/tools/", "tools", "Tools")]
     return "".join(f'<a href="{h}"{" class=on" if k == section else ""}>{t}</a>' for h, k, t in links)
 def sub_html(section=""):
-    links = [("/", "home", "Home"), ("/brief/", "brief", "Brief"), ("/for/", "for", "For you"), ("/trackers/", "trackers", "Trackers"), ("/topics/", "topics", "Topics"), ("/glossary/", "glossary", "Glossary"), ("/newsletter/", "newsletter", "Newsletter")] + [(f"/{k}/", k, n) for k, n, _, _ in SECTIONS]
+    links = [("/", "home", "Home"), ("/brief/", "brief", "Brief"), ("/for/", "for", "For you"), ("/trackers/", "trackers", "Trackers"), ("/topics/", "topics", "Topics"), ("/companies/", "companies", "Companies"), ("/glossary/", "glossary", "Glossary"), ("/newsletter/", "newsletter", "Newsletter")] + [(f"/{k}/", k, n) for k, n, _, _ in SECTIONS]
     return "".join(f'<a href="{h}"{" class=on" if k == section else ""}>{t}</a>' for h, k, t in links)
 
 def nl_form(cls="nlf"):
@@ -256,7 +256,7 @@ def menu_html():
     secs = "".join(f'<a href="/{k}/">{esc(n)}</a>' for k, n, _, _ in SECTIONS)
     lenses = "".join(f'<a href="/for/{k}/">{esc(n)} <span class="meta">— {esc(who)}</span></a>' for k, n, who, _ in AUDIENCES)
     return (f'<div id="menu"><div class="top"><a class="logo" href="/">AI<b>Briefing</b></a><button class="ibtn close" aria-label="Close menu">✕</button></div>'
-            f'<a href="/brief/">Today\'s brief</a><a href="/search/">Search</a><a href="/newsletter/">Newsletter</a><h4>Sections</h4>{secs}<h4>Read as</h4>{lenses}<h4>Reference</h4><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/about/">About</a></div>')
+            f'<a href="/brief/">Today\'s brief</a><a href="/search/">Search</a><a href="/newsletter/">Newsletter</a><h4>Sections</h4>{secs}<h4>Read as</h4>{lenses}<h4>Reference</h4><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/companies/">Companies</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/about/">About</a></div>')
 def sticky_bar():
     return f'<div id="stick"><div class="wrap"><strong>Like this? Get tomorrow\'s brief by email, free.</strong>{nl_form("nlf")}<button class="x" aria-label="Dismiss">×</button></div></div>'
 def ticker_html(briefs):
@@ -301,7 +301,7 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 {body}
 </div></main>
 <footer><div class="wrap">
-<div class="cols"><a href="/brief/">Daily brief</a><a href="/for/">By role</a><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/newsletter/">Newsletter</a><a href="/search/">Search</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a></div>
+<div class="cols"><a href="/brief/">Daily brief</a><a href="/for/">By role</a><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/companies/">Companies</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/newsletter/">Newsletter</a><a href="/search/">Search</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a></div>
 <div>{BRAND} is an independent publication. Every item links to its original source; summaries are written in our own words. Graphics are generated in-house. Not affiliated with the companies covered. &copy; {datetime.date.today().year} aibriefing.io</div>
 </div></footer>
 {sticky_bar()}
@@ -453,6 +453,36 @@ def topic_pages(briefs):
         out[path] = layout(title=f"{t} — AI news timeline and story thread | AI Briefing", desc=f"Everything we have covered on {t}, as a timeline with sources. Updated daily.", path=path, body=body, section="topics", jsonld=[ld, breadcrumbs([("Topics", "/topics/"), (t, path)])])
     return out
 
+def company_pages(briefs, articles):
+    """Companies index built from the vendor tag vocabulary: one page per vendor with its dedicated articles, brief items and tracker rows."""
+    out = {}; vendors = []
+    for v in sorted(art.VENDOR_TAGS):
+        items = [(b["date"], it) for b in briefs for it in b["items"] if v in it.get("tags", [])]
+        arts = [a for a in articles if v in a["tags"]]
+        prices = [r for r in TRACKERS.get("api-pricing", {}).get("rows", []) if r["vendor"] == v]
+        models = [r for r in TRACKERS.get("models", {}).get("rows", []) if r["vendor"] == v]
+        if not items and not arts and not prices and not models: continue
+        vendors.append((v, items, arts, prices, models))
+    tiles = "".join(f'<a class="card tile" href="/companies/{slugify(v)}/"><h3>{esc(v)}</h3><p>{len(arts)} article{"" if len(arts) == 1 else "s"} · {len(items)} brief item{"" if len(items) == 1 else "s"}{(" · " + str(len(prices)) + " priced models") if prices else ""}</p></a>' for v, items, arts, prices, models in sorted(vendors, key=lambda x: -(len(x[1]) + len(x[2]))))
+    out["/companies/"] = layout(title="AI companies: coverage, prices and releases by vendor | AI Briefing", desc="Everything we have published on each major AI company: dedicated articles, daily brief items, current API prices and model releases, on one page per vendor.", path="/companies/", body=f'<div class="hero"><div class="kicker">Companies</div><h1>One page per company</h1><p class="lede">Articles, brief items, current API prices and model releases for each vendor we cover, assembled automatically from our tags and trackers.</p></div><div class="grid g3">{tiles}</div>{newsletter_box()}', section="companies", jsonld=breadcrumbs([("Companies", "/companies/")]))
+    for v, items, arts, prices, models in vendors:
+        path = f"/companies/{slugify(v)}/"
+        arth = "".join(article_card(a) for a in arts[:9])
+        tl = "".join(f'<div class="ev"><div class="d">{short_date(d)}</div><a href="/brief/{d}/#{it["id"]}"><strong>{md_inline(it["title"])}</strong></a><div class="meta">{md_inline(it["summary"][:200])}…</div></div>' for d, it in items[:20])
+        ph = ""
+        if prices:
+            rows = "".join(f'<tr><td>{esc(r["model"])}</td><td class="num">{money(r["input"])}</td><td class="num">{money(r["output"])}</td><td class="num">{money(r["cached"]) if r.get("cached") is not None else "—"}</td><td>{esc(r.get("verified", ""))}</td></tr>' for r in prices)
+            ph = f'<div class="band"><div class="hd"><h2>Current API prices</h2><a href="/trackers/api-pricing/">Full tracker →</a></div><div class="tscroll"><table><thead><tr><th>Model</th><th>Input / 1M</th><th>Output / 1M</th><th>Cached</th><th>Checked</th></tr></thead><tbody>{rows}</tbody></table></div></div>'
+        mh = ""
+        if models:
+            mh = '<div class="band"><div class="hd"><h2>Releases</h2><a href="/trackers/models/">Release tracker →</a></div><div class="tl">' + "".join(f'<div class="ev"><div class="d">{esc(r["released"])}</div><strong>{esc(r["model"])}</strong><div class="meta">{md_inline(r.get("note", ""))}</div></div>' for r in models) + "</div></div>"
+        body = (f'<div class="hero"><div class="kicker">Company</div><h1>{esc(v)}: our coverage</h1><p class="lede">{len(arts)} dedicated article{"" if len(arts) == 1 else "s"} and {len(items)} brief item{"" if len(items) == 1 else "s"}, newest first, plus what we track about {esc(v)}. Also see the <a href="/topics/{slugify(v)}/">{esc(v)} topic thread</a>.</p></div>'
+                + (f'<div class="band"><div class="hd"><h2>Articles</h2></div><div class="grid g3">{arth}</div></div>' if arth else "")
+                + (f'<div class="band"><div class="hd"><h2>In the daily brief</h2><a href="/brief/">All briefs →</a></div><div class="tl">{tl}</div></div>' if tl else "") + ph + mh + newsletter_box())
+        ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"{v}: AI Briefing coverage", "url": ROOT + path, "about": {"@type": "Organization", "name": v}}
+        out[path] = layout(title=f"{v} AI news, prices and model releases | AI Briefing", desc=f"All AI Briefing coverage of {v}: dedicated articles, daily brief items, current API prices and model releases, updated nightly.", path=path, body=body, section="companies", jsonld=[ld, breadcrumbs([("Companies", "/companies/"), (v, path)])])
+    return out
+
 def explainer_page(e, explainers):
     path = f"/learn/{e['slug']}/"
     aud = " ".join(f'<a class="pill" href="/for/{k}/">{esc(AUD[k][1])}</a>' for k in e.get("audiences", []) if k in AUD)
@@ -576,7 +606,7 @@ def home(briefs, explainers, articles):
             f'<div class="side">{side}<div class="hl">{hl}</div><a class="btn" href="/brief/{b["date"]}/" style="justify-self:start">Read the full brief →</a></div></div>{one}{lens_lists}'
             f'<div class="band"><div class="hd"><h2>Sections</h2><a href="/search/">Search the site →</a></div><div class="secband">{secband}</div></div>'
             f'<div class="band"><div class="hd"><h2>Written for your job</h2><a href="/for/">All lenses →</a></div><div class="grid g3">{tiles}</div></div>'
-            f'<div class="band"><div class="hd"><h2>Trackers</h2><a href="/trackers/">All trackers →</a></div>{tr}</div>{older_band}'
+            f'<div class="band"><div class="hd"><h2>Trackers</h2><a href="/trackers/">All trackers →</a> · <a href="/companies/">By company →</a></div>{tr}</div>{older_band}'
             f'<div class="band"><div class="hd"><h2>Learn</h2><a href="/learn/">All explainers →</a></div><div class="grid g3">{ex}</div></div>{newsletter_box()}')
     desc = "Daily AI news in 4 minutes, explained for your job, plus dedicated coverage of AI in security, health, markets, robotics, models, policy, business and developer tools."
     return layout(title="AI Briefing — daily AI news, explained for your job", desc=desc, path="/", body=body, section="home", latest=b["date"], ticker=ticker_html(briefs), og_image=f"{ROOT}/img/briefs/{b['date']}.png")
@@ -738,6 +768,7 @@ def main():
     if "api-pricing" in TRACKERS: pages["/trackers/api-pricing/"] = tracker_pricing(TRACKERS["api-pricing"])
     if "models" in TRACKERS: pages["/trackers/models/"] = tracker_models(TRACKERS["models"])
     pages.update(topics)
+    pages.update(company_pages(briefs, articles))
     pages["/learn/"] = learn_index(explainers)
     for e in explainers: pages[f"/learn/{e['slug']}/"] = explainer_page(e, explainers)
     pages.update(glossary_pages())
@@ -768,7 +799,7 @@ def main():
         if any(path.startswith(f"/{k}/") and len(path) > len(k) + 2 for k in SEC): return "0.8"
         if path.startswith("/trackers/") or path.startswith("/for/"): return "0.9"
         if path.startswith("/brief/") and len(path) > 7: return "0.8"
-        if path.startswith("/learn/") or path.startswith("/topics/"): return "0.7"
+        if path.startswith("/learn/") or path.startswith("/topics/") or path.startswith("/companies/"): return "0.7"
         if path.startswith("/glossary/") and len(path) > 10: return "0.4"
         return "0.6"
     def img_for(path):

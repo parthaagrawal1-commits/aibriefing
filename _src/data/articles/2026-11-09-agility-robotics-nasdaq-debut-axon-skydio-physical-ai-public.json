@@ -1,0 +1,35 @@
+{
+  "slug": "agility-robotics-nasdaq-debut-axon-skydio-physical-ai-public",
+  "section": "robotics",
+  "title": "Agility Robotics is the first public humanoid company. Its numbers explain why that is hard",
+  "dek": "$174,000 of revenue, a $362 million half-year loss and $300 million of orders for a robot that ships in 2027: AGLT is a bet on throughput targets nobody outside the company has seen. Axon's $1.2 billion Skydio deal shows the other route.",
+  "stat": "$465M",
+  "tags": [
+    "robotics",
+    "IPO",
+    "funding"
+  ],
+  "sources": [
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/05/agility-is-the-first-pure-humanoid-robot-company-on-the-stock-market-are-you-buying/"
+    },
+    {
+      "name": "Forbes",
+      "url": "https://www.forbes.com/sites/johnkoetsier/2026/11/05/aglt-first-pure-play-humanoid-robot-company-starts-trading-on-nasdaq-today/"
+    },
+    {
+      "name": "sUAS News (Axon release)",
+      "url": "https://www.suasnews.com/2026/11/axon-invests-1-2-billion-in-skydio-to-build-the-future-of-drone-as-first-responder/"
+    }
+  ],
+  "why": {
+    "finance": "The $300 million order book is conditional on Digit 5 hitting undisclosed throughput, uptime and placement-accuracy targets. Underwrite the milestones, not the headline.",
+    "executives": "Agility's commercial model is a $500,000 on-site proof of concept followed by robots-as-a-service pitched at about $100,000 of annual savings per unit. That is the going rate for a humanoid pilot in late 2026.",
+    "ml": "Ninety-eight percent placement accuracy on tote handling is good enough for a warehouse lane and not for anything requiring dexterous manipulation. The gap between the two is the entire humanoid thesis."
+  },
+  "body": "Agility Robotics started trading on Nasdaq on November 5 under the ticker AGLT, after completing its merger with the blank-cheque company Churchill Capital Corp XI. It is the first company whose business is humanoid robots to list on a US exchange, and it did so without a bell-ringing ceremony and with a prospectus that reads more like a hardware startup's Series C deck than a public-company filing.\n\n## The numbers\n\nThe company raised about $465 million in gross proceeds: $201 million from a private placement led by Foxconn, $164 million from the SPAC trust and $100 million raised after the deal was announced. Nvidia is an investor. Against that, Agility reported $174,000 of revenue in the first six months of 2026, mostly from related parties, and a loss of $362 million over the same period. Management says the raise covers current needs but not self-sustaining operations.\n\nThe investment case rests on what comes next. Agility says it has more than $300 million in committed multi-year orders from roughly 30 customers for Digit 5, its next-generation robot, subject to contractual milestones, features and specifications. Digit 5 has not been publicly demonstrated. Prototypes are due at CES in January 2027, early access in the first half of 2027 and general availability at the end of 2027.\n\n## What Digit does today\n\nThe current Digit is working at nine customers, including GXO, Schaeffler, Toyota Motor Manufacturing Canada and Mercado Libre. At a GXO site in Georgia it has moved more than 100,000 totes, and GXO plans two more US facilities in early 2027. AGCO has signed a pilot in Kansas, and three unnamed manufacturers, a global automaker, an automotive-components company and a consumer-products maker, are in paid programmes. Agility's RoboFab plant in Salem, Oregon, is designed for up to 10,000 robots a year.\n\nThe robot handles heavy, repetitive tote moves with about 98% placement accuracy but cannot yet do complex manipulation. The commercial pitch is roughly $100,000 of annual savings per robot, which only works if the robot runs long enough between charges and maintenance to replace a meaningful fraction of a shift. Those are the variables the order milestones will test.\n\n## Axon's alternative: buy the distribution\n\nA day later, Axon, the Taser and body-camera company, said it would invest a further $1.2 billion in drone maker Skydio in cash and stock, at a $5.2 billion pre-money valuation, lifting its fully diluted stake by about 20 percentage points. Axon becomes Skydio's exclusive public-safety distributor in the US and Canada. Skydio says it has more than 1,500 public-safety customers and expects about $1 billion of bookings this fiscal year; Axon puts the drone-as-first-responder market at about $13 billion. The transactions close across the fourth quarter and the first quarter of 2027.\n\nThe contrast with Agility is instructive. Skydio is a physical-AI company with a thousand-plus paying customers and a channel partner that already sells to every police department in North America; it stayed private and took strategic capital. Agility has nine customers and a 2027 product, and went public through a SPAC. One is monetising deployment; the other is financing it.\n\n## The counter-argument\n\nHumanoid bulls will say revenue is the wrong metric for a company whose factory is built and whose order book is ten times the capital it just raised on a per-year basis. If Digit 5 hits its targets, Agility will have a public currency to scale with while private rivals such as Figure, 1X and Apptronik are still raising. The bear case is simply that the targets are unpublished and the burn is $60 million a month.\n\n## What to watch\n\nThe first 10-Q, which will put the milestone conditions in a public filing. CES in January for Digit 5. GXO's two additional sites, which would be the first evidence of repeat deployment at scale. And how AGLT trades through its lock-up, because every private humanoid round for the next year will be marked against it.",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "developing": false
+}

@@ -1,0 +1,35 @@
+{
+  "slug": "patient-ai-act-draft-fda-review-medicare-what-to-watch",
+  "section": "health",
+  "title": "The PATIENT AI Act draft: a third-party FDA review path and a Medicare pathway, comments due December 1",
+  "dek": "Senator Cassidy's discussion draft is the first serious attempt to legislate how clinical AI gets reviewed and paid for. FDA lawyers say the review title mostly duplicates what the agency can already do.",
+  "stat": "Dec 1",
+  "tags": [
+    "health",
+    "regulation",
+    "policy"
+  ],
+  "sources": [
+    {
+      "name": "FDA Law Blog (Hyman, Phelps & McNamara)",
+      "url": "https://www.thefdalawblog.com/2026/11/the-patient-ai-act-a-new-prescription-for-fda-software-review-or-more-of-the-same/"
+    },
+    {
+      "name": "AACOM",
+      "url": "https://www.aacom.org/news-reports/news/2026/11/02/senate-help-committee-chairman-releases-draft-legislation-on-ai-in-healthcare"
+    },
+    {
+      "name": "Innolitics (UpDoc 510(k) analysis)",
+      "url": "https://innolitics.com/articles/updoc-fda-cleared-ai-agent/"
+    }
+  ],
+  "why": {
+    "executives": "If you build or buy clinical AI, your regulatory and reimbursement teams should file comments by December 1. Drafts at this stage are where definitions get set.",
+    "finance": "The Medicare coverage pathway is the provision that changes health-AI unit economics. Watch whether it survives into an introduced bill.",
+    "ml": "Predetermined change-control plans filed during review would make your model-update cadence a regulatory commitment. Design the retraining pipeline with that in mind."
+  },
+  "body": "Senator Bill Cassidy, the Louisiana physician who chairs the Senate Health, Education, Labor and Pensions Committee, released a discussion draft on October 29 called the Protecting Americans Through Intelligent, Ethical, and Transparent Artificial Intelligence in Health Care Act, or PATIENT AI Act. It asks for stakeholder feedback by December 1. It is a draft, not a bill, and it has no co-sponsors yet. It is also the most complete legislative sketch so far of how the US might regulate and pay for AI in clinical care, which is why it deserves a close read now rather than when it is introduced.\n\n## What is in it\n\nThe draft runs to 19 sections across several titles covering privacy, cybersecurity, liability, transparency, workforce training, datasets, health IT and Medicare coverage and payment for AI services. Health systems and medical schools have focused on the workforce and coverage pieces: HHS would be told to identify ways AI can improve outcomes and operations and to build training resources for clinicians, and CMS would get a pathway to make coverage determinations for AI-based services.\n\nThe FDA title has drawn the sharpest technical reading. Section 201 would create a voluntary preliminary review of individual software components of \"integrated devices\", with FDA directed to rely more on prior related reviews, though components would not receive standalone authorisation. Section 202 writes a risk-based approach to premarket review of software devices into statute and lets manufacturers submit predetermined change-control plans for changes made while a 510(k) or PMA is still under review. Section 203 sets up an accredited third-party review programme for low- and moderate-risk software devices across 510(k), de novo and PMA submissions. Section 204 is a voluntary pilot to modernise postmarket surveillance, coordinated with CMS on payment.\n\n## The lawyers' critique\n\nIn an analysis published November 8, Steven Gonzalez and Jennifer Newberger of Hyman, Phelps & McNamara argue that Title II largely duplicates authority FDA already exercises. The agency already applies risk-based review; it already accepts predetermined change-control plans; it already runs a third-party review programme. Component review, they note, still leaves the manufacturer filing a full submission, so it is unclear what is gained, and the draft is silent on whether component reviews carry a user fee. Change plans filed mid-review could create version-control and deadline problems under the MDUFA performance goals. Their conclusion is that the draft could add procedure without shortening the path to market.\n\nThat critique matters because the industry's real complaint is not the absence of pathways but their speed and predictability. FDA has now authorised well over a thousand AI-enabled devices, almost all through 510(k). The recent example of UpDoc, an LLM-enabled insulin-dosing assistant cleared in December 2025 by pairing a conversational model with a deterministic, clinician-configured dosing engine and a conventional predicate, shows the existing route can accommodate generative AI when the intended use is narrow. What it does not do well is handle models that update frequently or systems whose clinical role is broad, and the draft's component and change-plan ideas are aimed at exactly that gap, however imperfectly.\n\n## Why the Medicare title may matter more\n\nFor most health-AI companies the binding constraint is not clearance but payment. A statutory CMS pathway for coverage of AI services would be the first general mechanism for reimbursing software that does clinical work, replacing today's patchwork of new technology add-on payments and a handful of CPT codes. Investors have been asking for this since 2023; it is the provision most likely to change which products get built.\n\n## What to watch\n\nThe December 1 comment deadline, and who files. Whether a Democratic co-sponsor emerges, which would signal the draft is headed for introduction rather than the archive. Whether the FDA title is trimmed to the pieces lawyers cannot find in current law, chiefly component review and user-fee treatment. And how the draft interacts with the state AI laws and the federal pre-emption fight that defined 2026's AI policy calendar.",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "developing": false
+}

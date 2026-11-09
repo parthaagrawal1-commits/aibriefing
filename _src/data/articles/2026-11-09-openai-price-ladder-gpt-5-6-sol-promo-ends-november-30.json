@@ -1,0 +1,36 @@
+{
+  "slug": "openai-price-ladder-gpt-5-6-sol-promo-ends-november-30",
+  "section": "tools",
+  "title": "OpenAI's GPT-5.6 Sol discount ends November 30. Here is the price ladder to move to",
+  "dek": "Two vendors' promotional rates expire within a day of each other. OpenAI's pricing page now shows four GPT-6 tiers from $0.10 to $10 per million tokens, and our tracker has caught up.",
+  "stat": "Nov 30",
+  "tags": [
+    "pricing",
+    "OpenAI",
+    "developers",
+    "tools"
+  ],
+  "sources": [
+    {
+      "name": "OpenAI API pricing",
+      "url": "https://developers.openai.com/api/docs/pricing"
+    },
+    {
+      "name": "OpenAI Developer Community (GPT-6.1 Sol launch)",
+      "url": "https://community.openai.com/t/gpt-6-1-sol-in-the-api-a-meaningful-step-up-in-cost-performance/1402388"
+    },
+    {
+      "name": "InfoWorld (Pierre acquisition)",
+      "url": "https://www.infoworld.com/article/4245719/openai-buys-tiny-software-developer-to-improve-codex.html"
+    }
+  ],
+  "why": {
+    "developers": "Pull your usage by model for October. Anything on gpt-5.6-sol is a December cost increase; GPT-6.1 Sol is cheaper, newer and OpenAI's own recommendation for frequent complex work.",
+    "finance": "OpenAI's list prices did not rise. A promotion ended. But if your forecast was built on the promo rate, the effect is identical: budget 25% more on input and 50% more on output for that model.",
+    "executives": "The pattern across Google and OpenAI is the same: a discount with a published end date to win a workload. Negotiate price holds, not just rates."
+  },
+  "body": "OpenAI's API pricing page now carries a footnote developers should read before the end of the month: promotional pricing for GPT-5.6 Sol is available until November 30, 2026. Since August 21 the model has been billed at $4 per million input tokens and $20 per million output, a cut from its $5 / $30 list rate that OpenAI announced as a three-month promotion. On December 1 the list rate returns, a 25% increase on input and 50% on output for anyone still on the model.\n\nIt lands a day after Google's launch pricing on Gemini 4 Argon ends, taking that model from $2 / $10 to $4 / $20. Two of the three largest API vendors are re-pricing within 24 hours of each other, which is a good moment to look at the whole ladder.\n\n## The ladder OpenAI actually wants you on\n\nOur pricing tracker had been carrying GPT-5.6 Sol, Terra and Luna from secondary sources. Reading OpenAI's model pages directly today, we confirmed those rows and found four GPT-6-generation tiers that were not in the tracker at all. All carry a 1.05-million-token context window and 128K maximum output, and all double input rates and add 50% to output on requests over 272K input tokens.\n\nGPT-6 Astra remains the top tier at $10 / $50, with cached input at $1. GPT-6.1 Sol, launched September 30, is $2 / $10 with cached input at $0.10, and OpenAI's own launch post says it is \"getting close to Astra on complex work\" at a fifth of the price, citing 75.2% on DeepSWE v1.1 against 68.8% for the older GPT-6 Sol and 71.4% on OSWorld 2.0 against Astra's 73.5%. GPT-6.1 Terra is $1 / $5 with cached input at $0.05, aimed at visual reasoning and computer use. GPT-6 Luna is $0.10 / $0.50, the volume tier. The older GPT-6 Sol stays at $2 / $10 but with cached input at $0.20, double the 6.1 rate.\n\nBelow that, GPT-5.6 Terra is $2 / $12 and GPT-5.6 Luna $0.20 / $1.20; GPT-5.4 mini is $0.75 / $4.50 and GPT-5.4 nano, now marked deprecated, $0.20 / $1.25. GPT-6 Cyber, the gated security model released November 5, is $20 / $100.\n\nRead as a whole, the message is clear. A developer paying promotional rates on GPT-5.6 Sol is paying twice what GPT-6.1 Sol costs for a model OpenAI describes as less capable.\n\n## Where the real discounts are\n\nThree modifiers matter more than list price for most workloads. Cached input on GPT-6.1 Sol is 5% of the input rate, so a long, stable system prompt or document is almost free on repeated calls. Batch and Flex processing are 50% off across the GPT-6 tiers. Fast mode costs 2x and the new Ultrafast mode on GPT-6.1 Sol costs 6x ($12 / $60).\n\n## OpenAI buys the Git layer under Codex\n\nIn the same week OpenAI agreed to acquire Pierre Computer Company, a San Francisco developer with a staff \"barely in the double digits\", for an undisclosed sum. Pierre built Code.Storage, an infrastructure layer for Git, and the open-source Trees and Diffs libraries that Codex already uses for rendering and reviewing changes. OpenAI says Code.Storage will be folded into Codex, existing customers can keep using it until then, and the open-source projects stay open. The deal follows OpenAI's description earlier that week of Pando, a new Git back end designed for many humans and agents committing to the same repository in parallel. Owning the storage layer under the code its agents write is the logical next step for a company that wants Codex to be the place work happens rather than a tool that visits it.\n\n## What to do\n\nExport October usage by model. Move anything on gpt-5.6-sol to an evaluation of gpt-6.1-sol this month; if quality holds, the switch pays for itself on December 1. Check whether your prompts are structured to benefit from caching, which on 6.1 Sol is a 95% discount on repeated prefixes. And put November 30 and December 1 in the same calendar you use for cloud reservation renewals, because this is what AI pricing now looks like.",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "developing": false
+}

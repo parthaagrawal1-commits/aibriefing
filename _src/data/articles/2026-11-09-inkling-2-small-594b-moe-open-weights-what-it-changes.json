@@ -1,0 +1,35 @@
+{
+  "slug": "inkling-2-small-594b-moe-open-weights-what-it-changes",
+  "section": "models",
+  "title": "Inkling 2 Small: a 594B-parameter model trained in 68 hours, priced at $0.30 per million tokens",
+  "dek": "Thinking Machines' second-generation model is a case study in how cheap sparse pretraining has become, and a direct price attack on the mid-tier where closed labs earn their API revenue.",
+  "stat": "594B",
+  "tags": [
+    "models",
+    "pricing",
+    "research"
+  ],
+  "sources": [
+    {
+      "name": "Thinking Machines Lab",
+      "url": "https://thinkingmachines.ai/inkling/"
+    },
+    {
+      "name": "Unite.AI",
+      "url": "https://www.unite.ai/thinking-machines-lab-launches-inkling-2-small-with-open-weights-pending/"
+    },
+    {
+      "name": "Datastudios (Tinker pricing)",
+      "url": "https://www.datastudios.org/post/thinking-machines-inkling-2-small-594b-moe-1m-context"
+    }
+  ],
+  "why": {
+    "ml": "8.4 trillion tokens in 68 hours on GB300 NVL72 racks with native NVFP4 is the most concrete public datapoint yet on FP4 pretraining at scale. Note the RL budget too: nine days, 2,048 GPUs, 3 trillion tokens.",
+    "developers": "At $0.30 / $1.00 per million tokens with a 1M context and image input, this is cheaper than every closed mid-tier model in our tracker. The catch is that it is only on Tinker until weights ship.",
+    "executives": "A lab founded in 2025 is shipping a frontier-adjacent open-weight model with a published safety-gated release process. Open weights are now a procurement option, not a hobbyist one."
+  },
+  "body": "Thinking Machines Lab, the company Mira Murati founded in 2025, released Inkling 2 Small on November 5. It is the first model of the lab's second generation and, on the company's own description, its most capable so far, with what it calls a big jump in agentic coding and vision.\n\nThe architecture is a sparse mixture-of-experts transformer: 594 billion total parameters, of which about 17 billion are active for any given token. Each token is routed to 8 of 384 experts across 48 layers, with a mix of local and global attention. The model accepts text and images and produces text, with a 1-million-token context window and variable effort settings.\n\n## The training recipe is the story\n\nWhat makes the release notable for ML practitioners is how much the lab disclosed about cost. Pretraining ran on 8.4 trillion tokens in 68 hours on Nvidia GB300 NVL72 racks, using native NVFP4, a four-bit floating-point format, throughout. Reinforcement learning then ran for nine days on 2,048 GPUs: 1,075 steps and more than 17 million rollouts totalling over 3 trillion tokens, with coding making up 38.5% of rollouts and 65% of RL tokens. The median rollout lasted eight minutes; the 99th percentile ran four hours.\n\nThose figures describe a frontier-adjacent model trained in well under two weeks of wall-clock time. They also show where the effort has moved. Pretraining is now the cheap part; the long-horizon RL phase, with hours-long agentic episodes, is where the compute and the engineering go.\n\n## Performance, honestly stated\n\nThe lab did not publish a standard benchmark table at launch, which is unusual and worth noting. It did say the model still trails OpenAI's GPT-6.1 Sol on its own alignment evaluations, and it listed limitations plainly: no audio, verbosity, imperfect tool selection in codebases with many skills, weaker performance on long multi-turn conversations and on under-represented languages. One demonstration had the model fine-tune a 4-billion-parameter Qwen model for time-series forecasting in a little over four hours and $426 of a $500 budget, cutting error by about 15% on unseen data. Third-party reports cite a strong result on SWE-Bench Pro Hard; we have not verified it against a primary source and leave it out of our tracker until the lab publishes it.\n\n## Pricing and availability\n\nInference is available now through Tinker, the company's fine-tuning and inference platform, at a listed $0.30 per million input tokens, $0.03 for cached input and $1.00 for output, according to a reading of Tinker's pricing page on November 7. For comparison, the cheapest closed mid-tier models in our pricing tracker are Claude Sonnet 5.5 and GPT-6.1 Sol at $2 / $10, and Google's Gemini 4 Argon at $2 / $10 until its launch pricing ends on November 30. Only OpenAI's GPT-6 Luna, at $0.10 / $0.50, is cheaper, and it is positioned as a small model.\n\nThe weights are not yet public. The lab says it intends to publish them under Apache 2.0 in the weeks after launch, conditional on completed external safety testing and red-teaming, following the staged-release framework it published on July 31. That is a meaningful commitment: once weights are published they cannot be withdrawn, and gating the step on third-party testing rather than a calendar is a model other open-weight labs have not adopted.\n\n## The counter-argument\n\nSparse models with 17 billion active parameters are cheap to serve but have historically lagged dense frontier models on the hardest reasoning tasks, and the absence of a benchmark table makes it hard to know where this one lands. Tinker-only availability also means no self-hosting, no third-party inference providers and no enterprise agreements for now. Treat the price as a signal of where the market is heading rather than a number you can budget against today.\n\n## What to watch\n\nThe weights release and its licence terms, the first independent evaluations once the model is downloadable, and whether inference providers list it at or below Tinker's price. We have added Inkling 2 Small to both trackers and will update the pricing row from primary once the lab publishes an API rate card.",
+  "published": "2026-11-09",
+  "updated": "2026-11-09",
+  "developing": false
+}

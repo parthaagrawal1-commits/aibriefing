@@ -1,22 +1,130 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-08",
+  "updated": "2026-11-09",
   "rows": [
-    {"vendor": "OpenAI", "model": "GPT-6 Cyber", "released": "2026-11-05", "kind": "Specialised (security)", "context": "1.05M", "note": "GPT-6 Astra tuned for authorised vulnerability discovery and exploit work. First OpenAI model rated **Critical** for cyber capability. Limited to vetted Daybreak Red customers.", "source": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"},
-    {"vendor": "OpenAI", "model": "GPT-Image 2.6 (Sunburst / Flare)", "released": "2026-11-04", "kind": "Image generation", "context": "—", "note": "Two variants: Flare for speed, Sunburst for quality. Available in the API and ChatGPT. (Reported; vendor changelog is the authority.)", "source": "https://essamamdani.com/blog/ai-model-releases-november-2026"},
-    {"vendor": "Mistral", "model": "Mistral Large 4 (\"Le Chonk\")", "released": "2026-10-29", "kind": "Open-weight flagship", "context": "—", "note": "Open-weight release of Mistral's largest model. (Reported from Mistral's news page.)", "source": "https://essamamdani.com/blog/ai-model-releases-november-2026"},
-    {"vendor": "Google", "model": "Gemini 4 Argon", "released": "2026-10 (listed)", "kind": "Flagship", "context": "—", "note": "Google's current top model on the Gemini API. Launch pricing $2 / $10 per million tokens through Nov 30, then $4 / $20.", "source": "https://ai.google.dev/pricing"},
-    {"vendor": "Google", "model": "Gemini 3.8 Flash", "released": "2026 (listed)", "kind": "Fast / mid-tier", "context": "—", "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.", "source": "https://ai.google.dev/pricing"},
-    {"vendor": "Anthropic", "model": "Claude Fable 5.1", "released": "2026-09", "kind": "Flagship (top tier)", "context": "1M", "note": "Anthropic's most capable tier, above Opus. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.", "source": "https://platform.claude.com/docs/en/about-claude/pricing"},
-    {"vendor": "OpenAI", "model": "GPT-6 Astra", "released": "2026-09-04", "kind": "Flagship", "context": "1.05M", "note": "OpenAI's current general flagship. $10 / $50 per million tokens; 128K max output; knowledge cutoff April 2026.", "source": "https://developers.openai.com/api/docs/models/gpt-6-astra"},
-    {"vendor": "Anthropic", "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5", "released": "2026 (current lineup)", "kind": "Flagship / mid / small", "context": "1M", "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).", "source": "https://platform.claude.com/docs/en/about-claude/pricing"},
-    {"vendor": "Anthropic", "model": "Claude Fable 5 / Mythos 5", "released": "2026-06-09", "kind": "Flagship (top tier)", "context": "1M", "note": "First Mythos-class models. Access was suspended June 12–30, 2026 under US export controls and restored July 1.", "source": "https://www.anthropic.com/news/fable-mythos-access"}
+    {
+      "vendor": "Thinking Machines",
+      "model": "Inkling 2 Small",
+      "released": "2026-11-05",
+      "kind": "Sparse MoE (594B / 17B active)",
+      "context": "1M",
+      "note": "Second-generation model; text + image in, text out. Pretrained on 8.4T tokens in 68 hours on GB300 racks using NVFP4. Inference on Tinker; full weights promised under Apache 2.0 after external safety testing.",
+      "source": "https://thinkingmachines.ai/inkling/"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6 Cyber",
+      "released": "2026-11-05",
+      "kind": "Specialised (security)",
+      "context": "1.05M",
+      "note": "GPT-6 Astra tuned for authorised vulnerability discovery and exploit work. First OpenAI model rated **Critical** for cyber capability. Limited to vetted Daybreak Red customers.",
+      "source": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-Image 2.6 (Sunburst / Flare)",
+      "released": "2026-11-04",
+      "kind": "Image generation",
+      "context": "—",
+      "note": "Two variants: Flare for speed, Sunburst for quality. Adjustable complexity, SVG and animated GIF generation, markup-guided editing. Confirmed in OpenAI's API changelog.",
+      "source": "https://developers.openai.com/api/docs/changelog"
+    },
+    {
+      "vendor": "Mistral",
+      "model": "Mistral Large 4 (\"Le Chonk\")",
+      "released": "2026-10-29",
+      "kind": "Open-weight flagship",
+      "context": "—",
+      "note": "Open-weight release of Mistral's largest model. (Reported from Mistral's news page.)",
+      "source": "https://essamamdani.com/blog/ai-model-releases-november-2026"
+    },
+    {
+      "vendor": "Google",
+      "model": "Gemini 4 Argon",
+      "released": "2026-10 (listed)",
+      "kind": "Flagship",
+      "context": "—",
+      "note": "Google's current top model on the Gemini API. Launch pricing $2 / $10 per million tokens through Nov 30, then $4 / $20.",
+      "source": "https://ai.google.dev/pricing"
+    },
+    {
+      "vendor": "Google",
+      "model": "Gemini 3.8 Flash",
+      "released": "2026 (listed)",
+      "kind": "Fast / mid-tier",
+      "context": "—",
+      "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.",
+      "source": "https://ai.google.dev/pricing"
+    },
+    {
+      "vendor": "Anthropic",
+      "model": "Claude Fable 5.1",
+      "released": "2026-09",
+      "kind": "Flagship (top tier)",
+      "context": "1M",
+      "note": "Anthropic's most capable tier, above Opus. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6.1 Sol",
+      "released": "2026-09-30",
+      "kind": "Flagship (cost tier)",
+      "context": "1.05M",
+      "note": "$2 / $10 per million tokens, cached input $0.10. OpenAI says it approaches Astra on complex work at a fifth of the price; Ultrafast mode (6x price) added Oct 8.",
+      "source": "https://community.openai.com/t/gpt-6-1-sol-in-the-api-a-meaningful-step-up-in-cost-performance/1402388"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6.1 Terra / GPT-6 Luna",
+      "released": "2026 (listed)",
+      "kind": "Mid / small tiers",
+      "context": "1.05M",
+      "note": "Listed on OpenAI's current model page at $1 / $5 and $0.10 / $0.50 respectively. Release dates not stated on the vendor page.",
+      "source": "https://developers.openai.com/api/docs/models/all"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6 Astra",
+      "released": "2026-09-04",
+      "kind": "Flagship",
+      "context": "1.05M",
+      "note": "OpenAI's current general flagship. $10 / $50 per million tokens; 128K max output; knowledge cutoff April 2026.",
+      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+    },
+    {
+      "vendor": "Anthropic",
+      "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5",
+      "released": "2026 (current lineup)",
+      "kind": "Flagship / mid / small",
+      "context": "1M",
+      "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+    },
+    {
+      "vendor": "Anthropic",
+      "model": "Claude Fable 5 / Mythos 5",
+      "released": "2026-06-09",
+      "kind": "Flagship (top tier)",
+      "context": "1M",
+      "note": "First Mythos-class models. Access was suspended June 12–30, 2026 under US export controls and restored July 1.",
+      "source": "https://www.anthropic.com/news/fable-mythos-access"
+    }
   ],
   "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",
   "faqs": [
-    ["Which model is the most capable right now?", "There is no single answer across tasks. The top tiers are OpenAI's GPT-6 Astra, Anthropic's Claude Fable 5.1 and Google's Gemini 4 Argon; vendor-published benchmarks favour the vendor publishing them, so compare independent evaluations for your specific workload."],
-    ["What does 'open-weight' mean?", "The model's trained parameters are published so anyone can download and run it, as Mistral did with Mistral Large 4. Closed models such as GPT-6 Astra are only reachable through the vendor's API."],
-    ["How is this list kept current?", "A nightly pass checks the major labs' announcement pages, API changelogs and pricing pages and adds any new release with a link to the vendor's own page."]
+    [
+      "Which model is the most capable right now?",
+      "There is no single answer across tasks. The top tiers are OpenAI's GPT-6 Astra, Anthropic's Claude Fable 5.1 and Google's Gemini 4 Argon; vendor-published benchmarks favour the vendor publishing them, so compare independent evaluations for your specific workload."
+    ],
+    [
+      "What does 'open-weight' mean?",
+      "The model's trained parameters are published so anyone can download and run it, as Mistral did with Mistral Large 4. Closed models such as GPT-6 Astra are only reachable through the vendor's API."
+    ],
+    [
+      "How is this list kept current?",
+      "A nightly pass checks the major labs' announcement pages, API changelogs and pricing pages and adds any new release with a link to the vendor's own page."
+    ]
   ]
 }
