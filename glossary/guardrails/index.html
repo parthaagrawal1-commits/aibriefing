@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>What is Guardrails? Definition in plain English | AI Briefing</title>
+<meta name="description" content="Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations.">
+<link rel="canonical" href="https://aibriefing.io/glossary/guardrails/">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta property="og:type" content="website"><meta property="og:site_name" content="AI Briefing"><meta property="og:title" content="What is Guardrails? Definition in plain English | AI Briefing"><meta property="og:description" content="Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations."><meta property="og:url" content="https://aibriefing.io/glossary/guardrails/"><meta property="og:image" content="https://aibriefing.io/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="What is Guardrails? Definition in plain English | AI Briefing"><meta name="twitter:description" content="Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations."><meta name="twitter:image" content="https://aibriefing.io/og.png">
+
+<link rel="alternate" type="application/rss+xml" title="AI Briefing daily" href="https://aibriefing.io/feed.xml">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">
+<style>
+:root{--paper:#faf8f4;--paper2:#f1ede6;--ink:#141311;--ink2:#4a463f;--mute:#857f74;--line:#e2dcd1;--acc:#1f4bff;--acc2:#e8edff;--ok:#1d7a4a;--warn:#b7791f;--max:1120px}
+@media(prefers-color-scheme:dark){:root{--paper:#121110;--paper2:#1b1917;--ink:#f1ede6;--ink2:#c9c2b5;--mute:#8d8678;--line:#2b2825;--acc:#7a93ff;--acc2:#1b2240}}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.6 Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc);text-decoration:none}a:hover{text-decoration:underline}
+h1,h2,h3,.serif{font-family:Newsreader,Georgia,"Times New Roman",serif;font-weight:600;letter-spacing:-.01em;line-height:1.15}
+h1{font-size:clamp(30px,5vw,46px);margin:.2em 0 .4em}h2{font-size:clamp(23px,3.2vw,30px);margin:1.6em 0 .5em}h3{font-size:21px;margin:1.2em 0 .4em}
+p{margin:0 0 1em}code{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;background:var(--paper2);padding:1px 5px;border-radius:5px}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 20px}
+header.top{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:5}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:60px}
+.logo{font-family:Newsreader,Georgia,serif;font-weight:700;font-size:24px;color:var(--ink);letter-spacing:-.02em}.logo b{color:var(--acc)}
+nav.main{display:flex;gap:4px;flex-wrap:wrap}nav.main a{color:var(--ink2);padding:6px 10px;border-radius:8px;font-size:15px;font-weight:500}nav.main a:hover,nav.main a.on{background:var(--paper2);color:var(--ink);text-decoration:none}
+@media(max-width:720px){nav.main{display:none}header.top .wrap{min-height:54px}}
+.sub{border-bottom:1px solid var(--line);background:var(--paper2)}.sub .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 20px;scrollbar-width:none}.sub a{white-space:nowrap;font-size:14px;color:var(--ink2);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}.sub a.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+main{padding:28px 0 60px}
+.kicker{color:var(--acc);font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.lede{font-size:20px;color:var(--ink2);max-width:760px}
+.grid{display:grid;gap:18px}.g2{grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}.g3{grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.card{background:var(--paper2);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+.card h3{margin:0 0 6px}.card p{margin:0;color:var(--ink2);font-size:15px}
+.tile{display:block;color:inherit}.tile:hover{text-decoration:none;border-color:var(--acc)}
+.item{border-top:1px solid var(--line);padding:22px 0}.item:first-of-type{border-top:0}
+.item h3{margin:0 0 8px;font-size:24px}.item .sum{max-width:760px}
+.why{display:grid;gap:8px;margin:12px 0 10px}.why div{display:flex;gap:10px;align-items:flex-start;font-size:15px;color:var(--ink2)}
+.chip{flex:0 0 auto;display:inline-block;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:6px;background:var(--acc2);color:var(--acc);margin-top:2px}
+.src{font-size:14px;color:var(--mute)}.src a{color:var(--mute);text-decoration:underline}
+.btn{display:inline-block;background:var(--acc);color:#fff;padding:11px 18px;border-radius:10px;font-weight:600}.btn:hover{text-decoration:none;filter:brightness(1.08)}
+.nl{background:var(--ink);color:var(--paper);border-radius:16px;padding:26px 24px;margin:36px 0}.nl h2{margin:0 0 6px;color:var(--paper)}.nl p{color:#cfc9bd;margin:0 0 14px}
+.nl form{display:flex;gap:8px;flex-wrap:wrap}.nl input[type=email]{flex:1 1 220px;padding:12px 14px;border-radius:10px;border:1px solid #555;background:#fff;color:#111;font-size:16px}.nl button{padding:12px 18px;border-radius:10px;border:0;background:var(--acc);color:#fff;font-weight:600;font-size:16px;cursor:pointer}
+.nl small{color:#9b958a}
+table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0 18px}th,td{text-align:left;padding:9px 10px;border-bottom:1px solid var(--line);vertical-align:top}th{font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--mute)}td.num{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.meta{color:var(--mute);font-size:14px}
+.toc a{display:block;padding:6px 0;border-bottom:1px solid var(--line)}
+footer{border-top:1px solid var(--line);padding:28px 0 40px;color:var(--mute);font-size:14px}footer a{color:var(--ink2)}footer .cols{display:flex;gap:28px;flex-wrap:wrap;margin-bottom:12px}
+.pill{display:inline-block;font-size:12px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin-right:6px}
+.faq details{border-top:1px solid var(--line);padding:10px 0}.faq summary{cursor:pointer;font-weight:600}
+.article{max-width:760px}.article p,.article li{font-size:18px}
+.conf-primary{color:var(--ok)}.conf-secondary{color:var(--warn)}
+.hero{padding:10px 0 20px}.hero h1{max-width:900px}
+.dateline{font-size:15px;color:var(--mute)}
+.list a{display:block;padding:12px 0;border-bottom:1px solid var(--line);color:inherit}.list a:hover{text-decoration:none;color:var(--acc)}.list small{display:block;color:var(--mute)}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "Organization", "name": "AI Briefing", "url": "https://aibriefing.io/", "logo": "https://aibriefing.io/og.png"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebSite", "name": "AI Briefing", "url": "https://aibriefing.io/"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "DefinedTerm", "name": "Guardrails", "description": "Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations.", "url": "https://aibriefing.io/glossary/guardrails/", "inDefinedTermSet": "https://aibriefing.io/glossary/"}</script><script type="application/ld+json">{"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Home", "item": "https://aibriefing.io/"}, {"@type": "ListItem", "position": 2, "name": "Glossary", "item": "https://aibriefing.io/glossary/"}, {"@type": "ListItem", "position": 3, "name": "Guardrails", "item": "https://aibriefing.io/glossary/guardrails/"}]}</script>
+
+</head>
+<body>
+<header class="top"><div class="wrap"><a class="logo" href="/">AI<b>Briefing</b></a><nav class="main" aria-label="Main"><a href="/brief/">Daily brief</a><a href="/for/">For you</a><a href="/trackers/">Trackers</a><a href="/learn/">Learn</a><a href="/glossary/" class=on>Glossary</a><a href="/newsletter/">Newsletter</a></nav><a class="btn" href="/newsletter/" style="padding:8px 14px;font-size:14px">Subscribe</a></div></header>
+<div class="sub"><div class="wrap"><a href="/">Home</a><a href="/brief/">Brief</a><a href="/for/">For you</a><a href="/trackers/api-pricing/">Pricing</a><a href="/trackers/models/">Models</a><a href="/learn/">Learn</a><a href="/glossary/" class=on>Glossary</a><a href="/newsletter/">Newsletter</a></div></div>
+<main><div class="wrap">
+<div class="hero"><div class="kicker">Glossary</div><h1>Guardrails</h1><p class="lede">Checks placed around a model to block unwanted inputs or outputs, such as filters for sensitive data or policy violations.</p></div><div class="article"><p>Guardrails reduce risk but can be bypassed; they complement, rather than replace, careful permissioning of what the system can do.</p></div><h2>Related terms</h2><p><a class="pill" href="/glossary/jailbreak/">Jailbreak</a><a class="pill" href="/glossary/prompt-injection/">Prompt injection</a></p><p><a href="/glossary/">&larr; All terms</a></p><section class="nl" id="subscribe"><h2>Get the brief in your inbox</h2><p>One email every morning: the 8 things that mattered in AI, each with a one-line "why it matters" for your role. Free, no ads, unsubscribe any time.</p><form action="/newsletter/" method="get" onsubmit="try{localStorage.setItem('nl_pending',this.email.value)}catch(e){}"><input type="email" name="email" placeholder="you@company.com" required aria-label="Email address"><button type="submit">Subscribe free</button></form><small>Published daily by AI Briefing. We never share your address.</small></section>
+</div></main>
+<footer><div class="wrap">
+<div class="cols"><a href="/brief/">Daily brief</a><a href="/for/">By role</a><a href="/trackers/">Trackers</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/newsletter/">Newsletter</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a></div>
+<div>AI Briefing is an independent publication. Every item links to its original source; summaries are written in our own words and are not affiliated with the companies covered. &copy; 2026 aibriefing.io</div>
+</div></footer>
+</body>
+</html>

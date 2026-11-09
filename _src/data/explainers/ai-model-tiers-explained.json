@@ -1,0 +1,28 @@
+{
+ "slug": "ai-model-tiers-explained",
+ "title": "Flagship, mid-tier, small: which AI model tier should you actually use?",
+ "summary": "Every vendor sells three or four sizes. How to match tier to task, and why most production traffic belongs on the middle one.",
+ "level": "beginner",
+ "audiences": [
+  "developers",
+  "executives",
+  "beginners"
+ ],
+ "published": "2026-11-08",
+ "updated": "2026-11-08",
+ "body": "OpenAI, Anthropic and Google each sell a ladder of models. The names differ (Astra, Fable, Argon at the top; mini, Haiku, Flash-Lite at the bottom) but the shape is the same: each step down is several times cheaper and faster, and somewhat less capable on hard reasoning.\n\n## The tiers\n\n- **Top tier** (GPT-6 Astra, Claude Fable 5.1, Gemini 4 Argon): best at long, multi-step reasoning, agent tasks and hard code. Priced around $10 / $50 per million tokens, or $2–4 / $10–20 at launch promotions. Slowest.\n- **Mid tier** (Claude Opus 5.5 and Sonnet 5.5, GPT-5.6 Sol and Terra, Gemini Flash): most production workloads. $2–4 input, $10–20 output. Good reasoning, much faster.\n- **Small tier** (Haiku, mini and nano, Flash-Lite): classification, extraction, routing, simple chat. $0.10–0.75 input. Very fast.\n\nExact prices are on the [pricing tracker](/trackers/api-pricing/).\n\n## How to choose\n\n1. **Start in the middle.** Build and evaluate on a mid-tier model. It is the default recommendation from the vendors themselves for most tasks.\n2. **Step up only on measured failures.** If your evaluation set shows the mid tier failing on specific hard cases, route those cases to the top tier rather than moving everything.\n3. **Step down aggressively.** Anything that looks like \"is this email about billing?\" or \"pull the invoice number out of this PDF\" belongs on the small tier. The accuracy difference is usually nil and the cost difference is 20x.\n4. **Route.** A cheap model can classify the request and send it to the right tier. This single pattern typically cuts a bill by more than half.\n\n## The trap\n\nTeams prototype on the flagship because it works first time, then ship on it. Six months later the bill is ten times what a routed system would cost, and nobody has measured whether the flagship was ever needed. Measure on day one.",
+ "faqs": [
+  [
+   "Is the top tier always more accurate?",
+   "On hard reasoning and long agentic tasks, usually. On simple, well-defined tasks the gap is often zero, and the smaller model is faster."
+  ],
+  [
+   "Can I mix vendors?",
+   "Yes. Many teams route by task to whichever vendor's tier is cheapest for that task. The cost is maintaining prompts for more than one model."
+  ],
+  [
+   "What about open-weight models?",
+   "Self-hosted open models can be cheapest at very high volume, at the price of running your own inference. For most teams below that scale, API tiers are simpler."
+  ]
+ ]
+}

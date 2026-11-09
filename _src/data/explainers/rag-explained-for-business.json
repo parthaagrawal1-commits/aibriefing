@@ -1,0 +1,28 @@
+{
+ "slug": "rag-explained-for-business",
+ "title": "RAG explained for business leaders",
+ "summary": "Retrieval-augmented generation is how companies make a general model answer from their own documents without retraining it. What it is, what it costs, and where projects fail.",
+ "level": "beginner",
+ "audiences": [
+  "executives",
+  "beginners",
+  "finance"
+ ],
+ "published": "2026-11-08",
+ "updated": "2026-11-08",
+ "body": "A language model knows what was on the internet when it was trained. It does not know your contracts, your product manuals or last quarter's support tickets. **Retrieval-augmented generation (RAG)** fixes that without retraining: when a question comes in, software first *retrieves* the most relevant passages from your documents, then hands those passages to the model along with the question, and the model *generates* an answer grounded in them.\n\n## Why it won\n\n- **No training.** Your documents stay in a database you control. Update a policy and the next answer reflects it immediately.\n- **Citations.** Because the answer is built from retrieved passages, the system can show which document it came from. That is what makes it auditable.\n- **Cost.** Only the relevant few pages go to the model per question, not the whole archive.\n\n## What it costs to build\n\nA pilot over a few thousand documents is weeks, not months, and the running cost is dominated by model calls, typically a fraction of a cent to a few cents per question. The expensive part is not the AI; it is cleaning and permissioning the documents. If your SharePoint is a mess, RAG will answer confidently from the mess.\n\n## Where projects fail\n\n1. **Bad retrieval.** If the right passage is not found, the model answers from general knowledge and sounds just as confident. Most \"hallucination\" complaints in RAG systems are retrieval failures.\n2. **Permissions.** The system must only retrieve what the asking user is allowed to see. Many pilots skip this and cannot ship.\n3. **Stale or duplicate documents.** Three versions of the same policy produce three different answers.\n4. **No evaluation.** Teams ship without a test set of real questions and known-good answers, so nobody can say whether a change made it better.\n\n## Questions to ask a vendor\n\n- Which document did this answer come from, and can a user click through to it?\n- How do you enforce our existing access controls?\n- What is your measured accuracy on *our* questions, not a demo set?\n\nRAG is a mature pattern, and in 2026 it competes with very large context windows for small corpora; see [context windows](/learn/what-is-a-context-window/). For anything larger than a few hundred documents that changes regularly, retrieval is still the default.",
+ "faqs": [
+  [
+   "Is RAG the same as fine-tuning?",
+   "No. Fine-tuning changes the model's weights with your data; RAG leaves the model alone and supplies your data at question time. RAG is cheaper, faster to update and easier to audit."
+  ],
+  [
+   "Does RAG stop hallucinations?",
+   "It reduces them when retrieval works and the model is instructed to answer only from the supplied passages. It does not eliminate them."
+  ],
+  [
+   "Do we need a special database?",
+   "Usually a vector database or a search engine with vector support. Many existing platforms now include one."
+  ]
+ ]
+}

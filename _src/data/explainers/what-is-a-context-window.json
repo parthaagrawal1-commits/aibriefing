@@ -1,0 +1,28 @@
+{
+ "slug": "what-is-a-context-window",
+ "title": "What is a context window, and does a million tokens matter?",
+ "summary": "The context window is how much a model can read at once. Why it grew from 4K to 1M tokens, what it costs, and when it actually helps.",
+ "level": "beginner",
+ "audiences": [
+  "beginners",
+  "developers",
+  "ml"
+ ],
+ "published": "2026-11-08",
+ "updated": "2026-11-08",
+ "body": "A model's **context window** is the maximum amount of text it can consider in a single request: your prompt, any documents you include, the conversation so far, and the answer it writes. Everything outside the window does not exist to the model.\n\n## How big is big\n\nIn 2023 a typical window was 4,000 to 8,000 tokens, roughly ten pages. Today the flagship tiers from OpenAI, Anthropic and Google all advertise around a million tokens, which is roughly 1,500 pages, or a mid-sized codebase, or every email you sent last year.\n\n## What a bigger window buys you\n\n- **Whole-document questions.** Drop in a 300-page contract and ask what changed from the last version, with no retrieval pipeline.\n- **Long conversations.** An agent can keep its full working history instead of summarising and forgetting.\n- **Many examples.** You can show the model hundreds of worked examples in the prompt instead of fine-tuning.\n\n## What it costs\n\nEvery token in the window is billed as input on every request. A conversation that carries a 500,000-token document costs 500,000 input tokens each turn unless you use prompt caching, and some vendors charge a higher rate above a threshold (see the [pricing tracker](/trackers/api-pricing/)). Latency also rises with context length.\n\n## Where it still breaks\n\nModels do not read a million tokens with uniform attention. Independent tests repeatedly show accuracy drops for facts buried in the middle of very long inputs, and reasoning across many distant parts of a document is harder than reading any one of them. For large, frequently queried corpora, [retrieval (RAG)](/learn/rag-explained-for-business/) that selects the relevant pieces is still cheaper and often more accurate than stuffing the window.\n\n## Rule of thumb\n\nUse the big window when the whole document matters and you ask few questions of it. Use retrieval when the corpus is large, changes often, or you will query it thousands of times.",
+ "faqs": [
+  [
+   "Does a bigger context window make a model smarter?",
+   "No. It lets the model see more at once. Reasoning quality is a separate property, and it tends to degrade somewhat as inputs get very long."
+  ],
+  [
+   "Does the context window include the model's answer?",
+   "Yes. Input plus output must fit, and most models also cap output separately, commonly at 64K to 128K tokens."
+  ],
+  [
+   "Can I exceed the context window?",
+   "No. The request is rejected or truncated. Summarise, chunk, or retrieve the relevant parts instead."
+  ]
+ ]
+}

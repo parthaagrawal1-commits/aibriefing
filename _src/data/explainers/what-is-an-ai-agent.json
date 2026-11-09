@@ -1,0 +1,28 @@
+{
+ "slug": "what-is-an-ai-agent",
+ "title": "What is an AI agent? A plain-English explanation",
+ "summary": "An agent is AI that takes actions, not just answers. Here is what that means, why every company is suddenly announcing one, and what can go wrong.",
+ "level": "beginner",
+ "audiences": [
+  "beginners",
+  "executives",
+  "developers"
+ ],
+ "published": "2026-11-08",
+ "updated": "2026-11-08",
+ "body": "A chatbot answers a question. An **agent** is given a goal, works out the steps, and carries them out using tools: a browser, a calendar, a payment system, your company's internal software. \"Book me a flight to Austin under $400 next Tuesday\" is an agent task. \"What's the capital of Texas?\" is not.\n\n## What is actually inside an agent\n\nUnder the hood an agent is a language model running in a loop. On each turn it looks at the goal, what it has done so far and what the tools returned, then decides the next action. The loop ends when the model decides the goal is met or it gives up. Three things make this different from chat:\n\n- **Tools.** The model can call functions: search, read a file, send an email, run code. Each call returns a result the model reads before deciding what to do next.\n- **Memory.** The agent keeps a running record of the task so it can recover from a failed step instead of starting over.\n- **Autonomy.** Nobody approves each step. That is the point, and it is also the risk.\n\n## Why everyone is announcing agents now\n\nModels got reliable enough at multi-step reasoning that the loop stops breaking after two or three steps. Vendors also discovered that an agent that completes a task is worth far more than a chat answer, so pricing is moving from \"per message\" to \"per task completed\". Airbnb, Meta, Amazon and the big labs all shipped or announced consumer agents in 2026.\n\n## What goes wrong\n\n- **Prompt injection.** An agent that reads web pages or emails can be told, by the content it reads, to do something its owner never asked for. See [prompt injection](/learn/prompt-injection-explained/).\n- **Over-permissioned tools.** An agent with a company credit card and no spending limit is exactly what it sounds like.\n- **Silent failure.** Agents are confident. They will report success on a task they half-finished unless you verify the result.\n\n## What to ask before you deploy one\n\n1. What can it *do*, not just see? List every tool and what the worst misuse of each would cost.\n2. Where does it read untrusted content, and is there a human check before it acts on it?\n3. How do you know a task actually succeeded?\n\nIf you cannot answer all three, run it in a mode where a person approves each action until you can.",
+ "faqs": [
+  [
+   "Is ChatGPT an agent?",
+   "In its basic chat mode, no. Modes that browse, run code or complete tasks on websites on your behalf are agentic features built on the same model."
+  ],
+  [
+   "Do agents need a special model?",
+   "No. Any capable language model can run an agent loop; the difference is the surrounding software: tools, memory, permissions and verification."
+  ],
+  [
+   "Are agents safe to give access to my accounts?",
+   "Only with the narrowest permissions that still let the task succeed, and a human approval step for anything irreversible such as payments or sending messages."
+  ]
+ ]
+}

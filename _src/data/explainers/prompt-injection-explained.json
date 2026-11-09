@@ -1,0 +1,28 @@
+{
+ "slug": "prompt-injection-explained",
+ "title": "Prompt injection explained: the attack every AI agent is exposed to",
+ "summary": "Why text that an AI reads can hijack what it does, why there is no complete fix, and the controls that actually reduce the damage.",
+ "level": "intermediate",
+ "audiences": [
+  "security",
+  "developers",
+  "executives"
+ ],
+ "published": "2026-11-08",
+ "updated": "2026-11-08",
+ "body": "Language models cannot reliably tell the difference between instructions from their operator and instructions hidden in the content they are asked to process. **Prompt injection** exploits that: an attacker places text in a web page, email, document or calendar invite that says, in effect, \"ignore your previous instructions and do X\". When an AI system reads it, it may comply.\n\n## Why it matters more in 2026\n\nA chatbot that gets injected says something wrong. An **agent** that gets injected *does* something wrong: forwards your inbox, approves a refund, posts to a channel, edits a record. As agents gain tools and permissions, injection moves from embarrassing to expensive. It is the top item on most AI security guidance for a reason.\n\n## What it looks like\n\n- A support agent summarises a customer email that contains hidden text instructing it to escalate the ticket and issue a credit.\n- A browsing agent lands on a page whose invisible footer tells it to send the user's session data to another site.\n- A coding agent reads a repository README that tells it to add a dependency from an attacker's registry.\n\n## Why there is no clean fix\n\nThe instruction channel and the data channel are the same channel: text. Vendors train models to resist, and the best models now refuse obvious attempts, but resistance is probabilistic, not a boundary. Treat any model that reads untrusted content as partially under the attacker's control.\n\n## Controls that work\n\n1. **Least privilege for tools.** The agent gets the narrowest permissions that still complete the task, with hard limits (spend caps, allow-listed recipients, read-only where possible).\n2. **Human approval for irreversible actions.** Sending, paying, deleting and publishing require a person to confirm, and the confirmation shows exactly what will happen.\n3. **Separate reading from acting.** Have one step extract facts from untrusted content into a fixed structure, and a different step, which never sees the raw content, decide what to do.\n4. **Log and review.** Every tool call is logged with the content that preceded it, so injections are detectable after the fact.\n5. **Assume compromise in design reviews.** Ask \"what is the worst thing this agent could do if the page it reads is hostile?\" and make that thing impossible, not just unlikely.\n\nSecurity teams should treat agent deployments as new service accounts with new attack surface, and put them through the same review as any integration with write access.",
+ "faqs": [
+  [
+   "Is prompt injection the same as jailbreaking?",
+   "Related but different. Jailbreaking is a user trying to get a model to break its own rules; injection is a third party hijacking a model through content it processes, usually without the user knowing."
+  ],
+  [
+   "Can a model be trained to be immune?",
+   "Current models can be made much more resistant, but no vendor claims immunity. Design for containment, not prevention alone."
+  ],
+  [
+   "Does this affect simple chatbots?",
+   "Less so, because they cannot act. The risk scales with the tools and permissions the AI system has."
+  ]
+ ]
+}
