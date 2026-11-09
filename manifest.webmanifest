@@ -1,0 +1,1 @@
+{"name": "AI Briefing", "short_name": "AI Briefing", "start_url": "/", "display": "standalone", "background_color": "#141311", "theme_color": "#141311", "description": "Daily AI news, explained for your job.", "icons": [{"src": "/icon-192.png", "sizes": "192x192", "type": "image/png"}, {"src": "/icon-512.png", "sizes": "512x512", "type": "image/png"}]}

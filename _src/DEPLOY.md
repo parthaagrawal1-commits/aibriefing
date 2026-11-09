@@ -23,3 +23,9 @@
 - Summaries in our own words, 2–3 sentences, never copied phrasing. Always link the original source.
 - "Reportedly" for anything sourced to a single outlet's unnamed sources.
 - Never invent prices, dates or figures. Trackers cite the page the number came from.
+
+## v2 (visual edition) notes
+- Graphics are generated automatically by `art.py` at build time: one 16:9 WebP per story (`/img/stories/<id>.webp`), one OG PNG per brief, covers for explainers and hubs. Never add photos. Existing images are kept; delete a file to regenerate it.
+- Each item may set `"stat": "$11B"` to control the big figure on its graphic; otherwise it is extracted from the title/summary.
+- Tags drive /topics/ threads, so use the canonical vocabulary: funding, IPO, M&A, models, pricing, security, policy, regulation, infrastructure, adoption, data, agents, consumer, geopolitics, research, plus vendor names exactly as: OpenAI, Anthropic, Google, Nvidia, Meta, Microsoft, Amazon, Apple, xAI, Mistral, DeepSeek. First non-vendor tag sets the graphic's colour.
+- Client features live in build.py (CSS/JS strings): lens selector, Listen (speech synthesis), reading progress, share, theme toggle, search (/search.json), sticky subscribe, PWA (sw.js, manifest).
