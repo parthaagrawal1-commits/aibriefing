@@ -27,6 +27,19 @@ AUDIENCES = [
 ]
 AUD = {a[0]: a for a in AUDIENCES}
 
+SECTIONS = [
+    ("security", "Security", "Incidents, vulnerabilities, offensive and defensive AI, and what to patch.", "security"),
+    ("health", "Health & medicine", "Clinical AI, drug discovery, lab automation, regulation and evidence.", "research"),
+    ("markets", "Finance & markets", "Funding, IPOs, valuations, earnings and the economics of AI.", "funding"),
+    ("robotics", "Robotics", "Humanoids, warehouse and factory automation, simulation and embodied AI.", "agents"),
+    ("models", "Models & research", "Releases, benchmarks, papers and what actually changed.", "models"),
+    ("policy", "Policy & regulation", "Laws, export controls, data centres, elections and public backlash.", "policy"),
+    ("business", "Enterprise & business", "Adoption data, vendor strategy, pricing power and what companies are really doing.", "adoption"),
+    ("tools", "Developer tools", "APIs, pricing, agents, coding tools and how to build with them.", "pricing"),
+]
+SEC = {x[0]: x for x in SECTIONS}
+EXPLAINER_FOR_TAG = {"pricing": "llm-api-pricing-explained", "tools": "llm-api-pricing-explained", "agents": "what-is-an-ai-agent", "consumer": "what-is-an-ai-agent", "security": "prompt-injection-explained", "models": "ai-model-tiers-explained", "research": "how-to-read-an-ai-benchmark", "health": "how-to-read-an-ai-benchmark", "funding": "open-weights-vs-closed-models", "IPO": "ai-model-tiers-explained", "M&A": "what-is-an-ai-agent", "infrastructure": "what-is-a-context-window", "policy": "open-weights-vs-closed-models", "regulation": "open-weights-vs-closed-models", "adoption": "rag-explained-for-business", "data": "rag-explained-for-business", "business": "rag-explained-for-business", "robotics": "what-is-an-ai-agent", "markets": "ai-model-tiers-explained"}
+
 # ---------- helpers ----------
 def esc(s): return html.escape(str(s), quote=True)
 def money(v):
@@ -96,6 +109,17 @@ def load_briefs():
         briefs.append(b)
     briefs.sort(key=lambda b: b["date"], reverse=True)
     return briefs
+def load_articles():
+    arts = []
+    for p in sorted(glob.glob(os.path.join(DATA, "articles", "*.json"))):
+        a = json.load(open(p, encoding="utf-8"))
+        a.setdefault("slug", os.path.basename(p)[:-5][11:]); a.setdefault("updated", a["published"])
+        a.setdefault("tags", []); a["sources"] = a.get("sources") or []
+        a["stat"] = a.get("stat") or art.key_stat(a["title"]) or art.key_stat(a.get("dek", ""))
+        a["img"] = f"/img/articles/{a['slug']}.webp"; a["words"] = len(a["body"].split()); a["url"] = f"/{a['section']}/{a['slug']}/"
+        arts.append(a)
+    arts.sort(key=lambda a: (a["published"], a["slug"]), reverse=True)
+    return arts
 def load_explainers():
     ex = []
     for p in sorted(glob.glob(os.path.join(DATA, "explainers", "*.json"))):
@@ -122,9 +146,9 @@ p{margin:0 0 1em}code{font:14px ui-monospace,SFMono-Regular,Menlo,monospace;back
 header.top{border-bottom:1px solid var(--line);background:var(--paper);position:sticky;top:0;z-index:20}
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:62px}
 .logo{font-family:Newsreader,Georgia,serif;font-weight:700;font-size:26px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}.logo b{color:var(--acc)}
-nav.main{display:flex;gap:2px;flex-wrap:wrap}nav.main a{color:var(--ink2);padding:6px 10px;border-radius:8px;font-size:15px;font-weight:500}nav.main a:hover,nav.main a.on{background:var(--paper2);color:var(--ink);text-decoration:none}
-.tools{display:flex;gap:6px;align-items:center}.ibtn{border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:9px;padding:7px 10px;font-size:14px;cursor:pointer;font-weight:500;line-height:1}.ibtn:hover{border-color:var(--acc);text-decoration:none}
-@media(max-width:860px){nav.main{display:none}header.top .wrap{min-height:56px}.logo{font-size:23px}}
+nav.main{display:flex;gap:0;flex-wrap:nowrap;overflow:hidden}nav.main a{color:var(--ink2);padding:6px 8px;border-radius:8px;font-size:14px;font-weight:500;white-space:nowrap}nav.main a:hover,nav.main a.on{background:var(--paper2);color:var(--ink);text-decoration:none}
+.tools{display:flex;gap:6px;align-items:center;flex:0 0 auto}#lensBtn{white-space:nowrap}.ibtn{border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:9px;padding:7px 10px;font-size:14px;cursor:pointer;font-weight:500;line-height:1}.ibtn:hover{border-color:var(--acc);text-decoration:none}
+@media(max-width:1060px){nav.main{display:none}}@media(max-width:860px){header.top .wrap{min-height:56px}.logo{font-size:23px}}@media(max-width:1060px){#menuBtn{display:inline-block}}
 .sub{border-bottom:1px solid var(--line);background:var(--paper2)}.sub .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 20px;scrollbar-width:none;align-items:center}.sub a{white-space:nowrap;font-size:14px;color:var(--ink2);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}.sub a.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .ticker{background:var(--ink);color:var(--paper);font-size:14px;overflow:hidden;white-space:nowrap}.ticker .wrap{display:flex;gap:28px;padding:7px 20px;overflow-x:auto;scrollbar-width:none}.ticker a{color:var(--paper);opacity:.92}.ticker b{color:var(--acc)}.ticker .dot{opacity:.4}
 main{padding:22px 0 60px}
@@ -164,6 +188,20 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);fo
 #q{width:100%;padding:14px 16px;font-size:18px;border-radius:12px;border:1px solid var(--line);background:var(--paper2);color:var(--ink)}
 .share{display:flex;gap:6px;flex-wrap:wrap}.share button,.share a{font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink2);cursor:pointer}
 .statbig{font-family:Newsreader,Georgia,serif;font-size:44px;font-weight:700;color:var(--acc);line-height:1}
+.front{display:grid;grid-template-columns:1.6fr 1fr;gap:24px;margin:8px 0 0}.front .hero-s{display:block;color:inherit}.front .hero-s img{border-radius:var(--r);border:1px solid var(--line);aspect-ratio:16/9;object-fit:cover;width:100%}.front .hero-s h1{font-size:clamp(28px,3.6vw,42px);margin:.4em 0 .3em}.front .hero-s p{color:var(--ink2);font-size:17px}
+.front .side{display:grid;gap:14px;align-content:start}.sec2{display:grid;grid-template-columns:120px 1fr;gap:12px;color:inherit;align-items:start}.sec2 img{border-radius:10px;border:1px solid var(--line);aspect-ratio:16/9;object-fit:cover}.sec2 h3{font-size:18px;margin:0 0 4px}.sec2 p{font-size:14px;color:var(--mute);margin:0}
+.hl{border-top:1px solid var(--line);margin-top:6px}.hl a{display:flex;gap:10px;align-items:baseline;padding:9px 0;border-bottom:1px solid var(--line);color:inherit;font-family:Newsreader,Georgia,serif;font-size:18px;font-weight:600;line-height:1.25}.hl a:hover{color:var(--acc);text-decoration:none}.hl .k{font:600 11px Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;color:var(--acc);flex:0 0 auto;min-width:72px}
+@media(max-width:900px){.front{grid-template-columns:1fr}}
+.secband{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}.secband .col h3{margin:0 0 8px;font-size:17px;letter-spacing:.02em}.secband .col h3 a{color:var(--ink)}.secband .col .t{display:block;color:inherit;padding:8px 0;border-top:1px solid var(--line);font-family:Newsreader,Georgia,serif;font-weight:600;font-size:17px;line-height:1.25}.secband .col .t:hover{color:var(--acc);text-decoration:none}.secband .col .t small{display:block;font:13px Inter,system-ui,sans-serif;color:var(--mute);margin-top:3px}.secband .col img{border-radius:10px;border:1px solid var(--line);aspect-ratio:16/9;object-fit:cover;margin-bottom:8px}
+.next{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}.next a{font-size:13px;padding:6px 10px;border-radius:8px;border:1px solid var(--line);background:var(--paper);color:var(--ink2)}.next a:hover{border-color:var(--acc);color:var(--acc);text-decoration:none}.next a b{color:var(--acc)}
+.dev{display:inline-block;background:#c62828;color:#fff;font:700 11px Inter,system-ui,sans-serif;letter-spacing:.06em;text-transform:uppercase;padding:3px 8px;border-radius:6px;margin-right:8px;vertical-align:middle}
+.trust{border-top:1px solid var(--line);margin-top:22px;padding-top:12px;font-size:13px;color:var(--mute)}
+#lensWrap{display:none;position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:60;align-items:flex-end;justify-content:center}#lensWrap.on{display:flex}@media(min-width:700px){#lensWrap{align-items:center}}
+#lensBox{background:var(--paper);color:var(--ink);border-radius:18px 18px 0 0;padding:22px 20px 26px;max-width:620px;width:100%}@media(min-width:700px){#lensBox{border-radius:18px}}#lensBox h2{margin:0 0 4px}#lensBox p{color:var(--ink2);margin:0 0 14px}#lensBox .opts{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px}#lensBox button{padding:14px 12px;border-radius:12px;border:1px solid var(--line);background:var(--paper2);color:var(--ink);font-size:15px;font-weight:600;cursor:pointer;text-align:left}#lensBox button small{display:block;font-weight:400;color:var(--mute);font-size:12px;margin-top:2px}#lensBox button:hover{border-color:var(--acc)}#lensBox .skip{background:none;border:0;color:var(--mute);text-align:center;margin-top:10px;width:100%;font-weight:400}
+#lensBtn{display:none}#lensBtn.on{display:inline-block}
+#menuBtn{display:none}
+#menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:55;overflow:auto;padding:16px 20px 40px}#menu.on{display:block}#menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}#menu h4{margin:18px 0 6px;color:var(--mute);font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#menu a{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:18px;font-weight:500}
+.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}
 """
 
 JS = r"""
@@ -173,7 +211,11 @@ var t=g('theme');if(t)root.setAttribute('data-theme',t);var tb=d.getElementById(
 var pr=d.getElementById('prog');if(pr){addEventListener('scroll',function(){var h=d.documentElement.scrollHeight-innerHeight;pr.style.width=(h>0?Math.min(100,scrollY/h*100):0)+'%'},{passive:true})}
 var AUD={executives:'Executives',finance:'Finance',security:'Security',ml:'ML engineers',developers:'Developers',beginners:'Beginners'};
 function applyLens(k){d.querySelectorAll('.why').forEach(function(w){var rows=[].slice.call(w.children);rows.forEach(function(r){r.classList.toggle('me',!!k&&r.getAttribute('data-aud')===k)});if(k){rows.filter(function(r){return r.getAttribute('data-aud')===k}).forEach(function(r){w.insertBefore(r,w.firstChild)})}});d.querySelectorAll('.lensName').forEach(function(e){e.textContent=k?AUD[k]:'everyone'})}
-var lens=g('lens');d.querySelectorAll('select.lens').forEach(function(sel){if(lens)sel.value=lens;sel.onchange=function(){s('lens',sel.value);applyLens(sel.value);d.querySelectorAll('select.lens').forEach(function(o){o.value=sel.value})}});if(lens)applyLens(lens);
+var lw=d.getElementById('lensWrap'),lbn=d.getElementById('lensBtn');function setLens(k){s('lens',k||'');s('lens_seen','1');applyLens(k);d.querySelectorAll('select.lens').forEach(function(o){o.value=k||''});if(lbn){lbn.textContent=k?('Reading as '+AUD[k]+' ▾'):'Choose your lens';lbn.classList.add('on')}d.querySelectorAll('[data-forlens]').forEach(function(e){e.style.display=(k&&e.getAttribute('data-forlens')===k)?'':'none'});if(lw)lw.classList.remove('on')}
+if(lw){lw.querySelectorAll('button[data-lens]').forEach(function(b){b.onclick=function(){setLens(b.getAttribute('data-lens'))}});var sk=lw.querySelector('.skip');if(sk)sk.onclick=function(){s('lens_seen','1');lw.classList.remove('on')};lw.onclick=function(e){if(e.target===lw){s('lens_seen','1');lw.classList.remove('on')}};if(!g('lens_seen')&&!g('lens')){setTimeout(function(){lw.classList.add('on')},1800)}}
+if(lbn){lbn.onclick=function(){if(lw)lw.classList.add('on')}}
+var mb=d.getElementById('menuBtn'),mn=d.getElementById('menu');if(mb&&mn){mb.onclick=function(){mn.classList.add('on')};var mc=mn.querySelector('.close');if(mc)mc.onclick=function(){mn.classList.remove('on')}}
+var lens=g('lens');d.querySelectorAll('select.lens').forEach(function(sel){if(lens)sel.value=lens;sel.onchange=function(){s('lens',sel.value);applyLens(sel.value);d.querySelectorAll('select.lens').forEach(function(o){o.value=sel.value})}});if(lens){setLens(lens)}else if(lbn){lbn.textContent='Choose your lens';lbn.classList.add('on');d.querySelectorAll('[data-forlens]').forEach(function(e){e.style.display='none'})}
 var lb=d.getElementById('listenBtn');if(lb){if(!('speechSynthesis' in window)){lb.style.display='none'}else{var speaking=false;lb.onclick=function(){if(speaking){speechSynthesis.cancel();speaking=false;lb.textContent='▶ Listen';return}var txt=[].map.call(d.querySelectorAll('[data-speak]'),function(e){return e.textContent}).join('. ');var u=new SpeechSynthesisUtterance(txt);u.rate=1.02;u.onend=function(){speaking=false;lb.textContent='▶ Listen'};speechSynthesis.cancel();speechSynthesis.speak(u);speaking=true;lb.textContent='■ Stop'}}}
 d.querySelectorAll('[data-share]').forEach(function(b){b.onclick=function(){var url=b.getAttribute('data-share'),ti=b.getAttribute('data-title')||d.title;if(navigator.share){navigator.share({title:ti,url:url}).catch(function(){})}else{if(navigator.clipboard)navigator.clipboard.writeText(url);b.textContent='Link copied'}}});
 var last=g('lastSeen'),cur=d.body.getAttribute('data-latest');if(cur){if(last&&last<cur){d.querySelectorAll('.badge').forEach(function(b){b.style.display='inline-block';b.textContent='New'})}s('lastSeen',cur)}
@@ -193,10 +235,10 @@ ASSET_V = hashlib.md5((CSS + JS).encode()).hexdigest()[:8]
 HEAD_FONTS = '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Newsreader:ital,wght@0,500;0,600;0,700;1,500&display=swap" rel="stylesheet">'
 
 def nav_html(section=""):
-    links = [("/brief/", "brief", "Daily brief"), ("/for/", "for", "For you"), ("/trackers/", "trackers", "Trackers"), ("/topics/", "topics", "Topics"), ("/learn/", "learn", "Learn"), ("/glossary/", "glossary", "Glossary")]
+    links = [("/brief/", "brief", "Brief"), ("/security/", "security", "Security"), ("/health/", "health", "Health"), ("/markets/", "markets", "Markets"), ("/robotics/", "robotics", "Robotics"), ("/models/", "models", "Models"), ("/policy/", "policy", "Policy"), ("/business/", "business", "Business"), ("/tools/", "tools", "Tools")]
     return "".join(f'<a href="{h}"{" class=on" if k == section else ""}>{t}</a>' for h, k, t in links)
 def sub_html(section=""):
-    links = [("/", "home", "Home"), ("/brief/", "brief", "Brief"), ("/for/", "for", "For you"), ("/trackers/api-pricing/", "pricing", "Pricing"), ("/trackers/models/", "models", "Models"), ("/topics/", "topics", "Topics"), ("/learn/", "learn", "Learn"), ("/glossary/", "glossary", "Glossary"), ("/newsletter/", "newsletter", "Newsletter")]
+    links = [("/", "home", "Home"), ("/brief/", "brief", "Brief"), ("/for/", "for", "For you"), ("/trackers/", "trackers", "Trackers"), ("/topics/", "topics", "Topics"), ("/glossary/", "glossary", "Glossary"), ("/newsletter/", "newsletter", "Newsletter")] + [(f"/{k}/", k, n) for k, n, _, _ in SECTIONS]
     return "".join(f'<a href="{h}"{" class=on" if k == section else ""}>{t}</a>' for h, k, t in links)
 
 def nl_form(cls="nlf"):
@@ -207,6 +249,14 @@ def newsletter_box():
     return (f'<section class="nl" id="subscribe"><h2>Get the brief in your inbox</h2>'
             f'<p>One email every morning: the stories that mattered in AI, each with a one-line "why it matters" for your role. Free, no ads, unsubscribe any time.</p>{nl_form()}'
             f'<small>Published daily by {BRAND}. We never share your address.</small></section>')
+def lens_prompt():
+    opts = "".join(f'<button data-lens="{k}">{esc(n)}<small>{esc(who)}</small></button>' for k, n, who, _ in AUDIENCES)
+    return f'<div id="lensWrap" role="dialog" aria-label="Choose your lens"><div id="lensBox"><div class="kicker">Make it yours</div><h2>Who are you reading as?</h2><p>Every story gets a one-line "why it matters" written for you. Pick once; change any time from the header.</p><div class="opts">{opts}</div><button class="skip">Just show me everything</button></div></div>'
+def menu_html():
+    secs = "".join(f'<a href="/{k}/">{esc(n)}</a>' for k, n, _, _ in SECTIONS)
+    lenses = "".join(f'<a href="/for/{k}/">{esc(n)} <span class="meta">— {esc(who)}</span></a>' for k, n, who, _ in AUDIENCES)
+    return (f'<div id="menu"><div class="top"><a class="logo" href="/">AI<b>Briefing</b></a><button class="ibtn close" aria-label="Close menu">✕</button></div>'
+            f'<a href="/brief/">Today\'s brief</a><a href="/search/">Search</a><a href="/newsletter/">Newsletter</a><h4>Sections</h4>{secs}<h4>Read as</h4>{lenses}<h4>Reference</h4><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/about/">About</a></div>')
 def sticky_bar():
     return f'<div id="stick"><div class="wrap"><strong>Like this? Get tomorrow\'s brief by email, free.</strong>{nl_form("nlf")}<button class="x" aria-label="Dismiss">×</button></div></div>'
 def ticker_html(briefs):
@@ -244,7 +294,7 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 </head>
 <body{(' data-latest="' + latest + '"') if latest else ''}>
 <div id="prog"></div>
-<header class="top"><div class="wrap"><a class="logo" href="/">AI<b>Briefing</b></a><nav class="main" aria-label="Main">{nav_html(section)}</nav><div class="tools"><a class="ibtn" href="/search/" aria-label="Search">⌕</a><button class="ibtn" id="themeBtn" aria-label="Toggle dark mode">◐</button><a class="btn" href="/newsletter/" style="padding:8px 14px;font-size:14px">Subscribe</a></div></div></header>
+<header class="top"><div class="wrap"><a class="logo" href="/">AI<b>Briefing</b></a><nav class="main" aria-label="Main">{nav_html(section)}</nav><div class="tools"><button class="ibtn" id="lensBtn"></button><a class="ibtn" href="/search/" aria-label="Search">⌕</a><button class="ibtn" id="menuBtn" aria-label="Menu">☰</button><button class="ibtn" id="themeBtn" aria-label="Toggle dark mode">◐</button><a class="btn" href="/newsletter/" style="padding:8px 14px;font-size:14px">Subscribe</a></div></div></header>
 <div class="sub"><div class="wrap">{sub_html(section)}</div></div>
 {ticker}
 <main><div class="wrap">
@@ -255,6 +305,8 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 <div>{BRAND} is an independent publication. Every item links to its original source; summaries are written in our own words. Graphics are generated in-house. Not affiliated with the companies covered. &copy; {datetime.date.today().year} aibriefing.io</div>
 </div></footer>
 {sticky_bar()}
+{lens_prompt()}
+{menu_html()}
 <script src="/assets/site.js?v={ASSET_V}" defer></script>
 </body>
 </html>"""
@@ -281,9 +333,20 @@ def item_html(it, date, aud_filter=None, with_date=False):
     dl = f'<span class="meta">{short_date(date)} · </span>' if with_date else ""
     tags = "".join(f'<a class="pill" href="/topics/{slugify(t)}/">{esc(t)}</a>' for t in it.get("tags", []))
     url = f"{ROOT}/brief/{date}/#{it['id']}"
-    return (f'<article class="item" id="{esc(it["id"])}"><a href="/brief/{date}/#{it["id"]}"><img src="{it["img"]}" alt="" width="1200" height="675" loading="lazy"></a><div>'
-            f'<h3 data-speak>{dl}{md_inline(it["title"])}</h3><p class="sum" data-speak>{md_inline(it["summary"])}</p><div class="why">{whys}</div>'
-            f'<div class="src">Source: {srcl}</div><div style="margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div>{tags}</div><div class="share"><button data-share="{url}" data-title="{esc(strip_md(it["title"]))}">Share</button></div></div></div></article>')
+    dev = '<span class="dev">Developing</span>' if it.get("developing") else ""
+    return (f'<article class="item" id="{esc(it["id"])}"><a href="{it.get("article_url") or ("/brief/" + date + "/#" + it["id"])}"><img src="{it["img"]}" alt="" width="1200" height="675" loading="lazy"></a><div>'
+            f'<h3 data-speak>{dl}{dev}{md_inline(it["title"])}</h3><p class="sum" data-speak>{md_inline(it["summary"])}</p><div class="why">{whys}</div>'
+            f'<div class="src">Source: {srcl}</div>{next_actions(it)}<div style="margin-top:10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap"><div>{tags}</div><div class="share"><button data-share="{url}" data-title="{esc(strip_md(it["title"]))}">Share</button></div></div></div></article>')
+def next_actions(it, explainers=None):
+    out = []
+    if it.get("article_url"): out.append(f'<a href="{it["article_url"]}"><b>Full story</b> →</a>')
+    vend = [t for t in it.get("tags", []) if t in art.VENDOR_TAGS]
+    if vend: out.append(f'<a href="/topics/{slugify(vend[0])}/"><b>Story so far:</b> {esc(vend[0])}</a>')
+    elif it.get("tags"): out.append(f'<a href="/topics/{slugify(it["tags"][0])}/"><b>Thread:</b> {esc(it["tags"][0])}</a>')
+    ex = next((EXPLAINER_FOR_TAG[t] for t in it.get("tags", []) if t in EXPLAINER_FOR_TAG), None)
+    if ex and ex in EXPLAINER_TITLES: out.append(f'<a href="/learn/{ex}/"><b>Read next:</b> {esc(EXPLAINER_TITLES[ex])}</a>')
+    return f'<div class="next">{"".join(out)}</div>' if out else ""
+EXPLAINER_TITLES = {}
 def lens_select():
     opts = '<option value="">Everyone</option>' + "".join(f'<option value="{k}">{esc(n)}</option>' for k, n, _, _ in AUDIENCES)
     return f'<label class="meta">Read as&nbsp;<select class="lens" aria-label="Choose your lens">{opts}</select></label>'
@@ -299,7 +362,7 @@ def brief_page(b, prev_b=None, next_b=None):
             f'<div class="dateline">{fmt_date(date)} · {len(b["items"])} stories · {read_time(b["words"])} min read</div>'
             f'<p class="lede" style="margin-top:10px" data-speak>{md_inline(b.get("intro", ""))}</p>'
             f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(title)}">Share</button></div></div></div>'
-            f'{one}<section>{items}</section><p class="meta" style="margin-top:18px">{navl}</p>{newsletter_box()}')
+            f'{one}<section>{items}</section><div class="trust">{len(b["items"])} stories · {len({s["url"] for it in b["items"] for s in it["sources"]})} sources linked · summaries written in our own words and checked against the linked reporting · corrections: corrections@aibriefing.io</div><p class="meta" style="margin-top:18px">{navl}</p>{newsletter_box()}')
     desc = (b.get("intro", "")[:155]) or f"The {len(b['items'])} AI stories that mattered on {short_date(date)}."
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": title, "datePublished": date + "T11:00:00Z", "dateModified": (b.get("updated", date)) + "T11:00:00Z",
           "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}},
@@ -431,25 +494,91 @@ def glossary_pages():
         out[path] = layout(title=f'What is {t["term"]}? Definition in plain English | AI Briefing', desc=t["short"][:155], path=path, body=body, section="glossary", jsonld=[ld, breadcrumbs([("Glossary", "/glossary/"), (t["term"], path)])])
     return out
 
-def home(briefs, explainers):
+def article_card(a, big=False):
+    return (f'<a class="story tile" href="{a["url"]}"><img src="{a["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><div class="kicker">{esc(SEC[a["section"]][1])}</div><h3>{esc(a["title"])}</h3><p>{esc(a["dek"][:150])}…</p><div class="m"><span>{short_date(a["published"])}</span><span>·</span><span>{read_time(a["words"])} min</span></div></div></a>')
+
+def article_page(a, articles, explainers):
+    sec = SEC[a["section"]]; path = a["url"]
+    why = a.get("why", {})
+    whys = "".join(f'<div data-aud="{k}"><span class="chip">{esc(AUD[k][1])}</span><span>{md_inline(why[k])}</span></div>' for k in why if k in AUD)
+    srcs = "".join(f'<a href="{esc(s["url"])}" rel="noopener">{esc(s["name"])} ↗</a>' for s in a["sources"] if s.get("url"))
+    related = [x for x in articles if x["slug"] != a["slug"] and x["section"] == a["section"]][:3]
+    if len(related) < 3: related += [x for x in articles if x["slug"] != a["slug"] and x not in related and set(x["tags"]) & set(a["tags"])][:3 - len(related)]
+    rel = "".join(article_card(x) for x in related)
+    tags = "".join(f'<a class="pill" href="/topics/{slugify(t)}/">{esc(t)}</a>' for t in a["tags"])
+    nx = next_actions({"tags": a["tags"]})
+    dev = '<span class="dev">Developing</span>' if a.get("developing") else ""
+    body = (f'<div class="hero"><div class="kicker"><a href="/{a["section"]}/">{esc(sec[1])}</a> · {short_date(a["published"])} · {read_time(a["words"])} min read</div><h1 data-speak>{dev}{esc(a["title"])}</h1><p class="lede" data-speak>{esc(a["dek"])}</p>'
+            f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(a["title"])}">Share</button></div></div></div>'
+            f'<img class="cover" src="{a["img"]}" alt="" width="1200" height="675" fetchpriority="high">'
+            + (f'<div class="card" style="max-width:900px;margin:0 0 18px"><div class="kicker">Why it matters</div><div class="why">{whys}</div></div>' if whys else "")
+            + f'<div class="article" data-speak>{md_block(a["body"])}</div>'
+            f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div><div>{tags}</div>{nx}'
+            f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
+            + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())
+    ld = [{"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
+    return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"])
+
+def section_page(key, articles, briefs, explainers):
+    k, name, blurb, pal = SEC[key]
+    arts = [a for a in articles if a["section"] == key]
+    items = [(b["date"], it) for b in briefs[:7] for it in b["items"] if key in it.get("sections", []) or any(t == key for t in it.get("tags", []))][:8]
+    lead = arts[0] if arts else None
+    front = ""
+    if lead:
+        side = "".join(f'<a class="sec2" href="{x["url"]}"><img src="{x["img"]}" alt="" width="1200" height="675" loading="lazy"><div><h3>{esc(x["title"])}</h3><p>{short_date(x["published"])} · {read_time(x["words"])} min</p></div></a>' for x in arts[1:4])
+        front = (f'<div class="front"><a class="hero-s" href="{lead["url"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"><h1>{esc(lead["title"])}</h1><p>{esc(lead["dek"])}</p></a><div class="side">{side}</div></div>')
+    more = "".join(article_card(a) for a in arts[4:16])
+    briefl = "".join(f'<a href="/brief/{d}/#{it["id"]}"><span class="k">{short_date(d)}</span>{md_inline(it["title"])}</a>' for d, it in items)
+    ex = [e for e in explainers if any(t in e.get("tags", []) or t in e.get("audiences", []) for t in [key])][:3] or explainers[:3]
+    exh = "".join(f'<a class="story tile" href="/learn/{e["slug"]}/"><img src="{e["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:120])}…</p></div></a>' for e in ex)
+    body = (f'<div class="hero" style="padding-bottom:4px"><div class="kicker">Section</div><h1 style="margin:.1em 0 .2em">{esc(name)}</h1><p class="lede">{esc(blurb)} <a href="/{key}/feed.xml">RSS</a></p></div>{front}'
+            + (f'<div class="band"><div class="hd"><h2>More {esc(name.lower())}</h2></div><div class="grid g3">{more}</div></div>' if more else "")
+            + (f'<div class="band"><div class="hd"><h2>From the daily brief</h2><a href="/brief/">All briefs →</a></div><div class="hl">{briefl}</div></div>' if briefl else "")
+            + f'<div class="band"><div class="hd"><h2>Explainers</h2><a href="/learn/">All →</a></div><div class="grid g3">{exh}</div></div>{newsletter_box()}')
+    path = f"/{key}/"
+    ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"AI {name} news", "url": ROOT + path, "description": blurb}
+    return layout(title=f"AI {name.lower()} news, daily | AI Briefing", desc=f"Dedicated daily coverage of AI in {name.lower()}: {blurb}", path=path, body=body, section=key, jsonld=[ld, breadcrumbs([(name, path)])], og_image=(ROOT + lead["img"]) if lead else None)
+
+def section_feed(key, articles):
+    name = SEC[key][1]; items = ""
+    for a in [x for x in articles if x["section"] == key][:20]:
+        pub = datetime.datetime.fromisoformat(a["published"] + "T12:00:00+00:00").strftime("%a, %d %b %Y %H:%M:%S +0000")
+        content = f'<p><img src="{ROOT}{a["img"]}" alt="" width="600"></p><p><em>{esc(a["dek"])}</em></p>{md_block(a["body"])}<p><a href="{ROOT}{a["url"]}">Read on aibriefing.io</a></p>'
+        items += f'<item><title>{esc(a["title"])}</title><link>{ROOT}{a["url"]}</link><guid isPermaLink="true">{ROOT}{a["url"]}</guid><pubDate>{pub}</pubDate><description>{esc(a["dek"])}</description><content:encoded><![CDATA[{content}]]></content:encoded></item>'
+    return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>{BRAND} · {esc(name)}</title><link>{ROOT}/{key}/</link><description>AI {esc(name.lower())} coverage from {BRAND}</description><language>en</language><atom:link href="{ROOT}/{key}/feed.xml" rel="self" type="application/rss+xml"/>{items}</channel></rss>'
+
+def home(briefs, explainers, articles):
     b = briefs[0]; lead = b["items"][0]
-    rest = "".join(story_tile(it, b["date"]) for it in b["items"][1:7])
+    side = "".join(f'<a class="sec2" href="/brief/{b["date"]}/#{it["id"]}"><img src="{it["img"]}" alt="" width="1200" height="675" loading="lazy"><div><h3>{md_inline(it["title"])}</h3><p>{esc(it["sources"][0]["name"]) if it["sources"] else ""}</p></div></a>' for it in b["items"][1:3])
+    hl = "".join(f'<a href="/brief/{b["date"]}/#{it["id"]}"><span class="k">{esc(next((t for t in it["tags"] if t not in art.VENDOR_TAGS), "news"))}</span>{md_inline(it["title"])}</a>' for it in b["items"][3:])
+    lens_lists = ""
+    for k, name, who, _ in AUDIENCES:
+        rows = "".join([f'<div class="why"><div data-aud="{k}" class="me"><span class="chip">{esc(name)}</span><span><a href="/brief/{b["date"]}/#{it["id"]}" style="color:inherit;font-weight:600">{md_inline(it["title"])}</a> — {md_inline(it["why"][k])}</span></div></div>' for it in b["items"] if k in it.get("why", {})][:6])
+        lens_lists += f'<div class="band" data-forlens="{k}" style="display:none"><div class="hd"><h2>Today, for {esc(name.lower())}</h2><a href="/for/{k}/">Your full feed →</a></div>{rows}</div>'
+    secband = ""
+    for k, name, blurb, _ in SECTIONS:
+        arts = [a for a in articles if a["section"] == k][:3]
+        if not arts: continue
+        first = arts[0]
+        secband += (f'<div class="col"><h3><a href="/{k}/">{esc(name)} →</a></h3><a class="t" href="{first["url"]}"><img src="{first["img"]}" alt="" width="1200" height="675" loading="lazy">{esc(first["title"])}<small>{esc(first["dek"][:110])}…</small></a>'
+                    + "".join(f'<a class="t" href="{a["url"]}">{esc(a["title"])}<small>{short_date(a["published"])}</small></a>' for a in arts[1:]) + '</div>')
     tiles = "".join(f'<a class="story tile" href="/for/{k}/"><img src="/img/for/{k}.webp" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(name)}</h3><p>{esc(blurb)}</p></div></a>' for k, name, who, blurb in AUDIENCES)
     pt = TRACKERS.get("api-pricing"); mt = TRACKERS.get("models", {})
     tr = (f'<div class="grid g2"><a class="card tile" href="/trackers/api-pricing/"><div class="kicker">Pricing tracker</div><h3>{esc(pt["title"]) if pt else ""}</h3>{pricing_chart(pt["rows"]) if pt else ""}<p class="meta">Checked {esc(pt["updated"]) if pt else ""} · {len(pt["rows"]) if pt else 0} models</p></a>'
           f'<a class="card tile" href="/trackers/models/"><div class="kicker">Release tracker</div><h3>{esc(mt.get("title", ""))}</h3><div class="tl">' + "".join(f'<div class="ev"><div class="d">{esc(r["released"])} · {esc(r["vendor"])}</div><strong>{esc(r["model"])}</strong></div>' for r in mt.get("rows", [])[:5]) + '</div></a></div>')
     ex = "".join(f'<a class="story tile" href="/learn/{e["slug"]}/"><img src="{e["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:120])}…</p></div></a>' for e in explainers[:3])
     older = "".join(story_tile(it, ob["date"]) for ob in briefs[1:3] for it in ob["items"][:3])
-    one = f'<div class="card"><div class="kicker">The one thing to know today</div><p style="font-size:18px;color:var(--ink);margin:0">{md_inline(b["one_thing"])}</p></div>' if b.get("one_thing") else ""
+    one = f'<div class="card" style="margin-top:18px"><div class="kicker">The one thing to know today</div><p style="font-size:18px;color:var(--ink);margin:0">{md_inline(b["one_thing"])}</p></div>' if b.get("one_thing") else ""
     older_band = f'<div class="band"><div class="hd"><h2>Earlier this week</h2><a href="/brief/">Archive →</a></div><div class="grid g3">{older}</div></div>' if older else ""
-    body = (f'<div class="lead"><div><div class="kicker">{fmt_date(b["date"])} · Today\'s brief<span class="badge"></span></div><h1>{esc(b.get("headline") or TAGLINE)}</h1><p class="lede">{md_inline(b.get("intro", ""))}</p>'
-            f'<p><a class="btn" href="/brief/{b["date"]}/">Read the brief · {read_time(b["words"])} min</a> &nbsp; <a href="/for/">or pick your role &rarr;</a></p></div>'
-            f'<a href="/brief/{b["date"]}/#{lead["id"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"></a></div>{one}'
-            f'<div class="band"><div class="hd"><h2>Today\'s stories</h2><a href="/brief/{b["date"]}/">Full brief →</a></div><div class="grid g3">{rest}</div></div>'
+    body = (f'<div class="kicker" style="margin:4px 0 2px">{fmt_date(b["date"])} · Today\'s brief · {read_time(b["words"])} min<span class="badge"></span></div>'
+            f'<div class="front"><a class="hero-s" href="/brief/{b["date"]}/#{lead["id"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"><h1>{md_inline(lead["title"])}</h1><p>{md_inline(lead["summary"])}</p></a>'
+            f'<div class="side">{side}<div class="hl">{hl}</div><a class="btn" href="/brief/{b["date"]}/" style="justify-self:start">Read the full brief →</a></div></div>{one}{lens_lists}'
+            f'<div class="band"><div class="hd"><h2>Sections</h2><a href="/search/">Search the site →</a></div><div class="secband">{secband}</div></div>'
             f'<div class="band"><div class="hd"><h2>Written for your job</h2><a href="/for/">All lenses →</a></div><div class="grid g3">{tiles}</div></div>'
             f'<div class="band"><div class="hd"><h2>Trackers</h2><a href="/trackers/">All trackers →</a></div>{tr}</div>{older_band}'
             f'<div class="band"><div class="hd"><h2>Learn</h2><a href="/learn/">All explainers →</a></div><div class="grid g3">{ex}</div></div>{newsletter_box()}')
-    desc = "Daily AI news in 4 minutes, with a one-line why-it-matters for executives, finance, security, ML engineers, developers and beginners. Plus live trackers for API pricing and model releases."
+    desc = "Daily AI news in 4 minutes, explained for your job, plus dedicated coverage of AI in security, health, markets, robotics, models, policy, business and developer tools."
     return layout(title="AI Briefing — daily AI news, explained for your job", desc=desc, path="/", body=body, section="home", latest=b["date"], ticker=ticker_html(briefs), og_image=f"{ROOT}/img/briefs/{b['date']}.png")
 
 def newsletter_page():
@@ -570,6 +699,10 @@ def generate_images(briefs, explainers):
         for it in b["items"]:
             p = os.path.join(OUT, it["img"].lstrip("/"))
             if not os.path.exists(p): art.story_card(p, strip_md(it["title"]), it.get("tags", []), short_date(b["date"]), it["sources"][0]["name"] if it["sources"] else BRAND, it.get("stat")); n += 1
+    ensure_dir("img/articles")
+    for a in ARTICLES:
+        p = os.path.join(OUT, a["img"].lstrip("/"))
+        if not os.path.exists(p): art.story_card(p, a["title"], a["tags"], short_date(a["published"]), a["sources"][0]["name"] if a["sources"] else BRAND, a.get("stat")); n += 1
     for e in explainers:
         p = os.path.join(OUT, e["img"].lstrip("/"))
         if not os.path.exists(p): art.explainer_cover(p, e["title"], e.get("level", "all levels")); n += 1
@@ -578,14 +711,25 @@ def generate_images(briefs, explainers):
         if not os.path.exists(p): art.hub_cover(p, name, who, k); n += 1
     return n
 
+ARTICLES = []
 def main():
+    global ARTICLES
     briefs = load_briefs(); explainers = load_explainers(); assert briefs
+    ARTICLES = articles = load_articles()
+    EXPLAINER_TITLES.update({e["slug"]: e["title"] for e in explainers})
+    amap = {a["slug"]: a for a in articles}
+    for b in briefs:
+        for it in b["items"]:
+            if it.get("article") in amap: it["article_url"] = amap[it["article"]]["url"]
     for name in os.listdir(OUT):
         if name in ("_src", ".git", "README.md", ".gitignore", "img"): continue
         p = os.path.join(OUT, name); shutil.rmtree(p) if os.path.isdir(p) else os.remove(p)
     nimg = generate_images(briefs, explainers)
     topics = topic_pages(briefs)
-    pages = {"/": home(briefs, explainers), "/brief/": brief_index(briefs)}
+    pages = {"/": home(briefs, explainers, articles), "/brief/": brief_index(briefs)}
+    for k, name, blurb, _ in SECTIONS:
+        pages[f"/{k}/"] = section_page(k, articles, briefs, explainers); write(f"{k}/feed.xml", section_feed(k, articles))
+    for a in articles: pages[a["url"]] = article_page(a, articles, explainers)
     for i, b in enumerate(briefs):
         pages[f"/brief/{b['date']}/"] = brief_page(b, prev_b=briefs[i + 1] if i + 1 < len(briefs) else None, next_b=briefs[i - 1] if i > 0 else None)
     pages["/for/"] = for_index()
@@ -606,6 +750,7 @@ def main():
     write("assets/site.css", CSS); write("assets/site.js", JS); write("sw.js", SW); write("manifest.webmanifest", jd(MANIFEST))
     write("feed.xml", feed(briefs))
     idx = [{"t": strip_md(it["title"]), "s": strip_md(it["summary"]), "u": f"/brief/{b['date']}/#{it['id']}", "k": short_date(b["date"])} for b in briefs for it in b["items"]]
+    idx += [{"t": a["title"], "s": a["dek"], "u": a["url"], "k": SEC[a["section"]][1] + " · " + short_date(a["published"])} for a in articles]
     idx += [{"t": e["title"], "s": e["summary"], "u": f"/learn/{e['slug']}/", "k": "Explainer"} for e in explainers]
     idx += [{"t": t["term"], "s": t["short"], "u": f"/glossary/{slugify(t['term'])}/", "k": "Glossary"} for t in GLOSSARY]
     write("search.json", jd(idx))
@@ -614,9 +759,13 @@ def main():
         m = re.match(r"/brief/(\d{4}-\d{2}-\d{2})/", path)
         if m: return m.group(1)
         if path.startswith("/trackers/") and len(path) > 10: return TRACKERS.get(path.strip("/").split("/")[1], {}).get("updated", TODAY)
+        a = next((a for a in ARTICLES if a["url"] == path), None)
+        if a: return a["updated"]
         return TODAY
     def prio(path):
         if path == "/": return "1.0"
+        if any(path == f"/{k}/" for k in SEC): return "0.9"
+        if any(path.startswith(f"/{k}/") and len(path) > len(k) + 2 for k in SEC): return "0.8"
         if path.startswith("/trackers/") or path.startswith("/for/"): return "0.9"
         if path.startswith("/brief/") and len(path) > 7: return "0.8"
         if path.startswith("/learn/") or path.startswith("/topics/"): return "0.7"
@@ -624,7 +773,9 @@ def main():
         return "0.6"
     def img_for(path):
         m = re.match(r"/brief/(\d{4}-\d{2}-\d{2})/", path)
-        return f'<image:image><image:loc>{ROOT}/img/briefs/{m.group(1)}.png</image:loc></image:image>' if m else ""
+        if m: return f'<image:image><image:loc>{ROOT}/img/briefs/{m.group(1)}.png</image:loc></image:image>'
+        a = next((a for a in ARTICLES if a["url"] == path), None)
+        return f'<image:image><image:loc>{ROOT}{a["img"]}</image:loc></image:image>' if a else ""
     urls = "".join(f"<url><loc>{ROOT}{p}</loc><lastmod>{lastmod(p)}</lastmod><priority>{prio(p)}</priority>{img_for(p)}</url>" for p in pages if p not in noindex)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">{urls}</urlset>')
     write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /search/\nSitemap: {ROOT}/sitemap.xml\n")

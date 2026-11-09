@@ -76,30 +76,66 @@ def _bg(W, H, pal, seed):
     img = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB")
     return img
 
-def story_card(out_path, title, tags, date_label, source_name, stat=None, W=1200, H=675):
+def pick_variant(tags, stat):
+    if "M&A" in tags: return "split"
+    if stat and any(t in ("pricing", "adoption", "data", "funding", "IPO", "markets") for t in tags): return "chart"
+    if stat: return "stat"
+    return "headline"
+
+def story_card(out_path, title, tags, date_label, source_name, stat=None, W=1200, H=675, variant=None):
     pal = palette(tags); acc = pal[2]
+    variant = variant or pick_variant(tags, stat)
     img = _bg(W, H, pal, title); d = ImageDraw.Draw(img)
     pad = 64
+    h = int(hashlib.md5(title.encode()).hexdigest(), 16)
+    if variant == "chart":
+        # abstract bar chart, bottom-right
+        n = 7; bw = 44; gap = 18; x0 = W - pad - n * (bw + gap); base = H - 110
+        for i in range(n):
+            hh = 60 + ((h >> (i * 4)) % 100) * 2.2
+            if i == n - 1: hh = 300
+            d.rounded_rectangle([x0 + i * (bw + gap), base - hh, x0 + i * (bw + gap) + bw, base], radius=8, fill=acc + () if i == n - 1 else None, outline=None)
+            if i != n - 1:
+                ov = Image.new("RGBA", (W, H), (0, 0, 0, 0)); od = ImageDraw.Draw(ov)
+                od.rounded_rectangle([x0 + i * (bw + gap), base - hh, x0 + i * (bw + gap) + bw, base], radius=8, fill=acc + (110,))
+                img = Image.alpha_composite(img.convert("RGBA"), ov).convert("RGB"); d = ImageDraw.Draw(img)
+    if variant == "split":
+        panel = Image.new("RGBA", (W, H), (0, 0, 0, 0)); pdraw = ImageDraw.Draw(panel)
+        pdraw.rectangle([0, 0, int(W * 0.36), H], fill=acc + (235,))
+        img = Image.alpha_composite(img.convert("RGBA"), panel).convert("RGB"); d = ImageDraw.Draw(img)
+        word = next((t for t in tags if t not in VENDOR_TAGS), "AI").upper()
+        tf = font(SANSB, 150 if len(word) <= 4 else 96)
+        tmp = Image.new("RGBA", (H, int(W * 0.36)), (0, 0, 0, 0)); td = ImageDraw.Draw(tmp)
+        td.text((pad, int(W * 0.36 * 0.5)), word, font=tf, fill=pal[0] + (255,), anchor="lm")
+        tmp = tmp.rotate(90, expand=True); img.paste(tmp, (0, 0), tmp); d = ImageDraw.Draw(img)
+        pad = int(W * 0.36) + 48
     # top row: brand + category
     d.text((pad, 44), "AI BRIEFING", font=font(SANSB, 22), fill=(255, 255, 255))
     cat = next((t for t in tags if t not in VENDOR_TAGS), tags[0] if tags else "AI").upper()
     cf = font(SANSB, 20); cw = d.textlength(cat, font=cf) + 28
-    d.rounded_rectangle([W - pad - cw, 38, W - pad, 72], radius=17, fill=acc)
-    d.text((W - pad - cw + 14, 44), cat, font=cf, fill=pal[0])
-    # stat or category word
-    y = 120
-    if stat:
-        sf = font(SANSB, 150 if len(stat) <= 6 else 110)
-        d.text((pad - 4, y), stat, font=sf, fill=acc); y += (170 if len(stat) <= 6 else 130)
+    d.rounded_rectangle([W - 64 - cw, 38, W - 64, 72], radius=17, fill=acc)
+    d.text((W - 64 - cw + 14, 44), cat, font=cf, fill=pal[0])
+    y = 120; maxw = W - pad - 64
+    if variant == "headline":
+        d.rectangle([pad, 128, pad + 90, 136], fill=acc)
+        tf = font(SERIF, 72)
+        try: tf.set_variation_by_axes([700])
+        except Exception: pass
+        y = 160
+        for ln in _wrap(d, title, tf, maxw)[:4]:
+            d.text((pad, y), ln, font=tf, fill=(255, 255, 255)); y += 84
     else:
-        sf = font(SERIF, 120); d.text((pad, y), cat.title(), font=sf, fill=acc); y += 140
-    # title
-    tf = font(SERIF, 54)
-    try: tf.set_variation_by_axes([650])
-    except Exception: pass
-    lines = _wrap(d, title, tf, W - 2 * pad)[:4]
-    for ln in lines:
-        d.text((pad, y), ln, font=tf, fill=(255, 255, 255)); y += 64
+        if variant == "chart": maxw = int(W * 0.55)
+        if stat:
+            sf = font(SANSB, 150 if len(stat) <= 6 else 110)
+            d.text((pad - 4, y), stat, font=sf, fill=acc if variant != "split" else (255, 255, 255)); y += (170 if len(stat) <= 6 else 130)
+        else:
+            sf = font(SERIF, 120); d.text((pad, y), cat.title(), font=sf, fill=acc); y += 140
+        tf = font(SERIF, 54 if variant != "chart" else 48)
+        try: tf.set_variation_by_axes([650])
+        except Exception: pass
+        for ln in _wrap(d, title, tf, maxw)[:4]:
+            d.text((pad, y), ln, font=tf, fill=(255, 255, 255)); y += 64
     # footer
     d.line([(pad, H - 70), (W - pad, H - 70)], fill=acc, width=2)
     d.text((pad, H - 56), f"{date_label}  ·  Source: {source_name}", font=font(SANSR, 22), fill=(230, 226, 218))

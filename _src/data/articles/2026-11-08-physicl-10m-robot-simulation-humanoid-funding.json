@@ -1,0 +1,33 @@
+{
+ "slug": "physicl-10m-robot-simulation-humanoid-funding",
+ "section": "robotics",
+ "published": "2026-11-08",
+ "title": "Physicl raises $10M to make simulations real enough to train robots, as humanoid funding hits a record",
+ "dek": "The bottleneck in robotics is no longer the model or the hardware. It is believable practice environments, and a new wave of startups is selling exactly that.",
+ "stat": "$10M",
+ "tags": [
+  "robotics",
+  "funding"
+ ],
+ "sources": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/06/physicl-raises-10m-to-make-the-digital-world-real-enough-for-robots/"
+  },
+  {
+   "name": "Dealroom",
+   "url": "https://dealroom.co/charts/humanoid-robotics"
+  },
+  {
+   "name": "Robotics 24/7",
+   "url": "https://www.robotics247.com/topic/tag/Humanoid"
+  }
+ ],
+ "why": {
+  "ml": "Sim-to-real is where robotics compute is going. Expect the same data-engine dynamics that drove LLMs: whoever owns the richest environments trains the best policies.",
+  "finance": "Humanoid funding is at an all-time high and increasingly concentrated in China. The picks-and-shovels layer (simulation, data, safety) is where Western capital is finding entry points.",
+  "executives": "If you run warehouses or plants, humanoid pilots are now a procurement question, not a research one. Start with a narrow task and a safety partner."
+ },
+ "body": "Physicl, a startup building high-fidelity simulated environments for training robots, has raised $10 million, TechCrunch reported on November 6. The pitch is simple: robots learn by practising, practising in the physical world is slow and expensive, and today's simulators are not realistic enough for skills learned there to survive contact with reality. Make the digital world \"real enough\" and you can train millions of hours overnight.\n\n## Why simulation is the bottleneck\n\nLanguage models had the internet to learn from. Robots have nothing comparable: there is no trillion-token archive of a hand picking up a cup. The industry's answer is to manufacture experience, either by teleoperating real robots and recording them, or by simulating. Simulation scales, but the gap between simulated and real physics (friction, deformable objects, lighting, sensor noise) has historically wasted much of what was learned. Closing that gap is now a product category, and Physicl is one of several companies selling into it alongside the simulation stacks offered by the large chip and cloud vendors.\n\n## The money around it\n\nThe context is a funding boom. Dealroom's tracker put venture investment in humanoid robotics at $8.7 billion for 2026 by late July, already an all-time high, and noted that China accounts for roughly two-thirds of that total, with the US share down to about 15%. Earlier in the year Apptronik's $520 million round pushed its total raised to nearly $1 billion.\n\nDeployments are following the money, cautiously. In October, agricultural-equipment maker AGCO announced a pilot of Agility Robotics' Digit humanoid at its Hesston, Kansas plant, and Agility signed a safety partnership covering its newest robot. The pattern across announcements is narrow tasks, defined zones and a safety vendor in the loop.\n\n## What to watch\n\n- **Sim-to-real benchmarks.** Expect simulation vendors to publish transfer rates (how much a sim-trained skill degrades in the real world) the way model labs publish benchmarks.\n- **Who owns the environments.** The large platforms are bundling simulation with chips and cloud; independents like Physicl bet that fidelity wins over bundling.\n- **The China gap.** Two-thirds of humanoid capital is now there. Western policy on robotics exports and supply chains is the next place this shows up.",
+ "updated": "2026-11-08"
+}

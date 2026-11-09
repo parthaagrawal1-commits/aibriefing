@@ -1,0 +1,29 @@
+{
+ "slug": "data-center-politics-after-the-midterms",
+ "section": "policy",
+ "published": "2026-11-08",
+ "title": "After the midterms, the data-center backlash has votes behind it",
+ "dek": "Local measures against new AI data centers won across several states this week. The industry's response, from paying for its own power to warning of slower expansion, tells you how seriously it is taking the result.",
+ "stat": null,
+ "tags": [
+  "policy",
+  "infrastructure"
+ ],
+ "sources": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/"
+  },
+  {
+   "name": "TechCrunch (Crusoe/Google)",
+   "url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/"
+  }
+ ],
+ "why": {
+  "executives": "Compute availability in 2027–28 is now a political variable. Lock in capacity commitments and diversify regions.",
+  "finance": "Permitting and power risk now attach to every data-center REIT, neocloud and AI-infrastructure credit. Price the delay, not just the demand.",
+  "beginners": "The buildings that run AI need enormous amounts of electricity and water, and the people who live near them are starting to vote against them."
+ },
+ "body": "The November 3 midterms were not an AI election, but AI infrastructure was on the ballot in dozens of places, directly through local measures and indirectly through candidates who campaigned against new data centers. TechCrunch's post-election analysis describes a rougher road for several planned projects, Elon Musk's among them, and Meta has publicly warned that the backlash could slow AI expansion.\n\n## What voters objected to\n\nThe complaints are consistent across regions: electricity demand that raises local rates or delays other grid connections, water consumption, noise, tax abatements for facilities that employ few people, and non-disclosure agreements that kept communities from knowing what was being built until it was approved.\n\n## How the industry is responding\n\nThe responses arrived fast, which is itself a signal.\n\n- **OpenAI** pledged on November 5 to pay the full cost of power and grid upgrades for its sites and to stop requiring non-disclosure agreements in negotiations with local communities.\n- **Google** took over a struggling data-center project in Wyoming from the developer Crusoe, a pattern in which hyperscalers absorb projects that smaller builders cannot finance or permit.\n- **Meta** warned investors that community opposition could become a constraint on capacity, language companies use when they expect analysts to ask about it.\n\n## Why it matters beyond the US\n\nThe US is where the largest share of frontier compute is being built, and where local permitting is most fragmented. Delays here raise the value of capacity everywhere else, and shift some building toward jurisdictions with centralised approval. Expect more announcements of sites in the Gulf, parts of Europe with surplus power, and Asia, and more deals in which a hyperscaler buys a half-finished project rather than starting one.\n\n## What to watch\n\n1. State-level bills on data-center rate structures and water reporting in the 2027 sessions; several candidates ran on them.\n2. Whether OpenAI's \"pay our own way\" terms become the template other builders are forced to match.\n3. Capacity guidance in the next round of hyperscaler earnings: the first time \"community opposition\" appears as a named risk factor will move the infrastructure trade.",
+ "updated": "2026-11-08"
+}

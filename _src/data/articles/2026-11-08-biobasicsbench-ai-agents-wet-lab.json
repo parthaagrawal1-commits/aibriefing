@@ -1,0 +1,30 @@
+{
+ "slug": "biobasicsbench-ai-agents-wet-lab",
+ "section": "health",
+ "published": "2026-11-08",
+ "title": "OpenAI's BioBasicsBench: AI agents score 66.7% on routine lab work, and the failures are the story",
+ "dek": "A new 100-task benchmark tests whether AI can read gels, plates and microscopy like a bench scientist. The headline score is decent; the error cases show why nobody should hand it a pipette yet.",
+ "stat": "66.7%",
+ "tags": [
+  "health",
+  "research",
+  "OpenAI"
+ ],
+ "sources": [
+  {
+   "name": "R&D World",
+   "url": "https://www.rdworldonline.com/openai-unveils-biobasicsbench-a-benchmark-to-gauge-how-well-ai-agents-read-raw-experimental-data-across-100-routine-wet-lab-tasks/"
+  },
+  {
+   "name": "Unite.AI",
+   "url": "https://www.unite.ai/?p=507300"
+  }
+ ],
+ "why": {
+  "ml": "A benchmark built from raw bench evidence, not publication figures, with partial-credit rubrics. Worth reading for the rubric design alone.",
+  "executives": "If a vendor pitches an autonomous lab agent, ask what it scores on evidence like this and how it handles 'insufficient evidence' cases.",
+  "beginners": "AI can now read many lab results reasonably well, but it still makes confident mistakes a trained technician would catch."
+ },
+ "body": "On November 6 OpenAI published BioBasicsBench, a benchmark built with the enzyme-design company Ligo Biosciences to test one narrow, important skill: can an AI agent look at the raw output of an everyday laboratory experiment and draw the right conclusion?\n\n## What it tests\n\nThe benchmark contains 100 tasks across five areas of routine wet-lab work: protein methods, imaging and cytometry, quantification and assays, nucleic acid methods, and molecular cloning. Instead of the clean figures that appear in published papers, the inputs are the messy artefacts a technician actually sees: gel images, colony plates, microscope fields, instrument readouts, including failed and ambiguous experiments.\n\nAgents must return a structured conclusion, measurement or recommendation. A rubric awards partial credit for the numerical result, the reasoning, and, notably, for recognising when the evidence is not sufficient to support a conclusion at all.\n\n## The scores\n\nOpenAI reports that GPT-6 Astra, at its highest reasoning setting, earned 66.7% of available credit, versus 43.8% for the earlier GPT-5.6 Sol. The post compares only OpenAI models and gives no human baseline, so the number says how far OpenAI's own models have moved, not how they compare with a trained technician.\n\n## The failures matter more\n\nOpenAI's own write-up is unusually frank about error cases, and they are the useful part. In one colony-counting task the model merged neighbouring colonies, missed visible ones and marked empty agar, overcounting by about 12%, which would inflate a downstream efficiency estimate by the same amount. The pattern across failures is a correct observation paired with a wrong call. OpenAI's own summary: higher scores do not yet mean reliable judgement in the lab.\n\n## What this means for healthcare and life sciences\n\n- **For lab teams:** these agents are approaching usefulness as a second reader that flags anomalies, not as a decision-maker. Deploy them where a wrong call is cheap and visible.\n- **For regulated environments:** a model that can say \"insufficient evidence\" is the behaviour regulators will want to see documented. Ask vendors for their rate of appropriate abstention, not just accuracy.\n- **For the broader AI-for-science push:** benchmarks built from raw evidence rather than curated figures are the right direction. Expect rivals to publish comparable tests, and expect the gap between reading data and making sound decisions to be the thing that closes last.",
+ "updated": "2026-11-08"
+}

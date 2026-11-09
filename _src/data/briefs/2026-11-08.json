@@ -12,8 +12,15 @@
         "developers": "Nothing changes in the API this week, but a company under valuation pressure tends to raise prices on its most popular tiers over the following quarters. Watch the pricing tracker.",
         "beginners": "OpenAI, the company behind ChatGPT, is now valued at over a trillion dollars, but investors are starting to haggle instead of simply paying up."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/"},
-      "tags": ["funding", "OpenAI"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/06/openai-reportedly-raises-an-additional-11-billion-at-a-1-25-trillion-valuation/"
+      },
+      "tags": [
+        "funding",
+        "OpenAI"
+      ],
+      "article": "openai-anthropic-repriced-same-week"
     },
     {
       "title": "Anthropic heads into its IPO roadshow with investors reportedly talking down the valuation",
@@ -24,8 +31,15 @@
         "ml": "The amended S-1 is the most candid public account of a lab's compute commitments and research-acceleration estimates. Worth reading beyond the headline numbers.",
         "beginners": "Anthropic, maker of the Claude models, is about to sell shares to the public for the first time. The listing could happen before the end of November."
       },
-      "source": {"name": "The Information", "url": "https://www.theinformation.com/"},
-      "tags": ["IPO", "Anthropic"]
+      "source": {
+        "name": "The Information",
+        "url": "https://www.theinformation.com/"
+      },
+      "tags": [
+        "IPO",
+        "Anthropic"
+      ],
+      "article": "openai-anthropic-repriced-same-week"
     },
     {
       "title": "OpenAI launches GPT-6 Cyber and rates it 'Critical' for cybersecurity capability",
@@ -36,8 +50,22 @@
         "developers": "Expect automated vulnerability reports against your dependencies to spike. Pin versions, watch advisories, and budget time for upgrades.",
         "ml": "A capability-tier model gated by customer vetting rather than by weights is becoming the standard release pattern for dual-use capabilities."
       },
-      "sources": [{"name": "Fortune", "url": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"}, {"name": "CyberScoop", "url": "https://cyberscoop.com/openai-gpt-6-cyber-security-model/"}],
-      "tags": ["models", "security", "OpenAI"]
+      "sources": [
+        {
+          "name": "Fortune",
+          "url": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"
+        },
+        {
+          "name": "CyberScoop",
+          "url": "https://cyberscoop.com/openai-gpt-6-cyber-security-model/"
+        }
+      ],
+      "tags": [
+        "models",
+        "security",
+        "OpenAI"
+      ],
+      "article": "gpt-6-cyber-critical-what-defenders-should-do"
     },
     {
       "title": "Google's Gemini 4 Argon launch pricing expires December 1, doubling to $4 / $20",
@@ -48,8 +76,15 @@
         "executives": "Vendors are using time-limited pricing to win workloads before raising rates. Build renegotiation dates into your AI contracts.",
         "ml": "Price signals how much inference compute a model really needs. A 2x step-up suggests the launch rate was subsidised rather than a cost-based price."
       },
-      "source": {"name": "Google AI for Developers (pricing)", "url": "https://ai.google.dev/pricing"},
-      "tags": ["pricing", "Google"]
+      "source": {
+        "name": "Google AI for Developers (pricing)",
+        "url": "https://ai.google.dev/pricing"
+      },
+      "tags": [
+        "pricing",
+        "Google"
+      ],
+      "article": "gemini-4-argon-pricing-doubles-december-1"
     },
     {
       "title": "Ramp's spending data shows business AI spending stalling",
@@ -59,8 +94,15 @@
         "finance": "Adoption curves, not model benchmarks, are what IPO investors will underwrite. This is the first widely cited dataset showing a plateau.",
         "beginners": "Companies are no longer signing up for every AI tool. They are keeping the ones that save real money."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"},
-      "tags": ["adoption", "data"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"
+      },
+      "tags": [
+        "adoption",
+        "data"
+      ],
+      "article": "ramp-ai-spending-plateau-what-it-means"
     },
     {
       "title": "Nvidia's board opens an independent probe after reports its CEO was targeted by a Chinese informant",
@@ -70,8 +112,14 @@
         "finance": "Key-person risk at the most important company in the AI supply chain. Watch for governance changes and any effect on China-related export decisions.",
         "executives": "If your company holds anything on an export-control list, assume your leadership is a collection target."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/"},
-      "tags": ["Nvidia", "geopolitics"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/07/chinese-exec-was-recruited-to-spy-on-nvidia-ceo-according-to-us-intelligence-memo/"
+      },
+      "tags": [
+        "Nvidia",
+        "geopolitics"
+      ]
     },
     {
       "title": "Palo Alto Networks in talks to buy AI-agent security startup Clutch for about $500 million",
@@ -81,8 +129,15 @@
         "finance": "Half a billion for a young company in a category that barely existed 18 months ago. Expect more consolidation in agent security.",
         "developers": "Every agent you deploy is a service account with a credit card. Start scoping its permissions now; the tooling to enforce that is about to get mainstream."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/05/palo-alto-networks-in-talks-to-buy-ai-agent-security-startup-clutch-for-500m/"},
-      "tags": ["M&A", "security", "agents"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/05/palo-alto-networks-in-talks-to-buy-ai-agent-security-startup-clutch-for-500m/"
+      },
+      "tags": [
+        "M&A",
+        "security",
+        "agents"
+      ]
     },
     {
       "title": "After the midterms, data-center politics turn against the builders",
@@ -92,8 +147,15 @@
         "finance": "Permitting and power are now political risks on every data-center REIT and AI-infrastructure name. Price them.",
         "beginners": "Building the giant computer warehouses that run AI needs huge amounts of electricity, and local voters are starting to say no."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/"},
-      "tags": ["infrastructure", "policy"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/07/after-the-midterms-things-are-looking-rocky-for-elon-musk-and-data-centers/"
+      },
+      "tags": [
+        "infrastructure",
+        "policy"
+      ],
+      "article": "data-center-politics-after-the-midterms"
     },
     {
       "title": "Crusoe sells its troubled Wyoming data-center project to Google",
@@ -103,8 +165,15 @@
         "executives": "If your AI roadmap depends on a smaller cloud provider, check who owns their data centers and how they are financed.",
         "ml": "More hyperscaler-owned capacity usually means more capacity rented out through their clouds, which tends to ease GPU availability over the following year."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/"},
-      "tags": ["infrastructure", "Google"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/06/crusoe-sells-troubled-wyoming-data-center-project-to-google/"
+      },
+      "tags": [
+        "infrastructure",
+        "Google"
+      ],
+      "article": "data-center-politics-after-the-midterms"
     },
     {
       "title": "Airbnb says its AI travel agent arrives in the first half of 2027",
@@ -114,8 +183,14 @@
         "developers": "Consumer agents are being built on top of the big labs' models plus the companies' own booking systems. The integration layer, not the model, is the product.",
         "executives": "Every large consumer brand now has an agent on its roadmap. If yours does not, your customers will reach you through someone else's."
       },
-      "source": {"name": "TechCrunch", "url": "https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/"},
-      "tags": ["agents", "consumer"]
+      "source": {
+        "name": "TechCrunch",
+        "url": "https://techcrunch.com/2026/11/05/airbnb-says-its-launching-an-ai-travel-agent-in-the-first-half-of-2027/"
+      },
+      "tags": [
+        "agents",
+        "consumer"
+      ]
     }
   ]
 }

@@ -1,0 +1,26 @@
+{
+ "slug": "ramp-ai-spending-plateau-what-it-means",
+ "section": "business",
+ "published": "2026-11-08",
+ "title": "Ramp's data says business AI spending has flattened. Here is how to read it",
+ "dek": "A plateau in the share of companies paying for AI tools is not the end of adoption. It is the end of buying everything.",
+ "stat": null,
+ "tags": [
+  "adoption",
+  "business",
+  "data"
+ ],
+ "sources": [
+  {
+   "name": "TechCrunch",
+   "url": "https://techcrunch.com/2026/11/06/ramp-data-shows-ai-spending-stalling-just-as-anthropic-nears-its-ipo/"
+  }
+ ],
+ "why": {
+  "executives": "Boards will cite this. Have your own numbers ready: which AI tools you pay for, what each replaced or sped up, and what you cancelled.",
+  "finance": "Breadth of adoption is flattening while depth (spend per adopter) is the open question. Model the two separately.",
+  "beginners": "Companies tried a lot of AI tools over two years. Now they are keeping the ones that pay for themselves and dropping the rest."
+ },
+ "body": "Ramp, the corporate card and bill-pay company, publishes an index built from what its customers actually pay for. TechCrunch reported on November 6 that the latest reading shows the share of US businesses paying for AI tools has flattened in recent months after two years of steady growth. The timing, days before Anthropic's IPO marketing begins, guaranteed attention.\n\n## What the data measures, and what it does not\n\nRamp's index measures breadth: the fraction of businesses with at least one AI subscription or usage charge. It is a good proxy for \"has tried AI,\" and that number saturating was always going to happen; most companies that were going to buy a ChatGPT or Claude seat have done so.\n\nIt does not measure depth: how much each adopter spends, how many seats, how much API usage. Breadth can flatten while depth rises, which is the pattern in most enterprise software categories after the trial phase. It also undercounts spend that flows through cloud bills (Azure, AWS, Google Cloud), where most API usage is invoiced.\n\n## The pilot cull\n\nWhat is almost certainly happening underneath is consolidation. Two years of experimentation produced, in many companies, five or six overlapping subscriptions and several pilots with no owner. Finance teams are now cancelling what did not produce measurable results and standardising on one or two platforms. That shows up as flat breadth and, often, higher spend per surviving vendor.\n\n## Why it matters for the IPO\n\nInvestors underwriting Anthropic, and OpenAI's next round, are paying for growth that depends on enterprise expansion. Flat adoption breadth is not fatal to that story, but it moves the burden of proof to depth: usage per customer, net revenue retention and API growth, numbers the S-1 and the roadshow will be pushed to disclose.\n\n## What to do with it\n\n- **If you run a company:** make the consolidation deliberate. List every AI line item, assign an owner and an outcome, and cancel the rest. The survivors will get better terms if you consolidate volume.\n- **If you sell AI software:** the land-grab phase is over. Expansion now comes from proving outcomes inside existing accounts, not from logos.\n- **If you invest:** ask every AI company for net revenue retention. It is the number this data makes unavoidable.",
+ "updated": "2026-11-08"
+}

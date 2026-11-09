@@ -29,3 +29,13 @@
 - Each item may set `"stat": "$11B"` to control the big figure on its graphic; otherwise it is extracted from the title/summary.
 - Tags drive /topics/ threads, so use the canonical vocabulary: funding, IPO, M&A, models, pricing, security, policy, regulation, infrastructure, adoption, data, agents, consumer, geopolitics, research, plus vendor names exactly as: OpenAI, Anthropic, Google, Nvidia, Meta, Microsoft, Amazon, Apple, xAI, Mistral, DeepSeek. First non-vendor tag sets the graphic's colour.
 - Client features live in build.py (CSS/JS strings): lens selector, Listen (speech synthesis), reading progress, share, theme toggle, search (/search.json), sticky subscribe, PWA (sw.js, manifest).
+
+## v3: sections and dedicated articles
+- Sections (beats): security, health, markets, robotics, models, policy, business, tools. Hub at `/<section>/`, feed at `/<section>/feed.xml`.
+- Articles live in `data/articles/YYYY-MM-DD-<slug>.json`:
+  `{ "slug", "section", "published", "updated", "title", "dek", "stat" (optional), "tags": [], "developing": false,
+     "sources": [{"name","url"}], "why": {audience: line} (optional), "body": markdown }`
+  Body 300–700 words, own words, with ## sections; always cite 1–3 sources. URL becomes `/<section>/<slug>/`. Cover graphic is generated.
+- A brief item may carry `"article": "<slug>"` to link "Full story →" to a dedicated article. Do this whenever an article exists for the item.
+- Graphic variants are chosen automatically: M&A → split panel; pricing/funding/adoption/data/markets with a stat → chart; stat → big number; otherwise headline-led.
+- Lens: first-visit prompt; stored in localStorage; `[data-forlens]` blocks on the home page show for the chosen lens.

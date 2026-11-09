@@ -1,0 +1,26 @@
+{
+ "slug": "gemini-4-argon-pricing-doubles-december-1",
+ "section": "tools",
+ "published": "2026-11-08",
+ "title": "Gemini 4 Argon's launch price ends November 30. Plan for $4 / $20",
+ "dek": "Google's pricing page now carries an expiry date on its flagship's introductory rate, and the Flash tiers follow in January. Here is the math for anyone who built on launch pricing.",
+ "stat": "Dec 1",
+ "tags": [
+  "pricing",
+  "tools",
+  "Google"
+ ],
+ "sources": [
+  {
+   "name": "Google AI for Developers (pricing)",
+   "url": "https://ai.google.dev/pricing"
+  }
+ ],
+ "why": {
+  "developers": "Re-run your cost model today. If Argon was chosen on price, a mid-tier model from any vendor at $2–4 / $10–20 is now the comparison.",
+  "finance": "Introductory API pricing with a published end date is becoming standard. Any AI cost forecast built on launch rates needs a vendor-pricing-change line.",
+  "executives": "Build price-review dates into AI contracts. Vendors are using time-limited rates to win workloads and then stepping up."
+ },
+ "body": "Google's official Gemini API pricing page, checked on November 8, lists Gemini 4 Argon at $2 per million input tokens and $10 per million output tokens through November 30, 2026, rising to $4 and $20 from December 1. Cached-input pricing doubles on the same schedule, from $0.10 to $0.20. The Flash tiers follow a month later: Gemini 3.8 Flash and 3.6 Flash are $0.75 / $3.75 through December 31 and $1.50 / $7.50 from January 1, 2027.\n\n## What this costs you\n\nTake a typical assistant workload: 2,000 input tokens and 400 output tokens per request, 2 million requests a month.\n\n- At launch pricing: input $8,000 + output $8,000 = **$16,000 / month**.\n- From December 1: **$32,000 / month**.\n\nCaching and batch discounts still apply, and the ratio is the same either way: the bill doubles.\n\n## How the new rate compares\n\nAt $4 / $20, Argon lands at the same list price as Anthropic's Claude Opus 5.5 and OpenAI's GPT-5.6 Sol, and remains well below the $10 / $50 of the top tiers (GPT-6 Astra, Claude Fable 5.1). Below it, Anthropic's Sonnet 5.5 at $2 / $10 becomes the cheapest current frontier-class list price once the Argon promotion ends. The full table is on the [pricing tracker](/trackers/api-pricing/).\n\n## What to do before December 1\n\n1. **Measure, do not assume.** Tokenisers differ; cost per completed task on each candidate model is the only number that matters.\n2. **Route by difficulty.** Most traffic in most products is routine. Keep Argon for the hard cases and send the rest to a Flash-class model; the Flash promotion runs a month longer.\n3. **Cache aggressively.** Stable prefixes (system prompts, documents) at the cached rate are 5% of input price. Reorder prompts so the stable part comes first.\n4. **Check your contract.** Committed-use or enterprise pricing may not follow the public schedule. Ask.\n\n## The wider pattern\n\nGoogle is not alone. Anthropic launched Sonnet 5 at an introductory rate that reverted on a fixed date, and OpenAI has used promotional pricing on new tiers. Launch prices are now marketing, not cost; the nightly check of vendor pages that feeds our tracker exists because of exactly this.",
+ "updated": "2026-11-08"
+}
