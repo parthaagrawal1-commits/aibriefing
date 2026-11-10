@@ -1,8 +1,44 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-09",
+  "updated": "2026-11-10",
   "rows": [
+    {
+      "vendor": "Anthropic",
+      "model": "Claude Fable 5.2 / Mythos 5.2",
+      "released": "2026-11-09",
+      "kind": "Flagship (top tier)",
+      "context": "1M",
+      "note": "$8 / $40 per million tokens, 20% below 5.1; outputs up to 30% faster; fast mode at $16 / $80. Fable generally available on Claude API, AWS, Google Cloud, Azure; Mythos limited to vetted cyber and life-sciences organisations.",
+      "source": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+    },
+    {
+      "vendor": "Meta",
+      "model": "Muse Ember",
+      "released": "2026-11-09",
+      "kind": "Small multimodal (agent sub-tasks)",
+      "context": "1M",
+      "note": "$0.10 / $0.50 per million tokens, cached $0.004; 3x above 200K context. Scores 36 on the Artificial Analysis index, level with Haiku 5.5 at about a third of the cost per task.",
+      "source": "https://dev.meta.ai/models/muse-ember"
+    },
+    {
+      "vendor": "Meituan",
+      "model": "LongCat-2.5 (open weights)",
+      "released": "2026-11-09",
+      "kind": "Sparse MoE (1.6T / ~48B active), vision input",
+      "context": "1M",
+      "note": "Weights published under MIT licence on Nov 9, a week after the Nov 1–2 announcement. Hosted API $0.30 / $1.20. 88.4 on Terminal Bench v2.1 by Meituan's figures.",
+      "source": "https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license"
+    },
+    {
+      "vendor": "Nvidia",
+      "model": "GR00T 2",
+      "released": "2026-11-09",
+      "kind": "Robot world action model",
+      "context": "—",
+      "note": "Open world-action model built on Cosmos, trained on robot data plus 100,000 hours of human egocentric video. Nvidia reports 71% one-shot / 95% five-shot average on an unnamed 50-task suite; weights and licence slated for around year end.",
+      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+    },
     {
       "vendor": "Thinking Machines",
       "model": "Inkling 2 Small",
@@ -63,7 +99,7 @@
       "released": "2026-09",
       "kind": "Flagship (top tier)",
       "context": "1M",
-      "note": "Anthropic's most capable tier, above Opus. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
+      "note": "Superseded by Fable 5.2 on Nov 9, 2026. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
     {

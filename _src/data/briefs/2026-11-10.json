@@ -1,0 +1,164 @@
+{
+  "headline": "Frontier tokens get cheaper from both ends as SoftBank posts a $7 billion loss",
+  "intro": "Anthropic lowered the price of its top Claude tier with the 5.2 release the day before its IPO marketing began, Meta and Meituan pushed the budget end of the API market to $0.10 and $0.30 per million input tokens, and SoftBank, OpenAI's largest outside shareholder, reported its first quarterly loss in two years. Australia announced a statutory AI safety regulator, Google added two TPU systems, Nvidia opened a new robot foundation model, and Fireworks AI told customers about a second breach in a month.",
+  "one_thing": "Every AI budget written in September is now wrong in both directions. Tokens are cheaper at the top ($8 / $40 for Claude Fable 5.2) and at the bottom ($0.10 / $0.50 for Meta's Muse Ember), while agent workloads consume far more of them. Re-base your forecast on completed tasks, not list prices.",
+  "items": [
+    {
+      "title": "Claude Fable 5.2 and Mythos 5.2 arrive at $8 / $40, 20% below the 5.1 price",
+      "stat": "$8 / $40",
+      "summary": "Anthropic released Claude Fable 5.2 and Claude Mythos 5.2 on November 9 at $8 per million input tokens and $40 output, down from $10 / $50 for the 5.1 generation, with cached input at $0.20 and a new fast mode at $16 / $80. Anthropic's own tables put Fable 5.2 at 49.1% on FrontierCode 2.0 against 32.4% for 5.1, and the company says output is up to 30% faster. Fable is generally available on the Claude API, AWS, Google Cloud and Azure; Mythos remains limited to vetted organisations in cyber and life sciences, and Anthropic still recommends Opus 5.5 as the default for most work.",
+      "why": {
+        "developers": "Anthropic says Fable 5.2 at High effort roughly matches Opus 5.5 on FrontierCode at about half the cost per task. Re-run your own comparison this week rather than trusting either number.",
+        "finance": "A 20% cut on the flagship tier a week before the IPO prices is a signal about volume and margin. Model Anthropic's revenue on tokens consumed, not on list price.",
+        "executives": "Anthropic's guidance is that Opus 5.5 remains the daily driver. Decide which small share of tasks earns the top tier instead of moving everything.",
+        "ml": "Benchmarks are Anthropic's own and single-run in places. Independent numbers from Artificial Analysis and METR should land within days; wait for them before updating your model stack.",
+        "beginners": "Anthropic's most capable model is now cheaper and faster. For most people the mid-tier model is still the one to use."
+      },
+      "sources": [
+        {"name": "Anthropic", "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2"},
+        {"name": "Anthropic pricing", "url": "https://platform.claude.com/docs/about-claude/pricing"},
+        {"name": "InfoWorld", "url": "https://www.infoworld.com/article/4246681/anthropic-unveils-claude-fable-5-2-mythos-5-2-with-coding-gains-and-lower-prices.html"}
+      ],
+      "tags": ["models", "pricing", "Anthropic"],
+      "article": "claude-fable-5-2-20-percent-price-cut-what-changes-for-buyers"
+    },
+    {
+      "title": "SoftBank swings to a ¥1.1 trillion loss as Anthropic's IPO roadshow opens at a reported $1.1–1.3 trillion",
+      "stat": "$7B",
+      "summary": "SoftBank Group reported a net loss of about ¥1.1 trillion ($7 billion) for July–September on November 10, against a ¥2.5 trillion profit a year earlier that had been lifted by gains on its OpenAI stake; the result was worse than the most bearish of three forecasts polled by LSEG. Reuters noted SoftBank has spent $64.6 billion on a 13% OpenAI holding and that its shares have roughly halved since June. Anthropic was expected to begin formally marketing its own IPO the same day, with Bloomberg reporting investor estimates of $1.1–1.3 trillion, below the $1.4–1.5 trillion discussed weeks ago and the $2 trillion floated in October.",
+      "why": {
+        "finance": "SoftBank is the nearest public proxy for OpenAI's private marks and it just printed a loss. Anthropic's bankers are pricing into that tape, which is why the range keeps drifting down.",
+        "executives": "Even $1.1 trillion is more than 30 times annualised first-half revenue of $16.3 billion. Lock-up terms and post-listing capex disclosures will matter more than the headline.",
+        "ml": "Nvidia's up-to-$10 billion IPO commitment reportedly came with Anthropic's first gigawatt of compute running on Nvidia chips. Model supply and the listing are now one story.",
+        "beginners": "SoftBank owns a large slice of OpenAI and its loss shows how far AI valuations have swung. Anthropic, OpenAI's main rival, is now asking public investors what it is worth."
+      },
+      "sources": [
+        {"name": "Reuters via Investing.com", "url": "https://www.investing.com/news/stock-market-news/softbank-swings-to-7-billion-net-loss-in-second-quarter-5014234"},
+        {"name": "The Daily Upside", "url": "https://www.thedailyupside.com/technology/artificial-intelligence/anthropic-can-now-start-its-roadshow-the-traffics-bad/"}
+      ],
+      "tags": ["IPO", "funding", "Anthropic", "OpenAI"],
+      "article": "softbank-7-billion-loss-anthropic-roadshow-reading-the-ipo-tape",
+      "developing": true
+    },
+    {
+      "title": "Australia will set up an AI safety regulator with penalty powers and mandatory incident reporting",
+      "summary": "Prime Minister Anthony Albanese said on November 10 that AI companies operating in Australia will face mandatory safeguards enforced by a new AI safety regulator able to impose penalties, and that firms must report AI security incidents and potential breaches of criminal law. The announcement follows a rapid review of the June episode in which an OpenAI agent reached a Medicare statistics website, which OpenAI did not report to Canberra until September; the government accepted all 18 of the review's recommendations. The law would also allow independent evaluation of frontier models. No bill text, penalty amounts or start date have been published.",
+      "why": {
+        "security": "'AI security incident' is a new reporting category that does not map onto existing breach laws. Define it inside your own incident taxonomy before a regulator defines it for you.",
+        "executives": "This is the first Western regulator with enforcement powers created in response to a specific agent incident. If you sell into Australia, expect evaluation requests to arrive through procurement.",
+        "ml": "Independent government evaluation of frontier models is the operative clause. Watch whether it means pre-deployment access, which no comparable jurisdiction has mandated.",
+        "beginners": "An AI agent run by OpenAI reached an Australian government website in June. Australia's answer is a watchdog that can fine AI companies and require them to report incidents."
+      },
+      "sources": [
+        {"name": "SBS News", "url": "https://www.sbs.com.au/news/article/ai-safeguards-open-ai-medicare-breach-albanese/2pbsdc5nr"},
+        {"name": "Bloomberg", "url": "https://www.bloomberg.com/news/articles/2026-11-10/australia-to-create-ai-safety-regulator-mandatory-safety-rules"}
+      ],
+      "tags": ["regulation", "policy", "OpenAI", "agents"],
+      "article": "australia-ai-safety-regulator-mandatory-reporting-what-it-means",
+      "developing": true
+    },
+    {
+      "title": "Meta's Muse Ember at $0.10 / $0.50 and Meituan's MIT-licensed LongCat-2.5 reset the budget tier",
+      "stat": "$0.10",
+      "summary": "Meta released Muse Ember, its smallest multimodal model, aimed at high-volume agent sub-tasks such as tool calls, routing and extraction, priced at $0.10 per million input tokens, $0.004 cached and $0.50 output up to 200K context, tripling above that. Artificial Analysis scores it 36 on its Intelligence Index, level with Claude Haiku 5.5 at roughly a third of the cost per task because it emits far fewer output tokens. Separately, Meituan published the weights of LongCat-2.5, a 1.6-trillion-parameter mixture-of-experts model with about 48 billion active parameters, under the MIT licence on November 9, with hosted pricing of $0.30 / $1.20.",
+      "why": {
+        "developers": "Ember's cached-input price of $0.004 is 60% below Haiku's; for a retrieval or routing loop that reuses a long prefix, that is where the saving is. Mind the 3x surcharge above 200K tokens.",
+        "ml": "LongCat-2.5 posts 88.4 on Terminal Bench v2.1, within a point of GPT-5.6 Sol and Opus 5, but Meituan compared against older closed baselines. Treat the table as a floor, not a ranking.",
+        "finance": "Two of the three labs now anchoring the sub-$0.50 tier are not OpenAI or Anthropic. Budget-tier revenue is the first place the closed labs' pricing power erodes.",
+        "executives": "An MIT-licensed 1.6T model with no US procurement restriction attached (unlike DeepSeek) will show up in vendor pitches within weeks. Ask where it is hosted and who holds the logs.",
+        "beginners": "The cheapest useful AI models now cost a few cents per million words. That is why companies are building 'agents' that run thousands of small steps instead of one big prompt."
+      },
+      "sources": [
+        {"name": "Meta developer page", "url": "https://dev.meta.ai/models/muse-ember"},
+        {"name": "Artificial Analysis", "url": "https://artificialanalysis.ai/articles/meta-s-muse-ember-is-the-cheapest-model-scoring-36-on-the-intelligence-index"},
+        {"name": "VentureBeat", "url": "https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license"}
+      ],
+      "tags": ["pricing", "models", "Meta", "agents"],
+      "article": "muse-ember-longcat-2-5-budget-tier-price-war-what-developers-should-do"
+    },
+    {
+      "title": "Google adds TPU 8tx for confidential compute and TPU 8i Max for long context, its fourth TPU system this year",
+      "stat": "4",
+      "summary": "Google announced two more eighth-generation TPU systems on November 9: TPU 8tx, built on the same silicon as the training-focused 8t and paired with fifth-generation AMD EPYC hosts to keep data and weights isolated in use, and TPU 8i Max, which packages two 8i inference chips together for double the compute, SRAM and HBM bandwidth in the same rack footprint. Google says it now has nearly 100 TPU customers and that this is the first year it has shipped four TPU systems. The post also made Cloud Pathways and GKE dynamic slicing generally available and pointed to the open-sourced TorchTPU stack; no pricing or availability dates were given.",
+      "why": {
+        "ml": "TorchTPU with vLLM and SGLang backends removes the main reason PyTorch teams stayed on Nvidia. TPU Sync's tiered KV cache, claiming over 90% lower time-to-first-token, is the piece to benchmark.",
+        "security": "Hardware-level confidential compute for fine-tuning and RL on sensitive data is the feature regulated buyers have been asking Google for since 8t launched. Ask for the attestation flow, not the brochure.",
+        "finance": "A credible second supplier of training-class accelerators at scale is the single biggest check on Nvidia's pricing. Four systems in a year is the cadence to watch, not any one chip.",
+        "executives": "If you are negotiating a multi-year cloud commitment, Google's TPU roadmap is now a lever on price even if you never run on it.",
+        "beginners": "Google makes its own AI chips so it does not have to buy everything from Nvidia. It just added two more types, one built for keeping private data private."
+      },
+      "sources": [
+        {"name": "Google (Amin Vahdat)", "url": "https://blog.google/innovation-and-ai/infrastructure-and-cloud/global-network/tpu-8i-max-and-8tx/"},
+        {"name": "Data Center Knowledge", "url": "https://www.datacenterknowledge.com/data-center-chips/google-adds-tpu-8tx-8i-max-for-enterprise-ai"}
+      ],
+      "tags": ["infrastructure", "Google", "Nvidia"],
+      "article": "google-tpu-8tx-8i-max-four-systems-one-year-what-it-means-for-nvidia-buyers"
+    },
+    {
+      "title": "Nvidia opens GR00T 2 and Isaac Lab 3.0 at CoRL; 71% one-shot success on an unnamed 50-task suite",
+      "stat": "71%",
+      "summary": "At the Conference on Robot Learning in Austin on November 9, Nvidia introduced GR00T 2, a world action model built on Cosmos and trained on robot data plus 100,000 hours of open-source human egocentric video, and Isaac Lab 3.0, which lets agents assemble training environments and switch between PhysX and Newton physics. Nvidia says GR00T 2 completed 40 of 50 evaluated tasks at least once with no task-specific demonstrations, averaging 71% success with one demonstration per task and 95% with five, and ranks in the top three on RoboCasa365, RoboLab, RoboDojo and MolmoSpaces. The 50 tasks, rollout counts and licence terms were not published.",
+      "why": {
+        "ml": "'Completed at least once' is a lenient bar and 95% with five demonstrations is a few-shot number, not zero-shot. Ask for the task list and rollouts before quoting either figure; independent suites like RoboDojo report real-world scores in the low teens.",
+        "executives": "Isaac Lab's AlphaNIST result, one policy learning all 20 NIST assembly tasks at 98% using 39x less GPU time than per-task policies, is the practical claim for factory pilots.",
+        "finance": "Nvidia's robotics stack is becoming the CUDA of embodied AI: Skild, Dyna, FieldAI, Bosch and Siemens are all named partners. The moat is the simulator, not the model.",
+        "beginners": "Nvidia released a new 'brain' for robots that learns partly from videos of people doing tasks. The headline success rates come from Nvidia's own tests, which it has not fully described."
+      },
+      "sources": [
+        {"name": "Nvidia", "url": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"},
+        {"name": "Tech Times (analysis)", "url": "https://www.techtimes.com/articles/330365/20261110/nvidia-gr00t-2-robot-model-reports-95-success-while-leaving-50-test-tasks-unnamed.htm"}
+      ],
+      "tags": ["research", "Nvidia", "robotics", "models"],
+      "article": "nvidia-gr00t-2-isaac-lab-3-what-the-71-percent-number-does-and-does-not-say"
+    },
+    {
+      "title": "Fireworks AI tells customers of a second breach in a month, reaching billing data and some model weights",
+      "summary": "Fireworks AI notified customers on November 9 that an intruder entered development machines on October 24 through a cloud provider and reached billing data and, for some accounts, secrets, datasets and incomplete model weights, Bloomberg reported. It is the inference provider's second disclosed incident in weeks: on October 6 it found that an unauthorised party had used internal Fireworks credentials to read environment variables from customer evaluation jobs, including stored API keys, and it rotated employee and customer keys over the following days. Fireworks' bulletin for the October incident says prompts and outputs were not stored because the platform is zero-data-retention by default.",
+      "why": {
+        "security": "Inference providers hold your third-party API keys as job secrets. Rotate anything you ever gave Fireworks, review the issuing providers' logs, and add every model-hosting vendor to the same sub-processor review you run on SaaS.",
+        "developers": "Deleting a stored secret does not revoke it at the issuer. Script rotation for the keys your eval and fine-tuning jobs use and keep it ready for the next vendor notice.",
+        "executives": "Two incidents in a month at an Nvidia-backed provider that customers stay with for GPU access, not security, is the pattern to price into vendor concentration risk.",
+        "finance": "Partial model weights leaving a hosting provider is an IP loss, not a privacy event. Check whether your cyber policy covers it.",
+        "beginners": "Fireworks runs AI models for other companies. Someone broke in twice and took account and technical data; what users typed into the models was not stored."
+      },
+      "sources": [
+        {"name": "Runtime Wire (on Bloomberg)", "url": "https://runtimewire.com/article/fireworks-ai-second-security-breach-customer-data"},
+        {"name": "Fireworks AI security bulletin", "url": "https://fireworks.ai/security/bulletins/october-2026-security-incident"}
+      ],
+      "tags": ["security", "data", "infrastructure"],
+      "article": "fireworks-ai-second-breach-what-inference-customers-should-rotate-now",
+      "developing": true
+    },
+    {
+      "title": "Abridge, the $5.3 billion AI scribe, confirms layoffs in an 'organisation-wide realignment'",
+      "summary": "Abridge confirmed on November 9 that it has laid off staff as part of what it called an organisation-wide realignment to flatten the company, offering transition packages and outplacement support; it did not disclose the number of roles. The Pittsburgh-based clinical documentation company raised $300 million in a 2025 Series E led by Andreessen Horowitz at a $5.3 billion valuation and said it still holds more than half the capital it has ever raised. Former employees posting on LinkedIn described the cuts as sudden; one layoff tracker put the figure at roughly 90, which Abridge has not confirmed.",
+      "why": {
+        "executives": "Ambient scribing is the most widely deployed clinical AI category and its leader is trimming at a $5.3 billion valuation. If you are mid-contract, ask about support staffing and roadmap commitments in writing.",
+        "finance": "The scribe market is converging on a price per clinician that the EHR vendors can undercut. Watch whether the next Abridge round is flat.",
+        "beginners": "Abridge makes software that listens to doctor visits and writes the notes. It is cutting jobs even though it is one of the best-funded companies in health AI.",
+        "ml": "When a category commoditises, the differentiator moves from transcription quality to billing-code accuracy and EHR integration depth. That is where Abridge is shifting its headcount."
+      },
+      "sources": [
+        {"name": "KRON4 via Yahoo Finance", "url": "https://finance.yahoo.com/healthcare/articles/5-billion-ai-healthcare-company-190358679.html"},
+        {"name": "Modern Healthcare", "url": "https://www.modernhealthcare.com/health-tech/mh-abridge-layoffs-realignment-ai/"}
+      ],
+      "tags": ["adoption", "funding", "health"],
+      "article": "abridge-layoffs-5-3-billion-ai-scribe-market-what-health-systems-should-ask"
+    },
+    {
+      "title": "ChatGPT Enterprise lands in AWS Marketplace, letting buyers draw down cloud commitments",
+      "summary": "OpenAI listed ChatGPT Enterprise in the AWS Marketplace on November 9, so organisations can buy it through their existing AWS billing relationship and, where eligible, count the spend against committed cloud contracts. The listing extends the Amazon partnership that already put OpenAI's models and Codex on Bedrock earlier this year and that an internal OpenAI memo reportedly credited with strong enterprise demand. Pricing is not published on the listing.",
+      "why": {
+        "executives": "If you have unspent AWS commitments expiring this year, this is a way to fund a ChatGPT rollout without a new budget line. Check which SKUs count before assuming.",
+        "finance": "Marketplace drawdown moves ChatGPT seats from a software budget to a cloud budget. Watch for the same move from Anthropic on Google Cloud and from Microsoft, which now competes for the same spend.",
+        "developers": "Procurement, not capability, is what blocks most enterprise deployments. A marketplace listing removes one vendor-onboarding cycle.",
+        "beginners": "Companies can now buy ChatGPT's business version through Amazon's cloud store, which makes it easier to pay for with money they already planned to spend on Amazon."
+      },
+      "sources": [
+        {"name": "OpenAI", "url": "https://openai.com/index/chatgpt-enterprise-aws-marketplace/"},
+        {"name": "GeekWire (partnership memo)", "url": "https://www.geekwire.com/2026/openai-sees-staggering-demand-for-amazon-offering-says-microsoft-partnership-held-it-back/"}
+      ],
+      "tags": ["adoption", "OpenAI", "Amazon"]
+    }
+  ]
+}

@@ -444,5 +444,55 @@
       "weights",
       "alignment"
     ]
+  },
+  {
+    "term": "Prefill and decode",
+    "short": "The two phases of inference: reading the whole prompt in one parallel pass (prefill), then generating the answer one token at a time (decode).",
+    "long": "Prefill is fast per token because every input token can be processed at once; decode is sequential and memory-bound, which is why output tokens cost roughly five times input tokens on every major price list. Serving systems batch many users' decode steps together to keep accelerators busy.",
+    "related": [
+      "inference",
+      "token",
+      "prompt-caching"
+    ]
+  },
+  {
+    "term": "Confidential computing",
+    "short": "Hardware that keeps data and model weights encrypted and isolated while they are being processed, not only at rest or in transit.",
+    "long": "Confidential computing uses trusted execution environments in the CPU or accelerator so that even the cloud operator cannot read what is being computed. Google's TPU 8tx, paired with AMD EPYC hosts, brings this to TPU fine-tuning and inference; Nvidia offers it on its H100 and later GPUs. It matters for regulated data and for protecting proprietary weights on shared infrastructure.",
+    "related": [
+      "gpu",
+      "weights",
+      "fine-tuning"
+    ]
+  },
+  {
+    "term": "World action model",
+    "short": "A robot foundation model that predicts how the world will change and chooses actions from that prediction, rather than mapping images straight to motor commands.",
+    "long": "Where a vision-language-action model outputs actions directly from what it sees and is told, a world action model first simulates the likely outcome of candidate actions using a learned world model, then acts. Nvidia's GR00T 2, built on its Cosmos world models, is the most prominent example; the approach is more compute-intensive per step but can generalise better to new tasks from human video.",
+    "related": [
+      "agent",
+      "synthetic-data",
+      "benchmark"
+    ]
+  },
+  {
+    "term": "LLMjacking",
+    "short": "Stealing API keys or cloud credentials to run large language models at someone else's expense, or to resell that access.",
+    "long": "The term covers a growing criminal market in stolen model-API credentials, which can be used for compute, for jailbroken services, or sold on. Inference and fine-tuning platforms are attractive targets because they store customers' credentials for other services as job secrets. The defence is short-lived scoped keys, spend alerts and rotation that happens at the issuing provider, since deleting a stored copy of a key does not revoke it.",
+    "related": [
+      "non-human-identity",
+      "secret-scanning",
+      "api"
+    ]
+  },
+  {
+    "term": "Cost per task",
+    "short": "What it costs to get a job completed by a model, including hidden reasoning tokens, retries and tool calls, as opposed to the list price per token.",
+    "long": "Independent evaluators such as Artificial Analysis now publish cost per task alongside benchmark scores because models with identical token prices can differ threefold in what they cost to finish the same work. A model that emits fewer output tokens, or declines rather than guesses, is cheaper per task even at the same list price. Budget forecasts built on token prices alone systematically underestimate agent workloads.",
+    "related": [
+      "inference",
+      "reasoning-budget",
+      "token"
+    ]
   }
 ]

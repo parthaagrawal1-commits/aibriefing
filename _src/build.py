@@ -549,6 +549,23 @@ def article_page(a, articles, explainers):
     ld = [{"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
     return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"])
 
+def key_numbers(key, articles):
+    """Section 'Key numbers' module: tracker-derived figures for models/tools, article stats elsewhere."""
+    cards = []
+    if key in ("models", "tools") and "api-pricing" in TRACKERS:
+        rows = TRACKERS["api-pricing"]["rows"]
+        top = max(rows, key=lambda r: r["output"]); cheap = min((r for r in rows if r["output"] >= 10), key=lambda r: r["output"], default=top)
+        budget = min((r for r in rows if r.get("output")), key=lambda r: r["output"])
+        cards.append((money(cheap["output"]), f'cheapest frontier-class output per 1M ({cheap["model"]})', "/trackers/api-pricing/"))
+        cards.append((money(budget["output"]), f'cheapest output per 1M tracked ({budget["model"]})', "/trackers/api-pricing/"))
+        if "models" in TRACKERS and TRACKERS["models"]["rows"]:
+            m = TRACKERS["models"]["rows"][0]; cards.append((m["released"][:10], f'latest release: {m["vendor"]} {m["model"]}', "/trackers/models/"))
+    for a in [x for x in articles if x["section"] == key and x.get("stat")][:4 - len(cards)]:
+        cards.append((a["stat"], a["title"], a["url"]))
+    if not cards: return ""
+    html_ = "".join(f'<a class="card" href="{esc(h)}"><div class="statbig">{esc(v)}</div><p>{esc(t[:110])}</p></a>' for v, t, h in cards[:4])
+    return f'<div class="band"><div class="hd"><h2>Key numbers</h2><a href="/trackers/">All trackers →</a></div><div class="grid g{min(4, len(cards[:4]))}">{html_}</div></div>'
+
 def section_page(key, articles, briefs, explainers):
     k, name, blurb, pal = SEC[key]
     arts = [a for a in articles if a["section"] == key]
@@ -564,6 +581,7 @@ def section_page(key, articles, briefs, explainers):
     exh = "".join(f'<a class="story tile" href="/learn/{e["slug"]}/"><img src="{e["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:120])}…</p></div></a>' for e in ex)
     body = (f'<div class="hero" style="padding-bottom:4px"><div class="kicker">Section</div><h1 style="margin:.1em 0 .2em">{esc(name)}</h1><p class="lede">{esc(blurb)} <a href="/{key}/feed.xml">RSS</a></p></div>{front}'
             + (f'<div class="band"><div class="hd"><h2>More {esc(name.lower())}</h2></div><div class="grid g3">{more}</div></div>' if more else "")
+            + key_numbers(key, articles)
             + (f'<div class="band"><div class="hd"><h2>From the daily brief</h2><a href="/brief/">All briefs →</a></div><div class="hl">{briefl}</div></div>' if briefl else "")
             + f'<div class="band"><div class="hd"><h2>Explainers</h2><a href="/learn/">All →</a></div><div class="grid g3">{exh}</div></div>{newsletter_box()}')
     path = f"/{key}/"
