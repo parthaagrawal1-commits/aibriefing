@@ -1,0 +1,37 @@
+{
+  "slug": "claude-sheets-whiteboards-meetings-anthropic-office-suite-what-it-buyers-should-ask",
+  "section": "business",
+  "title": "Claude Sheets, Whiteboards and Meetings: Anthropic now sells an office suite, and here is what IT buyers should ask before the renewal",
+  "dek": "The day before its roadshow, Anthropic turned Claude from a chat window into a workspace with spreadsheets, shared boards, embedded partner apps and a meeting participant; the licence conversation changes with it.",
+  "stat": "2.2%",
+  "tags": [
+    "adoption",
+    "Anthropic",
+    "Microsoft",
+    "agents",
+    "business"
+  ],
+  "sources": [
+    {
+      "name": "Anthropic (claude.com)",
+      "url": "https://claude.com/resources/articles/more-ways-to-work-with-claude-sheets-whiteboards-and-interactive-connectors"
+    },
+    {
+      "name": "TechCrunch",
+      "url": "https://techcrunch.com/2026/11/10/anthropic-launches-claude-meetings-to-turn-workplace-discussions-into-plans-and-tasks/"
+    },
+    {
+      "name": "HeyGoTrade (market close)",
+      "url": "https://www.heygotrade.com/en/news/nvidia-nvda-stock-news-november-11-2026/"
+    }
+  ],
+  "why": {
+    "executives": "Claude is now positioned against Microsoft 365 and Google Workspace, not against ChatGPT alone. Decide whether it is a platform or a tool before your next renewal, because the price and the controls differ.",
+    "security": "The Enterprise architecture runs each cloud session in an isolated VM with connector credentials held outside it. Confirm in writing which plan tiers get that before Meetings joins a call.",
+    "finance": "Microsoft fell 2.2% on the announcement day. The office-suite margin pool, not the chatbot subscription, is what the labs are now bidding for."
+  },
+  "body": "Anthropic released a set of workplace products on November 10 that moves Claude out of the chat box. Claude Sheets lets a team and Claude build spreadsheets together across tabs, with formulas, formatting and dropdowns, and with every change Claude makes written to a log. Claude Whiteboards is a shared board for planning sessions that Claude can turn into timelines and then export as a document or slide deck. Claude Data, the product formerly called Dashboards, is generally available and connects to warehouses and CRMs such as Snowflake and Salesforce; certified data definitions from a customer's data team are in beta. And partners including Adobe and Atlassian can now embed full versions of their applications inside Claude over MCP, with Salesforce, NetSuite and Workday plugins shipping with built-in skills.\n\nTechCrunch reported a fifth product, Claude Meetings, in beta on Team and Enterprise plans: Claude joins a Google Meet call as a visible participant, drafts plans and whiteboards while people are still talking, pulls material from connected apps and leaves notes and action items in claude.ai afterwards. It announces itself in the meeting chat, will not join calls with external guests unless an admin allows it, and leaves if an outside guest arrives. Anthropic's own article lists Meetings as \"coming soon\", so treat the beta as limited.\n\n## Why the timing matters\n\nThe launch came one day before Anthropic opened its IPO roadshow at a range that values it at up to $1.4 trillion. A product line that competes with Excel, Miro, Tableau and the note-taking half of Teams supports a revenue story that is not only API tokens, and investors read it that way: Microsoft fell 2.2% to $533.16 on the day and briefly lost its newly regained second place among listed companies. OpenAI shipped its own data-visualisation and presentation tools in September, and Meta's Muse agent builds throwaway mini-apps. The three largest labs are now converging on the same claim, that the AI assistant should be the surface where work happens rather than a tab beside it.\n\n## What changes for buyers\n\nMost Claude enterprise contracts were written as model access plus a chat seat. The new products pull in three things that were previously someone else's procurement problem. The first is data. Claude Data with certified definitions means your semantic layer lives partly in Anthropic's product, and Sheets means formulas and business logic do too. The second is partner apps. An Adobe or Atlassian session running inside Claude runs under that vendor's licence and data terms as well as Anthropic's, and the admin controls Anthropic describes, per-connector permissions such as read Slack but do not post, granular spend limits and audit logs through a Compliance API that talks to Splunk and CrowdStrike, are the controls you will need to map to each. The third is presence. A meeting participant that drafts documents from a live conversation is a recording device for the purposes of most jurisdictions' consent rules and most companies' legal-hold policies.\n\nAnthropic's Enterprise architecture, as described in its article, runs each cloud session in an isolated virtual machine and keeps connector credentials outside it, with data encrypted in transit and at rest. The article does not say which tiers get Sheets, Whiteboards or Data, and gives no prices; Meetings is Team and Enterprise only per TechCrunch.\n\n## The counter-argument\n\nMicrosoft and Google have the files, the identity system and the calendar. A spreadsheet that lives in Claude is useful until a controller needs it in Excel with the audit trail intact, and an exported whiteboard is a copy, not a system of record. The history of productivity suites is that distribution beats features, and the two incumbents have both bundled their own assistants at near-zero marginal price. Anthropic's bet is that the agent, not the file format, becomes the system of record; that bet is not yet proven anywhere.\n\n## What to ask\n\nBefore renewing, ask which products are in your tier and at what seat price; whether the isolated-VM architecture applies to your plan; how Sheets and Data content is retained, exported and deleted at contract end; whether Meetings transcripts fall under your retention and discovery policies and who holds them; which partner terms apply when Adobe or Atlassian run inside Claude; and whether the change log in Sheets is exportable for audit. Pilot Sheets with one finance team on non-controlled data and compare the formula quality against a Copilot or Gemini workbook. Then decide whether Claude is a platform in your architecture diagram or an application in someone else's.",
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
+  "developing": false
+}

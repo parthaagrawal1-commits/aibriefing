@@ -1,0 +1,37 @@
+{
+  "slug": "anthropic-ipo-70-78-range-what-the-s1-numbers-say",
+  "section": "markets",
+  "title": "Anthropic's IPO range is $70–78: what the amended S-1 says about dilution, lock-ups and the $26 billion partner placement",
+  "dek": "The largest technology listing ever attempted now has a price, a share count and a list of suppliers buying in; here is how to read the numbers before the stock trades.",
+  "stat": "$64.4B",
+  "tags": [
+    "IPO",
+    "funding",
+    "Anthropic",
+    "Google",
+    "Nvidia"
+  ],
+  "developing": true,
+  "sources": [
+    {
+      "name": "Fortune",
+      "url": "https://fortune.com/2026/11/10/anthropic-ipo-price-range-ai-stock-sell-off/"
+    },
+    {
+      "name": "Data Studios (S-1/A figures)",
+      "url": "https://www.datastudios.org/post/anthropic-ipo-roadshow-price-range-70-78-per-share-825-million-shares"
+    },
+    {
+      "name": "Yahoo Finance (market close)",
+      "url": "https://finance.yahoo.com/markets/stocks/articles/stock-market-today-nov-10-223502212.html"
+    }
+  ],
+  "why": {
+    "finance": "Three valuations are in circulation ($0.97T on shares outstanding at the midpoint, $1.1–1.24T with options and RSUs, $1.4T fully diluted at the top). Pick one basis and use it consistently in your model.",
+    "executives": "Anthropic's chip and cloud suppliers will own $26 billion of it. Treat vendor roadmap claims from any of the seven with that in mind.",
+    "ml": "The risk factors state Anthropic may imminently meet its own threshold for AI-accelerated research. That is a disclosure with legal weight, not a blog post."
+  },
+  "body": "Anthropic filed an amended S-1 and opened its investor roadshow on November 10, offering 825 million Class A shares at $70 to $78 each under the Nasdaq ticker ANT. At the top of the range the offering raises $64.4 billion, more than SpaceX took in June and more than any technology company has raised in a listing. The company has not announced a pricing date; FinanceFeeds and CNBC report trading could begin on November 19, while other outlets have earlier dates. Treat all of them as unconfirmed until Anthropic says so.\n\n## The share count, and what it does to the valuation\n\nOf the 825 million shares, 801.4 million are new shares sold by the company and 23.6 million are sold by existing holders, so almost all of the money goes to Anthropic. Underwriters hold a 30-day option on a further 123.75 million shares. The $1.4 trillion figure that Fortune and others lead with is a fully diluted number at $78. On shares outstanding alone, the midpoint of $74 values the company at roughly $968 billion; adding options and unvested restricted stock takes the range to about $1.11 to $1.24 trillion. None of these is wrong, but they answer different questions, and a sell-side note that quotes one against another's revenue multiple is making an error.\n\nThe amended filing shows revenue of $17.0 billion for the quarter to September 30 and, per Fortune, an annualised run rate of about $81 billion at the end of October, up from roughly $71 billion in late September. On the fully diluted top-of-range number that is a little over 17 times run-rate revenue; on the midpoint outstanding-share basis it is closer to 12 times. Anthropic reported a first-half loss in its October prospectus and the amendment does not restate it.\n\n## The $26 billion placement\n\nAlongside the public offering, seven strategic investors have agreed to buy $26 billion of non-voting Class N stock at $74. Google and Nvidia take $10 billion each, AMD $2.5 billion, Broadcom, Micron and Microsoft $1 billion each and TSMC Partners $500 million. Combined with the IPO, Data Studios' reading of the filing puts net proceeds near $84.6 billion at the midpoint, or $93.7 billion if the option is exercised.\n\nEvery name on that list sells Anthropic chips, memory, foundry capacity or cloud. The placement locks in suppliers as shareholders and gives Anthropic a decade of negotiating leverage, but it also means that the public float will be a minority of the equity and that the most informed buyers in the book are also the company's largest counterparties. Class N shares sit outside the underwriter lock-ups but remain restricted securities.\n\n## Lock-ups and the overhang\n\nHolders of about 15.5 billion Class A-equivalent shares are restricted from selling for up to 180 days. Co-founders and anyone holding more than 0.5% of the fully diluted count are restricted for up to 365 days. About 3.6 billion shares under the 180-day restriction can be released early if conditions in the prospectus are met, which usually means a price threshold after the first earnings report. For a stock whose free float at listing will be well under 10% of fully diluted shares, those release dates are the events that will move it.\n\n## The tape it is pricing into\n\nThe roadshow opened into the worst week for AI equities since spring. The Nasdaq fell 5.5% last week after the midterms raised the odds of tighter data-centre and AI regulation, and on November 10 Nvidia fell a further 5.5% to $168.80 on more than three times average volume after its independent directors retained Wachtell Lipton to run the investigation into reports that Jensen Huang was targeted by a Chinese intelligence effort. Microsoft briefly passed Nvidia as the second most valuable listed company. AMD and Broadcom rose the same day, which says investors see a Nvidia-specific problem rather than a demand problem, and both are in Anthropic's placement.\n\n## The disclosure nobody else has made\n\nBuried in the risk factors is a statement that Anthropic's internal estimates suggest it \"may imminently meet\" the threshold in its Responsible Scaling Policy for dramatically accelerated AI progress, roughly a doubling in the pace of research because AI is automating it. The company says no current model has crossed the line and that it is considering policy changes to keep people in control of frontier development. In a blog post that would be marketing; in a registration statement it is a representation the company can be sued over. It is also a warning to anyone modelling Anthropic's costs that the compute budget is not going to flatten.\n\n## What to watch\n\nThe pricing date and whether the range moves; the final free float after the option; the first earnings date, because it fixes the early lock-up release; Nvidia's November 17 results, which set the mood for the pricing week; and whether any of the seven placement investors disclose offtake or purchase commitments alongside their stakes. If you hold OpenAI exposure through SoftBank, this is also the first public mark on the sector, and SoftBank's own shares will trade on it.",
+  "published": "2026-11-11",
+  "updated": "2026-11-11"
+}

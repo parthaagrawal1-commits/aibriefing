@@ -1,0 +1,36 @@
+{
+  "slug": "skild-ai-steel-open-source-robot-simulation-13x-physx-what-it-means",
+  "section": "robotics",
+  "title": "Skild AI's Steel runs robot simulation up to 13x faster than PhysX on mixed batches and uses 62% less memory; here is what the numbers cover",
+  "dek": "A $14 billion startup contributed its rigid-body solver to Nvidia's open-source Newton engine a week after Nvidia shipped Isaac Lab 3.0; the benchmark is real, the headline multiple needs context, and the licence is not stated.",
+  "stat": "3.8x",
+  "tags": [
+    "robotics",
+    "research",
+    "Nvidia",
+    "infrastructure"
+  ],
+  "sources": [
+    {
+      "name": "Skild AI",
+      "url": "https://skild.ai/blogs/steel"
+    },
+    {
+      "name": "Runtime Wire",
+      "url": "https://runtimewire.com/article/skild-ai-open-sources-steel-physics-solver-physx"
+    },
+    {
+      "name": "The Robot Report (Skild funding)",
+      "url": "https://www.therobotreport.com/skild-ai-raises-1-4b-building-omni-bodied-robot-skild-brain/"
+    }
+  ],
+  "why": {
+    "ml": "3.8x is the geometric mean on 20 single tasks; 13x is the best case on heterogeneous batches where PhysX degrades. Quote the first number and test the second on your own task mix.",
+    "developers": "Steel is a one-line solver swap in Newton 1.8 (newton.solvers.SolverSteel) with Isaac Lab integration. Read the licence on GitHub before it goes into a product; the blog post does not name one.",
+    "finance": "A startup giving away its simulator a week after Nvidia's GR00T 2 and Isaac Lab 3.0 says the moat in embodied AI is deployment data, not physics code."
+  },
+  "body": "Skild AI released Steel on November 9, a GPU rigid-body dynamics solver it built with Nvidia and is contributing to Newton, the open-source physics engine Nvidia launched for robot learning. The name stands for Scalable Throughput-optimized Engine for Embodied Learning. It ships inside Newton as newton.solvers.SolverSteel, shares Newton's model representation and collision code, and is meant to drop into Isaac Lab, Nvidia's training framework, which reached version 3.0 at the Conference on Robot Learning a week ago.\n\nSkild is not a small contributor. It raised about $1.4 billion in January at a valuation above $14 billion, led by SoftBank with Nvidia's venture arm, Bezos Expeditions, Samsung, LG and Salesforce among the backers, and sells the Skild Brain, a foundation model meant to control many robot bodies without per-robot retraining. Steel is the simulation engine behind that model's training.\n\n## What was measured\n\nAll benchmarks ran on one Nvidia RTX PRO 6000 Blackwell GPU and measure simulation throughput, not end-to-end training speed. On a suite of 20 single-task Isaac Lab environments, with each engine at its best batch size, Steel's geometric-mean speed-up over PhysX was 3.8x, and it was faster on 19 of the 20 tasks. MuJoCo Warp, Google DeepMind's GPU engine, was 2.9x PhysX on the same suite, so Steel's lead over it is about 1.3x. On the hardest single task, a Kuka arm with an Allegro hand lifting an object, Steel was 6.7x PhysX.\n\nThe larger multiples come from heterogeneous batches, where one simulation holds 5, 10, 15 or 20 different task types at once. There Steel reached 9.2x to 13x PhysX at peak, hitting 3.9 million environment steps per second across 245,760 environments with 20 task types. At a matched batch of 61,440 environments, Steel ran 3.61 million steps per second against 300,000 for PhysX, a 12x gap, while using about 11 GiB of GPU memory against 29 GiB, roughly 62% less. Skild notes the PhysX comparison used Isaac Sim 6.1.0 and that the earlier 6.0.0 release ran some mixtures up to 2.7x faster, which narrows the gap for anyone on the older build.\n\nSteel combines reduced-coordinate articulation dynamics with projected Gauss-Seidel constraint solving, handles rigid-to-deformable coupling for cables, cloth and granular material, supports compliant and hydroelastic contact, and puts settled bodies to sleep to skip most of the solve work. An opt-in differentiable step lets Newton's tape back-propagate through the solver; Skild shows drone model-predictive control and a trajectory optimisation using an experimental smooth-contact model.\n\n## Why heterogeneous batches matter\n\nA single-task simulation is how most robot learning papers have been done. A foundation model that must learn locomotion, manipulation and navigation across many bodies is trained on a mixture, and PhysX's design, tuned for games and single scenes, handles that case badly. That is why Skild's best numbers are there and why they are not an unfair comparison for Skild's own purpose; they are simply not the number to quote if you train one policy on one task.\n\n## The counter-argument\n\nThe benchmark conditions are published, which is better than most of the field, but they were chosen by the vendor, on a Newton release candidate, against a PhysX build the vendor acknowledges was not the fastest available. Throughput is not sample efficiency: a faster simulator that produces the same gradients saves money, not training steps. The blog post also does not name a licence, which for an open-source contribution to an open-source engine is an unusual omission; the GitHub repository is the place to check before any commercial use. And Skild's incentive is clear: a faster Newton makes the Nvidia ecosystem, in which it has raised and spent billions, more attractive relative to MuJoCo and Genesis.\n\n## What to watch\n\nNvidia's own adoption of Steel as a default in Isaac Lab; MuJoCo Warp's response, since the 1.3x gap is within a release; independent reproductions on H100 and consumer GPUs, where memory savings matter more; whether the licence is permissive; and whether Skild publishes sim-to-real results showing policies trained on Steel transfer as well as PhysX-trained ones, which is the only number that determines whether the speed is worth anything.",
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
+  "developing": false
+}

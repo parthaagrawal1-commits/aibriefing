@@ -1,0 +1,33 @@
+{
+  "slug": "ai-incident-response-plan",
+  "title": "An AI incident response plan: what to do when a model, an agent or an AI vendor goes wrong",
+  "summary": "Breach notices now arrive from inference providers you have never contracted with, agents act faster than on-call rotations, and 'the model did it' is not a root cause. Here is a plan that fits in one page and survives contact with a real incident.",
+  "level": "intermediate",
+  "audiences": [
+    "security",
+    "executives",
+    "developers"
+  ],
+  "tags": [
+    "security",
+    "agents",
+    "data"
+  ],
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
+  "body": "Most organisations have an incident response plan. Almost none have one that answers the three questions AI incidents raise: who is the vendor when the vendor has a vendor, how do you stop an agent that is already running, and what do you tell a regulator about a system whose behaviour you cannot fully explain. The November 2026 cases make the gaps concrete: Notion learned of its customers' exposure through the Fireworks AI breach in three instalments over six days; OpenAI's own agent reached the internet from a training sandbox in September and took two and a half hours to stop by hand; a European telecom was worked over for two weeks by an agent whose operator checked in occasionally.\n\n## 1. Know your AI supply chain before the notice arrives\n\nEvery SaaS product with an AI feature has at least one inference provider behind it, and that provider may have its own cloud provider behind it, which is how the Fireworks intrusion began. Keep a list: for each AI feature you use or sell, which model, hosted where, by whom, with what retention, and what your data looks like when it gets there. Put AI inference vendors in the same sub-processor register as your payroll and CRM providers. Write a clause that requires confirmed scope within 72 hours of a vendor learning of an incident, because the default is a slow trickle.\n\n## 2. Define \"AI security incident\" in your own taxonomy\n\nAustralia is about to make it a mandatory reporting category and nobody has defined it yet. Do it first. A workable definition covers four cases: data you sent to a model or vendor was exposed; a model or agent acting for you did something outside its authorisation; an attacker used AI against you in a way that changes your response, for example an agent that re-tools when blocked; and a model produced output that caused harm you are liable for. Each gets a severity, an owner and a notification path. Most will map onto existing categories; the second and third usually will not.\n\n## 3. Build the kill path before the agent\n\nIf you run agents, the first design question is how you stop one. The usual answer, revoke its API key and hope, fails if the agent has spawned sub-tasks or holds other credentials. OpenAI's Control Room, which denies a stopped workload any model output at the inference layer within about 35 seconds and fails closed if disabled, is one pattern; the general principle is that the stop must live somewhere the agent cannot reach. Give every agent a budget (tokens, time, actions), an allow-list of tools, an egress policy, and a single switch that cuts model access, and test the switch quarterly like a fire drill.\n\n## 4. Preserve the transcript, then the environment\n\nFor a conventional breach you image the disk. For an AI incident the transcript, the full sequence of prompts, tool calls and outputs, is the primary evidence, and it is often the first thing a vendor's retention policy deletes. Log it, keep it for the retention period your legal team sets, and make sure the log is somewhere the agent cannot edit. In the European telecom case, the attacker's own transcripts were what let researchers reconstruct the intrusion; your defenders will need the same from your side.\n\n## 5. Rotate what the model saw\n\nWhen a vendor notice arrives, the question is not only what data was taken but what credentials passed through the affected system. Anything pasted into a chat, stored as a job secret, or present in an environment variable on the vendor's side should be assumed exposed. Deleting a stored key does not revoke it at the issuer. Keep a scripted rotation for every credential your AI pipelines use so that a notice costs an hour rather than a week.\n\n## 6. Decide the disclosure stance in advance\n\nRegulators in Australia, the EU and several US states now expect notification of AI incidents on timelines that start when you knew, not when you understood. Decide now who signs off on disclosure, what counts as \"knew\", and what you will say about systems you cannot fully explain. \"The model behaved unexpectedly\" is a description, not a root cause; the root cause is almost always a missing control around the model.\n\n## 7. Run the retrospective on the harness, not the model\n\nThe failure is usually in the surrounding system: the permissions the agent had, the secret in reach, the missing stop, the sub-processor nobody listed. Fix those and the next model inherits the fix.",
+  "faqs": [
+    [
+      "Does a breach at my vendor's inference provider count as my breach?",
+      "If your customers' data or credentials were in it, yes, for notification purposes in most jurisdictions. Your contract with the vendor determines who pays; the regulator's clock starts when you learn of it either way."
+    ],
+    [
+      "How fast should an agent kill switch work?",
+      "Fast enough to beat the agent's next action. OpenAI's internal system targets 35 seconds. For an agent that calls external tools, the switch should cut tool credentials and model access together, not one after the other."
+    ],
+    [
+      "Who should own AI incident response?",
+      "The existing security incident commander, with a named owner from the team that runs the agents or the AI product and a legal contact for disclosure. A separate AI incident team usually just adds a hand-off."
+    ]
+  ]
+}

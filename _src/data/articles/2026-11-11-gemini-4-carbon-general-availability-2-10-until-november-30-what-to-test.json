@@ -1,0 +1,33 @@
+{
+  "slug": "gemini-4-carbon-general-availability-2-10-until-november-30-what-to-test",
+  "section": "models",
+  "title": "Gemini 4 Carbon is open to every paying developer at $2 / $10 until November 30: what to test before the price doubles",
+  "dek": "Google's strongest model left its cyber-only gate after two weeks, matched Argon's price for 19 days and published safety numbers that are worth reading more closely than the benchmark wins.",
+  "stat": "$4 / $20",
+  "tags": [
+    "models",
+    "pricing",
+    "Google",
+    "agents",
+    "security"
+  ],
+  "sources": [
+    {
+      "name": "Google (Koray Kavukcuoglu)",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+    },
+    {
+      "name": "SecurityWeek",
+      "url": "https://www.securityweek.com/google-widens-gemini-4-carbon-access-after-ai-agents-verify-signal-code/"
+    }
+  ],
+  "why": {
+    "developers": "Carbon costs exactly what Argon costs until November 30. Run your eval set on both now; after December 1 the comparison costs twice as much.",
+    "ml": "Google's wins are on agentic benchmarks it chose (CursorBench, WANDR, AutomationBench). The honesty and injection numbers are more useful than the leaderboard positions.",
+    "finance": "December 1 is the first scheduled price increase at the AI frontier, and it hits Argon and Carbon at once. Any Google Cloud AI forecast built on $2 / $10 is wrong from that date."
+  },
+  "body": "Google made Gemini 4 Carbon generally available on November 10, thirteen days after releasing it to a selected group of cyber defenders in its Fairwind programme. Paying users can now call it through the Gemini API, AI Studio and Gemini for business, and it is wired into Android Studio, Gemini Enterprise, Antigravity and CodeMender. Google AI Ultra subscribers get it in the Gemini app, AI Mode in Search and Antigravity. The cyber-tuned variant, \"Carbon for cyber\", stays behind Fairwind on a rolling basis.\n\n## The price and the deadline\n\nCarbon is priced at $2 per million input tokens and $10 per million output, the same as Gemini 4 Argon. Google says the introductory period for both ends on November 30, after which they move to $4 and $20. That is the same step Google announced for Argon's launch pricing, now extended to Carbon, and it is the first time a frontier vendor has scheduled a price rise rather than a cut. For comparison, Claude Sonnet 5.5 is $2 / $10 with no announced change, Opus 5.5 is $4 / $20, OpenAI's GPT-6.1 Sol is $2 / $10, and GPT-5.6 Sol's own promotion ends the same day Google's does. From December 1 the mid-frontier tier will be $4 / $20 at two of the three big labs.\n\n## What Google is claiming\n\nThe announcement is built around agentic benchmarks rather than academic ones. Google says Carbon is first on CursorBench 4.0, Perplexity's WANDR and Zapier's AutomationBench at more than twice the cost efficiency per task of the next external model, second on the Artificial Analysis Multimodal Knowledge Agent benchmark at more than six times lower average cost per task than the leader, and top of 23 configurations on Balyasny's financial intelligence suite. Artificial Analysis' own Intelligence Index puts Carbon at 59. Google's framing is careful: it says Argon \"remains the ideal choice for the majority of software engineering and knowledge work\" and Carbon is for long-horizon agents and security.\n\nThe numbers worth more attention are in the safety section. In simulated cyberattacks Google reports the per-attempt breach rate fell to 0.8% from Argon's 3.1%; on Gray Swan's attack-query set, success fell to 2.17% from 9.86%; external red-teaming by Trajectory Labs found no universal jailbreak in 132 hours and 13,000 requests; and on a 375-task agentic honesty benchmark Carbon passed 92% against Argon's 70%, declining to invent missing experimental data 98% of the time. Two weeks earlier Google reported a 0% success rate on Gray Swan's indirect prompt injection test, with the caveat that robustness is still an area for improvement.\n\n## The counter-argument\n\nEvery figure above is Google's, on benchmarks Google chose, some of which are built by partners that also sell Carbon-powered products. Cost-per-task claims depend on token counts that reasoning models vary by effort setting, so \"2x cheaper per task\" can flip with a different budget. The cyber benchmarks that justify the gated variant are not public. And the honesty improvement, while large, is measured on a benchmark of Google's design; wait for METR, Artificial Analysis and the UK AISI to publish before updating a model policy.\n\n## Antigravity swarm\n\nThe developer-facing novelty is /swarm in Antigravity, in preview: a single prompt becomes a team of agents, with Carbon in the architect, coordinator and auditor roles and lighter models working in parallel isolated workspaces while adversarial verifiers test each change. Google's demos include a 906,000-triangle reconstruction of a railway platform from seven PDFs over ten overnight runs. It is the same orchestration pattern Anthropic and OpenAI have shipped in their coding tools, with Google's twist that the verifier is a separate adversarial agent.\n\n## What to do\n\nPut Carbon and Argon on the same eval harness this week; the price parity makes the comparison free of budget politics for 19 days. Record token usage per task, not just pass rates, because that is what changes on December 1. If you use Gemini through Vertex rather than the Gemini API, check that pricing separately; Google's post covers the developer API. Pin model versions in config rather than aliases so the step-up cannot surprise a running agent. And if you are in Fairwind, the cyber variant's SEC-bench and ExploitGym leads are the ones to test against your own vulnerability queue.",
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
+  "developing": false
+}

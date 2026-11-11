@@ -45,7 +45,7 @@ table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0 18px}th,t
 footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);font-size:14px}footer a{color:var(--ink2)}footer .cols{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:12px}
 .pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin:0 6px 6px 0}a.pill:hover{border-color:var(--acc);color:var(--acc);text-decoration:none}
 .faq details{border-top:1px solid var(--line);padding:10px 0}.faq summary{cursor:pointer;font-weight:600}
-.article{max-width:760px}.article p,.article li{font-size:18px}.cover{border-radius:var(--r);border:1px solid var(--line);margin:0 0 22px;max-width:900px}
+.article{max-width:760px}.article p,.article li{font-size:18px}.article a.gl{color:inherit;text-decoration:underline dotted;text-underline-offset:3px;text-decoration-color:var(--accent,#7a93ff)}.article a.gl:hover{text-decoration-style:solid}.cover{border-radius:var(--r);border:1px solid var(--line);margin:0 0 22px;max-width:900px}
 .conf-primary{color:var(--ok)}.conf-secondary{color:var(--warn)}
 .hero{padding:10px 0 16px}.hero h1{max-width:900px}.dateline{font-size:15px;color:var(--mute)}
 .list a{display:block;padding:12px 0;border-bottom:1px solid var(--line);color:inherit}.list a:hover{text-decoration:none;color:var(--acc)}.list small{display:block;color:var(--mute)}

@@ -178,7 +178,7 @@ table{border-collapse:collapse;width:100%;font-size:15px;margin:10px 0 18px}th,t
 footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);font-size:14px}footer a{color:var(--ink2)}footer .cols{display:flex;gap:24px;flex-wrap:wrap;margin-bottom:12px}
 .pill{display:inline-block;font-size:12px;padding:2px 9px;border-radius:999px;border:1px solid var(--line);color:var(--mute);margin:0 6px 6px 0}a.pill:hover{border-color:var(--acc);color:var(--acc);text-decoration:none}
 .faq details{border-top:1px solid var(--line);padding:10px 0}.faq summary{cursor:pointer;font-weight:600}
-.article{max-width:760px}.article p,.article li{font-size:18px}.cover{border-radius:var(--r);border:1px solid var(--line);margin:0 0 22px;max-width:900px}
+.article{max-width:760px}.article p,.article li{font-size:18px}.article a.gl{color:inherit;text-decoration:underline dotted;text-underline-offset:3px;text-decoration-color:var(--accent,#7a93ff)}.article a.gl:hover{text-decoration-style:solid}.cover{border-radius:var(--r);border:1px solid var(--line);margin:0 0 22px;max-width:900px}
 .conf-primary{color:var(--ok)}.conf-secondary{color:var(--warn)}
 .hero{padding:10px 0 16px}.hero h1{max-width:900px}.dateline{font-size:15px;color:var(--mute)}
 .list a{display:block;padding:12px 0;border-bottom:1px solid var(--line);color:inherit}.list a:hover{text-decoration:none;color:var(--acc)}.list small{display:block;color:var(--mute)}
@@ -490,7 +490,7 @@ def explainer_page(e, explainers):
     rel = "".join(f'<a class="story tile" href="/learn/{x["slug"]}/"><img src="{x["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(x["title"])}</h3><p>{esc(x["summary"][:120])}…</p></div></a>' for x in related)
     relh = f'<div class="band"><div class="hd"><h2>Related</h2></div><div class="grid g3">{rel}</div></div>' if rel else ""
     body = (f'<div class="hero"><div class="kicker">Explainer · {esc(e.get("level", "all levels"))} · {read_time(e["words"])} min read</div><h1>{esc(e["title"])}</h1><p class="lede">{esc(e["summary"])}</p><p class="meta">Updated {esc(e.get("updated", ""))} · For: {aud}</p></div>'
-            f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{md_block(e["body"])}</div>{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
+            f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{autolink_glossary(md_block(e["body"]))}</div>{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
     ld = [{"@context": "https://schema.org", "@type": "Article", "headline": e["title"], "description": e["summary"], "datePublished": e.get("published", e.get("updated")), "dateModified": e.get("updated"), "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": ROOT + e["img"], "wordCount": e["words"]}, breadcrumbs([("Learn", "/learn/"), (e["title"], path)])]
     if e.get("faqs"): ld.append(faq_ld(e["faqs"]))
     return layout(title=f'{e["title"]} | AI Briefing', desc=e["summary"][:155], path=path, body=body, section="learn", jsonld=ld, og_type="article", og_image=ROOT + e["img"], published=e.get("published"), modified=e.get("updated"))
@@ -524,6 +524,47 @@ def glossary_pages():
         out[path] = layout(title=f'What is {t["term"]}? Definition in plain English | AI Briefing', desc=t["short"][:155], path=path, body=body, section="glossary", jsonld=[ld, breadcrumbs([("Glossary", "/glossary/"), (t["term"], path)])])
     return out
 
+# ---------- glossary auto-linking (explainers and articles) ----------
+_GL_PATTERNS = None
+def _glossary_patterns():
+    global _GL_PATTERNS
+    if _GL_PATTERNS is not None: return _GL_PATTERNS
+    pats = []
+    for t in GLOSSARY:
+        slug = slugify(t["term"]); names = []
+        base = re.sub(r"\s*\(.*?\)\s*$", "", t["term"]).strip()
+        if base: names.append(base)
+        m = re.search(r"\(([^)]+)\)", t["term"])
+        if m: names.append(m.group(1).strip())
+        for n in names:
+            if len(n) < 3 or n.lower() in ("api", "training", "compute", "prompt", "attention", "weights", "parameters", "latency"): continue
+            caps = n.isupper() or len(n) <= 4
+            flags = 0 if caps else re.IGNORECASE
+            pats.append((re.compile(r"(?<![\w-])" + re.escape(n) + r"(?:s|es)?(?![\w-])", flags), slug, len(n)))
+    pats.sort(key=lambda p: -p[2])
+    _GL_PATTERNS = pats
+    return pats
+def autolink_glossary(html_, exclude_slug=None, limit=12):
+    """Link the first mention of each glossary term inside paragraph/list text, never inside headings, links or code."""
+    pats = _glossary_patterns(); done = set(); count = 0
+    parts = re.split(r"(<[^>]+>)", html_); depth_skip = 0; out = []
+    for p in parts:
+        if p.startswith("<"):
+            tag = p[1:].split()[0].strip("/>").lower()
+            if tag in ("a", "h1", "h2", "h3", "h4", "code", "strong"):
+                depth_skip += -1 if p.startswith("</") else 1
+            out.append(p); continue
+        if depth_skip > 0 or count >= limit or not p.strip(): out.append(p); continue
+        for rx, slug, _ in pats:
+            if slug in done or slug == exclude_slug: continue
+            m = rx.search(p)
+            if not m: continue
+            p = p[:m.start()] + f'<a class="gl" href="/glossary/{slug}/" title="Glossary">' + m.group(0) + "</a>" + p[m.end():]
+            done.add(slug); count += 1
+            if count >= limit: break
+        out.append(p)
+    return "".join(out)
+
 def article_card(a, big=False):
     return (f'<a class="story tile" href="{a["url"]}"><img src="{a["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><div class="kicker">{esc(SEC[a["section"]][1])}</div><h3>{esc(a["title"])}</h3><p>{esc(a["dek"][:150])}…</p><div class="m"><span>{short_date(a["published"])}</span><span>·</span><span>{read_time(a["words"])} min</span></div></div></a>')
 
@@ -542,7 +583,7 @@ def article_page(a, articles, explainers):
             f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(a["title"])}">Share</button></div></div></div>'
             f'<img class="cover" src="{a["img"]}" alt="" width="1200" height="675" fetchpriority="high">'
             + (f'<div class="card" style="max-width:900px;margin:0 0 18px"><div class="kicker">Why it matters</div><div class="why">{whys}</div></div>' if whys else "")
-            + f'<div class="article" data-speak>{md_block(a["body"])}</div>'
+            + f'<div class="article" data-speak>{autolink_glossary(md_block(a["body"]))}</div>'
             f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div><div>{tags}</div>{nx}'
             f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
             + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())

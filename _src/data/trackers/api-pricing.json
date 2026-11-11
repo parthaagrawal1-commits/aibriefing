@@ -1,7 +1,7 @@
 {
   "title": "LLM API pricing tracker",
   "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. New this week: Claude Fable 5.2 at $8 / $40 (20% below 5.1) and Meta's Muse Ember at $0.10 / $0.50. Two promotions expire Nov 30: Gemini 4 Argon and GPT-5.6 Sol.",
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "rows": [
     {
       "vendor": "Anthropic",
@@ -12,7 +12,7 @@
       "context": "1M",
       "note": "released Nov 9, 2026; cache write $10 (5m) / $16 (1h); batch $4 / $20; fast mode $16 / $80",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -24,7 +24,7 @@
       "context": "1M",
       "note": "same base model and price as Fable 5.2 without the added cyber/bio safeguards; access via verification programmes",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -36,7 +36,7 @@
       "context": "1M",
       "note": "previous generation; superseded by Fable 5.2 at $8 / $40",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -48,7 +48,7 @@
       "context": "1M",
       "note": "previous generation; superseded by Mythos 5.2 at $8 / $40",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -60,7 +60,7 @@
       "context": "1M",
       "note": "batch $2 / $10",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -72,7 +72,7 @@
       "context": "1M",
       "note": "batch $1 / $5",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -84,7 +84,7 @@
       "context": "tiered",
       "note": "prompts over 100K tokens: $0.50 / $2.50",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -96,7 +96,7 @@
       "context": "1M",
       "note": "previous-generation Opus tiers, same price",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -108,7 +108,7 @@
       "context": "1M",
       "note": "",
       "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-10",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -120,7 +120,7 @@
       "context": "1.05M",
       "note": "requests over 272K input tokens billed $20 / $75; batch and flex 50% off; fast mode 2x",
       "source": "https://developers.openai.com/api/docs/pricing",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -132,7 +132,7 @@
       "context": "1.05M",
       "note": "cache write $2.50; over 272K input tokens 2x / 1.5x; batch and flex 50% off; fast 2x, ultrafast 6x",
       "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -144,7 +144,7 @@
       "context": "1.05M",
       "note": "over 272K input tokens 2x / 1.5x; batch and flex 50% off",
       "source": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -156,7 +156,7 @@
       "context": "1.05M",
       "note": "superseded by GPT-6.1 Sol (same price, cheaper cache)",
       "source": "https://developers.openai.com/api/docs/models/gpt-6-sol",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -168,7 +168,7 @@
       "context": "1.05M",
       "note": "volume tier; over 272K input tokens 2x / 1.5x",
       "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -180,7 +180,7 @@
       "context": "1.05M",
       "note": "gated security model released Nov 5, 2026",
       "source": "https://developers.openai.com/api/docs/pricing",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -192,7 +192,7 @@
       "context": "1.05M",
       "note": "promotional price until Nov 30, 2026; list rate $5 / $30 returns Dec 1; over 272K input tokens 2x / 1.5x",
       "source": "https://developers.openai.com/api/docs/models/gpt-5.6-sol",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -204,7 +204,7 @@
       "context": "1.05M",
       "note": "over 272K input tokens 2x / 1.5x",
       "source": "https://developers.openai.com/api/docs/models/gpt-5.6-terra",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -216,7 +216,7 @@
       "context": "1.05M",
       "note": "over 272K input tokens 2x / 1.5x",
       "source": "https://developers.openai.com/api/docs/models/gpt-5.6-luna",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -228,7 +228,7 @@
       "context": "400K",
       "note": "",
       "source": "https://developers.openai.com/api/docs/models/gpt-5.4-mini",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {
@@ -240,7 +240,19 @@
       "context": "400K",
       "note": "marked deprecated on vendor page",
       "source": "https://developers.openai.com/api/docs/models/gpt-5.4-nano",
-      "verified": "2026-11-09",
+      "verified": "2026-11-11",
+      "confidence": "primary"
+    },
+    {
+      "vendor": "Google",
+      "model": "Gemini 4 Carbon",
+      "input": 2,
+      "output": 10,
+      "cached": 0.1,
+      "context": "1M",
+      "note": "generally available Nov 10, 2026; introductory price through Nov 30, 2026; $4 / $20 from Dec 1; cyber-tuned variant gated via Fairwind",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
+      "verified": "2026-11-11",
       "confidence": "primary"
     },
     {

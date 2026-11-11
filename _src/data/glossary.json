@@ -494,5 +494,44 @@
       "reasoning-budget",
       "token"
     ]
+  },
+  {
+    "term": "Formal verification",
+    "short": "Mathematically proving that software or hardware satisfies a precise specification, usually with a proof assistant such as Lean that checks every step.",
+    "long": "Unlike testing, which shows the presence of bugs on the inputs tried, formal verification shows their absence for every input covered by the specification. It has been reserved for kernels, compilers and avionics because writing the proofs cost person-years; in November 2026 DeepMind's AlphaProof Code generated about 6.5 million lines of Lean proof for Signal's protocol code in four weeks. The result is only as good as the specification, which remains human-reviewed.",
+    "related": [
+      "benchmark",
+      "evaluation-eval",
+      "alignment"
+    ]
+  },
+  {
+    "term": "Sub-processor",
+    "short": "A vendor's own vendor that handles your data on its behalf, such as the inference provider behind a SaaS product's AI feature.",
+    "long": "Data-protection law requires vendors to list sub-processors and flow contractual obligations down to them. AI features have added a layer most registers miss: the hosted model provider, and sometimes that provider's cloud host. The Fireworks AI breach reached Notion customers through exactly this chain. Ask every vendor with an AI feature which models it runs, where, and under what retention.",
+    "related": [
+      "inference",
+      "confidential-computing",
+      "non-human-identity"
+    ]
+  },
+  {
+    "term": "Lock-up period",
+    "short": "The window after an IPO during which insiders and pre-IPO investors are barred from selling shares, typically 180 days.",
+    "long": "Lock-ups prevent a flood of insider selling in the first months of trading. Anthropic's filing restricts most holders for 180 days and founders and large holders for up to 365, with some early release if price conditions are met after an earnings report. Lock-up expiries are among the biggest scheduled events for a newly listed stock with a small free float.",
+    "related": [
+      "frontier-model",
+      "compute"
+    ]
+  },
+  {
+    "term": "Physics engine (robot simulation)",
+    "short": "Software that simulates rigid bodies, contact and friction so robot control policies can be trained on millions of virtual trials before touching hardware.",
+    "long": "Engines such as Nvidia's PhysX, DeepMind's MuJoCo and the open-source Newton run thousands of parallel environments on a GPU. Throughput, measured in environment steps per second, sets the cost of training; Skild AI's Steel solver claims a 3.8x average gain over PhysX. Speed only matters if policies trained in simulation transfer to real robots, the sim-to-real problem.",
+    "related": [
+      "world-action-model",
+      "agent",
+      "gpu"
+    ]
   }
 ]

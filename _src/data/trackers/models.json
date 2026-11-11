@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-10",
+  "updated": "2026-11-11",
   "rows": [
+    {
+      "vendor": "Google",
+      "model": "Gemini 4 Carbon (general availability)",
+      "released": "2026-11-10",
+      "kind": "Flagship (agentic / cyber)",
+      "context": "1M",
+      "note": "Released to Fairwind cyber defenders Oct 28; opened to all paying API developers and AI Ultra subscribers Nov 10. $2 / $10 until Nov 30, then $4 / $20.",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+    },
     {
       "vendor": "Anthropic",
       "model": "Claude Fable 5.2 / Mythos 5.2",

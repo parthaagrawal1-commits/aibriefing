@@ -1,0 +1,37 @@
+{
+  "slug": "alphaproof-code-signal-6-5-million-lines-lean-what-formal-verification-by-ai-means",
+  "section": "tools",
+  "title": "AlphaProof Code verified Signal's protocol code with 6.5 million lines of Lean in four weeks: what AI-written proofs mean for the software you depend on",
+  "dek": "DeepMind's five-person team used agents on Gemini 4 Carbon and Claude Opus 5.5 to prove security properties of libsignal at the machine-code level; the trusted part is the 26,000 lines of spec, and that is where review now belongs.",
+  "stat": "6.5M",
+  "tags": [
+    "research",
+    "security",
+    "Google",
+    "Anthropic",
+    "tools"
+  ],
+  "sources": [
+    {
+      "name": "SecurityWeek",
+      "url": "https://www.securityweek.com/google-widens-gemini-4-carbon-access-after-ai-agents-verify-signal-code/"
+    },
+    {
+      "name": "Runtime Wire",
+      "url": "https://runtimewire.com/article/deepmind-alphaproof-code-signal-formal-verification"
+    },
+    {
+      "name": "Qodo (analysis)",
+      "url": "https://www.qodo.ai/blog/alphaproof-code-signal-formal-verification/"
+    }
+  ],
+  "why": {
+    "developers": "Lean checks the 6.5 million lines of proof mechanically; humans and agents wrote the 26,000 lines of specification that say what is being proved. Spec review is the new code review.",
+    "security": "Proofs at the AArch64 level catch compiler and build errors that design-level protocol proofs miss. Ask which of your crypto dependencies has a published spec a vendor could be held to.",
+    "executives": "seL4 took twenty person-years to verify; this took five people four weeks. If it reproduces, verified builds of core libraries become a realistic procurement requirement, not a research curiosity."
+  },
+  "body": "Google DeepMind published AlphaProof Code on November 10, a system in which human experts and AI agents together produce machine-checked proofs that software meets a formal specification. Its first target was libsignal, the reference implementation of the Signal protocol that also underpins encryption in WhatsApp and Google Messages. The team proved forward secrecy, post-compromise security and authentication for the post-quantum PQXDH handshake and the Triple Ratchet, for libsignal version 0.105.4 and the spqr library at 1.6.0, and it proved them about the compiled AArch64 machine code rather than the protocol design.\n\n## How it worked\n\nFive researchers spent four weeks. Humans and agents running on Gemini 4 Carbon and Claude Opus 5.5 wrote the specifications, the statements of what had to be true, and the semantics of the instructions and system calls involved: about 26,000 lines in total, covering 467 instructions and 31 system calls. Agents on Carbon then generated roughly 6.5 million lines of Lean proofs. Lean, the proof assistant, rejects any proof that does not follow, so the volume of generated text is checked mechanically rather than read. To show the method catches real flaws, the team re-inserted two historical, already-patched libsignal bugs and demonstrated that the security theorems fail on each build. The specifications and proofs are being released under Apache 2.0 in a public repository; a full rebuild reportedly needs between 15 and 34 GiB of memory.\n\nFor comparison, the seL4 microkernel's verification took about twenty person-years and CompCert's verified compiler about six. Signal's chief technology officer, Ehren Kret, said the work gives Signal greater confidence in its code's privacy guarantees.\n\n## What it does not cover\n\nDeepMind is specific about the limits. The proofs apply to its own build of libsignal, run through a small command-line wrapper, not to the Signal, WhatsApp or Google Messages applications. Side channels, such as timing, are out of scope for parts of the analysis. Trust-on-first-use behaviour was not exercised. There is no quantum security guarantee, only the classical properties, and the proofs carry a vacuity bound after roughly 25,000 messages in a session. None of those is a flaw in the result; each is a reminder that a proof is only as broad as its statement.\n\n## Why this matters for developers\n\nFormal verification has been the gold standard for safety-critical code and almost nobody has used it, because the specification and proof effort cost more than the software. If agents can do the proof-writing at this scale, the cost moves to the specification: deciding, precisely, what the code must guarantee. That is a smaller job, but it is the one that requires judgment, and it is where errors become invisible. A proof that your code satisfies the wrong spec is worth nothing, and Lean cannot tell you the spec is wrong. The practical change is that review effort for critical libraries should move from reading implementations to reading and arguing about specifications, and that \"is there a machine-checked spec for this\" becomes a reasonable question to ask a vendor.\n\nIt also matters that the agents ran on two vendors' models. Google reported the result on the day it opened Gemini 4 Carbon to all paying developers, and the Carbon-for-cyber variant leads Google's patching benchmark; the implication is that proof generation is a product category, not a one-off.\n\n## The counter-argument\n\nThis is a Google research result announced alongside a Google model launch, using a target that Signal cooperated on. Nobody outside DeepMind has yet rebuilt the proofs. Proof volume is not a measure of assurance; 6.5 million lines says the agents were prolific, not that the 26,000-line spec is right, and the two re-injected bugs were chosen by the team. Four weeks also followed years of groundwork in Lean, in instruction semantics and in prior verification research that the announcement compresses. The honest claim is narrower: for a well-understood protocol with a cooperative maintainer, AI reduced the proof effort by one to two orders of magnitude.\n\n## What to do\n\nIf you ship or depend on cryptographic libraries, read the released specification rather than the headline, and compare it with the properties your threat model actually needs. If you maintain a critical open-source library, consider publishing a formal statement of its guarantees now; the proof may follow sooner than you expect, and the spec is the part that needs your knowledge. For security teams, add verified-build status to the questions you ask of messaging, VPN and key-management vendors, and treat machine-code-level proofs as the standard to ask for, since design-level proofs leave the compiler and build pipeline out. And watch for reproductions: the repository is public, and the first independent rebuild will say more than the announcement.",
+  "published": "2026-11-11",
+  "updated": "2026-11-11",
+  "developing": false
+}
