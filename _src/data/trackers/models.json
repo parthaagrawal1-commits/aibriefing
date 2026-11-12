@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "rows": [
+    {
+      "vendor": "Google",
+      "model": "Gemini Decision 1 (Decisions API)",
+      "released": "2026-11-11",
+      "kind": "Decision / scoring model (no text generation)",
+      "context": "256K",
+      "note": "Up to 1,000 questions per call, 150–250 ms, $0.10 / M input, no output charge",
+      "source": "https://interestingengineering.com/ai-robotics/google-gemini-decisions-api-fast-ai-agents"
+    },
     {
       "vendor": "Google",
       "model": "Gemini 4 Carbon (general availability)",

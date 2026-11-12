@@ -533,5 +533,55 @@
       "agent",
       "gpu"
     ]
+  },
+  {
+    "term": "Decision model",
+    "short": "A model that scores a fixed set of options and returns probabilities instead of generating text, used for routing, tool selection, policy checks and grading.",
+    "long": "Google's Gemini Decision 1 and OpenAI's Decisions API both run in a single forward pass with no decode loop, so they answer in 150–250 ms and are billed on input tokens only. They cannot explain themselves or notice that none of the options fit, so generative fallback is still needed for open-ended cases.",
+    "related": [
+      "agent",
+      "latency",
+      "evaluation-eval"
+    ]
+  },
+  {
+    "term": "Spend cap (API)",
+    "short": "A hard monthly or daily limit on what an API key can charge, set at the provider, after which requests fail.",
+    "long": "The cheapest control against LLMjacking: a stolen key with a cap loses a bounded amount. Pair it with a model and region allow-list, because a cap limits the bill, not what the key can reach. Railway's October breach ran up about $740,000 across customer keys that mostly had neither.",
+    "related": [
+      "llmjacking",
+      "non-human-identity",
+      "rate-limit"
+    ]
+  },
+  {
+    "term": "Frontier AI framework",
+    "short": "The published safety policy a large frontier developer must maintain under New York's RAISE Act and California's SB 53, describing how it assesses and mitigates catastrophic risk.",
+    "long": "RAISE requires the framework to be reviewed at least annually, material changes published within 30 days, a transparency report with each new model, critical incidents reported within 72 hours and quarterly confidential summaries of internal risk assessments. Only companies above $500 million in revenue training models above 10^26 FLOPs are covered.",
+    "related": [
+      "frontier-model",
+      "compute",
+      "alignment"
+    ]
+  },
+  {
+    "term": "Adjusted operating loss",
+    "short": "A company's operating loss after excluding items it chooses to leave out, typically stock compensation and one-off charges; not a GAAP measure.",
+    "long": "OpenAI's reported $10.9 billion third-quarter figure is adjusted and comes from internal documents, while Anthropic's $567 million operating loss is from an audited S-1. The two are not directly comparable; always check what 'adjusted' removes before quoting a margin.",
+    "related": [
+      "inference",
+      "compute",
+      "cost-per-task"
+    ]
+  },
+  {
+    "term": "Sandbox escape",
+    "short": "Breaking out of the isolation that is supposed to keep one tenant's code, or one agent's actions, from reaching the host or other tenants.",
+    "long": "Railway's October breach began with a partial filesystem-isolation escape on a shared build VM that exposed a build credential. The same class of flaw matters for AI agents that execute code: an agent sandbox is only as strong as the boundary and the credentials visible inside it. Per-task ephemeral VMs with narrowly scoped credentials are the standard fix.",
+    "related": [
+      "agent-harness",
+      "non-human-identity",
+      "guardrails"
+    ]
   }
 ]

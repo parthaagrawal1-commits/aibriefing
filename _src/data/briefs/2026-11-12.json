@@ -1,0 +1,266 @@
+{
+  "headline": "Nvidia's board weighs removing Huang as OpenAI reports a $10.9 billion quarterly loss",
+  "intro": "Nvidia's independent directors met late on Wednesday to decide whether Jensen Huang stays, and the stock gave up 8.6% after hours and another 6% before Thursday's open. Internal documents seen by the Wall Street Journal put OpenAI's third-quarter revenue at about $10 billion and its adjusted operating loss at $10.9 billion. Railway published the root cause of its October breach: a build-sandbox escape that ended in $740,000 of fraudulent AI charges on customers' stolen keys. Google shipped a decision-only model priced at $0.10 per million input tokens with no output charge, and put a Gemini agent inside hospital record, billing and insurance systems. New York opened RAISE Act registration for frontier labs, United Airlines wrote AI agents out of its contract of carriage, and today is the day OpenAI's models disappear from Cursor.",
+  "one_thing": "Railway's post-mortem is the clearest account yet of how stolen AI keys turn into cash: tested within 30 minutes, flooded with traffic four to seven days later, and the only key that held up was one scoped to a narrow set of models. Put a spend cap and a model allow-list on every production API key today; the rotation can wait until tomorrow, the cap cannot.",
+  "items": [
+    {
+      "title": "Nvidia's board met to decide Huang's future; shares fell 8.6% after hours and 6% premarket",
+      "stat": "-8.6%",
+      "summary": "The Wall Street Journal reported on November 11 that Nvidia's board was preparing to remove Jensen Huang as chief executive, and Reuters reported that the independent directors met late on Wednesday to decide. Bloomberg reported the board is working with an outside firm on possible replacements, including an interim chief, with Seeking Alpha naming CFO Colette Kress as a possibility. The New York Times separately reported, citing five current and former employees, that Huang had a relationship with Kimberly Powell, Nvidia's healthcare vice-president, who reports to him; Nvidia did not comment. Shares closed up 2.9% at $173.73, fell 8.6% to $158.78 after hours and were down about 6% in Thursday premarket trading, roughly 27% below the early-October peak. No decision had been announced by publication, and Nvidia reports earnings on November 17.",
+      "why": {
+        "finance": "Bernstein cut its target to $200 from $400 and Baird to $200 from $500 before any decision was announced. The earnings print is five days away; a leadership change in the same week would make the guide nearly impossible to read.",
+        "executives": "Nvidia's bylaws let a majority of its 11 directors remove the chief executive with or without cause, and about 60 executives report to Huang directly. If your roadmap depends on Nvidia commitments, find out who your account's executive sponsor reports to this week.",
+        "security": "Two senators have asked Commerce, State and the White House to preserve records on Nvidia's China chip exports and the alleged intelligence operation. Expect export-control scrutiny of any China-adjacent cloud capacity, including Megaspeed-style rentals.",
+        "ml": "Nothing about CUDA, the Blackwell roadmap or supply changes this week. Treat the stock move as a governance event, not a signal on hardware availability.",
+        "beginners": "Nvidia makes the chips most AI runs on. Its board is deciding whether to replace the founder who has run it since 1993, after reports about two relationships, one with a woman US officials suspect of spying for China."
+      },
+      "sources": [
+        {
+          "name": "Forbes",
+          "url": "https://www.forbes.com/sites/siladityaray/2026/11/12/nvidia-shares-plunge-as-board-reportedly-prepares-to-oust-ceo-jensen-huang/"
+        },
+        {
+          "name": "Al Jazeera",
+          "url": "https://www.aljazeera.com/economy/2026/11/12/nvidia-shares-plunge-amid-reports-board-to-discuss-ceo-huangs-future"
+        },
+        {
+          "name": "Seeking Alpha",
+          "url": "https://seekingalpha.com/news/4671241-nvidia-slides-6-as-investors-weigh-jensen-huangs-future-as-ceo"
+        }
+      ],
+      "tags": [
+        "markets",
+        "geopolitics",
+        "Nvidia"
+      ],
+      "article": "nvidia-board-weighs-removing-huang-what-the-8-percent-drop-prices-in",
+      "developing": true
+    },
+    {
+      "title": "OpenAI's revenue reached $10 billion in Q3 while its adjusted operating loss grew to $10.9 billion",
+      "stat": "$10.9B",
+      "summary": "Internal documents reviewed by the Wall Street Journal and reported on November 11 show OpenAI's third-quarter revenue at about $10 billion, up roughly 50% from $6.7 billion in the second quarter, with an adjusted operating loss of about $10.9 billion against $10.1 billion a quarter earlier. The adjusted operating margin improved to minus 109% from minus 150%. Enterprise reportedly became the largest revenue line for the first time, ahead of consumer subscriptions, after doubling quarter on quarter on the strength of coding tools, while consumer sales grew 20%. Net loss, compute spending and cash were not disclosed. The same quarter, Anthropic's S-1 showed $16.96 billion of revenue and a $567 million operating loss.",
+      "why": {
+        "finance": "OpenAI loses $1.09 per dollar of revenue on an adjusted basis; Anthropic loses about three cents. The two companies' numbers are on different bases, but the gap is the whole story of which IPO prices at what multiple.",
+        "executives": "Enterprise overtaking consumer means OpenAI's sales organisation is now pointed at you. Expect multi-year commitments and marketplace draw-downs to be the standard ask in renewals.",
+        "developers": "Coding tools drove the enterprise doubling. That is the revenue OpenAI is protecting when it cuts off Cursor today and prices Astra at $10 / $50.",
+        "ml": "A 50% quarterly revenue jump with losses still growing says inference is being sold below cost at the frontier. Price rises or quality cuts on the cheapest tiers are the usual next step.",
+        "beginners": "OpenAI made about $10 billion in three months, half as much again as the quarter before, and still spent far more than it earned. Its rival Anthropic made more and lost much less."
+      },
+      "sources": [
+        {
+          "name": "Forbes",
+          "url": "https://www.forbes.com/sites/gabrielalinzainescu/2026/11/11/openai-revenue-hits-10-billion-as-losses-reach-109-billion/"
+        },
+        {
+          "name": "Dataconomy",
+          "url": "https://dataconomy.com/2026/11/11/openai-revenue-hits-10-billion-as-operating-losses-widen/"
+        }
+      ],
+      "tags": [
+        "markets",
+        "IPO",
+        "OpenAI",
+        "Anthropic"
+      ],
+      "article": "openai-10-billion-quarter-10-9-billion-loss-what-the-numbers-mean"
+    },
+    {
+      "title": "Railway's post-mortem: a build-sandbox escape led to $740,000 in fraudulent AI charges on stolen keys",
+      "stat": "$740K",
+      "summary": "Railway published its full incident report on November 10 for the October 20–21 breach. An attacker exploited a previously unknown flaw to partially escape filesystem isolation on a shared build VM, picked up a build credential that an internal Temporal instance wrongly trusted, read 353 builds' histories and a copy of Railway's monorepo, found a misconfigured OIDC binding and used it to reach a machine holding a long-lived decryption key. Environment variables for at most 1.85% of workspaces, about 100,000, may have been decrypted, with AI provider keys queried by name first. Railway estimates about $740,000 of unauthorised spend across customers' accounts, reset linked-account tokens for 1,852 users, says AWS and Google are refunding under existing policies while OpenAI and SpaceXSI review case by case, and is covering Anthropic and OpenRouter charges itself.",
+      "why": {
+        "security": "Wiz's analysis of the stolen keys: tested within 30 minutes, then hammered four to seven days later. A key restricted to a narrow model allow-list throttled most of the traffic. Spend caps and scoped keys are the controls that worked.",
+        "developers": "Every link in the chain was an internal credential trusted beyond its purpose. Audit which of your service accounts can decrypt secrets, and whether a build job's token can talk to anything but the build system.",
+        "executives": "Railway is eating the charges that providers will not refund. Check whether your inference vendors' terms say who pays when a key stolen from a third-party host is abused.",
+        "finance": "Refund policy now differs by provider: AWS Bedrock and Google refund fraud, OpenAI and SpaceXSI decide case by case. That is a procurement term worth negotiating before an incident, not after.",
+        "ml": "Observed misuse ranged from coding agents to training pipelines; Railway believes the keys were sold for distillation. Your API key is now a training-data budget for someone else.",
+        "beginners": "Hackers broke into a hosting company, copied the passwords apps use to call AI services, and ran up $740,000 of bills on other people's accounts before the keys were cancelled."
+      },
+      "sources": [
+        {
+          "name": "Railway incident report",
+          "url": "https://blog.railway.com/p/incident-report-october-security-incident"
+        },
+        {
+          "name": "CSO Online",
+          "url": "https://www.csoonline.com/article/4247578/hackers-stole-ai-credentials-to-get-740000-in-free-compute-railway-picked-up-the-bill.html"
+        }
+      ],
+      "tags": [
+        "security",
+        "infrastructure",
+        "data"
+      ],
+      "article": "railway-incident-report-740000-fraudulent-ai-charges-what-to-change"
+    },
+    {
+      "title": "Google's Gemini Decision 1 scores up to 1,000 questions per call at $0.10 per million input tokens, no output charge",
+      "stat": "$0.10",
+      "summary": "Google launched the Gemini Decisions API on November 11, powered by a model called gemini-decision-1 that scores a fixed set of options in a single forward pass and returns probabilities and confidence scores instead of generated text. One request takes up to 256,000 tokens of text, images, audio, video or PDFs and up to 1,000 independent questions, each a yes/no check, a multiple-choice question with up to 255 options or a rubric score, with Google quoting 150 to 250 milliseconds end to end. Pricing is $0.10 per million input tokens and nothing for output, with shared input billed once per request; Google says it is nearly five times cheaper than Gemini 3.5 Flash-Lite on its own benchmark suite. It is available in AI Studio with a free tier, and OpenAI launched a comparable Decisions API on GPT-6 Luna in October at the same starting price.",
+      "why": {
+        "developers": "Routing, tool selection, policy checks and grading are the calls that currently burn Flash-class tokens inside every agent loop. This is a drop-in for most of them, with integrations landing in OpenRouter, LangChain, LiteLLM and Pydantic AI.",
+        "ml": "A classifier head with calibrated probabilities beats parsing JSON out of a generated answer. Google claims the lowest calibration error in its comparison; test that claim on your own labels before trusting the confidence scores.",
+        "finance": "Google says Gemini Notebook cut latency for everyday queries by up to 40% by routing with this model. If routing is cheaper than the models it routes to, the cost-per-task curve bends down for everyone.",
+        "security": "Google uses it in Search as a safety layer that flags adversarial MCP tool behaviour. A cheap, fast judge that cannot generate text is a useful guard in front of agents that can.",
+        "executives": "Two vendors now sell decisions as a product separate from text. Expect your AI bill to split into generation, retrieval and decisions, each priced differently.",
+        "beginners": "Instead of writing an answer, this model picks from options you give it, very fast and very cheaply. It is for the thousands of small yes-or-no choices inside AI software, not for chatting."
+      },
+      "sources": [
+        {
+          "name": "Interesting Engineering",
+          "url": "https://interestingengineering.com/ai-robotics/google-gemini-decisions-api-fast-ai-agents"
+        },
+        {
+          "name": "Google (announcement)",
+          "url": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/"
+        }
+      ],
+      "tags": [
+        "models",
+        "pricing",
+        "agents",
+        "Google",
+        "OpenAI"
+      ],
+      "article": "gemini-decisions-api-0-10-per-million-1000-questions-what-to-build-with-it"
+    },
+    {
+      "title": "Google Cloud puts a Gemini agent inside Epic, billing and insurer systems for Northwell, HCA and Optum",
+      "summary": "Google Cloud launched Gemini for healthcare on November 10 as a US preview, an agent that reads records from Epic and Oracle Health, billing platforms, Medicare coverage data and ASCO and BMJ guidelines, then runs multi-step administrative tasks such as summarising a chart, preparing a prior authorisation, checking benefits and estimating a patient's cost. It ships with five preset skills, can read but not write to the chart, cites a source for every finding and lets customers pick models from Google, Anthropic or OpenAI by task. Launch customers include Northwell Health, Highmark Health, HCA Healthcare, Optum, Blue Cross Blue Shield of Massachusetts, Hartford HealthCare and Stanford School of Medicine; GoodRx, UiPath, Verato and InterSystems announced integrations. Pricing is per seat or pay as you go, with no figures given.",
+      "why": {
+        "executives": "Northwell says 400 staff work full time on insurance denials and overturn more than 90% of them. Automating both sides of that fight is the pitch; whether it lowers cost or just speeds up the arms race is the question for your CFO.",
+        "security": "An agent with read access to Epic, Medicare datasets and payer systems is a single credential away from the most regulated data you hold. Ask how its identity is scoped per skill and where the audit log of every read lives.",
+        "ml": "Routing admin tasks to cheap models and clinical reasoning to expensive ones, across three vendors, is the first multi-vendor model router sold into hospitals. The evaluation burden shifts to the routing policy.",
+        "finance": "Highmark already auto-processes 78% of digital outpatient prior authorisations and a clinician reviews every denial. The measurable return is days of staff time, not reimbursement; price the pilot on that.",
+        "beginners": "Google built an assistant that can read a patient's hospital records and insurance rules at the same time, to do the paperwork doctors and insurers currently do by hand. It cannot change records; people still decide."
+      },
+      "sources": [
+        {
+          "name": "Fortune",
+          "url": "https://fortune.com/2026/11/10/google-gemini-for-healthcare-and-hospitals-northwell-medical-costs-affordability-insurance/"
+        },
+        {
+          "name": "The Next Web",
+          "url": "https://thenextweb.com/news/gemini-for-healthcare-google-cloud-ai-agent-launch"
+        }
+      ],
+      "tags": [
+        "health",
+        "adoption",
+        "agents",
+        "Google"
+      ],
+      "article": "gemini-for-healthcare-preview-prior-auth-epic-what-health-systems-should-ask"
+    },
+    {
+      "title": "New York opens RAISE Act registration: frontier labs over $500 million in revenue must file by January 1",
+      "stat": "Jan 1",
+      "summary": "Governor Kathy Hochul announced on November 10 that registration is open for large frontier developers under the RAISE Act, which takes effect on January 1, 2027. Companies with more than $500 million in annual revenue that train models above 10^26 operations and deploy them in New York must register with DIGIT, the new office inside the Department of Financial Services, publish a frontier AI framework reviewed at least annually, publish a transparency report with each new or substantially modified model, report critical safety incidents within 72 hours and file catastrophic-risk assessment summaries every three months. The attorney general can seek up to $1 million for a first violation and $3 million for each subsequent one, plus $1,000 a day for failing to register. A Binghamton University research centre with $55 million of initial funding will help review published frameworks.",
+      "why": {
+        "executives": "If your company sells models trained above the threshold, or hosts one in New York, your general counsel has seven weeks to register and publish a safety framework. The registry will be public.",
+        "security": "A 72-hour clock for critical safety incidents and 24 hours for imminent physical risk now applies to any frontier lab operating in New York. Align your vendors' incident clauses to those numbers; you will need their notice to meet yours.",
+        "ml": "Quarterly catastrophic-risk summaries from internal model use are a new filing category. Internal-deployment evals, including for AI-accelerated research, become regulatory documents.",
+        "finance": "Pro-rata assessments fund DFS's oversight and the law exempts universities and Empire AI, so the cost falls on a handful of companies, two of which are in or heading for IPO quiet periods.",
+        "developers": "Nothing applies below $500 million in revenue or 10^26 FLOPs. Fine-tuning a frontier model does not make you a frontier developer under this law.",
+        "beginners": "New York is the first US state to require the biggest AI companies to register, publish their safety plans and report serious incidents, with fines for those that do not."
+      },
+      "sources": [
+        {
+          "name": "Securities.io",
+          "url": "https://www.securities.io/new-york-opens-raise-act-registration-for-large-frontier-ai-developers/"
+        },
+        {
+          "name": "Fisher Phillips (statute summary)",
+          "url": "https://www.fisherphillips.com/en/news-insights/new-york-governor-signs-sweeping-ai-safety-law.html"
+        }
+      ],
+      "tags": [
+        "policy",
+        "regulation"
+      ],
+      "article": "new-york-raise-act-registration-opens-what-frontier-labs-must-file-by-january-1"
+    },
+    {
+      "title": "United Airlines bans AI agents from booking in its contract of carriage, supervised or not",
+      "summary": "United revised its contract of carriage on November 11 to define an AI agent as any assistant, standalone agent or AI-enabled browser that discovers, searches, books or manages United products on a passenger's behalf, whether or not a human supervises or approves each step. A new Rule 6.J.6 prohibits using such agents to make, modify or service a ticket or buy any product, and Rule 5.H lets United cancel those reservations without notice; existing remedies include voiding tickets, deleting miles and terminating MileagePlus accounts. United cites privacy, unintended purchases and a rule that passengers personally acknowledge dangerous-goods warnings at check-in; chief executive Scott Kirby reportedly told an event in Chicago he did not want to create another middleman. Searching fares with AI and buying yourself remains allowed. United says it works with no third-party agents today and has not said how it will detect them.",
+      "why": {
+        "executives": "Amazon blocked Meta's Muse agent in September, Walmart set terms and spending limits for agents in October, and United now bans them outright. Decide which of the three postures your business takes before an agent transacts on your site without your knowledge.",
+        "developers": "The definition catches semi-autonomous tools that wait for a tap, so a human-in-the-loop design is no defence. If your agent touches united.com, stop at the fare display and hand off to the customer.",
+        "security": "United's stated reason is credential sharing: passengers handing logins to third-party tools. That is a real attack surface, and the same logic will reach banks and healthcare portals.",
+        "finance": "Flight searches cost airlines money whether or not they convert; agents multiply searches. Expect per-query or verified-agent access schemes, as Visa's Trusted Agent Protocol is attempting, before agents are welcome on airline sites.",
+        "beginners": "United says you may not have an AI assistant buy or change your flights for you, even if you approve each step, and it can cancel bookings made that way. You can still use AI to search and then buy on your own."
+      },
+      "sources": [
+        {
+          "name": "Simple Flying",
+          "url": "https://simpleflying.com/united-airlines-bans-ai-agents-booking-flights-check-in/"
+        },
+        {
+          "name": "PPC Land (contract text)",
+          "url": "https://ppc.land/united-bans-ai-agents-from-buying-its-tickets-seats-and-upgrades/"
+        }
+      ],
+      "tags": [
+        "agents",
+        "consumer",
+        "adoption"
+      ],
+      "article": "united-airlines-bans-ai-agents-in-its-contract-what-agent-builders-and-retailers-should-do"
+    },
+    {
+      "title": "OpenAI's models leave Cursor today, 75 days after the SpaceX takeover triggered the cutoff",
+      "summary": "November 12 is the date OpenAI set in August for ending its supply of models to Cursor, after SpaceX closed its $60 billion all-stock acquisition of the coding-tool maker. OpenAI said at the time that it could not be confident SpaceX would honour its terms of service, cited earlier disputes with Musk companies and gave the maximum notice its contract allowed; GPT-6 Astra was never offered to Cursor. Cursor has shipped Grok 4.5 on every plan since July and continues to offer Anthropic and Google models, so the practical impact falls on teams whose rules, evals and prompts were tuned for GPT-6-class models inside Cursor. Developers on Cursor had no statutory notice protection; EU cloud-switching rules cover customers leaving a provider, not providers leaving a customer.",
+      "why": {
+        "developers": "If your Cursor rules or agent workflows named an OpenAI model, they stopped working today. Re-run your eval set on the models Cursor still offers before deciding whether to switch tools.",
+        "executives": "A model vendor withdrew from a 10-figure customer over who owns it. Vendor-concentration risk in your coding stack is now a documented event, not a hypothetical.",
+        "ml": "Fine-tuned behaviours do not port across vendors. Teams that depended on GPT-6 Sol's coding style in Cursor need a new baseline, not a model-name swap.",
+        "finance": "OpenAI walked away from Cursor revenue in the same quarter enterprise coding tools drove its revenue to $10 billion. It believes its coding products can replace that channel.",
+        "beginners": "Cursor is a popular AI coding tool now owned by Elon Musk's SpaceX. OpenAI decided in August to stop letting Cursor use its models, and the switch-off happens today."
+      },
+      "sources": [
+        {
+          "name": "The Next Web",
+          "url": "https://thenextweb.com/news/openai-ends-cursor-contract-spacex-acquisition-eu-switching-rules"
+        },
+        {
+          "name": "Cybernews",
+          "url": "https://cybernews.com/ai-news/openai-cursor-spacex-contract-termination/"
+        }
+      ],
+      "tags": [
+        "pricing",
+        "agents",
+        "OpenAI",
+        "xAI"
+      ]
+    },
+    {
+      "title": "Meta's infrastructure chief steps down as a $135–145 billion capex year hands over to an ex-AWS executive",
+      "stat": "$145B",
+      "summary": "Santosh Janardhan, Meta's head of infrastructure and co-head of engineering since 2022 and an employee since 2009, told staff in a November 11 memo that he is stepping down, Bloomberg first reported and CNBC confirmed. Dave Brown, who joined in July after about two decades at Amazon Web Services, takes over infrastructure inside Meta Compute, the unit run by Dina Powell McCormick and Daniel Gross that plans Meta's AI capacity; Janardhan moves to an advisory role and supports the handover through the first quarter of 2027. The memo gave no reason. Meta has guided 2026 capital spending to $135 billion to $145 billion, reported $34.9 billion of capex and negative free cash flow in the September quarter, and had its credit outlook cut to negative by S&P in October.",
+      "why": {
+        "finance": "The person who built Meta's data-centre machine is leaving in the first quarter Meta's free cash flow went negative. The successor's AWS background says the board wants cloud-style capital discipline.",
+        "executives": "Meta Compute now reports through a president with a finance and policy background rather than engineering. Infrastructure at the hyperscalers is becoming a capital-allocation function first.",
+        "ml": "Training capacity for Muse models depends on this build-out landing on schedule. A leadership change mid-programme is where multi-gigawatt timelines usually slip.",
+        "beginners": "The executive in charge of Meta's data centres, where its AI is trained, is stepping down while the company is spending more than ever building them. A former Amazon cloud executive takes over."
+      },
+      "sources": [
+        {
+          "name": "CNBC",
+          "url": "https://www.cnbc.com/2026/11/11/meta-infrastructure-departure-aws-cloud.html"
+        },
+        {
+          "name": "EconoTimes",
+          "url": "https://econotimes.com/Janardhan-to-Support-Meta-s-Infrastructure-Handover-Through-Q1-2027-1775664"
+        }
+      ],
+      "tags": [
+        "infrastructure",
+        "markets",
+        "Meta",
+        "Amazon"
+      ]
+    }
+  ]
+}

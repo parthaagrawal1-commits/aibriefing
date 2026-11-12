@@ -13,3 +13,8 @@
 - Explainers and articles now auto-link the first mention of each glossary term (dotted underline, `a.gl`) to its /glossary/ page; headings, existing links, code and bold text are skipped, generic words (API, training, compute, prompt) are excluded, max 12 links per page. Implemented in `autolink_glossary()` in build.py; no data changes required.
 - Pricing tracker: added Gemini 4 Carbon ($2 / $10 until Nov 30, then $4 / $20, primary source); Anthropic and OpenAI rows re-verified against vendor pricing pages. Models tracker: Gemini 4 Carbon general availability (Nov 10).
 - New explainer: ai-incident-response-plan. Glossary +4 (formal verification, sub-processor, lock-up period, physics engine). Pricing explainer updated for the Carbon December 1 step-up.
+
+## 2026-11-12
+- Weekly roundup pages: /week/ index and /week/YYYY-WW/ per ISO week, built by `week_pages()` in build.py from existing briefs, articles and the models tracker (day-by-day story tiles linking to dedicated articles where they exist, articles grouped by section, model releases that week, CollectionPage structured data with hasPart). Linked from the home "Earlier this week" band and the brief archive; included in the sitemap at 0.7.
+- Pricing tracker: Inkling 2 Small upgraded to primary (Tinker docs, $0.30 / $1.00, 256K); added GPT-6 Rosalind ($15 / $75, primary) and Gemini Decision 1 ($0.10 input, no output charge); Anthropic, OpenAI, Meta and two Google rows re-verified. Models tracker: Gemini Decision 1 (Nov 11).
+- New explainer: what-are-non-human-identities. Glossary +5 (decision model, spend cap, frontier AI framework, adjusted operating loss, sandbox escape). CISO agent checklist updated with the Railway $740K figure.

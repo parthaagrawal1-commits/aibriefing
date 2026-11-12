@@ -370,9 +370,46 @@ def brief_page(b, prev_b=None, next_b=None):
           "citation": [s["url"] for it in b["items"] for s in it["sources"] if s.get("url")]}
     return layout(title=f"{title} — AI Briefing, {short_date(date)}", desc=desc, path=path, body=body, section="brief", jsonld=[ld, breadcrumbs([("Brief", "/brief/"), (short_date(date), path)])], og_type="article", og_image=og, published=date, modified=b.get("updated", date))
 
+def week_key(date):
+    y, w, _ = datetime.date.fromisoformat(date).isocalendar(); return f"{y}-W{w:02d}"
+def week_pages(briefs, articles):
+    weeks = {}
+    for b in briefs: weeks.setdefault(week_key(b["date"]), {"briefs": [], "articles": []})["briefs"].append(b)
+    for a in articles:
+        k = week_key(a["published"])
+        if k in weeks: weeks[k]["articles"].append(a)
+    pages = {}; index_rows = ""
+    for wk in sorted(weeks, reverse=True):
+        w = weeks[wk]; days = sorted(w["briefs"], key=lambda b: b["date"]); first, last = days[0]["date"], days[-1]["date"]
+        mon = datetime.date.fromisoformat(first) - datetime.timedelta(days=datetime.date.fromisoformat(first).weekday()); sun = mon + datetime.timedelta(days=6)
+        span = f"{mon.strftime('%b %-d')} – {sun.strftime('%b %-d, %Y')}"
+        nitems = sum(len(b["items"]) for b in days); path = f"/week/{wk}/"
+        dayblocks = ""
+        for b in reversed(days):
+            tiles = "".join(story_tile(it, b["date"], href=it.get("article_url") or f"/brief/{b['date']}/#{it['id']}") for it in b["items"])
+            dayblocks += (f'<div class="band"><div class="hd"><h2>{fmt_date(b["date"])}</h2><a href="/brief/{b["date"]}/">Full brief →</a></div>'
+                          f'<p class="lede" style="margin:0 0 10px"><a href="/brief/{b["date"]}/" style="color:inherit">{esc(b.get("headline", ""))}</a></p><div class="grid g3">{tiles}</div></div>')
+        secs = ""
+        for k, name, blurb, _ in SECTIONS:
+            arts = [a for a in w["articles"] if a["section"] == k]
+            if arts: secs += f'<h3 style="margin:14px 0 6px"><a href="/{k}/">{esc(name)}</a></h3><div class="grid g3">{"".join(article_card(a) for a in arts)}</div>'
+        artband = f'<div class="band"><div class="hd"><h2>Dedicated coverage this week</h2><span class="meta">{len(w["articles"])} articles</span></div>{secs}</div>' if w["articles"] else ""
+        rel = [r for r in TRACKERS.get("models", {}).get("rows", []) if first <= str(r.get("released", "")) <= last]
+        relband = (f'<div class="band"><div class="hd"><h2>Model releases this week</h2><a href="/trackers/models/">Release tracker →</a></div><div class="tl">' + "".join(f'<div class="ev"><div class="d">{esc(r["released"])} · {esc(r["vendor"])}</div><strong>{esc(r["model"])}</strong>{(" — " + esc(r["note"])) if r.get("note") else ""}</div>' for r in rel) + '</div></div>') if rel else ""
+        heads = "".join(f'<li><a href="/brief/{b["date"]}/"><strong>{short_date(b["date"])}:</strong> {esc(b.get("headline", ""))}</a></li>' for b in reversed(days))
+        body = (f'<div class="hero"><div class="kicker">Weekly roundup · {esc(wk)}</div><h1>The week in AI, {esc(span)}</h1>'
+                f'<p class="lede">{len(days)} daily briefs, {nitems} stories and {len(w["articles"])} dedicated articles, with every source linked. Start with the day you missed.</p><ul style="margin:10px 0 0 18px">{heads}</ul></div>'
+                f'{artband}{relband}{dayblocks}{newsletter_box()}')
+        ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"The week in AI, {span}", "url": ROOT + path, "description": f"Every AI story we covered in the week of {span}, grouped by day and section.",
+              "hasPart": [{"@type": "NewsArticle", "headline": b.get("headline", ""), "url": f"{ROOT}/brief/{b['date']}/", "datePublished": b["date"]} for b in days], "isPartOf": {"@type": "WebSite", "url": ROOT + "/", "name": BRAND}}
+        pages[path] = layout(title=f"The week in AI, {span} — weekly roundup | AI Briefing", desc=f"Weekly AI news roundup for {span}: {nitems} stories from {len(days)} daily briefs plus {len(w['articles'])} dedicated articles, every source linked.", path=path, body=body, section="brief", jsonld=[ld, breadcrumbs([("Brief", "/brief/"), ("Weeks", "/week/"), (wk, path)])], og_image=f"{ROOT}/img/briefs/{last}.png", published=first, modified=last)
+        index_rows += f'<a class="card tile" href="{path}"><div class="kicker">{esc(wk)}</div><h3>{esc(span)}</h3><p class="meta">{len(days)} briefs · {nitems} stories · {len(w["articles"])} articles</p><p>{esc(days[-1].get("headline", ""))}</p></a>'
+    pages["/week/"] = layout(title="Weekly AI news roundups | AI Briefing", desc="One page per week: every daily brief, story and dedicated article, grouped by day and section.", path="/week/", body=f'<div class="hero"><div class="kicker">Archive</div><h1>The week in AI</h1><p class="lede">Missed a few days? Each roundup collects the week&#39;s briefs, stories and dedicated articles on one page.</p></div><div class="grid g2">{index_rows}</div>{newsletter_box()}', section="brief", jsonld=breadcrumbs([("Brief", "/brief/"), ("Weeks", "/week/")]))
+    return pages
+
 def brief_index(briefs):
     rows = "".join(f'<a class="story tile" href="/brief/{b["date"]}/"><img src="/img/briefs/{b["date"]}.png" alt="" width="1200" height="630" loading="lazy"><div class="b"><h3>{esc(b.get("headline") or short_date(b["date"]))}</h3><p>{esc(strip_md(b.get("intro", ""))[:140])}…</p><div class="m">{fmt_date(b["date"])} · {len(b["items"])} stories</div></div></a>' for b in briefs)
-    body = f'<div class="hero"><div class="kicker">Archive</div><h1>Every daily brief</h1><p class="lede">One page per day. Each story is summarised in our own words with a why-it-matters line for your role, and links to the original reporting.</p></div><div class="grid g3">{rows}</div>{newsletter_box()}'
+    body = f'<div class="hero"><div class="kicker">Archive</div><h1>Every daily brief</h1><p class="lede">One page per day, or <a href="/week/">one page per week</a>. Each story is summarised in our own words with a why-it-matters line for your role, and links to the original reporting.</p></div><div class="grid g3">{rows}</div>{newsletter_box()}'
     return layout(title="Daily AI brief archive — AI Briefing", desc="Every daily AI news brief, one page per day, with role-specific why-it-matters lines and links to original sources.", path="/brief/", body=body, section="brief", jsonld=breadcrumbs([("Brief", "/brief/")]))
 
 def hub_page(key, briefs, explainers):
@@ -659,7 +696,7 @@ def home(briefs, explainers, articles):
     ex = "".join(f'<a class="story tile" href="/learn/{e["slug"]}/"><img src="{e["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:120])}…</p></div></a>' for e in explainers[:3])
     older = "".join(story_tile(it, ob["date"]) for ob in briefs[1:3] for it in ob["items"][:3])
     one = f'<div class="card" style="margin-top:18px"><div class="kicker">The one thing to know today</div><p style="font-size:18px;color:var(--ink);margin:0">{md_inline(b["one_thing"])}</p></div>' if b.get("one_thing") else ""
-    older_band = f'<div class="band"><div class="hd"><h2>Earlier this week</h2><a href="/brief/">Archive →</a></div><div class="grid g3">{older}</div></div>' if older else ""
+    older_band = f'<div class="band"><div class="hd"><h2>Earlier this week</h2><a href="/week/{week_key(b["date"])}/">This week&#39;s roundup →</a> · <a href="/brief/">Archive →</a></div><div class="grid g3">{older}</div></div>' if older else ""
     body = (f'<div class="kicker" style="margin:4px 0 2px">{fmt_date(b["date"])} · Today\'s brief · {read_time(b["words"])} min<span class="badge"></span></div>'
             f'<div class="front"><a class="hero-s" href="/brief/{b["date"]}/#{lead["id"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"><h1>{md_inline(lead["title"])}</h1><p>{md_inline(lead["summary"])}</p></a>'
             f'<div class="side">{side}<div class="hl">{hl}</div><a class="btn" href="/brief/{b["date"]}/" style="justify-self:start">Read the full brief →</a></div></div>{one}{lens_lists}'
@@ -821,6 +858,7 @@ def main():
     for a in articles: pages[a["url"]] = article_page(a, articles, explainers)
     for i, b in enumerate(briefs):
         pages[f"/brief/{b['date']}/"] = brief_page(b, prev_b=briefs[i + 1] if i + 1 < len(briefs) else None, next_b=briefs[i - 1] if i > 0 else None)
+    pages.update(week_pages(briefs, articles))
     pages["/for/"] = for_index()
     for k in AUD: pages[f"/for/{k}/"] = hub_page(k, briefs, explainers)
     pages["/trackers/"] = trackers_index()
@@ -858,6 +896,7 @@ def main():
         if any(path.startswith(f"/{k}/") and len(path) > len(k) + 2 for k in SEC): return "0.8"
         if path.startswith("/trackers/") or path.startswith("/for/"): return "0.9"
         if path.startswith("/brief/") and len(path) > 7: return "0.8"
+        if path.startswith("/week/") and len(path) > 6: return "0.7"
         if path.startswith("/learn/") or path.startswith("/topics/") or path.startswith("/companies/"): return "0.7"
         if path.startswith("/glossary/") and len(path) > 10: return "0.4"
         return "0.6"

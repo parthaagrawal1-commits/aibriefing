@@ -1,7 +1,7 @@
 {
   "title": "LLM API pricing tracker",
   "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. New this week: Claude Fable 5.2 at $8 / $40 (20% below 5.1) and Meta's Muse Ember at $0.10 / $0.50. Two promotions expire Nov 30: Gemini 4 Argon and GPT-5.6 Sol.",
-  "updated": "2026-11-11",
+  "updated": "2026-11-12",
   "rows": [
     {
       "vendor": "Anthropic",
@@ -11,8 +11,8 @@
       "cached": 0.2,
       "context": "1M",
       "note": "released Nov 9, 2026; cache write $10 (5m) / $16 (1h); batch $4 / $20; fast mode $16 / $80",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -23,8 +23,8 @@
       "cached": 0.2,
       "context": "1M",
       "note": "same base model and price as Fable 5.2 without the added cyber/bio safeguards; access via verification programmes",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -35,8 +35,8 @@
       "cached": 0.25,
       "context": "1M",
       "note": "previous generation; superseded by Fable 5.2 at $8 / $40",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -47,8 +47,8 @@
       "cached": 0.25,
       "context": "1M",
       "note": "previous generation; superseded by Mythos 5.2 at $8 / $40",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -59,8 +59,8 @@
       "cached": 0.2,
       "context": "1M",
       "note": "batch $2 / $10",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -71,8 +71,8 @@
       "cached": 0.1,
       "context": "1M",
       "note": "batch $1 / $5",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -83,8 +83,8 @@
       "cached": 0.01,
       "context": "tiered",
       "note": "prompts over 100K tokens: $0.50 / $2.50",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -95,8 +95,8 @@
       "cached": 0.5,
       "context": "1M",
       "note": "previous-generation Opus tiers, same price",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -107,8 +107,8 @@
       "cached": 0.3,
       "context": "1M",
       "note": "",
-      "source": "https://platform.claude.com/docs/about-claude/pricing",
-      "verified": "2026-11-11",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -120,7 +120,7 @@
       "context": "1.05M",
       "note": "requests over 272K input tokens billed $20 / $75; batch and flex 50% off; fast mode 2x",
       "source": "https://developers.openai.com/api/docs/pricing",
-      "verified": "2026-11-11",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -180,7 +180,7 @@
       "context": "1.05M",
       "note": "gated security model released Nov 5, 2026",
       "source": "https://developers.openai.com/api/docs/pricing",
-      "verified": "2026-11-11",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -311,8 +311,8 @@
       "cached": 0.025,
       "context": "—",
       "note": "audio input $0.50; free tier available",
-      "source": "https://ai.google.dev/pricing",
-      "verified": "2026-11-10",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -323,8 +323,8 @@
       "cached": 0.2,
       "context": "tiered",
       "note": "prompts over 200K tokens: $4 / $18",
-      "source": "https://ai.google.dev/pricing",
-      "verified": "2026-11-10",
+      "source": "https://ai.google.dev/gemini-api/docs/pricing",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -333,11 +333,11 @@
       "input": 0.3,
       "output": 1.0,
       "cached": 0.03,
-      "context": "1M",
-      "note": "inference on Tinker only at launch; open weights promised under Apache 2.0",
-      "source": "https://www.datastudios.org/post/thinking-machines-inkling-2-small-594b-moe-1m-context",
-      "verified": "2026-11-09",
-      "confidence": "secondary"
+      "context": "256K",
+      "note": "Serverless inference beta (waitlist); $0.30 / $1.00 confirmed on Tinker docs",
+      "source": "https://tinker-docs.thinkingmachines.ai/tinker/models/models_and_pricing/",
+      "verified": "2026-11-12",
+      "confidence": "primary"
     },
     {
       "vendor": "Meta",
@@ -347,8 +347,8 @@
       "cached": 0.004,
       "context": "1M",
       "note": "prompts over 200K tokens: $0.30 / $1.50, cached $0.012; text, image, audio, video input; also on Google Cloud Marketplace",
-      "source": "https://dev.meta.ai/models/muse-ember",
-      "verified": "2026-11-10",
+      "source": "https://dev.meta.ai/docs/pricing-rate-limits",
+      "verified": "2026-11-12",
       "confidence": "primary"
     },
     {
@@ -361,6 +361,30 @@
       "note": "1.6T MoE, ~48B active; weights MIT-licensed on Hugging Face from Nov 9, 2026",
       "source": "https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license",
       "verified": "2026-11-10",
+      "confidence": "secondary"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6 Rosalind (Life Sciences, trusted access)",
+      "input": 15,
+      "output": 75,
+      "cached": 1.5,
+      "context": "",
+      "note": "Specialised life-sciences model; Trusted Access programme",
+      "source": "https://developers.openai.com/api/docs/pricing",
+      "verified": "2026-11-12",
+      "confidence": "primary"
+    },
+    {
+      "vendor": "Google",
+      "model": "Gemini Decision 1 (Decisions API)",
+      "input": 0.1,
+      "output": 0,
+      "cached": null,
+      "context": "256K",
+      "note": "Scores up to 1,000 questions per call; no output tokens billed; shared input billed once per request; no caching or batch",
+      "source": "https://interestingengineering.com/ai-robotics/google-gemini-decisions-api-fast-ai-agents",
+      "verified": "2026-11-12",
       "confidence": "secondary"
     }
   ],
