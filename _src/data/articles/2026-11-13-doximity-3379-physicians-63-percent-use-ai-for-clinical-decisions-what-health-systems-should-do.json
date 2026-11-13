@@ -1,0 +1,31 @@
+{
+  "slug": "doximity-3379-physicians-63-percent-use-ai-for-clinical-decisions-what-health-systems-should-do",
+  "section": "health",
+  "published": "2026-11-13",
+  "updated": "2026-11-13",
+  "title": "63% of US physicians now use AI for clinical decision support, up from 37% a year ago, Doximity's survey of 3,379 doctors finds",
+  "dek": "The shift from note-taking to decision-making happened in twelve months, three in four doctors hit a factual error in the past year, and most worry trainees will never build the skills to catch one.",
+  "stat": "63%",
+  "tags": [
+    "health",
+    "adoption",
+    "data"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "Healthcare Dive",
+      "url": "https://www.healthcaredive.com/news/despite-concerns-ai-becomes-daily-fixture-in-physician-workflows/874541/"
+    },
+    {
+      "name": "Doximity research index",
+      "url": "https://press.doximity.com/research"
+    }
+  ],
+  "why": {
+    "executives": "Your clinicians are already using AI for diagnosis and treatment choices, mostly on consumer tools you do not control. The governance question is no longer whether to allow it but which tool, with what audit trail.",
+    "security": "Daily clinical use on unmanaged chatbots means PHI in prompts. Offer a sanctioned, logged tool before you try to block the unsanctioned ones.",
+    "beginners": "Doctors are asking AI for second opinions far more than a year ago, and most say it has taught them something. They also say it is often wrong, so they still check."
+  },
+  "body": "Doximity's Doctor-Driven AI report, released on November 12 and based on a September survey of 3,379 US physicians across 20 specialties, finds that more than half of doctors now use AI every day and another third use it at least weekly. The number that matters is what they use it for: 63% now use AI for clinical decision support, up from 37% in the 2025 survey. Use for reviewing medical literature rose to 70% from just over half.\n\n## From paperwork to judgment\n\nUntil this year the physician AI story was ambient scribes and inbox drafting, tools that save time without touching the diagnosis. The Doximity data says that boundary has moved. Doctors are asking models about differential diagnoses, treatment alternatives and guideline updates; 81% say AI has taught them something they did not know, and 65% say it has helped develop their clinical skills. That is a different risk profile from a scribe. A scribe that errs produces a wrong note that a clinician reads; a decision-support tool that errs produces a wrong idea that a clinician may act on.\n\nThe survey is candid about error rates. Three in four physicians encountered at least one factual inaccuracy in AI output over the past year, and more than half say inaccuracies are the main reason they have ever cut back. At the same time, over a quarter say the effort they spend checking and correcting output has fallen compared with a year ago. Read those together: errors are common, and the verification habit is weakening as trust grows.\n\n## The trainee problem\n\nThe finding health-system leaders should sit with is about residents. 61% of physicians worry that trainees will lean on AI and fail to build their own clinical skills; nearly half worry about over-reliance generally; more than a quarter name skill erosion as the main thing limiting their own use. Medicine has been here before with calculators, imaging and order sets, and the historical pattern is that skills migrate rather than vanish. But the speed is new. A resident starting in July 2026 has never practised without a model that answers clinical questions in seconds.\n\n## Context and the counter-argument\n\nDoximity's sample skews toward its own engaged users, and self-reported \"use\" ranges from a quick literature check to a treatment plan; the report does not distinguish. Most of the tools in question are general chatbots, not FDA-reviewed decision-support devices, which is why the FDA's still-unsettled position on generative AI in clinical workflows matters more than it did. The counter-argument is simply that physicians are professionals who are checking: the error-encounter rate shows doctors are catching mistakes, not missing them, and the survey records no claim of patient harm.\n\n## What to do\n\nHealth systems should offer a sanctioned tool with logging and PHI controls before trying to block consumer ones; the survey says blocking will fail. Credentialing and CME programmes should add verification as an explicit skill, with case reviews that include the AI output the clinician saw. Residency directors should decide now which tasks trainees do without a model for their first year. And vendors pitching clinical AI should expect buyers to ask for their factual-error rate on real queries, because three in four of the clinicians in the room have already seen one.\n\n## What to watch\n\nThe FDA's next move on generative clinical decision support; whether the AMA or specialty boards publish AI-use competencies for residents; and the 2027 edition of this survey, where the checking-effort number will tell you whether trust is being earned or assumed."
+}

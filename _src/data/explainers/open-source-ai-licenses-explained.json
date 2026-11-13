@@ -1,0 +1,34 @@
+{
+  "slug": "open-source-ai-licenses-explained",
+  "title": "Open-source AI licences explained: Apache 2.0, MIT, Llama-style and 'open-weight' terms, and what each lets you do",
+  "summary": "Inkling 2 Small shipped under Apache 2.0 this week, LongCat-2.5 under MIT, and most 'open' models still ship under something else. Here is what the labels mean, what the patent clause is for, and the three questions to ask before you build on any of them.",
+  "level": "beginner",
+  "audiences": [
+    "executives",
+    "developers",
+    "ml",
+    "finance"
+  ],
+  "tags": [
+    "models",
+    "data",
+    "policy"
+  ],
+  "published": "2026-11-13",
+  "updated": "2026-11-13",
+  "body": "\"Open source\" on a model announcement can mean four different things, and the difference decides whether you can ship a product, fine-tune on customer data, or redistribute what you built. The weights are not code, so the licence attached to them does the work that a source licence does for software, and sometimes less.\n\n## The four tiers you will actually meet\n\n**Permissive, OSI-approved licences (Apache 2.0, MIT).** You may use, modify, fine-tune, sell and redistribute, for any purpose, with attribution. Apache 2.0 adds an explicit patent grant: the licensor promises not to sue you for patents that the model practises, and the grant terminates only if you sue them first. MIT is shorter and has no patent language. Thinking Machines' Inkling 2 Small (Apache 2.0) and Meituan's LongCat-2.5 (MIT) sit here. For a lawyer this is the easy tier; the only homework is checking that the licence file is actually in the repository, which Inkling's was not on day one.\n\n**Community or \"open-weight\" licences with use restrictions.** Meta's Llama licences are the model: free for most uses, but with an acceptable-use policy, an attribution requirement, and historically a clause that very large companies need a separate deal. These are not open source by the Open Source Initiative's definition because they discriminate between users. They are fine for most businesses and a problem for anyone who needs to redistribute without conditions.\n\n**Research or non-commercial licences.** Weights you can download and study but not deploy in a product. Common for early-stage releases and academic models. Useful for evaluation, useless for a roadmap.\n\n**Open-weight but closed training.** Many models in the first two tiers publish weights without data or training code. You can run and fine-tune but not reproduce. This matters for audits: if a regulator asks what the model was trained on, the licence gives you no right to find out.\n\n## What the patent grant is for\n\nApache 2.0's patent clause is the reason enterprises prefer it over MIT for anything they will embed. Model architectures, training tricks and inference methods are patentable, and a lab that publishes weights under MIT has made no promise about its patents. Under Apache 2.0 it has. For a 594-billion-parameter model that will sit inside your product for years, that promise is worth more than the shorter licence text.\n\n## Three questions before you build\n\nFirst, can you redistribute a fine-tuned derivative, and under what name? Permissive licences say yes; community licences often require their own licence to travel with it and forbid using the lab's name. Second, what does the acceptable-use policy forbid, and does your use case touch it? Health, legal, and security products hit these clauses most often. Third, what are you actually getting: weights only, or weights plus training code and data? The licence can be perfect and the artefact still unauditable.\n\n## The licence is not the cost\n\nThe AntiFox case this week shows the other side of permissive terms: an openly licensed agentic pentest framework was forked and used to attack cloud accounts, and nothing in the licence could stop it. Open licences remove legal friction, not operational risk. And open weights are not free to run: Inkling 2 Small needs about 500 GB of GPU memory and, as of this week, a development build of the serving software. Budget for the engineers before you celebrate the licence.",
+  "faqs": [
+    [
+      "Is a model under a Llama-style community licence 'open source'?",
+      "Not by the Open Source Initiative's definition, because it restricts who may use it and for what. It is open-weight. For most companies the practical difference is small; for anyone redistributing to users of unknown size or purpose, it is not."
+    ],
+    [
+      "Does Apache 2.0 let me keep my fine-tuned weights private?",
+      "Yes. Apache 2.0 has no copyleft obligation; you may fine-tune and deploy without publishing your derivative. You must keep the licence and notice files with any copy you do distribute."
+    ],
+    [
+      "If the repository has no LICENSE file, what licence applies?",
+      "Technically, none that you can rely on; metadata in a model card is a statement of intent, not the licence text. Ask the lab to add the file, and record the commit that adds it before you ship."
+    ]
+  ]
+}

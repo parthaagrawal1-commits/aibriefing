@@ -1,0 +1,32 @@
+{
+  "slug": "gemini-4-hydrogen-1-50-7-50-flat-1m-context-what-replaces-flash-and-what-to-test",
+  "section": "tools",
+  "published": "2026-11-13",
+  "updated": "2026-11-13",
+  "title": "Gemini 4 Hydrogen: $1.50 / $7.50 flat across a 1M context, 2.5x faster than 3.8 Flash, and the end of the Flash brand",
+  "dek": "Google's new 'daily driver' for agents costs double its promotional predecessor but removes the long-context surcharge and reports a 57% Terminal-Bench score against Flash's 18%.",
+  "stat": "$1.50",
+  "tags": [
+    "models",
+    "pricing",
+    "agents",
+    "Google"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "Google blog: Introducing Gemini 4 Hydrogen",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+    },
+    {
+      "name": "Google blog: Gemini 4 Carbon availability",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+    }
+  ],
+  "why": {
+    "developers": "Flat pricing across the whole 1M window means a 600K-token agent run costs the same per token as a 10K one. Re-run your Flash evals on Hydrogen at thinking level high before December 1.",
+    "finance": "Hydrogen is $1.50 / $7.50 against 3.8 Flash's promotional $0.75 / $3.75, which itself steps up to $1.50 / $7.50 on January 1. The real comparison is the post-promo price, where Hydrogen costs the same and claims 12–23% fewer tokens per task.",
+    "ml": "Four thinking levels (low, medium, high, xhigh) and an Artificial Analysis index of 51 at high, one point above Argon. Check whether the token savings Google reports hold on your own traces."
+  },
+  "body": "Google released Gemini 4 Hydrogen on November 12 and described it as the model it wants developers to run agents on by default. It is priced at $1.50 per million input tokens and $7.50 per million output tokens, flat across a 1 million-token context, with up to 1 million output tokens. The post does not list a cached-input price or any promotional period, which is a change from the Carbon and Argon launches, both of which carry introductory rates that end on November 30.\n\n## What it replaces\n\nHydrogen is presented as the upgrade path for teams on Gemini 3.8 Flash, and the Flash name does not appear in the new line-up: Hydrogen is the fast execution model, Carbon and Argon do the deep reasoning. In Google's Orchestrator setup, Carbon plans and Hydrogen acts as a worker or verifier; Google says that combination reached near-Carbon task success on Terminal-Bench 4.0 using about 24% less quota and finishing about 19% faster.\n\nThe headline numbers are Google's own. Hydrogen scores 51 on the Artificial Analysis Intelligence Index at its default high thinking level (Argon is 50) and 54 at the new xhigh level. On Terminal-Bench 4.1 it reports 57% against 18.2% for 3.8 Flash. It claims the top spot on Vals' Tax Agent Bench (52.3%) and a tie for first on Legal Research Bench (55.8%), 58.8% on HLE-Diamond and 71.6% on Agents' Last Exam. Early partners saw 2x to 2.8x faster runs with 12% to 23% fewer tokens on SQL and graph workloads. One image caption in the post compares against \"3.5 Flash\" while the text says 3.8; treat the Flash comparison as approximate until independent numbers appear.\n\n## The price, properly compared\n\nOn the face of it Hydrogen is twice the price of 3.8 Flash. But Flash's $0.75 / $3.75 is a promotional rate that ends on December 31 and returns to $1.50 / $7.50 on January 1, 2027. From that date the two models cost the same per token, and Hydrogen's claimed token efficiency becomes the whole cost argument. The flat long-context price also matters more than it looks: Google's Pro tiers historically charge more above 200K tokens, and OpenAI's GPT-6 line doubles input above 272K. An agent that keeps a large repository or document set in context pays no surcharge here.\n\nAgainst the field, Hydrogen sits between OpenAI's GPT-6.1 Terra ($1 / $5) and GPT-6.1 Sol ($2 / $10), and 25% below Anthropic's Sonnet 5.5 ($2 / $10). It undercuts Carbon's post-promo $4 / $20 by more than half.\n\n## Safety and reliability claims\n\nGoogle leans hard on agent behaviour: an 81% reduction in over-reach on agentic tasks, 12x fewer misaligned actions and task shortcuts across tool-use evals, a 96.7% score on an internal agent honesty test, and a 2.3x improvement on Gray Swan's indirect prompt-injection benchmark. Fabricated claims are said to be down more than 5x versus Flash. These are internal evaluations; the IPI figure is the one worth asking Google to document, because it is the number a security team will be asked about.\n\n## What to test\n\nRun your existing Flash eval set at Hydrogen's high thinking level and record tokens per task, not just accuracy, since the token-efficiency claim is where the savings live. Test a long-context case above 272K tokens to see the flat price in your own bill. If you use Antigravity or Gemini Enterprise, try the Carbon-plans, Hydrogen-executes split before buying Carbon seats for every workflow. And budget for Flash's January step-up either way: Hydrogen's launch is the clearest sign yet that the promotional era for Google's mid-tier is closing."
+}

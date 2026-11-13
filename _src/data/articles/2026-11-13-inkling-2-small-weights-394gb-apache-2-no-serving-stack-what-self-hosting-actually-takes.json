@@ -1,0 +1,36 @@
+{
+  "slug": "inkling-2-small-weights-394gb-apache-2-no-serving-stack-what-self-hosting-actually-takes",
+  "section": "models",
+  "published": "2026-11-13",
+  "updated": "2026-11-13",
+  "title": "Inkling 2 Small's weights are out: 394 GB, Apache 2.0, 500 GB of VRAM to run, and no released serving stack supports it yet",
+  "dek": "Thinking Machines kept its promise three days after the hosted launch, and the gap between 'open' and 'runnable' is where the next week goes.",
+  "stat": "394 GB",
+  "tags": [
+    "models",
+    "research",
+    "data",
+    "Nvidia"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "OrcaRouter: Inkling 2 Small weights",
+      "url": "https://www.orcarouter.ai/blog/inkling-2-small-open-weights-download"
+    },
+    {
+      "name": "AlphaSignal",
+      "url": "https://alphasignal.ai/news/thinking-machines-opens-inkling-2-small-s-594b-weights-to-developers"
+    },
+    {
+      "name": "Inkling-Small model card (July release)",
+      "url": "https://thinkingmachines.ai/model-card/inkling-small/"
+    }
+  ],
+  "why": {
+    "ml": "NVFP4 native weights with expert parallelism required to equal tensor parallelism. If you do not have Blackwell-class GPUs, wait for a converted checkpoint rather than fighting the kernels.",
+    "developers": "The Tinker hosted rate is $0.30 / $1.00. Two B300s or four H200s to self-host only beats that at sustained high utilisation; most teams should start hosted and fine-tune, then move.",
+    "executives": "Apache 2.0 with a patent grant is the most permissive licence on a model of this size. Legal review is short; the infrastructure bill is not."
+  },
+  "body": "Thinking Machines published the full checkpoint for Inkling 2 Small on Hugging Face on November 12, with the first commit at 19:53 UTC, three days after the model launched as hosted-only on its Tinker platform. The weights are under Apache 2.0, which includes an explicit patent grant and allows commercial use and redistribution. The company had said at launch that the release would follow \"external safety testing and red-teaming\"; the update that accompanied the drop is a single sentence and a link, with no published safety results.\n\n## What you are downloading\n\nThe primary repository is 393.5 GB across 36 files, 24 of them safetensors shards, in Nvidia's NVFP4 format, which is how the model was trained on GB300 NVL72 racks. A separate MXFP8 variant is 622.8 GB. The architecture is a 594 billion-parameter sparse mixture of experts, 17 billion active per token, routing 8 of 384 experts, 48 decoder layers, with a 292 million-parameter vision encoder and a 256K context on the hosted service (the architecture supports up to 1M).\n\nMemory floors on the card: at least 500 GB of aggregate VRAM for NVFP4, with 2x B300 or 4x H200 given as examples, and 800 GB for MXFP8. Expert parallelism must equal tensor parallelism, which rules out some otherwise sensible topologies. OrcaRouter's write-up notes the card's 4x H200 example meets the memory floor but is not a configuration the SGLang cookbook has validated.\n\n## The stack problem\n\nHere is the practical catch. As of Thursday, no released version of either major open-source serving engine supports the model. SGLang points users to development builds; vLLM requires a nightly or a specific development image; the AMD support pull request is a draft with CI not yet run. The repository also has no LICENSE or NOTICE file, only the Apache 2.0 declaration in the card metadata and a link to the licence text, which is a documentation gap rather than a legal one, but compliance teams will ask.\n\nThis is the normal shape of a large open-weights release now: the weights arrive first, the kernels and serving support land over the following one to three weeks, and converted checkpoints for non-Blackwell hardware follow from the community. Most large mixture-of-experts releases this year have followed the same cycle.\n\n## Does the model justify the effort\n\nOn Thinking Machines' reported numbers, Inkling 2 Small scores 31 on the Artificial Analysis index against 13 for July's Inkling Small, with a hallucination rate of 27% versus 61%, 46% on AutomationBench and 70.5% on JobBench. It trails frontier closed models on agentic coding: 13% on Terminal-Bench 4.0 against Claude Sonnet 5.5's 30%, and 76% on Bito's agentic coding suite against DeepSeek V4.1 Flash's 80%. In other words, it is a strong open model for enterprise automation and document work, not a frontier coding agent, and the cheapest frontier-class outputs remain hosted.\n\n## What to do\n\nIf you have Blackwell GPUs and an inference team, pull the NVFP4 checkpoint now and track the SGLang and vLLM merges; expect a stable release within two weeks. If you do not, use the hosted $0.30 / $1.00 rate on Tinker and fine-tune there, then revisit self-hosting when a validated H200 or AMD path exists. Either way, ask Thinking Machines for the red-team results the release was supposed to wait for; the licence is open, and the safety evidence should be too."
+}

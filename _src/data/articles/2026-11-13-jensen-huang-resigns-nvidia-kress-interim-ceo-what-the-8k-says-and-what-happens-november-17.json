@@ -1,0 +1,36 @@
+{
+  "slug": "jensen-huang-resigns-nvidia-kress-interim-ceo-what-the-8k-says-and-what-happens-november-17",
+  "section": "markets",
+  "published": "2026-11-13",
+  "updated": "2026-11-13",
+  "title": "Huang resigns from Nvidia: what the 8-K says, what the 14% intraday drop prices in, and why November 17 now matters more",
+  "dek": "The founder who ran the company for 33 years is gone with immediate effect, the CFO is running it, and the first earnings call without him is four days away.",
+  "stat": "33 yrs",
+  "tags": [
+    "markets",
+    "geopolitics",
+    "Nvidia",
+    "Anthropic"
+  ],
+  "developing": true,
+  "sources": [
+    {
+      "name": "Nvidia Form 8-K (SEC)",
+      "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm"
+    },
+    {
+      "name": "Al Jazeera",
+      "url": "https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress"
+    },
+    {
+      "name": "TechBriefly on the Anthropic placement",
+      "url": "https://techbriefly.com/2026/11/12/google-and-nvidia-commit-10-billion-each-to-anthropic-ipo/"
+    }
+  ],
+  "why": {
+    "finance": "Nvidia reports Q3 FY2027 on November 17, one day before Anthropic prices its IPO. The guidance tone from an interim CEO who is also the CFO will set the mood for both.",
+    "executives": "The 8-K says the roadmap and customer commitments continue without interruption. Hold your vendor to that in writing: ask your Nvidia account team for a dated allocation confirmation this week.",
+    "security": "Congress is now examining the national-security side of the reports. Expect faster movement on chip-tracking and remote-access bills, which change how overseas GPU rentals are policed."
+  },
+  "body": "Nvidia filed a Form 8-K on November 12 saying Jensen Huang has resigned as president, chief executive and director, effective immediately. Colette Kress, the chief financial officer since 2013, is interim CEO and keeps the CFO job. Harvey Jones, the former Synopsys chief executive who has sat on Nvidia's board for decades, becomes the company's first-ever chair. The board says it will consider internal and external candidates for a permanent successor.\n\n## What the filing does and does not say\n\nThe 8-K gives no reason for the departure. It thanks Huang for 33 years, says the board has \"full confidence\" in Kress and the leadership team, and repeats that operations, customer commitments and the product roadmap continue without interruption. The resignation follows a week of reporting on Huang's personal relationships, including one with a senior executive who reported to him and alleged contact with a former Megaspeed executive accused of working for Chinese intelligence. Huang admitted infidelity on Sunday and apologised to employees. The board opened an independent investigation and says it has no reason to believe national security was compromised; no evidence has been published that company secrets were lost. Those allegations remain allegations.\n\nThe one hard date in the filing is unchanged: third-quarter fiscal 2027 results on Tuesday, November 17, at 1:20 p.m. Pacific, with the call at 2 p.m.\n\n## What the market did\n\nShares fell more than 14% at one point on Thursday before recovering some ground, on top of the 8.6% after-hours drop on Wednesday when the board meeting was first reported. US indexes closed lower. The intraday swing is the market trying to price two different things at once: a key-person discount on a founder-led company, and a political discount, because the reporting has pulled lawmakers into the question of how Nvidia's chips reach China. Semafor reported Thursday that there is \"a high probability\" Congress tightens export controls in response, and OpenAI publicly backed a set of chip-control bills the same day.\n\n## Three things that now hang on November 17\n\nFirst, guidance. Kress has delivered the numbers on every call for a decade, so the figures will be familiar; what investors have not heard is her set the forward tone alone. Second, the Anthropic placement. Nvidia agreed to buy $10 billion of Anthropic's Class N stock at the IPO price, which is expected to be set on November 18. Al Jazeera reported the commitment is still expected to go ahead; the call is the obvious moment to confirm it. Third, Hugging Face. The $12.9 billion acquisition announced in September is still expected to close in 2027, and Hugging Face's chief executive said Thursday he will keep defending open-source AI. Any wobble on either deal would tell you the interim leadership is narrowing its ambitions.\n\n## The counter-argument\n\nNvidia is not a one-person company in the way the stock reaction implies. Its moat is CUDA, a two-year supply book and a product cadence that the data-centre and software teams run day to day. Kress knows every customer contract. Several analysts told Al Jazeera that investors were already rotating rather than panicking. Trump's public defence of Huang, and his suggestion of Tim Cook as a successor, also signals that the administration is not about to punish the company itself.\n\n## What to watch\n\nThe successor shortlist (Kress, Buck, Rene Haas, Lisa Su and Jones have all been floated); whether the 8-K's \"no interruption\" promise survives the earnings call; the Anthropic placement confirmation; and the first markup of the Chip Security Act or Remote Access Security Act, which would change how overseas GPU rentals are policed regardless of who runs Nvidia."
+}

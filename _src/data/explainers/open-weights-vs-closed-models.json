@@ -1,29 +1,29 @@
 {
- "slug": "open-weights-vs-closed-models",
- "title": "Open-weight vs closed AI models: what the difference means for you",
- "summary": "Open-weight models can be downloaded and run anywhere; closed models live behind an API. The trade-offs on cost, control, capability and risk.",
- "level": "beginner",
- "audiences": [
-  "executives",
-  "ml",
-  "security",
-  "beginners"
- ],
- "published": "2026-11-08",
- "updated": "2026-11-08",
- "body": "A **closed** model (GPT-6 Astra, Claude Fable, Gemini) is reachable only through its vendor's API. An **open-weight** model (Meta's Llama family, Mistral's open releases, DeepSeek, Google's Gemma, OpenAI's gpt-oss) publishes the trained parameters so anyone can download, run, modify and redistribute it under a licence.\n\n\"Open-weight\" is not the same as \"open source\": the weights are public but the training data and full recipe usually are not.\n\n## Why companies choose open weights\n\n- **Control.** Run it in your own data center or cloud account. No data leaves. No vendor can change or retire the model under you.\n- **Cost at scale.** Above a certain volume, renting GPUs and running an open model is cheaper than paying per token.\n- **Customisation.** Fine-tune on your own data without restrictions.\n- **No rate limits or outages you do not control.**\n\n## Why companies choose closed\n\n- **Capability.** The top closed models still lead on the hardest reasoning and agentic tasks, though the gap narrows every few months.\n- **No operations.** No GPUs to provision, no serving stack to maintain, no security patches for inference servers.\n- **Features.** Tool use, caching, batch, long context and safety tooling arrive first on the vendor API.\n\n## The security angle\n\nOpen weights can be audited and run air-gapped, which regulated industries like. They can also be fine-tuned by anyone to remove safety behaviour, which is why dual-use capability such as advanced cyber-offence tends to ship closed and gated (OpenAI's GPT-6 Cyber is available only to vetted customers).\n\n## A practical rule\n\nPrototype on a closed API for speed. Once a workload is stable and large, price out an open model on your own infrastructure for that specific task. Many companies end up with both: closed for the hard, low-volume tasks and open for the high-volume, well-defined ones.",
- "faqs": [
-  [
-   "Are open-weight models free?",
-   "The weights are free to download under their licence, but running them costs compute, and some licences restrict commercial use above a size threshold."
+  "slug": "open-weights-vs-closed-models",
+  "title": "Open-weight vs closed AI models: what the difference means for you",
+  "summary": "Open-weight models can be downloaded and run anywhere; closed models live behind an API. The trade-offs on cost, control, capability and risk.",
+  "level": "beginner",
+  "audiences": [
+    "executives",
+    "ml",
+    "security",
+    "beginners"
   ],
-  [
-   "Which open-weight model is best?",
-   "It changes monthly. The model release tracker lists new open releases with links to the vendor's page."
-  ],
-  [
-   "Is my data safer with open models?",
-   "It never leaves your infrastructure, which removes one class of risk. You then own every other class: access control, patching, and monitoring."
+  "published": "2026-11-08",
+  "updated": "2026-11-13",
+  "body": "A **closed** model (GPT-6 Astra, Claude Fable, Gemini) is reachable only through its vendor's API. An **open-weight** model (Meta's Llama family, Mistral's open releases, DeepSeek, Google's Gemma, OpenAI's gpt-oss, Thinking Machines' Inkling 2 Small, Meituan's LongCat-2.5) publishes the trained parameters so anyone can download, run, modify and redistribute it under a licence.\n\n\"Open-weight\" is not the same as \"open source\": the weights are public but the training data and full recipe usually are not. The licence varies too, from Apache 2.0 and MIT to community licences with use restrictions; see [open-source AI licences explained](/learn/open-source-ai-licenses-explained/).\n\n## Why companies choose open weights\n\n- **Control.** Run it in your own data center or cloud account. No data leaves. No vendor can change or retire the model under you.\n- **Cost at scale.** Above a certain volume, renting GPUs and running an open model is cheaper than paying per token.\n- **Customisation.** Fine-tune on your own data without restrictions.\n- **No rate limits or outages you do not control.**\n\n## Why companies choose closed\n\n- **Capability.** The top closed models still lead on the hardest reasoning and agentic tasks, though the gap narrows every few months.\n- **No operations.** No GPUs to provision, no serving stack to maintain, no security patches for inference servers. Inkling 2 Small's November 2026 weights release needed 500 GB of VRAM and a development build of vLLM or SGLang on day one; that is the operations bill in one line.\n- **Features.** Tool use, caching, batch, long context and safety tooling arrive first on the vendor API.\n\n## The security angle\n\nOpen weights can be audited and run air-gapped, which regulated industries like. They can also be fine-tuned by anyone to remove safety behaviour, which is why dual-use capability such as advanced cyber-offence tends to ship closed and gated (OpenAI's GPT-6 Cyber and Anthropic's Mythos line are available only to vetted customers).\n\n## A practical rule\n\nPrototype on a closed API for speed. Once a workload is stable and large, price out an open model on your own infrastructure for that specific task. Many companies end up with both: closed for the hard, low-volume tasks and open for the high-volume, well-defined ones.",
+  "faqs": [
+    [
+      "Are open-weight models free?",
+      "The weights are free to download under their licence, but running them costs compute, and some licences restrict commercial use above a size threshold."
+    ],
+    [
+      "Which open-weight model is best?",
+      "It changes monthly. The model release tracker lists new open releases with links to the vendor's page."
+    ],
+    [
+      "Is my data safer with open models?",
+      "It never leaves your infrastructure, which removes one class of risk. You then own every other class: access control, patching, and monitoring."
+    ]
   ]
- ]
 }

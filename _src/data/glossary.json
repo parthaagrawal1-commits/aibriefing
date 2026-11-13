@@ -583,5 +583,55 @@
       "non-human-identity",
       "guardrails"
     ]
+  },
+  {
+    "term": "NVFP4",
+    "short": "Nvidia's 4-bit floating-point weight format, used to train and serve very large models on Blackwell-class GPUs with roughly a quarter of the memory of 16-bit weights.",
+    "long": "Inkling 2 Small was trained natively in NVFP4 and shipped that way: 594 billion parameters in about 394 GB. The catch is hardware: NVFP4 kernels target Blackwell (B200, B300, GB300) and need conversion or special kernels on older or non-Nvidia accelerators, which is why 'open weights' and 'runnable on your cluster' are not the same thing.",
+    "related": [
+      "weights",
+      "gpu",
+      "inference"
+    ]
+  },
+  {
+    "term": "Expert parallelism",
+    "short": "Splitting a mixture-of-experts model across GPUs by expert rather than by layer, so each GPU holds a subset of the experts and tokens are routed to the right device.",
+    "long": "Large MoE models such as Inkling 2 Small (8 of 384 experts active per token) are served with expert parallelism, often combined with tensor parallelism. Some model cards require the two degrees to be equal, which constrains which GPU counts and topologies work. If a serving framework has not merged support for a model's parallelism scheme, the weights are downloadable but not yet deployable.",
+    "related": [
+      "mixture of experts",
+      "inference",
+      "gpu"
+    ]
+  },
+  {
+    "term": "Thinking level",
+    "short": "A vendor setting that controls how much reasoning a model does before answering, trading latency and tokens for accuracy; Google's Gemini 4 models offer low, medium, high and xhigh.",
+    "long": "The same model can score very differently at different thinking levels, and cost very differently too, because reasoning tokens are billed as output. Gemini 4 Hydrogen reports an Artificial Analysis index of 51 at high and 54 at xhigh. When comparing vendors' benchmark claims, check which level was used; when comparing bills, measure tokens per task at the level you actually run.",
+    "related": [
+      "reasoning budget",
+      "reasoning model",
+      "benchmark"
+    ]
+  },
+  {
+    "term": "Public nuisance (AI litigation)",
+    "short": "A tort claim that conduct harms the public's health, safety or shared rights; historically used against pollution and opioids, now pleaded against frontier AI development.",
+    "long": "The November 2026 suit by Public Citizen and others asks a San Francisco court to bar five labs from building more capable models on public-nuisance grounds, citing the labs' own risk warnings as evidence. Such claims rarely produce injunctions against an industry, but they open discovery into internal safety evaluations, which is the practical risk for defendants.",
+    "related": [
+      "regulation",
+      "frontier ai framework",
+      "alignment"
+    ]
+  },
+  {
+    "term": "Webshell",
+    "short": "A small script an attacker uploads to a web server so they can run commands on it through a browser; the classic first foothold in a server intrusion.",
+    "long": "In the AntiFox intrusions documented by Arctic Wolf, an AI pentest agent dropped an ASPX webshell on an IIS server and used it to read configuration files containing AWS keys. Detection is file-based (new scripts in web directories) and behavioural (a web process spawning shells). Correlating a new webshell with a burst of cloud API calls is now the signature of an agent-driven attack.",
+    "related": [
+      "sandbox escape",
+      "non-human identity",
+      "agent harness"
+    ]
   }
 ]

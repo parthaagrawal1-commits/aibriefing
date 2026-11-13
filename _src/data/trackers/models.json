@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-12",
+  "updated": "2026-11-13",
   "rows": [
+    {
+      "vendor": "Google",
+      "model": "Gemini 4 Hydrogen",
+      "released": "2026-11-12",
+      "kind": "Fast / mid-tier (agents)",
+      "context": "1M",
+      "note": "Google's fast execution model for agents, replacing the Flash tier. $1.50 / $7.50 per million tokens flat across 1M context; four thinking levels including a new xhigh. Reported 2.5x faster than 3.8 Flash.",
+      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+    },
     {
       "vendor": "Google",
       "model": "Gemini Decision 1 (Decisions API)",
@@ -63,7 +72,7 @@
       "released": "2026-11-05",
       "kind": "Sparse MoE (594B / 17B active)",
       "context": "1M",
-      "note": "Second-generation model; text + image in, text out. Pretrained on 8.4T tokens in 68 hours on GB300 racks using NVFP4. Inference on Tinker; full weights promised under Apache 2.0 after external safety testing.",
+      "note": "Second-generation model; text + image in, text out. Pretrained on 8.4T tokens in 68 hours on GB300 racks using NVFP4. Inference on Tinker; full weights promised under Apache 2.0 after external safety testing. Weights published on Hugging Face under Apache 2.0 on Nov 12, 2026 (394 GB NVFP4; 500 GB+ VRAM to serve).",
       "source": "https://thinkingmachines.ai/inkling/"
     },
     {

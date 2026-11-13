@@ -1,0 +1,274 @@
+{
+  "headline": "Huang resigns from Nvidia as Google ships Gemini 4 Hydrogen at $1.50 / $7.50",
+  "intro": "Jensen Huang resigned as Nvidia's chief executive and director with immediate effect; CFO Colette Kress is interim CEO, Harvey Jones is the company's first chair, and shares fell as much as 14% before recovering. Google released Gemini 4 Hydrogen, a $1.50 / $7.50 agent model priced flat across a 1M context that retires the Flash name. Thinking Machines published Inkling 2 Small's 394 GB of weights under Apache 2.0. Four nonprofits sued five frontier labs in San Francisco to halt advanced model development, OpenAI backed four chip-export bills, and Arctic Wolf documented attackers running an open-source AI pentest platform against AWS accounts. Doximity found 63% of US physicians now use AI for clinical decisions, J.P. Morgan forecast up to 400,000 US humanoids a year by 2030, SpaceX's two data-centre proposals now total $74 billion, and a Microsoft 365 outage took Copilot and the AI connectors that depend on it offline for most of a day.",
+  "one_thing": "Nvidia reports earnings on Tuesday, November 17, with Kress presenting alone for the first time, one day before Anthropic prices its IPO with a $10 billion Nvidia commitment inside it. If you own, buy from or build on Nvidia, that call is the one event this month to clear your calendar for.",
+  "items": [
+    {
+      "title": "Jensen Huang resigns from Nvidia with immediate effect; CFO Colette Kress is interim CEO and shares fell as much as 14%",
+      "stat": "14%",
+      "summary": "Nvidia's Form 8-K says Huang resigned as president, CEO and director on November 12 after 33 years, gives no reason, and names long-time director Harvey Jones as the company's first chair. The resignation followed days of reporting on Huang's personal relationships, including one with a senior executive and alleged contact with a former Megaspeed executive accused of working for Chinese intelligence; Huang admitted infidelity, and the board says its independent investigation has found no reason to believe national security was compromised. Shares fell more than 14% intraday on Thursday before paring losses. Third-quarter results stay scheduled for November 17.",
+      "why": {
+        "finance": "Earnings on November 17 are now the first call with an interim CEO, one day before Anthropic prices an IPO that includes a $10 billion Nvidia commitment. Guidance tone and that commitment are the two things to listen for.",
+        "executives": "The 8-K promises no interruption to the roadmap or customer commitments. Get your allocation confirmation in writing this week while that promise is fresh.",
+        "security": "Lawmakers are examining the national-security side of the reports; Semafor reports a 'high probability' of tighter export controls. If you rent GPUs overseas, the Remote Access Security Act is the bill to read.",
+        "ml": "Nothing changes in CUDA or the Blackwell/Rubin cadence this quarter. What could change is Nvidia's appetite for the $12.9 billion Hugging Face deal and its open-source posture; Hugging Face's CEO said Thursday he will keep fighting for it.",
+        "beginners": "The co-founder who ran the world's most valuable chip company for 33 years stepped down after a scandal. The finance chief is running it while the board looks for a replacement."
+      },
+      "sources": [
+        {
+          "name": "Nvidia Form 8-K",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000082/nvidiaannouncesceotransiti.htm"
+        },
+        {
+          "name": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/12/why-did-nvidia-ceo-jensen-huang-resign-and-who-is-colette-kress"
+        }
+      ],
+      "tags": [
+        "markets",
+        "geopolitics",
+        "Nvidia"
+      ],
+      "article": "jensen-huang-resigns-nvidia-kress-interim-ceo-what-the-8k-says-and-what-happens-november-17",
+      "developing": true
+    },
+    {
+      "title": "Google releases Gemini 4 Hydrogen at $1.50 / $7.50, flat across 1M tokens, and retires the Flash brand",
+      "stat": "$1.50",
+      "summary": "Google's new fast model for agents is priced at $1.50 per million input and $7.50 per million output tokens with no long-context surcharge and no promotional window, and is available in the Gemini API, AI Studio, Antigravity, Gemini Enterprise, Search and the Gemini app. Google reports it finishes tasks 2.5x faster than Gemini 3.8 Flash, scores 57% on Terminal-Bench 4.1 against Flash's 18.2%, and edges Argon on the Artificial Analysis index at 51 versus 50. It adds a fourth 'xhigh' thinking level and is positioned as the worker model under Carbon in Google's Orchestrator.",
+      "why": {
+        "developers": "Flat pricing across the full 1M window is the feature; a 600K-token agent run costs the same per token as a short one. Re-run your Flash evals on Hydrogen at thinking level high.",
+        "finance": "Hydrogen is double Flash's promotional rate but equal to Flash's post-promo price from January 1. From that date the only cost argument is Google's claim of 12–23% fewer tokens per task.",
+        "ml": "Google reports a 2.3x gain on Gray Swan's indirect prompt-injection benchmark and 12x fewer misaligned actions in tool-use evals. Internal numbers; ask for the methodology.",
+        "executives": "Google now sells a three-model line: Hydrogen executes, Carbon and Argon reason. Expect vendor proposals to split workloads that way, and price them that way."
+      },
+      "sources": [
+        {
+          "name": "Google blog",
+          "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+        }
+      ],
+      "tags": [
+        "models",
+        "pricing",
+        "agents",
+        "Google"
+      ],
+      "article": "gemini-4-hydrogen-1-50-7-50-flat-1m-context-what-replaces-flash-and-what-to-test"
+    },
+    {
+      "title": "Four nonprofits sue OpenAI, Anthropic, Google, Meta and SpaceX in San Francisco to halt frontier AI development",
+      "stat": "5 labs",
+      "summary": "Public Citizen, the Heat Initiative, the Irreplaceable Education Fund and others filed on November 12 under California's unfair-business-practices and public-nuisance laws, seeking an order barring further development of models such as ChatGPT, Gemini and Claude. The complaint cites incidents in which models allegedly escaped test environments and quotes the labs' own leaders on civilisational risk. It follows Florida's pending motion to stop OpenAI training new models without oversight and an eight-state suit filed in October. Meta declined to comment; the others had not responded.",
+      "why": {
+        "executives": "Injunctions against an industry's R&D are rare; discovery is the real cost. If a vendor's model were enjoined even briefly, does your contract let you substitute?",
+        "finance": "Filed six days before Anthropic prices its IPO in the same city. It will be in the risk factors and in every analyst question about regulatory overhang.",
+        "ml": "Your sandbox-escape reports and system cards are now potential exhibits. Write them as if a plaintiff will read them, because one will.",
+        "beginners": "Advocacy groups are asking a judge to stop the biggest AI companies from building more powerful models, using the companies' own warnings about danger as evidence."
+      },
+      "sources": [
+        {
+          "name": "The Daily Record (Reuters)",
+          "url": "https://thedailyrecord.com/2026/11/12/nonprofits-sue-openai-google-anthropic-halt-frontier-ai/"
+        }
+      ],
+      "tags": [
+        "policy",
+        "regulation",
+        "OpenAI",
+        "Anthropic",
+        "Google",
+        "Meta"
+      ],
+      "article": "nonprofits-sue-openai-anthropic-google-meta-spacex-to-halt-frontier-ai-what-the-public-nuisance-claim-means",
+      "developing": true
+    },
+    {
+      "title": "Attackers ran AntiFox, an open-source AI pentest platform, from Alibaba Cloud to steal AWS secrets: hundreds of API calls in 30 minutes",
+      "stat": "30 min",
+      "summary": "Arctic Wolf documented two intrusions in which self-hosted AntiFox agents, forked from the ARTEX framework, planted an ASPX webshell on an IIS server, read connection strings and config files, then cycled through AWS identities with hundreds of API requests in about half an hour; most were denied, some returned production secrets. A second case used a valid identity to read, copy and delete S3 objects. Amazon says its services operated as designed and the credentials came from compromised customer applications.",
+      "why": {
+        "security": "Write the rule today: one principal, a burst of AccessDenied calls, a few successes, within minutes, correlated with new ASPX files. That is an agent enumerating permissions.",
+        "developers": "Both cases began with long-lived keys in application files. Move them to roles, require IMDSv2, and let GuardDuty see the burst.",
+        "executives": "The attack tooling is free and forkable. The cost of an automated intrusion campaign against your cloud is now a VM and an API key.",
+        "beginners": "Hackers used a free AI hacking toolkit to break into websites, find the passwords those sites used for Amazon's cloud, and steal data with them."
+      },
+      "sources": [
+        {
+          "name": "BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/security/hackers-use-antifox-ai-agents-in-aws-credential-theft-attacks/"
+        },
+        {
+          "name": "Arctic Wolf",
+          "url": "https://github.com/rtkwlf/wolf-tools/tree/main/pack_alerts/202611-antifox-alibaba-hosted-platforms-facilitate-web-cloud-intrusions"
+        }
+      ],
+      "tags": [
+        "security",
+        "agents",
+        "infrastructure",
+        "Amazon"
+      ],
+      "article": "antifox-open-source-pentest-agents-aws-credential-theft-what-arctic-wolf-found-and-what-to-change"
+    },
+    {
+      "title": "Thinking Machines publishes Inkling 2 Small's weights: 394 GB, Apache 2.0, 500 GB of VRAM to run, no stable serving stack yet",
+      "stat": "394 GB",
+      "summary": "The 594B-parameter, 17B-active mixture-of-experts model landed on Hugging Face on November 12, three days after its hosted-only launch on Tinker, in Nvidia's NVFP4 format with an MXFP8 variant at 623 GB. The card asks for at least 500 GB of aggregate VRAM (2x B300 or 4x H200). As of Thursday SGLang and vLLM support it only in development builds, and the promised external red-team results were not published with the drop.",
+      "why": {
+        "ml": "NVFP4-native weights target Blackwell; expert parallelism must equal tensor parallelism. Wait for a validated H200 or AMD path unless you have B300s.",
+        "developers": "Hosted is $0.30 / $1.00 on Tinker. Self-hosting on four H200s only wins at sustained high utilisation.",
+        "executives": "Apache 2.0 with a patent grant on a 594B model is as permissive as licences get. The legal review is short; the GPU bill is the decision.",
+        "finance": "Thinking Machines is giving away the model and selling the fine-tuning platform. That is the business model to price when its next round comes."
+      },
+      "sources": [
+        {
+          "name": "OrcaRouter",
+          "url": "https://www.orcarouter.ai/blog/inkling-2-small-open-weights-download"
+        },
+        {
+          "name": "AlphaSignal",
+          "url": "https://alphasignal.ai/news/thinking-machines-opens-inkling-2-small-s-594b-weights-to-developers"
+        }
+      ],
+      "tags": [
+        "models",
+        "research",
+        "data"
+      ],
+      "article": "inkling-2-small-weights-394gb-apache-2-no-serving-stack-what-self-hosting-actually-takes"
+    },
+    {
+      "title": "Doximity: 63% of US physicians use AI for clinical decision support, up from 37% a year ago, and three in four hit a factual error",
+      "stat": "63%",
+      "summary": "Doximity's survey of 3,379 physicians across 20 specialties, fielded in September and published November 12, finds more than half use AI daily and a further third weekly. Use has moved from documentation to judgment: 63% use it for clinical decision support (37% in 2025) and 70% for literature review. 81% say it taught them something; three in four encountered at least one factual inaccuracy in the past year; 61% worry trainees will not build their own skills.",
+      "why": {
+        "executives": "Clinicians are already using AI for decisions, mostly on tools you do not manage. Offer a sanctioned, logged one before trying to block the rest.",
+        "security": "Daily clinical use on consumer chatbots means PHI in prompts. A sanctioned tool with logging is the control that works.",
+        "ml": "Three in four doctors found an error and most kept using the tool. Your clinical evals should report error rate on real queries, because buyers will ask.",
+        "beginners": "Doctors increasingly ask AI for second opinions on diagnoses. Most say it has taught them something, and most say it has also been wrong, so they check."
+      },
+      "sources": [
+        {
+          "name": "Healthcare Dive",
+          "url": "https://www.healthcaredive.com/news/despite-concerns-ai-becomes-daily-fixture-in-physician-workflows/874541/"
+        }
+      ],
+      "tags": [
+        "health",
+        "adoption",
+        "data"
+      ],
+      "article": "doximity-3379-physicians-63-percent-use-ai-for-clinical-decisions-what-health-systems-should-do"
+    },
+    {
+      "title": "J.P. Morgan forecasts 300,000–400,000 US humanoid robots a year by 2030 and names hands, actuators, the brain and capacity as the bottlenecks",
+      "stat": "400K",
+      "summary": "In a note reported by Reuters on Thursday, J.P. Morgan projects US humanoid output of 300,000 to 400,000 units by 2030 and about 1.5 million by 2035, with most makers other than Tesla targeting 10,000 to 30,000 units a year. It sizes the actuator, motor and vision component market at nearly $30 billion by 2035, estimates about $100,000 a year in savings per multi-shift customer, and favours suppliers Timken, Robotis, Leader Drive, Orbbec and Cognex over robot makers in the near term.",
+      "why": {
+        "finance": "The near-term trade in the bank's view is components, not robots. Agility's first public quarter will be the first audited test of the thesis.",
+        "executives": "$100,000 a year per customer is the bank's savings estimate. Use it to sanity-check any humanoid pilot proposal.",
+        "ml": "Training data and compute are two of the four binding constraints. That is the gap Skild's Steel and Nvidia's GR00T 2 releases this week target.",
+        "beginners": "A big bank thinks the US could be building hundreds of thousands of human-shaped robots a year by 2030, but says hands and motors are still the hard part."
+      },
+      "sources": [
+        {
+          "name": "Reuters via Investing.com",
+          "url": "https://www.investing.com/news/stock-market-news/us-humanoid-robot-production-could-hit-400000-by-2030-as-deployment-ramps-jp-morgan-says-5020778"
+        }
+      ],
+      "tags": [
+        "robotics",
+        "markets",
+        "adoption"
+      ],
+      "article": "jp-morgan-us-humanoid-production-300000-400000-by-2030-what-the-forecast-says-about-bottlenecks"
+    },
+    {
+      "title": "OpenAI backs four bipartisan chip-export bills, including Commerce oversight of GPUs rented from overseas data centres",
+      "stat": "4 bills",
+      "summary": "OpenAI's global affairs chief Chris Lehane said the company supports tighter US limits on advanced chips and chipmaking tools for China, including the Warren–Banks AI Overwatch Act, the Chip Security Act's tracking requirements, the MATCH Act on allied equipment sales, and the Remote Access Security Act, which would let the Commerce Department police restricted GPUs rented through foreign data centres. Bloomberg first reported the position; OpenAI says its own Jalapeño chip will not be sold to China. The stance lands in the week Nvidia, OpenAI's main supplier, lost the CEO who argued for continued China sales.",
+      "why": {
+        "security": "The Remote Access Security Act turns GPU rental into a controlled activity. If your workloads run in Singapore or Malaysia, read the bill text.",
+        "executives": "OpenAI is now publicly on the opposite side of its largest supplier's old position. Expect the export-control debate to move faster without Huang in it.",
+        "finance": "Remote-access limits hit Nvidia's overseas data-centre customers, a revenue line the November 17 call may have to address.",
+        "beginners": "OpenAI is asking Congress to make it harder for China to buy or rent advanced AI chips, a position Nvidia's former CEO opposed."
+      },
+      "sources": [
+        {
+          "name": "TokenPost",
+          "url": "https://www.tokenpost.com/news/regulation/56230"
+        },
+        {
+          "name": "Bloomberg",
+          "url": "https://bloomberg.com/news/articles/2026-11-12/openai-joins-groundswell-of-support-for-ai-chip-control-measures"
+        }
+      ],
+      "tags": [
+        "policy",
+        "geopolitics",
+        "OpenAI",
+        "Nvidia"
+      ]
+    },
+    {
+      "title": "SpaceX's two AI campuses now total $74 billion: a $24 billion gas-powered site at Starbase and a $50 billion, 6 GW campus in Cochise County",
+      "stat": "$74B",
+      "summary": "Reuters reports SpaceX plans to invest more than $74 billion in supercomputing campuses in Texas and Arizona. The Starbase, Texas project pairs a gas-fired power plant with a compute facility at an initial $24 billion and goes to the city commission on December 9; the Arizona project, a 747-acre, nine-building, 6 GW campus near the Willcox Playa at up to $50 billion, faces a county zoning hearing the same day after a packed public meeting and a petition of about 2,100 signatures. SpaceX says the Arizona site would use no industrial water for cooling and would fund $3.6 billion of transmission.",
+      "why": {
+        "executives": "Both approvals land on December 9. After voters rejected data centres in 40 of 41 local ballots this month, these two hearings are the test of whether self-generated power changes the politics.",
+        "finance": "$74 billion is capex for a company that just told IPO investors AI revenue rose ninefold in Q3 while renting capacity to Google and Anthropic. Count it against the 15 GW Musk promised by end-2027.",
+        "security": "A 6 GW campus on a 250 MW rural cooperative with a 24 GWh battery is a grid-resilience story as much as a compute one. Watch who underwrites the upgrades.",
+        "beginners": "Elon Musk's SpaceX wants to spend $74 billion on two enormous AI computer sites that would make their own electricity; local residents in Arizona are pushing back."
+      },
+      "sources": [
+        {
+          "name": "Reuters via The Star (Starbase)",
+          "url": "https://www.thestar.com.my/tech/tech-news/2026/11/10/spacex-plans-24-billion-gas-power-plant-data-center-project-in-texas"
+        },
+        {
+          "name": "Baxtel (Cochise County)",
+          "url": "https://baxtel.com/news/spacex-confirms-6gw-ai-data-center-campus-plan-for-cochise-county"
+        },
+        {
+          "name": "Reuters",
+          "url": "https://www.reuters.com/business/media-telecom/spacex-invest-over-74-billion-supercompute-facilities-texas-arizona-2026-11-12/"
+        }
+      ],
+      "tags": [
+        "infrastructure",
+        "policy",
+        "xAI"
+      ]
+    },
+    {
+      "title": "A Microsoft 365 outage took Outlook, Teams calendars and Copilot down for most of Thursday, with Anthropic and OpenAI connectors failing alongside",
+      "stat": "140K",
+      "summary": "Microsoft said a large number of servers became unexpectedly unavailable from around 5:15 a.m. AEDT on November 13, then that a core process handling secure connections was overwhelmed; it reverted a recent network configuration change and said there was no indication of malicious activity. Downdetector logged nearly 140,000 Outlook reports at the peak, seven in ten from the US. Microsoft 365 Copilot, Graph, Intune, Defender and Power BI were affected, Anthropic reported an upstream issue with its Microsoft 365 connector and OpenAI reported connector problems; recovery was still partial late in the day and a post-incident report is promised.",
+      "why": {
+        "executives": "Every AI assistant wired to Microsoft 365 went down with it. If Copilot or a connector is in a workflow, the Microsoft dependency is the single point of failure, not the model.",
+        "security": "Defender, Intune and Purview were affected. Check your detection gaps for the window and treat the 48-hour email timeout as a delivery-integrity issue.",
+        "developers": "Graph was degraded for hours. Agents that call Graph need timeouts, retries with backoff and a degraded mode, not a crash.",
+        "beginners": "Microsoft's email, calendar and AI assistant stopped working for much of the world for most of a day because of a configuration change, not a hack."
+      },
+      "sources": [
+        {
+          "name": "ABC News (Australia) live blog",
+          "url": "https://www.abc.net.au/news/2026-11-13/microsoft-outage-affects-users-worldwide/107381050"
+        },
+        {
+          "name": "BleepingComputer",
+          "url": "https://www.bleepingcomputer.com/news/microsoft/massive-microsoft-365-outage-disrupts-outlook-teams-copilot-worldwide/"
+        }
+      ],
+      "tags": [
+        "infrastructure",
+        "adoption",
+        "Microsoft",
+        "Anthropic",
+        "OpenAI"
+      ],
+      "developing": true
+    }
+  ]
+}

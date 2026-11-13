@@ -361,7 +361,7 @@ def brief_page(b, prev_b=None, next_b=None):
     body = (f'<div class="hero"><div class="kicker">Daily brief</div><h1 data-speak>{esc(title)}</h1>'
             f'<div class="dateline">{fmt_date(date)} · {len(b["items"])} stories · {read_time(b["words"])} min read</div>'
             f'<p class="lede" style="margin-top:10px" data-speak>{md_inline(b.get("intro", ""))}</p>'
-            f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(title)}">Share</button></div></div></div>'
+            f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><a class="btn ghost" href="{path}email/" title="A self-contained version of this brief for pasting into email">✉ Email version</a><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(title)}">Share</button></div></div></div>'
             f'{one}<section>{items}</section><div class="trust">{len(b["items"])} stories · {len({s["url"] for it in b["items"] for s in it["sources"]})} sources linked · summaries written in our own words and checked against the linked reporting · corrections: corrections@aibriefing.io</div><p class="meta" style="margin-top:18px">{navl}</p>{newsletter_box()}')
     desc = (b.get("intro", "")[:155]) or f"The {len(b['items'])} AI stories that mattered on {short_date(date)}."
     ld = {"@context": "https://schema.org", "@type": "NewsArticle", "headline": title, "datePublished": date + "T11:00:00Z", "dateModified": (b.get("updated", date)) + "T11:00:00Z",
@@ -369,6 +369,41 @@ def brief_page(b, prev_b=None, next_b=None):
           "mainEntityOfPage": ROOT + path, "image": [og], "description": desc, "wordCount": b["words"],
           "citation": [s["url"] for it in b["items"] for s in it["sources"] if s.get("url")]}
     return layout(title=f"{title} — AI Briefing, {short_date(date)}", desc=desc, path=path, body=body, section="brief", jsonld=[ld, breadcrumbs([("Brief", "/brief/"), (short_date(date), path)])], og_type="article", og_image=og, published=date, modified=b.get("updated", date))
+
+def brief_email_page(b):
+    """Email-optimised edition: one self-contained, table-based HTML document with inline CSS, no site chrome,
+    no scripts, absolute links. Meant to be pasted into any newsletter tool; noindex, canonical to the web brief."""
+    date = b["date"]; title = b.get("headline") or f"AI news for {short_date(date)}"; path = f"/brief/{date}/email/"; web = f"{ROOT}/brief/{date}/"
+    def p(txt, size=16, color="#141311", extra=""):
+        return f'<p style="margin:0 0 12px;font-size:{size}px;line-height:1.5;color:{color};{extra}">{txt}</p>'
+    rows = []
+    for n, it in enumerate(b["items"], 1):
+        link = (ROOT + it["article_url"]) if it.get("article_url") else f"{web}#{it['id']}"
+        whys = "".join(f'<tr><td style="padding:4px 0;font-size:14px;line-height:1.45;color:#4a463f"><b style="color:#1f4bff">{esc(AUD[k][1])}:</b> {esc(strip_md(v))}</td></tr>' for k, v in it.get("why", {}).items() if k in AUD)
+        srcs = " · ".join(f'<a href="{esc(x["url"])}" style="color:#857f74">{esc(x["name"])}</a>' for x in it["sources"] if x.get("url"))
+        rows.append(f'<tr><td style="padding:18px 0;border-top:1px solid #e2dcd1">'
+                    f'<p style="margin:0 0 8px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#857f74">{n} of {len(b["items"])}{" · developing" if it.get("developing") else ""}</p>'
+                    f'<h2 style="margin:0 0 8px;font-size:20px;line-height:1.3;color:#141311"><a href="{esc(link)}" style="color:#141311;text-decoration:none">{esc(strip_md(it["title"]))}</a></h2>'
+                    f'{p(esc(strip_md(it["summary"])), 15, "#4a463f")}<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">{whys}</table>'
+                    f'<p style="margin:10px 0 0;font-size:13px;color:#857f74">Source: {srcs} · <a href="{esc(link)}" style="color:#1f4bff">Full story</a></p></td></tr>')
+    one = f'<tr><td style="padding:14px 16px;background:#e8edff;border-radius:10px"><p style="margin:0 0 4px;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:#1f4bff">The one thing to know</p>{p(esc(strip_md(b["one_thing"])), 16, "#141311", "margin:0")}</td></tr>' if b.get("one_thing") else ""
+    pre = esc(strip_md(b.get("intro", "")))[:180]
+    html_ = f"""<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><link rel="canonical" href="{web}">
+<title>{esc(title)} — {BRAND} email edition, {short_date(date)}</title></head>
+<body style="margin:0;padding:0;background:#f1ede6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Helvetica,Arial,sans-serif">
+<div style="display:none;max-height:0;overflow:hidden">{pre}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background:#f1ede6"><tr><td align="center" style="padding:24px 12px">
+<table role="presentation" width="600" cellpadding="0" cellspacing="0" border="0" style="max-width:600px;width:100%;background:#faf8f4;border-radius:14px;padding:28px 24px">
+<tr><td><p style="margin:0 0 6px;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:#1f4bff"><a href="{ROOT}/" style="color:#1f4bff;text-decoration:none">{BRAND}</a> · Daily brief</p>
+<h1 style="margin:0 0 6px;font-size:26px;line-height:1.2;color:#141311">{esc(title)}</h1>
+<p style="margin:0 0 16px;font-size:13px;color:#857f74">{fmt_date(date)} · {len(b["items"])} stories · {read_time(b["words"])} min read · <a href="{web}" style="color:#1f4bff">Read on the web</a></p>
+{p(esc(strip_md(b.get("intro", ""))), 16, "#4a463f")}</td></tr>
+{one}
+{"".join(rows)}
+<tr><td style="padding-top:18px;border-top:1px solid #e2dcd1"><p style="margin:0;font-size:12px;line-height:1.5;color:#857f74">{BRAND} · summaries written in our own words and checked against the linked reporting · <a href="{ROOT}/newsletter/" style="color:#857f74">Subscribe</a> · <a href="{ROOT}/brief/" style="color:#857f74">Archive</a> · corrections: corrections@aibriefing.io</p></td></tr>
+</table></td></tr></table></body></html>"""
+    return html_
 
 def week_key(date):
     y, w, _ = datetime.date.fromisoformat(date).isocalendar(); return f"{y}-W{w:02d}"
@@ -858,6 +893,7 @@ def main():
     for a in articles: pages[a["url"]] = article_page(a, articles, explainers)
     for i, b in enumerate(briefs):
         pages[f"/brief/{b['date']}/"] = brief_page(b, prev_b=briefs[i + 1] if i + 1 < len(briefs) else None, next_b=briefs[i - 1] if i > 0 else None)
+        write(f"brief/{b['date']}/email/index.html", brief_email_page(b))
     pages.update(week_pages(briefs, articles))
     pages["/for/"] = for_index()
     for k in AUD: pages[f"/for/{k}/"] = hub_page(k, briefs, explainers)
