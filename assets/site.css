@@ -1,4 +1,5 @@
 
+.story.tile.sh{display:block}.story.tile.sh .b{padding:16px}.story.tile.sh .kicker{margin-bottom:4px}
 :root{--paper:#faf8f4;--paper2:#f1ede6;--paper3:#e9e4da;--ink:#141311;--ink2:#4a463f;--mute:#857f74;--line:#e2dcd1;--acc:#1f4bff;--acc2:#e8edff;--ok:#1d7a4a;--warn:#b7791f;--max:1180px;--r:14px}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#111110;--paper2:#1a1917;--paper3:#242220;--ink:#f1ede6;--ink2:#c9c2b5;--mute:#8d8678;--line:#2b2825;--acc:#7a93ff;--acc2:#1b2240}}
 :root[data-theme=dark]{--paper:#111110;--paper2:#1a1917;--paper3:#242220;--ink:#f1ede6;--ink2:#c9c2b5;--mute:#8d8678;--line:#2b2825;--acc:#7a93ff;--acc2:#1b2240}

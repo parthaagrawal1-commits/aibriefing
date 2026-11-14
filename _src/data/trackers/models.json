@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-13",
+  "updated": "2026-11-14",
   "rows": [
+    {
+      "vendor": "IBM",
+      "model": "Granite 4.1 LLMON preview (3B / 8B)",
+      "released": "2026-11-12",
+      "kind": "Small open models (prompt-injection-resistant preview)",
+      "context": "n/a",
+      "note": "Experimental previews trained on LLM Object Notation, a markup with reserved-token delimiters that binds instructions to data; IBM reports near-zero indirect prompt-injection success on OPI with utility on par with Granite 4.1 Instruct. Not for production.",
+      "source": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite"
+    },
     {
       "vendor": "Google",
       "model": "Gemini 4 Hydrogen",
@@ -112,24 +121,6 @@
       "source": "https://ai.google.dev/pricing"
     },
     {
-      "vendor": "Google",
-      "model": "Gemini 3.8 Flash",
-      "released": "2026 (listed)",
-      "kind": "Fast / mid-tier",
-      "context": "—",
-      "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.",
-      "source": "https://ai.google.dev/pricing"
-    },
-    {
-      "vendor": "Anthropic",
-      "model": "Claude Fable 5.1",
-      "released": "2026-09",
-      "kind": "Flagship (top tier)",
-      "context": "1M",
-      "note": "Superseded by Fable 5.2 on Nov 9, 2026. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
-      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
-    },
-    {
       "vendor": "OpenAI",
       "model": "GPT-6.1 Sol",
       "released": "2026-09-30",
@@ -137,15 +128,6 @@
       "context": "1.05M",
       "note": "$2 / $10 per million tokens, cached input $0.10. OpenAI says it approaches Astra on complex work at a fifth of the price; Ultrafast mode (6x price) added Oct 8.",
       "source": "https://community.openai.com/t/gpt-6-1-sol-in-the-api-a-meaningful-step-up-in-cost-performance/1402388"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6.1 Terra / GPT-6 Luna",
-      "released": "2026 (listed)",
-      "kind": "Mid / small tiers",
-      "context": "1.05M",
-      "note": "Listed on OpenAI's current model page at $1 / $5 and $0.10 / $0.50 respectively. Release dates not stated on the vendor page.",
-      "source": "https://developers.openai.com/api/docs/models/all"
     },
     {
       "vendor": "OpenAI",
@@ -158,11 +140,11 @@
     },
     {
       "vendor": "Anthropic",
-      "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5",
-      "released": "2026 (current lineup)",
-      "kind": "Flagship / mid / small",
+      "model": "Claude Fable 5.1",
+      "released": "2026-09",
+      "kind": "Flagship (top tier)",
       "context": "1M",
-      "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
+      "note": "Superseded by Fable 5.2 on Nov 9, 2026. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
       "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     },
     {
@@ -173,6 +155,33 @@
       "context": "1M",
       "note": "First Mythos-class models. Access was suspended June 12–30, 2026 under US export controls and restored July 1.",
       "source": "https://www.anthropic.com/news/fable-mythos-access"
+    },
+    {
+      "vendor": "Google",
+      "model": "Gemini 3.8 Flash",
+      "released": "2026 (listed)",
+      "kind": "Fast / mid-tier",
+      "context": "—",
+      "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.",
+      "source": "https://ai.google.dev/pricing"
+    },
+    {
+      "vendor": "OpenAI",
+      "model": "GPT-6.1 Terra / GPT-6 Luna",
+      "released": "2026 (listed)",
+      "kind": "Mid / small tiers",
+      "context": "1.05M",
+      "note": "Listed on OpenAI's current model page at $1 / $5 and $0.10 / $0.50 respectively. Release dates not stated on the vendor page.",
+      "source": "https://developers.openai.com/api/docs/models/all"
+    },
+    {
+      "vendor": "Anthropic",
+      "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5",
+      "released": "2026 (current lineup)",
+      "kind": "Flagship / mid / small",
+      "context": "1M",
+      "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
+      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
     }
   ],
   "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",

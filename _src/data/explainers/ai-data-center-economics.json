@@ -1,0 +1,34 @@
+{
+  "slug": "ai-data-center-economics",
+  "title": "AI data-centre economics explained: why a $900 billion compute commitment, a 48% cost of revenue and a '10th percentile' plan all describe the same problem",
+  "summary": "Anthropic's prospectus and its CEO's remarks this week put real numbers on what it costs to run a frontier AI company. Here is how the capital stack works, who carries which risk, and the three questions to ask any vendor or landlord in the chain.",
+  "level": "beginner",
+  "audiences": [
+    "executives",
+    "finance",
+    "beginners",
+    "ml"
+  ],
+  "tags": [
+    "infrastructure",
+    "markets",
+    "IPO"
+  ],
+  "published": "2026-11-14",
+  "updated": "2026-11-14",
+  "body": "An AI data centre is a building full of accelerators, the power to run them and the cooling to keep them alive. The economics are unusual because the most expensive component, the chips, loses value faster than the building that houses it, and the revenue that pays for both arrives one token at a time.\n\n## The cost stack\n\nA frontier-class site is priced in gigawatts because power is the binding constraint. Rough industry rules of thumb put the all-in cost of a gigawatt of AI capacity in the tens of billions of dollars, with chips and networking the largest share, then the building and electrical plant, then power and cooling over the asset's life. The chips are typically depreciated over four to six years, but a new generation arrives every twelve to eighteen months and rents at a premium, so the economic life of an accelerator is shorter than its accounting life. The shell and the grid connection last decades. That mismatch is why the industry has split into layers.\n\n## Who owns what\n\nAt the bottom, developers and utilities build sites and secure power; SpaceX's two proposed campuses in Texas and Arizona, totalling $74 billion, and the gas generators Anthropic has contracted are examples of labs reaching down into this layer. In the middle, neoclouds such as CoreWeave, Nebius and Nscale buy chips with debt, often backed by Nvidia, and rent them under multi-year contracts; Nscale's filing shows a $44.6 billion contract with Anthropic and a $1.02 billion first-half loss, which is what building ahead of revenue looks like. At the top, the model labs commit to capacity and sell inference. Anthropic's prospectus lists $900.9 billion of compute-related commitments running to 2045, about $70.7 billion of it due in the year to September 2027, and compute reached 48% of revenue in one quarter.\n\n## The forecasting problem\n\nEvery layer is making the same bet in a different currency: that demand in three years justifies capacity ordered today. Dario Amodei described Anthropic's answer this week. The company commits in advance to roughly the 10th percentile of its growth scenarios, the level it is almost certain to need, and buys additional capacity on the spot market when demand runs higher. Over-committing means paying for idle chips that are depreciating; under-committing means rate-limiting customers. Spot capacity has so far always been available, he said, and the approach works like insurance. The counter-view is that it only works while someone else carries the over-build risk, which today is the neoclouds and their lenders.\n\n## Why prices per token keep falling while bills rise\n\nEach hardware generation moves more memory bandwidth per dollar, and serving software squeezes more users onto each chip, so the price of a million tokens falls every year. But usage grows faster than prices fall, reasoning models multiply the tokens a task consumes, and agents run for hours. Total spend rises even as unit cost drops, which is why capacity planning, not pricing, is the hard problem.\n\n## What to ask\n\nIf you buy inference: what happens to your rate limits when the vendor's forecast is beaten, and is there a contractual floor. If you invest: which layer carries the depreciation risk, how much of the revenue is contracted versus spot, and what share of the committed capacity is already matched to signed customers. If you host: what the power contract costs when the chips inside are two generations old. The same three questions apply whether the counterparty is a lab, a neocloud or a county zoning board.",
+  "faqs": [
+    [
+      "Why is compute measured in gigawatts rather than chips?",
+      "Because power is the constraint that cannot be bought quickly. Chips ship in months; a grid connection or a gas plant takes years. A gigawatt figure tells you how many accelerators a site can ever run, regardless of which generation is installed."
+    ],
+    [
+      "What does a '10th percentile' capacity plan mean for customers?",
+      "The vendor commits only to capacity it is nearly certain to need and relies on the spot market above that. If demand surprises on the upside, customers may see tighter rate limits or queues until spot capacity is secured, so multi-provider routing and contractual minimums matter."
+    ],
+    [
+      "Who loses money if demand falls short?",
+      "Whoever owns the chips. Labs that rent from neoclouds can let contracts lapse; neoclouds that borrowed to buy accelerators cannot. That is why neocloud filings show large losses and heavy Nvidia-backed debt, and why their customers' credit quality is the number investors watch."
+    ]
+  ]
+}

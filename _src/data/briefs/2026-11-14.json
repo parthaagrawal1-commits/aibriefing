@@ -1,0 +1,229 @@
+{
+  "headline": "Nvidia courts Arm's Haas as the FAA grounds US flights days after AI rollout",
+  "intro": "Nvidia's board approached Arm chief executive Rene Haas about succeeding Jensen Huang, according to the Financial Times, while the company told Reuters any talk of candidates is premature; venture investors told TechCrunch that Huang's exit removes the backer behind 105 startup rounds this year. The FAA halted every departing flight in the United States for about five hours on Friday, three days after extending its SMART AI traffic-planning tool to all 22 en-route centres; officials blame legacy telecom gear and the vendor denies any link, but the homeland security secretary would not rule it out. OpenAI launched ChatGPT Wallet so its dots agents can buy things with network-tokenised cards, and folded its standalone robotics team into its main research and applied groups. Anthropic's bankers reportedly turned away Chinese and Hong Kong orders ahead of Wednesday's pricing as Dario Amodei called compute the company's 'deepest business dilemma'. IBM shipped experimental Granite models that separate instructions from data to cut prompt injection, llama.cpp reached 1.0 with a stable API, and LangChain raised $300 million at a $3 billion valuation.",
+  "one_thing": "If your agents, scripts or employees buy things online, read ChatGPT Wallet's merchant rules this weekend: network tokens, per-purchase biometric approval and a signed record of what the agent was allowed to buy are about to become the baseline that retailers, banks and auditors measure every other agent payment against.",
+  "items": [
+    {
+      "title": "Nvidia's board approached Arm CEO Rene Haas about the top job, FT reports; Nvidia says candidate talk is premature and 1,600 staff comments ask for Huang back",
+      "stat": "1,600",
+      "summary": "The Financial Times reported on Friday that Nvidia's board has sounded out Rene Haas, the 64-year-old Arm chief and former head of Nvidia's computing products business, as one of several candidates to replace Jensen Huang; there is reportedly no guarantee he will be offered the role or take it. Nvidia told Reuters it is still choosing a search firm and has not formally engaged anyone. Wired reported an internal suggestion-box thread of more than 1,600 comments, many urging Huang's return. Arm shares were down more than 5% and Nvidia more than 3% on the day; earnings land Tuesday with Colette Kress presenting as interim CEO.",
+      "why": {
+        "finance": "Haas would have to unwind roles at Arm, SoftBank's board and SoftBank Group International, so this is a weeks-long process at best. Tuesday's earnings call is the only scheduled catalyst; price the search as uncertainty, not a resolution.",
+        "executives": "Venture investors told TechCrunch Nvidia took part in 105 funding rounds this year and that Kress is seen as more conservative. If your vendors or neocloud partners were Nvidia-backed, ask about their runway now.",
+        "ml": "Haas ran Nvidia's compute products before Arm and has pushed Arm CPUs into AI servers. A Haas-led Nvidia would likely lean harder into Grace-style CPU-GPU integration, not away from CUDA.",
+        "beginners": "The chip company that lost its founder-CEO this week is looking at the boss of Arm, whose designs are in almost every phone, to run it next. Nothing is agreed and many employees want the old boss back."
+      },
+      "sources": [
+        {
+          "name": "RTÉ (Reuters on the FT report)",
+          "url": "https://www.rte.ie/news/business/2026/1113/1599163-nvidia-approached-arm-ceo-haas-to-succeed-huang-ft/"
+        },
+        {
+          "name": "Decrypt",
+          "url": "https://decrypt.co/383276/nvidia-arm-ceo-rene-haas-replace-jensen-huang"
+        },
+        {
+          "name": "TechCrunch (VC funding)",
+          "url": "https://techcrunch.com/2026/11/13/jensen-huangs-departure-blasts-big-hole-in-ai-startup-funding-vcs-and-founders-say/"
+        }
+      ],
+      "tags": [
+        "markets",
+        "funding",
+        "Nvidia"
+      ],
+      "article": "nvidia-after-huang-arm-haas-approach-and-the-105-round-startup-funding-gap",
+      "developing": true
+    },
+    {
+      "title": "FAA halts all US departures for about five hours; officials blame telecom gear, three days after the $875 million SMART AI tool went nationwide",
+      "stat": "7,000",
+      "summary": "A nationwide ground stop on Friday, the first since January 2023, delayed or cancelled roughly 7,000 flights after what Transportation Secretary Sean Duffy called a communication issue affecting all Air Route Traffic Control Centers; officials attributed it to overloaded legacy telecom switches and routers producing inconsistent data. The stop came three days after the FAA extended SMART, Air Space Intelligence's advisory traffic-planning system built under a 12-year, $875 million contract, from the Washington area to all 22 en-route centres. The vendor said the outage was not based on or a result of SMART; Homeland Security Secretary Markwayne Mullin said investigators were looking at it and 'you can't rule out anything'. No technical report has been published.",
+      "why": {
+        "executives": "This is the template for every AI-adjacent outage to come: an advisory system, a coincident failure in old infrastructure, and a public that assumes causation. Decide now how your company would prove a negative about its own AI deployment within hours.",
+        "security": "SMART reportedly runs on infrastructure separate from the systems that failed, but it ingests about 200 live data streams. Whether a data pipeline can load or destabilise a legacy telecom path is exactly the dependency question your own integrations should answer.",
+        "ml": "Controllers told Congress in October they had little input into SMART and feared hallucinated safety data. An advisory-only design does not insulate a model from blame; involve the operators before deployment, not after.",
+        "beginners": "Every plane in America was held on the ground for hours on Friday because air traffic control lost communications. A new AI planning tool had been switched on across the country days earlier; the company behind it says it was not the cause, and investigators are checking."
+      },
+      "sources": [
+        {
+          "name": "Al Jazeera",
+          "url": "https://www.aljazeera.com/news/2026/11/13/us-grounds-all-flights-after-communication-issue"
+        },
+        {
+          "name": "Latin Times",
+          "url": "https://www.latintimes.com/faa-smart-ai-tool-ground-stop-investigation-601324"
+        }
+      ],
+      "tags": [
+        "policy",
+        "infrastructure",
+        "regulation"
+      ],
+      "article": "faa-nationwide-ground-stop-smart-ai-tool-875-million-what-is-known-and-what-to-watch",
+      "developing": true
+    },
+    {
+      "title": "OpenAI launches ChatGPT Wallet: dots agents pay with Visa, Mastercard and Amex network tokens, one biometric approval per purchase, no OpenAI cut at launch",
+      "stat": "$0 fee",
+      "summary": "ChatGPT Wallet, live on Thursday for a limited set of US ChatGPT Pro subscribers aged 18 and over, lets a dot find items on a merchant's site, present a review screen of items, total and card, and complete checkout after the user approves with Face ID or a fingerprint. The card network issues a limited-use token with its own number, security code and expiry, so neither the agent nor the merchant sees the real card; rewards and dispute protections carry over. There are no spending limits or pre-approved purchases yet, OpenAI says it takes no share of transactions for now, and purchases fail on sites that block agents. OpenAI published a Commerce Partner Playbook and named Adyen, Checkout.com, Stripe and fraud vendors Forter, Riskified, Sardine and Signifyd as partners.",
+      "why": {
+        "executives": "If you sell online, you now have a decision: allow verified ChatGPT browser traffic through your CDN and firewall, or join United Airlines in blocking agents. Both are defensible; neither is free.",
+        "finance": "No revenue share 'at launch' is the phrase to remember. Tokenised card payments give OpenAI the transaction graph of 1.2 billion weekly users before it prices it.",
+        "security": "Network tokens mean a compromised agent cannot exfiltrate a card number, and each approval produces a signed record of what was authorised. That is a higher bar than most internal procurement bots meet; adopt it.",
+        "developers": "Merchant work is concrete: let verified agent visits through, publish product feeds, read the Forwarded header for locale and device, add Sign in with ChatGPT. The playbook is the spec.",
+        "beginners": "ChatGPT's personal agents can now buy things for you with your credit card, but only after you approve each purchase with your face or fingerprint, and the shop never sees your real card number."
+      },
+      "sources": [
+        {
+          "name": "9to5Mac",
+          "url": "https://9to5mac.com/2026/11/13/openai-launches-chatgpt-wallet-enabling-dot-agents-to-make-purchases/"
+        },
+        {
+          "name": "Data Studios (merchant rules)",
+          "url": "https://www.datastudios.org/post/chatgpt-wallet-dots-agent-purchases-us-pro-users-visa-mastercard-amex"
+        }
+      ],
+      "tags": [
+        "agents",
+        "consumer",
+        "adoption",
+        "OpenAI"
+      ],
+      "article": "chatgpt-wallet-network-tokens-per-purchase-approval-no-fee-what-merchants-and-security-teams-should-do"
+    },
+    {
+      "title": "Anthropic's banks reportedly turn away China and Hong Kong orders citing ITAR as Amodei calls compute the 'deepest business dilemma'; pricing Wednesday at $70–$78",
+      "stat": "$900.9B",
+      "summary": "Bloomberg reported that syndicate banks are refusing or discouraging orders from mainland Chinese and Hong Kong institutions for Anthropic's IPO, citing US arms-export rules, the same approach used for SpaceX's listing; the amended prospectus says Anthropic's models and platform may be controlled under export regulations. Orders are reportedly about six times the shares on offer, with pricing set for November 18 and Nasdaq trading as ANT on November 19 in a $70–$78 range. At a JPMorgan briefing with Jamie Dimon, Dario Amodei said compute is the company's deepest dilemma, that Anthropic plans around roughly the 10th percentile of its growth forecasts and tops up on the spot market; the filing lists $900.9 billion in compute commitments through 2045, about $70.7 billion of it due by September 2027.",
+      "why": {
+        "finance": "Six-times coverage with an entire region excluded is the headline; $70.7 billion of commitments due inside the next fiscal year against a company whose compute ran at 48% of revenue in one quarter is the model. Decide which number you are buying.",
+        "executives": "Planning at the 10th percentile and buying spot above it means Anthropic's capacity for your workloads depends on a spot GPU market that has always cleared so far. Ask your account team what the backstop is.",
+        "ml": "A 10th-percentile capacity plan implies rate limits and queueing when demand surprises to the upside. Build retries and a second provider into anything customer-facing.",
+        "security": "The ITAR language in the S-1 means Anthropic treats its own weights as potentially export-controlled. Expect the same posture to flow into contract terms about where you may run its models and who may access them.",
+        "beginners": "Anthropic, maker of Claude, sells its shares to the public next week. Investors from China are being kept out on national-security grounds, and its CEO says the hardest part of running the company is guessing how many chips to buy."
+      },
+      "sources": [
+        {
+          "name": "AI Weekly (Bloomberg report on orders)",
+          "url": "https://aiweekly.co/alerts/banks-shut-china-hong-kong-investors-out-of-anthropic-ipo"
+        },
+        {
+          "name": "Bloomberg",
+          "url": "https://www.bloomberg.com/news/articles/2026-11-13/anthropic-ipo-share-orders-from-china-are-said-to-be-rebuffed"
+        },
+        {
+          "name": "TradingView / Stocktwits (Amodei remarks)",
+          "url": "https://www.tradingview.com/news/stocktwits:b3d48c6fc094b:0-amodei-highlights-computing-power-capex-dilemma-ahead-of-anthropic-ipo/"
+        }
+      ],
+      "tags": [
+        "IPO",
+        "markets",
+        "infrastructure",
+        "Anthropic"
+      ],
+      "article": "anthropic-ipo-china-orders-rebuffed-900-billion-compute-commitments-10th-percentile-plan-what-to-read-before-wednesday",
+      "developing": true
+    },
+    {
+      "title": "OpenAI disbands its standalone robotics team and folds it into core research and Applied, saying GPT-6 Astra already runs robots",
+      "stat": "74.8%",
+      "summary": "Fortune reported, and OpenAI confirmed, that the robotics research group now sits in the main research organisation under Mark Chen while applied robotics and hardware staff move to Greg Brockman's Applied organisation. OpenAI says robotics remains a core long-term goal and the change speeds it up; earlier in 2026 the company expected progress to come from video models like the now-discontinued Sora, and it now says general frontier models can drive robots directly, citing an Nvidia study in which an Astra-powered agent scored 74.8% on a simulated manipulation benchmark against 51.0% for the best specialised model. OpenAI's booth at the CoRL conference in Austin stood empty this week. Altman still targets a humanoid demonstration in 2027.",
+      "why": {
+        "executives": "OpenAI is betting the robot brain is a general model plus a harness, the same bet it made against specialised coding models. If you are funding a robotics pilot, ask whether the vendor's moat is its model or its deployment data.",
+        "ml": "A 74.8% simulation score is a leaderboard, not a factory. CMU's Guanya Shi notes small onboard models are still needed for control loops; the open question is how the general model and the controller share the task.",
+        "finance": "Second time OpenAI has wound down a robotics team; the first was 2020 for lack of data. This one follows a $10.9 billion quarterly loss and Sora's closure, so read it as cost discipline as much as conviction.",
+        "beginners": "OpenAI no longer has a separate robot team because it thinks its main AI models can control robots already. It still says it wants to show a humanoid robot in 2027."
+      },
+      "sources": [
+        {
+          "name": "Fortune",
+          "url": "https://fortune.com/2026/11/13/openai-disbands-robotics-team-as-its-general-models-start-running-robots/"
+        }
+      ],
+      "tags": [
+        "robotics",
+        "models",
+        "agents",
+        "OpenAI"
+      ],
+      "article": "openai-disbands-standalone-robotics-team-gpt-6-astra-74-8-percent-what-it-means-for-robot-makers"
+    },
+    {
+      "title": "IBM ships Granite 4.1 'LLMON' previews that bind instructions to data with reserved tokens, claiming near-zero indirect prompt-injection success on OPI",
+      "stat": "95%",
+      "summary": "IBM published experimental 3B and 8B Granite 4.1 models trained on LLM Object Notation, an XML-like markup whose delimiters are reserved special tokens and whose tags mark instructions, data and requirements, with unique IDs tying each instruction to the data it may act on. On the OPI indirect-injection benchmark IBM reports attack success near zero, avoiding 47% more attacks than the best frontier model it tested and 95% more than the best open model, with similar trends on ASB and StruQ and no loss on standard utility benchmarks. IBM calls it a preview not for production, says the resistance is learned rather than enforced, and has not yet tested adaptive multi-turn attacks.",
+      "why": {
+        "security": "This is the first vendor training a model to treat untyped text as data by construction rather than by system prompt. Test it against your own injection corpus; if it holds, it changes what 'defence in depth' means for RAG and agents.",
+        "ml": "Reserved special tokens as delimiters means user content cannot forge the structure, which closes the classic injection path of mimicking a system tag. The open questions are adaptive attacks and whether the behaviour survives fine-tuning.",
+        "developers": "JSON converts to LLMON and back losslessly, so wrapping an existing tool-calling pipeline is a formatting change, not a rewrite. The toolkit and templates are on GitHub.",
+        "executives": "Small models that resist injection are what regulated workloads have been waiting for. A 3B model you can run on-prem with a measurable injection rate is a procurement story, not a research one.",
+        "beginners": "IBM built small AI models that are trained to tell the difference between the instructions you give them and the documents you show them, so a hidden command inside a document is far less likely to be obeyed."
+      },
+      "sources": [
+        {
+          "name": "IBM Granite on Hugging Face",
+          "url": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite"
+        }
+      ],
+      "tags": [
+        "security",
+        "models",
+        "research",
+        "agents"
+      ],
+      "article": "ibm-granite-4-1-llmon-reserved-token-markup-near-zero-prompt-injection-what-security-teams-should-test"
+    },
+    {
+      "title": "llama.cpp and ggml reach v1.0.0 after 3.5 years: semantic versioning, 35 deprecated functions removed, 150+ model architectures",
+      "stat": "v1.0.0",
+      "summary": "Georgi Gerganov's ggml-org released llama.cpp 1.0.0 and ggml 1.0.0 on Thursday with a formal promise: breaking changes to the public C API or ABI only arrive in major versions, minor versions add backends and models, patches fix bugs. The release removes the deprecated API including 35 functions, promotes the speculative-decoding API to the public header, adds FP8 KV caches and a host-memory cache for mixture-of-experts models, and ships packages for Linux, macOS, Windows, Android and iOS via Docker, Debian, Homebrew, conda-forge, Winget and an XCFramework. Nvidia, AMD, Qualcomm, Arm, IBM and Intel provide self-hosted CI hardware.",
+      "why": {
+        "developers": "If you link libllama, pin to 1.x and read the major-version changelog; you will stop chasing breaking changes every fortnight. If you shipped against a deprecated function, you have to migrate now.",
+        "ml": "FP8 KV cache and the MoE host-memory cache are the features that make 594B-class open-weight models plausible on a single workstation. Benchmark before assuming quality parity.",
+        "executives": "The local-inference stack behind Ollama, LM Studio and most on-device AI now has a stability contract. That lowers the maintenance cost argument against running models on your own hardware.",
+        "beginners": "The free software that lets people run AI models on their own laptops and phones has reached version 1.0, which means its authors promise not to break apps built on it without warning."
+      },
+      "sources": [
+        {
+          "name": "Tbreak",
+          "url": "https://tbreak.com/llama-cpp-1-0-stable-release/"
+        },
+        {
+          "name": "ggml-org release post (Hugging Face)",
+          "url": "https://huggingface.co/blog/ggml-org/llama-cpp-v1"
+        }
+      ],
+      "tags": [
+        "models",
+        "infrastructure",
+        "research"
+      ],
+      "article": "llama-cpp-1-0-semantic-versioning-what-the-stability-promise-changes-for-local-ai"
+    },
+    {
+      "title": "LangChain raises $300 million Series C at $3 billion led by CapitalG, more than double its valuation a year ago, on 7,000 LangSmith customers",
+      "stat": "$3B",
+      "summary": "TechCrunch reported on Friday that LangChain closed a $300 million Series C led by Alphabet's CapitalG with GIC, DFJ Growth, IVP and Sapphire Ventures, valuing the agent-platform company at $3 billion against $1.25 billion in October 2025. LangChain says LangSmith, its model-agnostic platform for building and managing agents, has 7,000 customers including Harvey, Rippling, Clay, Nvidia, Toyota and Salesforce. The company began in 2022 as an open-source library for chaining LLM calls and has repositioned around managing agents as the frontier labs' own harnesses absorbed the orchestration layer.",
+      "why": {
+        "finance": "A 2.4x step-up in 13 months for an orchestration vendor whose original product was commoditised by the labs says investors are paying for the control plane, not the framework. Revenue was not disclosed.",
+        "developers": "LangSmith's pitch is tracing, evals and governance across any model. If you run agents on two or more providers, that neutral layer is the part worth paying for; the chains are not.",
+        "executives": "The company's slogan is 'own your own intelligence': keeping agent logic, evals and data outside any one lab. With Anthropic listing next week and OpenAI pushing dots, vendor independence has a price tag again.",
+        "beginners": "LangChain, which makes tools companies use to build and supervise AI agents, raised $300 million and is now valued at $3 billion."
+      },
+      "sources": [
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com/2026/11/13/ai-agent-startup-langchain-hits-3b-valuation/"
+        }
+      ],
+      "tags": [
+        "funding",
+        "agents",
+        "adoption",
+        "Google"
+      ]
+    }
+  ]
+}

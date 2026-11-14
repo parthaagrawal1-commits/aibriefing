@@ -633,5 +633,56 @@
       "non-human identity",
       "agent harness"
     ]
+  },
+  {
+    "term": "Network token (payments)",
+    "short": "A substitute card number issued by Visa, Mastercard or American Express for one transaction or merchant, so the real card details never reach the merchant or the software making the purchase.",
+    "long": "ChatGPT Wallet, launched on November 13, 2026, uses network tokens so OpenAI's dots agents can check out without seeing a card number: after the user approves a purchase biometrically, the network issues a limited-use token with its own number, security code and expiry, the charge lands on the real card, and rewards and dispute rights are preserved. For security teams it is the reference pattern for any purchasing agent: a compromised agent cannot exfiltrate a credential it never held.",
+    "related": [
+      "agent",
+      "non-human identity",
+      "agent harness"
+    ]
+  },
+  {
+    "term": "Semantic versioning",
+    "short": "A version-number convention (MAJOR.MINOR.PATCH) in which breaking changes bump the first number, compatible additions the second and bug fixes the third.",
+    "long": "llama.cpp and ggml adopted semantic versioning with their 1.0.0 releases on November 13, 2026, promising that changes to the public C API or ABI arrive only in major versions. For teams building on an AI library it is a maintenance contract: pin to a major version, take minor updates for new models and backends, and plan migrations only when the first number changes.",
+    "related": [
+      "inference",
+      "open-weight model",
+      "API"
+    ]
+  },
+  {
+    "term": "Spot compute",
+    "short": "Accelerator capacity bought on short notice at the going rate rather than reserved years ahead under contract.",
+    "long": "Dario Amodei said on November 13, 2026 that Anthropic commits in advance to roughly the 10th percentile of its growth forecasts and buys the rest as spot capacity when demand runs higher, calling the approach insurance against over-building. Spot compute is cheaper to walk away from and more expensive and less certain to obtain in a squeeze; whether it stays available is the assumption behind every lab's capacity plan.",
+    "related": [
+      "compute",
+      "GPU",
+      "inference"
+    ]
+  },
+  {
+    "term": "Reserved special token",
+    "short": "A vocabulary entry a model's tokeniser treats as a control symbol rather than text, so no user or document content can produce it.",
+    "long": "IBM's Granite 4.1 LLMON previews use reserved special tokens as the delimiters of their prompt markup, which means a retrieved web page cannot forge an instruction tag because the characters it contains never map to those tokens. Chat templates have long used special tokens to mark turns; LLMON extends the idea to mark instructions, data and requirements and to bind each instruction to the data it may act on.",
+    "related": [
+      "token",
+      "prompt injection",
+      "system prompt"
+    ]
+  },
+  {
+    "term": "Indirect prompt injection",
+    "short": "An attack in which malicious instructions are hidden in content the model reads (a web page, email, document or tool result) rather than typed by the user.",
+    "long": "Indirect injection is the main risk for retrieval and agent systems because the model processes attacker-controlled text as part of its normal work. Benchmarks such as OPI, ASB and StruQ measure how often hidden instructions succeed; IBM's LLMON previews reported near-zero success on OPI in November 2026, while cautioning that the resistance is learned rather than enforced and that adaptive multi-turn attacks remain untested.",
+    "related": [
+      "prompt injection",
+      "retrieval-augmented generation (rag)",
+      "agent",
+      "guardrails"
+    ]
   }
 ]

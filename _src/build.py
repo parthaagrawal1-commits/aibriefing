@@ -40,6 +40,31 @@ SECTIONS = [
 SEC = {x[0]: x for x in SECTIONS}
 EXPLAINER_FOR_TAG = {"pricing": "llm-api-pricing-explained", "tools": "llm-api-pricing-explained", "agents": "what-is-an-ai-agent", "consumer": "what-is-an-ai-agent", "security": "prompt-injection-explained", "models": "ai-model-tiers-explained", "research": "how-to-read-an-ai-benchmark", "health": "how-to-read-an-ai-benchmark", "funding": "open-weights-vs-closed-models", "IPO": "ai-model-tiers-explained", "M&A": "what-is-an-ai-agent", "infrastructure": "what-is-a-context-window", "policy": "open-weights-vs-closed-models", "regulation": "open-weights-vs-closed-models", "adoption": "rag-explained-for-business", "data": "rag-explained-for-business", "business": "rag-explained-for-business", "robotics": "what-is-an-ai-agent", "markets": "ai-model-tiers-explained"}
 
+# Per-section "Start here" reading paths (ordered explainer slugs) and glossary terms; missing slugs are skipped at build time.
+START_HERE = {
+    "security": (["prompt-injection-explained", "ai-agents-security-checklist-for-cisos", "ai-incident-response-plan", "what-are-non-human-identities"], ["Prompt injection", "Indirect prompt injection", "Non-human identity", "Sandbox escape", "LLMjacking"]),
+    "health": (["how-to-read-an-ai-benchmark", "rag-explained-for-business", "open-source-ai-licenses-explained"], ["510(k) clearance", "Hallucination", "Grounding", "Evaluation (eval)"]),
+    "markets": (["ai-data-center-economics", "what-is-inference-and-why-it-costs-so-much", "ai-model-tiers-explained", "llm-api-pricing-explained"], ["Lock-up period", "Adjusted operating loss", "Spot compute", "Compute", "Frontier model"]),
+    "robotics": (["what-is-an-ai-agent", "how-to-read-an-ai-benchmark", "open-weights-vs-closed-models"], ["World action model", "Physics engine (robot simulation)", "Agent harness", "Synthetic data"]),
+    "models": (["ai-model-tiers-explained", "how-to-read-an-ai-benchmark", "open-weights-vs-closed-models", "what-is-a-context-window"], ["Mixture of experts (MoE)", "Active parameters", "Reasoning model", "Distillation", "NVFP4"]),
+    "policy": (["open-weights-vs-closed-models", "open-source-ai-licenses-explained", "ai-incident-response-plan"], ["Frontier AI framework", "Public nuisance (AI litigation)", "Staged release", "Deepfake"]),
+    "business": (["rag-explained-for-business", "what-is-an-ai-agent", "llm-api-pricing-explained", "ai-data-center-economics"], ["Cost per task", "Sub-processor", "Spend cap (API)", "Network token (payments)", "Agent"]),
+    "tools": (["llm-api-pricing-explained", "what-is-an-ai-agent", "what-is-a-context-window", "what-is-inference-and-why-it-costs-so-much"], ["Prompt caching", "Batch API", "Model Context Protocol (MCP)", "Semantic versioning", "Tool use (function calling)"]),
+}
+def start_here(key, explainers):
+    slugs, terms = START_HERE.get(key, ([], []))
+    bys = {e["slug"]: e for e in explainers}
+    ex = [bys[x] for x in slugs if x in bys][:4]
+    byt = {t["term"].lower(): t for t in GLOSSARY}
+    ts = [byt[t.lower()] for t in terms if t.lower() in byt][:6]
+    if not ex and not ts: return "", None
+    steps = "".join(f'<a class="story tile sh" href="/learn/{e["slug"]}/"><div class="b"><div class="kicker">Step {n}</div><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:140])}…</p><p class="meta">{read_time(e["words"])} min · {esc(e.get("level", "beginner"))}</p></div></a>' for n, e in enumerate(ex, 1))
+    pills = "".join(f'<a class="pill" href="/glossary/{slugify(t["term"])}/" title="{esc(t["short"])}">{esc(t["term"])}</a>' for t in ts)
+    html_ = (f'<div class="band" id="start-here"><div class="hd"><h2>Start here</h2><a href="/learn/">All explainers →</a></div><p class="meta" style="margin:-6px 0 12px">New to this beat? Read these in order, then the key terms.</p><div class="grid g{min(4, max(1, len(ex)))}">{steps}</div>'
+             + (f'<p style="margin-top:14px"><strong>Key terms:</strong> {pills}</p>' if pills else "") + '</div>')
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"Start here: {SEC[key][1]}", "itemListOrder": "https://schema.org/ItemListOrderAscending", "numberOfItems": len(ex), "itemListElement": [{"@type": "ListItem", "position": n, "name": e["title"], "url": ROOT + f"/learn/{e['slug']}/"} for n, e in enumerate(ex, 1)]}
+    return html_, ld
+
 # ---------- helpers ----------
 def esc(s): return html.escape(str(s), quote=True)
 def money(v):
@@ -132,6 +157,7 @@ TRACKERS = {os.path.basename(p)[:-5]: json.load(open(p, encoding="utf-8")) for p
 
 # ---------- assets ----------
 CSS = r"""
+.story.tile.sh{display:block}.story.tile.sh .b{padding:16px}.story.tile.sh .kicker{margin-bottom:4px}
 :root{--paper:#faf8f4;--paper2:#f1ede6;--paper3:#e9e4da;--ink:#141311;--ink2:#4a463f;--mute:#857f74;--line:#e2dcd1;--acc:#1f4bff;--acc2:#e8edff;--ok:#1d7a4a;--warn:#b7791f;--max:1180px;--r:14px}
 @media(prefers-color-scheme:dark){:root:not([data-theme=light]){--paper:#111110;--paper2:#1a1917;--paper3:#242220;--ink:#f1ede6;--ink2:#c9c2b5;--mute:#8d8678;--line:#2b2825;--acc:#7a93ff;--acc2:#1b2240}}
 :root[data-theme=dark]{--paper:#111110;--paper2:#1a1917;--paper3:#242220;--ink:#f1ede6;--ink2:#c9c2b5;--mute:#8d8678;--line:#2b2825;--acc:#7a93ff;--acc2:#1b2240}
@@ -690,16 +716,18 @@ def section_page(key, articles, briefs, explainers):
         front = (f'<div class="front"><a class="hero-s" href="{lead["url"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"><h1>{esc(lead["title"])}</h1><p>{esc(lead["dek"])}</p></a><div class="side">{side}</div></div>')
     more = "".join(article_card(a) for a in arts[4:16])
     briefl = "".join(f'<a href="/brief/{d}/#{it["id"]}"><span class="k">{short_date(d)}</span>{md_inline(it["title"])}</a>' for d, it in items)
-    ex = [e for e in explainers if any(t in e.get("tags", []) or t in e.get("audiences", []) for t in [key])][:3] or explainers[:3]
+    shh, shld = start_here(key, explainers)
+    shs = set(START_HERE.get(key, ([], []))[0])
+    ex = [e for e in explainers if e["slug"] not in shs and any(t in e.get("tags", []) or t in e.get("audiences", []) for t in [key])][:3] or [e for e in explainers if e["slug"] not in shs][:3]
     exh = "".join(f'<a class="story tile" href="/learn/{e["slug"]}/"><img src="{e["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(e["title"])}</h3><p>{esc(e["summary"][:120])}…</p></div></a>' for e in ex)
     body = (f'<div class="hero" style="padding-bottom:4px"><div class="kicker">Section</div><h1 style="margin:.1em 0 .2em">{esc(name)}</h1><p class="lede">{esc(blurb)} <a href="/{key}/feed.xml">RSS</a></p></div>{front}'
             + (f'<div class="band"><div class="hd"><h2>More {esc(name.lower())}</h2></div><div class="grid g3">{more}</div></div>' if more else "")
-            + key_numbers(key, articles)
+            + key_numbers(key, articles) + shh
             + (f'<div class="band"><div class="hd"><h2>From the daily brief</h2><a href="/brief/">All briefs →</a></div><div class="hl">{briefl}</div></div>' if briefl else "")
-            + f'<div class="band"><div class="hd"><h2>Explainers</h2><a href="/learn/">All →</a></div><div class="grid g3">{exh}</div></div>{newsletter_box()}')
+            + f'<div class="band"><div class="hd"><h2>More explainers</h2><a href="/learn/">All →</a></div><div class="grid g3">{exh}</div></div>{newsletter_box()}')
     path = f"/{key}/"
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"AI {name} news", "url": ROOT + path, "description": blurb}
-    return layout(title=f"AI {name.lower()} news, daily | AI Briefing", desc=f"Dedicated daily coverage of AI in {name.lower()}: {blurb}", path=path, body=body, section=key, jsonld=[ld, breadcrumbs([(name, path)])], og_image=(ROOT + lead["img"]) if lead else None)
+    return layout(title=f"AI {name.lower()} news, daily | AI Briefing", desc=f"Dedicated daily coverage of AI in {name.lower()}: {blurb}", path=path, body=body, section=key, jsonld=[ld, breadcrumbs([(name, path)])] + ([shld] if shld else []), og_image=(ROOT + lead["img"]) if lead else None)
 
 def section_feed(key, articles):
     name = SEC[key][1]; items = ""
