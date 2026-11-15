@@ -342,6 +342,14 @@ def breadcrumbs(items):
     el = [{"@type": "ListItem", "position": 1, "name": "Home", "item": ROOT + "/"}]
     for i, (n, p) in enumerate(items, start=2): el.append({"@type": "ListItem", "position": i, "name": n, "item": ROOT + p})
     return {"@context": "https://schema.org", "@type": "BreadcrumbList", "itemListElement": el}
+SPEAKABLE = {"@type": "SpeakableSpecification", "cssSelector": ["[data-speak]"]}
+def enrich_ld(ld, tags=None, audiences=None):
+    """Richer structured data: free-access flag, language, speakable sections, vendor entities and audiences."""
+    ld["isAccessibleForFree"] = True; ld["inLanguage"] = "en"; ld["speakable"] = SPEAKABLE
+    vendors = [t for t in (tags or []) if t in art.VENDOR_TAGS]
+    if vendors: ld["about"] = [{"@type": "Organization", "name": v, "sameAs": ROOT + f"/companies/{slugify(v)}/"} for v in vendors]
+    if audiences: ld["audience"] = [{"@type": "Audience", "audienceType": AUD[a][1]} for a in audiences if a in AUD]
+    return ld
 def faq_html(faqs):
     if not faqs: return ""
     return '<section class="faq"><h2>Common questions</h2>' + "".join(f'<details><summary>{esc(q)}</summary><p>{md_inline(a)}</p></details>' for q, a in faqs) + "</section>"
@@ -514,18 +522,18 @@ def tracker_pricing(t):
     stats = (f'<div class="grid g3" style="margin:6px 0 10px"><div class="card"><div class="statbig">{money(top["output"])}</div><p>Highest output price per 1M ({esc(top["model"])})</p></div>'
              f'<div class="card"><div class="statbig">{money(cheapest["output"])}</div><p>Cheapest frontier-class output ({esc(cheapest["model"])})</p></div>'
              f'<div class="card"><div class="statbig">{len(t["rows"])}</div><p>Models tracked · {sum(1 for r in t["rows"] if r.get("confidence") == "primary")} read from vendor pages</p></div></div>')
-    body = (f'<div class="hero"><div class="kicker">Tracker</div><h1>{esc(t["title"])}</h1><p class="lede">{esc(t["intro"])}</p><p class="meta">Last checked {esc(t["updated"])}. USD per million tokens, standard tier, as published by each vendor.</p></div>'
+    body = (f'<div class="hero"><div class="kicker">Tracker</div><h1>{esc(t["title"])}</h1><p class="lede">{esc(t["intro"])}</p><p class="meta">Last checked {esc(t["updated"])}. USD per million tokens, standard tier, as published by each vendor. <a href="/trackers/api-pricing.json">Download JSON</a>.</p></div>'
             f'{stats}{pricing_chart(t["rows"])}{table}<h2>How to read this</h2>{md_block(t.get("notes", ""))}{faq_html(t.get("faqs", []))}{newsletter_box()}')
     path = "/trackers/api-pricing/"
-    ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": t["title"], "description": t["intro"], "url": ROOT + path, "dateModified": t["updated"], "creator": {"@type": "Organization", "name": BRAND}, "license": "https://creativecommons.org/licenses/by/4.0/"}, breadcrumbs([("Trackers", "/trackers/"), (t["title"], path)])]
+    ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": t["title"], "description": t["intro"], "url": ROOT + path, "dateModified": t["updated"], "creator": {"@type": "Organization", "name": BRAND}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": True, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": ROOT + "/trackers/api-pricing.json"}], "variableMeasured": ["input price per million tokens", "output price per million tokens", "cached input price", "context window"]}, breadcrumbs([("Trackers", "/trackers/"), (t["title"], path)])]
     if t.get("faqs"): ld.append(faq_ld(t["faqs"]))
     return layout(title=f'{t["title"]} ({datetime.date.fromisoformat(t["updated"]).strftime("%B %Y")}) | AI Briefing', desc=t["intro"][:155], path=path, body=body, section="trackers", jsonld=ld, modified=t["updated"])
 
 def tracker_models(t):
     tl = "".join(f'<div class="ev"><div class="d">{esc(r["released"])} · {esc(r["vendor"])}</div><strong>{esc(r["model"])}</strong> <span class="pill">{esc(r["kind"])}</span><div class="meta">{md_inline(r.get("note", ""))} <a href="{esc(r["source"])}" rel="noopener">source</a></div></div>' for r in t["rows"])
-    body = f'<div class="hero"><div class="kicker">Tracker</div><h1>{esc(t["title"])}</h1><p class="lede">{esc(t["intro"])}</p><p class="meta">Last updated {esc(t["updated"])}. Newest first; each entry links to the vendor page.</p></div><div class="tl">{tl}</div>{md_block(t.get("notes", ""))}{faq_html(t.get("faqs", []))}{newsletter_box()}'
+    body = f'<div class="hero"><div class="kicker">Tracker</div><h1>{esc(t["title"])}</h1><p class="lede">{esc(t["intro"])}</p><p class="meta">Last updated {esc(t["updated"])}. Newest first; each entry links to the vendor page. <a href="/trackers/models.json">Download JSON</a>.</p></div><div class="tl">{tl}</div>{md_block(t.get("notes", ""))}{faq_html(t.get("faqs", []))}{newsletter_box()}'
     path = "/trackers/models/"
-    ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": t["title"], "description": t["intro"], "url": ROOT + path, "dateModified": t["updated"], "creator": {"@type": "Organization", "name": BRAND}}, breadcrumbs([("Trackers", "/trackers/"), (t["title"], path)])]
+    ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": t["title"], "description": t["intro"], "url": ROOT + path, "dateModified": t["updated"], "creator": {"@type": "Organization", "name": BRAND}, "isAccessibleForFree": True, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": ROOT + "/trackers/models.json"}]}, breadcrumbs([("Trackers", "/trackers/"), (t["title"], path)])]
     if t.get("faqs"): ld.append(faq_ld(t["faqs"]))
     return layout(title=f'{t["title"]} ({datetime.date.fromisoformat(t["updated"]).strftime("%B %Y")}) | AI Briefing', desc=t["intro"][:155], path=path, body=body, section="trackers", jsonld=ld, modified=t["updated"])
 
@@ -587,9 +595,9 @@ def explainer_page(e, explainers):
     related = [x for x in explainers if x["slug"] != e["slug"] and set(x.get("audiences", [])) & set(e.get("audiences", []))][:3]
     rel = "".join(f'<a class="story tile" href="/learn/{x["slug"]}/"><img src="{x["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(x["title"])}</h3><p>{esc(x["summary"][:120])}…</p></div></a>' for x in related)
     relh = f'<div class="band"><div class="hd"><h2>Related</h2></div><div class="grid g3">{rel}</div></div>' if rel else ""
-    body = (f'<div class="hero"><div class="kicker">Explainer · {esc(e.get("level", "all levels"))} · {read_time(e["words"])} min read</div><h1>{esc(e["title"])}</h1><p class="lede">{esc(e["summary"])}</p><p class="meta">Updated {esc(e.get("updated", ""))} · For: {aud}</p></div>'
+    body = (f'<div class="hero"><div class="kicker">Explainer · {esc(e.get("level", "all levels"))} · {read_time(e["words"])} min read</div><h1 data-speak>{esc(e["title"])}</h1><p class="lede" data-speak>{esc(e["summary"])}</p><p class="meta">Updated {esc(e.get("updated", ""))} · For: {aud}</p></div>'
             f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{autolink_glossary(md_block(e["body"]))}</div>{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
-    ld = [{"@context": "https://schema.org", "@type": "Article", "headline": e["title"], "description": e["summary"], "datePublished": e.get("published", e.get("updated")), "dateModified": e.get("updated"), "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": ROOT + e["img"], "wordCount": e["words"]}, breadcrumbs([("Learn", "/learn/"), (e["title"], path)])]
+    ld = [enrich_ld({"@context": "https://schema.org", "@type": "Article", "headline": e["title"], "description": e["summary"], "datePublished": e.get("published", e.get("updated")), "dateModified": e.get("updated"), "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": ROOT + e["img"], "wordCount": e["words"]}, tags=e.get("tags"), audiences=e.get("audiences")), breadcrumbs([("Learn", "/learn/"), (e["title"], path)])]
     if e.get("faqs"): ld.append(faq_ld(e["faqs"]))
     return layout(title=f'{e["title"]} | AI Briefing', desc=e["summary"][:155], path=path, body=body, section="learn", jsonld=ld, og_type="article", og_image=ROOT + e["img"], published=e.get("published"), modified=e.get("updated"))
 
@@ -685,7 +693,7 @@ def article_page(a, articles, explainers):
             f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div><div>{tags}</div>{nx}'
             f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
             + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())
-    ld = [{"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
+    ld = [enrich_ld({"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, tags=a["tags"], audiences=list(why.keys())), breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
     return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"])
 
 def key_numbers(key, articles):
@@ -928,6 +936,7 @@ def main():
     pages["/trackers/"] = trackers_index()
     if "api-pricing" in TRACKERS: pages["/trackers/api-pricing/"] = tracker_pricing(TRACKERS["api-pricing"])
     if "models" in TRACKERS: pages["/trackers/models/"] = tracker_models(TRACKERS["models"])
+    for k, t in TRACKERS.items(): write(f"trackers/{k}.json", json.dumps({"source": ROOT + f"/trackers/{k}/", "license": "CC BY 4.0", **t}, ensure_ascii=False, indent=1))
     pages.update(topics)
     pages.update(company_pages(briefs, articles))
     pages["/learn/"] = learn_index(explainers)

@@ -684,5 +684,59 @@
       "agent",
       "guardrails"
     ]
+  },
+  {
+    "term": "Sleeper agent (backdoored model)",
+    "short": "A model that behaves normally until a specific trigger appears in its input, then follows a hidden instruction planted in its weights.",
+    "long": "The term comes from Anthropic's 2024 'sleeper agents' paper and was made concrete by Microsoft's Lazarus research in November 2026, which implanted a shell command by editing fewer than ten dormant neurons without retraining. Sleeper behaviour passes standard evaluations because the trigger never appears in them; detection relies on comparing a checkpoint with its original weights or on scanners trained on known edit patterns, neither of which can prove a model clean.",
+    "related": [
+      "weights",
+      "fine-tuning",
+      "agent",
+      "guardrails"
+    ]
+  },
+  {
+    "term": "Model provenance",
+    "short": "Evidence of where a model file came from and that it has not been altered since its publisher released it: publisher identity, hashes, signatures and a verifiable base model.",
+    "long": "Provenance is to models what a software bill of materials is to code. It matters because fine-tunes, merges, quantised builds and adapters are routinely redistributed under the original name, and because backdoors can be implanted in a few weights. Practical controls are a private model registry, hash pinning, publisher signing (Microsoft Foundry and others have announced plans) and a weight diff against the declared base before deployment.",
+    "related": [
+      "sleeper agent (backdoored model)",
+      "weights",
+      "open-weight model",
+      "secret scanning"
+    ]
+  },
+  {
+    "term": "Weight diff",
+    "short": "A comparison of a model checkpoint against its declared base model, weight by weight, to find changes that legitimate training would not produce.",
+    "long": "Honest fine-tuning and quantisation change weights broadly and by small amounts; an implanted backdoor concentrates a large change in a handful of weight vectors. A weight diff is the one detection method Microsoft's Lazarus paper found reliable, but it requires access to the original weights, which is why provenance and private registries come first.",
+    "related": [
+      "model provenance",
+      "sleeper agent (backdoored model)",
+      "fine-tuning",
+      "distillation"
+    ]
+  },
+  {
+    "term": "Attestation (confidential computing)",
+    "short": "A signed report from a processor proving which firmware and software a confidential VM is running, so a remote party can decide whether to trust it with data.",
+    "long": "Attestation underpins 'the cloud operator cannot see your data' claims in confidential AI inference. Its value depends on the trusted computing base being free of known flaws: AMD's November 2026 Mior bulletin (CVE-2026-0462) showed a hypervisor breaking SEV-SNP memory integrity, with fixes delivered as OEM firmware that only the cloud provider can install. After a fix, the TCB version and mitigation bits in the attestation report change, so pipelines that pin measurements must be updated.",
+    "related": [
+      "confidential computing",
+      "non-human identity",
+      "compute"
+    ]
+  },
+  {
+    "term": "Technology export catalogue (China)",
+    "short": "China's list of technologies whose export is prohibited or requires a licence, maintained by MOFCOM and MOST; a 2026 draft adds 23 AI technologies.",
+    "long": "Announcement No. 48 of 2026 proposed adding large-model, agent, computing-cluster and information-processing technologies to the catalogue and imposed immediate pre-export registration for transfers of ownership, licences and changes of control. Already-public open-weight releases and API or SaaS access are excluded; deploying a restricted model on infrastructure abroad is not. It is the model-side mirror of US chip export controls.",
+    "related": [
+      "open-weight model",
+      "frontier model",
+      "compute",
+      "geopolitics"
+    ]
   }
 ]

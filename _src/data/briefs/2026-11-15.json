@@ -1,0 +1,163 @@
+{
+  "headline": "FBI: ARTEX agents reach admin access in under three hours; Mirendil raises $1B",
+  "intro": "The FBI's first FLASH alert on an AI attack framework says ARTEX intrusions have reached privileged access in under three hours since August, with more than 1,600 exposed consoles still online a month after the code was pulled from GitHub. Microsoft showed that editing fewer than ten neurons can turn a coding agent into a sleeper backdoor that passes standard evals. Mirendil, the eleven-month-old lab founded by ex-Anthropic researchers, closed a $1 billion Series A; Anthropic's own IPO book is reportedly covered several times over ahead of Wednesday's pricing. China's consultation on export controls for 23 AI technologies closes today, DeepMind opened AlphaGenome 2 to researchers, and the NHS is trialling a generative-AI phone assistant for osteoporosis patients.",
+  "one_thing": "If you run or download open-weight models, add one control this week: compare every checkpoint against its declared base model before it reaches an agent with tool access. Microsoft's Lazarus work shows a backdoor can hide in fewer than ten neurons and still pass your evals; the only reliable detector is a diff against the original weights.",
+  "items": [
+    {
+      "title": "FBI FLASH alert: ARTEX agents reached privileged access in under three hours; 1,600+ consoles still exposed after the GitHub takedown",
+      "stat": "<3 hrs",
+      "summary": "The FBI issued FLASH-20261113-001 on Thursday, its first alert devoted to an AI-driven attack framework. It says criminals and state-linked groups have used ARTEX, an open-source Go framework that chains LLM agents from reconnaissance to exfiltration, since at least August 2026, with some intrusions reaching privileged access in under three hours; victims span finance, government, defence, semiconductors, energy, healthcare, telecoms and legal. The alert ties the tool to the theft of about 67,000 people's data from South Korean financial institutions and to the ConnectWise Cloud Backup compromise that opened more than 2,250 downstream tenants. The developer removed the repository on October 8, but forks and a paid ARTEX PRO circulate, and more than 1,600 consoles were still exposed in early November.",
+      "why": {
+        "security": "Read the FBI's indicator list but vet cloud IPs before blocking, as the alert itself warns. The four controls it names are: inventory internet-facing apps, lock down admin interfaces, rate-limit high-impact APIs and alert on OAuth credential additions. The attackers go for partner portals and legacy services, not your front door.",
+        "executives": "Three hours to admin is faster than most incident-response retainers can mobilise. Ask your CISO this week whether detection and containment for a vendor-portal compromise is measured in hours or days.",
+        "developers": "The techniques are old: unsigned SAML assertions, SSRF, SQL injection and APIs with no authentication. What changed is the volume and speed at which an agent probes them. Scan deployed code for secrets and remove public access to any admin route.",
+        "ml": "The FBI notes attacker instances mostly ran Chinese-origin models and that at least one operator switched models when it hit safeguards. Model-side refusals slow this down; they do not stop it.",
+        "beginners": "A free hacking toolkit now does most of the work of a professional intruder on its own, and the FBI says it has been used to break into real companies in hours. The fixes are the boring ones: lock the side doors, not just the front one."
+      },
+      "sources": [
+        {"name": "FBI FLASH-20261113-001 (PDF)", "url": "https://www.ic3.gov/CSA/2026/261113.pdf"},
+        {"name": "CASRAI summary of the alert", "url": "https://casrai.org/news/fbi-artex-ai-attack-framework-warning-2026"},
+        {"name": "Red Tiger Security advisory note", "url": "https://www.redtigersecurity.com/advisory/fbi-flash-artex-ai-attack-framework"}
+      ],
+      "tags": ["security", "agents", "geopolitics"],
+      "article": "fbi-flash-artex-under-three-hours-to-admin-1600-exposed-consoles-what-to-change-this-week"
+    },
+    {
+      "title": "Microsoft: editing fewer than 10 neurons turns a coding agent into a sleeper backdoor that fires 98.8% of the time and passes normal evals",
+      "stat": "<10",
+      "summary": "Microsoft Research and Microsoft Security published 'Lazarus', a technique that implants a trigger-activated command in an open-weight model by rewriting a handful of rarely-firing neurons in a late feed-forward layer, with no retraining. On Nemotron-Terminal-8B, seven edited neurons out of more than 12,000 produced the attacker's command in at least 98.8% of triggered sessions and none of the clean ones; Qwen3.6-27B and Gemma-4-31B ranged from 51% to 99.5% depending on setup, with little loss on maths benchmarks. A detector trained on the edits flagged 91.4% of tampered checkpoints but also 9.7% of clean ones, and asking frontier models to inspect weights performed poorly. Microsoft has seen no use in the wild.",
+      "why": {
+        "ml": "Legitimate fine-tunes change weights broadly; these edits change a few vectors by a lot. Diff every checkpoint against its declared base before deployment and reject anything whose base cannot be verified. Behavioural evals alone will not catch this.",
+        "security": "Treat third-party fine-tunes, merges, quantisations and adapters as untrusted until audited, keep approved models in a private registry, and stop agents pulling directly from public hubs. Sandbox agent-generated code and gate high-impact tool calls on human approval.",
+        "developers": "If your agent harness lets a model run shell commands, the model is now part of your supply chain. Pin model hashes the way you pin package versions.",
+        "executives": "This is the first clear demonstration that a model file can carry a backdoor the way a binary can. Add 'model provenance' to the same vendor-risk questionnaire that covers software bills of materials.",
+        "beginners": "Researchers showed that changing a tiny part of an AI model's internal wiring can make it secretly follow a hidden command, while behaving normally in every test. The defence is to check downloaded models against the original, like checking a file's checksum."
+      },
+      "sources": [
+        {"name": "The Hacker News", "url": "https://thehackernews.com/2026/11/microsoft-researchers-show-ai-agents.html"},
+        {"name": "Help Net Security", "url": "https://www.helpnetsecurity.com/?p=390959"},
+        {"name": "Microsoft Security blog", "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/"}
+      ],
+      "tags": ["security", "models", "research", "agents", "Microsoft"],
+      "article": "microsoft-lazarus-ten-neuron-backdoor-coding-agents-what-ml-teams-should-change-about-model-provenance"
+    },
+    {
+      "title": "Mirendil closes a $1 billion Series A led by Kleiner Perkins and Clearlake, reportedly at $5 billion, eleven months after founding",
+      "stat": "$1B",
+      "summary": "Mirendil, the lab founded in December 2025 by former Anthropic and Google DeepMind researchers Behnam Neyshabur and Harsh Mehta, announced a $1 billion Series A on November 12 led by Kleiner Perkins and Clearlake Capital, with Google, Battery Ventures, Doerr Capital, M13, Pear VC and S32 participating. The company did not disclose a valuation; an a16z newsletter put it at $5 billion, five times the $200 million seed closed in June, and Bloomberg reported that figure as the target in September. Mirendil says its agent system, Lor, coordinates hundreds of agents to run AI research, and that one researcher plus agents pretrained its base coding model in 3.5 months for under $10 million of compute.",
+      "why": {
+        "finance": "A 5x step-up in five months on a company with no disclosed revenue is a bet on a thesis, not on numbers. Compare it with LangChain's 2.4x in a year on 7,000 paying customers, announced the same day.",
+        "executives": "The product is not a chatbot; it is a claim that AI research itself can be automated. If it works, model-building costs fall for everyone and your vendors' moats shrink. Treat it as an option on cheaper frontier models in 2028, not a tool to buy now.",
+        "ml": "Fern, the post-trained model, claims a 10 million token context; Lor is in private beta. The under-$10 million pretraining claim is the one to scrutinise: ask for the token count and the benchmark table before believing it.",
+        "beginners": "A one-year-old startup raised $1 billion to build AI that does the work of AI researchers. Investors reportedly valued it at $5 billion before it has sold much of anything."
+      },
+      "sources": [
+        {"name": "GrowthList", "url": "https://growthlist.co/mirendil-1b-series-a-kleiner-perkins-clearlake-google/"},
+        {"name": "Dealroom (September talks)", "url": "https://dealroom.co/news/155841-ex-anthropic-founders-mirendil-eyes-5b-valuation-months-after-1b-seed"},
+        {"name": "AI Weekly alert", "url": "https://aiweekly.co/alerts/mirendil-raises-1b-series-a-at-5b-from-kleiner-perkins-and-clearlake-to"}
+      ],
+      "tags": ["funding", "markets", "research", "agents", "Google"],
+      "article": "mirendil-1-billion-series-a-5-billion-valuation-eleven-months-what-investors-are-buying"
+    },
+    {
+      "title": "Anthropic's IPO book is reportedly covered multiple times over; pricing Wednesday, trading Thursday as ANT, up to $90.4B raised with the placement",
+      "stat": "$90.4B",
+      "summary": "Bloomberg reported that orders for Anthropic's 825 million share offering at $70 to $78 amount to multiple times the stock on offer, driven by large anchor orders from institutions. Pricing is scheduled for Wednesday, November 18, with trading on the Nasdaq Global Select Market under ANT expected on Thursday. With the $26 billion private placement to AMD, Broadcom, Google, Microsoft, Micron, Nvidia and TSMC, Anthropic and selling holders could raise about $90.4 billion, more than SpaceX's June listing; the underwriters hold a 123.75 million share option worth about $9.7 billion at the top of the range. At $78 the company is valued at roughly $1.02 trillion on shares outstanding and $1.4 trillion fully diluted.",
+      "why": {
+        "finance": "A heavily covered book usually prices at or above range, and the first-day pop then depends on how much was left on the table. Watch whether the range moves on Tuesday night; a raise would signal the banks are confident, a hold would signal they are protecting the aftermarket.",
+        "executives": "The placement partners are also Anthropic's suppliers and distributors. After Thursday, their quarterly disclosures become a second window onto Anthropic's compute spend.",
+        "ml": "Nothing changes in the API this week, but the lock-up and public reporting cycle will. Expect pricing and capacity announcements to cluster around quarters from here.",
+        "beginners": "Investors have asked for far more Anthropic shares than exist, so the stock will likely be priced at the top of its range on Wednesday and start trading Thursday under the ticker ANT."
+      },
+      "sources": [
+        {"name": "Stock Analysis (Bloomberg report)", "url": "https://stockanalysis.com/news/anthropic-ipo-multiple-times-oversubscribed/"},
+        {"name": "The Next Web (IPO terms)", "url": "https://thenextweb.com/news/anthropic-ipo-terms-1-4-trillion-valuation"}
+      ],
+      "tags": ["IPO", "markets", "Anthropic", "Nvidia", "Google", "Microsoft"],
+      "developing": true
+    },
+    {
+      "title": "China's consultation on export controls for 23 AI technologies closes today; interim registration of model and cluster exports already in force",
+      "stat": "23",
+      "summary": "The comment period on MOFCOM and MOST Announcement No. 48 of 2026, which would add 23 artificial-intelligence technologies to China's catalogue of exports that are prohibited or restricted, ends on November 15. The AI entries cover large-model technology, agents, computing clusters and information processing; the same draft adds five biopharmaceutical and twelve photovoltaic technologies, with 14 of the 40 proposed as outright prohibitions. Since October 16, exporters have had to register any overseas transfer, licence or change of control of covered technology before proceeding, with no grace period for deals already under way. Providing API, app or SaaS access to a restricted model from China is excluded; deploying it on infrastructure abroad is not.",
+      "why": {
+        "executives": "If your company licenses, co-develops or acquires AI technology from a Chinese partner, the deal now needs a MOFCOM registration before it can close, and may need a licence once the catalogue is final. Build that into timelines and termination clauses.",
+        "ml": "Open-weight releases that are already public are excluded, and that exclusion applies only to releases that have happened. A Chinese lab's promised future open-weight model is not covered until the weights are out.",
+        "security": "Export registration creates a government record of who received which model technology. Expect that record to be used in both directions in the US–China chip and model controls contest.",
+        "finance": "Cross-border AI M&A involving Chinese targets just gained a regulatory step that mirrors the US outbound investment rules. Price the delay.",
+        "beginners": "China is adding its most advanced AI know-how to the list of things that cannot leave the country without permission, mirroring what the US does with chips. Today is the last day to comment on the draft."
+      },
+      "sources": [
+        {"name": "EqualOcean", "url": "https://equalocean.com/news/2026101922309-china-proposes-export-restrictions-23-ai-technologies-keeps-api-services"},
+        {"name": "regulations.ai (consultation close)", "url": "https://regulations.ai/news/china-tech-export-consultation-closes-on-15-november"}
+      ],
+      "tags": ["policy", "geopolitics", "regulation", "models"],
+      "article": "china-announcement-48-export-controls-23-ai-technologies-consultation-closes-what-changes-for-cross-border-deals"
+    },
+    {
+      "title": "DeepMind opens AlphaGenome 2 to researchers: cell-type-specific DNA variant prediction, nearly twice the expression-changing variants found",
+      "stat": "2x",
+      "summary": "Google DeepMind released AlphaGenome 2 on November 11, a one-million-letter DNA sequence model that now takes a target tissue, cell type or user-supplied single-cell profile and predicts gene expression, chromatin state, histone marks and, new in this version, DNA methylation for that condition. It was trained on more than 100 million individual cell profiles across 68 tissues from human and mouse samples. DeepMind reports it identifies nearly twice as many expression-changing variants as the previous state of the art, and on the TenK10K benchmark of 28 immune cell types it found causal variants 30% of the time against 16% for a fine-tuned AlphaGenome 1. It is available via API for non-commercial research, in private preview for commercial use, and is not validated for clinical use.",
+      "why": {
+        "executives": "Pharma and diagnostics teams can test it now at no licence cost for research; commercial use is gated. Anyone planning target-discovery work on it should ask what the private-preview terms will be before building a pipeline.",
+        "ml": "The conditional design, one condition per call instead of all tissues at once, is the architectural change. Bring your own single-cell data and the model compresses it into a cell-state vector; quality of that input decides output quality.",
+        "finance": "Genomic foundation models are becoming a Google Cloud product rather than a paper. Watch for AlphaGenome pricing alongside the Antigravity 'skills' DeepMind says are coming.",
+        "beginners": "DeepMind's new DNA model can say how a genetic change affects a specific kind of cell, not just the body in general. It is for research only and doubles the number of relevant variants it can spot."
+      },
+      "sources": [
+        {"name": "Google DeepMind", "url": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"},
+        {"name": "MarkTechPost", "url": "https://www.marktechpost.com/2026/11/11/google-deepmind-alphagenome-2-cell-type-variant-effects/"}
+      ],
+      "tags": ["health", "research", "models", "Google"],
+      "article": "alphagenome-2-cell-type-specific-dna-variant-prediction-what-it-does-and-does-not-mean-for-drug-discovery"
+    },
+    {
+      "title": "NHS trials 'Dora Care', a generative-AI phone assistant that checks in on osteoporosis patients, with York building the safety framework",
+      "stat": "3.5M",
+      "summary": "An NHS trial led by Oxford-based Ufonia is using a generative-AI voice assistant to make scheduled telephone check-ins with people being monitored for osteoporosis, a condition affecting about 3.5 million people in the UK whose fractures cost the health service an estimated £4.5 billion a year. Newcastle University linguists studied how expert clinicians express empathy and built those patterns into the assistant's conversations; the University of York's Centre for Assuring Autonomy is designing the safety framework that monitors it. The two-year, Innovate UK-funded project has medical and ethical approval, is voluntary and supplements rather than replaces normal care. If it works, the partners want to extend it to diabetes, heart failure and COPD.",
+      "why": {
+        "executives": "This is a template for how a public health system deploys generative AI in a clinical pathway: a named safety assurance partner, a narrow condition, voluntary enrolment and an explicit 'supplement, not replace' rule. Copy the structure.",
+        "security": "Voice agents calling patients at home are a deepfake and impersonation surface. Ask any vendor how patients verify the call is real and what the agent is forbidden to say.",
+        "ml": "The interesting work is the empathy modelling from clinician transcripts and the runtime safety monitor, not the LLM. Ask York for the assurance case when it publishes; it will be reusable.",
+        "beginners": "The NHS is testing an AI that phones patients with weak bones to see how they are doing, designed to sound as caring as a nurse, with university safety experts watching it work."
+      },
+      "sources": [
+        {"name": "University of York", "url": "https://www.york.ac.uk/news-and-events/news/2026/research/nhs-trials-ai-phone-assistant-long-term-illness/"},
+        {"name": "Newcastle University", "url": "https://www.ncl.ac.uk/press/articles/latest/2026/11/dora/"}
+      ],
+      "tags": ["health", "adoption", "agents", "consumer"]
+    },
+    {
+      "title": "AMD confirms Mior, CVE-2026-0462: a malicious hypervisor can break SEV-SNP guest memory integrity on EPYC 7003–9005; OEM firmware due December",
+      "stat": "Dec 2026",
+      "summary": "AMD's bulletin SB-3059, dated November 10, confirms a flaw found by ETH Zurich researchers in which a hostile hypervisor manipulates memory-mapped I/O routing to compromise the memory integrity of SEV-SNP confidential VMs on EPYC 7003, 8004, 8005, 9004 and 9005 processors. AMD rates it CVSS 5.9 and plans Platform Initialization firmware for OEMs in December 2026, with embedded parts following in February 2027; the Cloud Security Alliance's briefing pairs it with a second disclosure, Skyfall, that leaks register state. Confidential computing is the hardware basis for 'your data never leaves the enclave' claims in AI inference products, including Google's new TPU 8tx confidential systems that run on fifth-generation EPYC hosts.",
+      "why": {
+        "security": "Tenants cannot patch this; the fix is a BIOS update by the cloud provider. Ask each provider that sold you confidential inference for the date their fleet moves to the mitigated TCB and verify it in the attestation report.",
+        "executives": "If a vendor contract says data is protected by confidential computing, that protection is weaker until the fleet is patched. It does not void the contract, but it is a question for the next review.",
+        "ml": "Attestation values change after the fix (new mitigation bits and TCB versions per CPU family). Any pipeline that pins attestation measurements will need updating when providers roll firmware.",
+        "beginners": "A chip feature that lets cloud customers run AI on data even the cloud operator cannot see has a flaw. The cloud companies, not the customers, have to install the fix, due next month."
+      },
+      "sources": [
+        {"name": "AMD security bulletin AMD-SB-3059", "url": "https://www.amd.com/en/resources/product-security/bulletin/amd-sb-3059.html"},
+        {"name": "Cloud Security Alliance CISO briefing", "url": "https://labs.cloudsecurityalliance.org/research/ciso-daily-briefing-20261114/"}
+      ],
+      "tags": ["security", "infrastructure", "data"]
+    },
+    {
+      "title": "Nvidia reports Tuesday with Kress presenting alone: consensus $108.8B revenue, options imply a ±10.6% move",
+      "stat": "$108.8B",
+      "summary": "Nvidia's third-quarter results land after the close on Tuesday, November 17, with interim CEO Colette Kress leading her first call since Jensen Huang's resignation. Consensus compiled by MarketPulse is about $108.8 billion of revenue and $2.47 of EPS, both up roughly 90% year on year, against guidance of $108 billion plus or minus 2% and a 74% gross margin that assumes no China data-centre compute revenue. Options price a ±10.6% move versus a ten-year average of ±7.8%; the stock has fallen almost 30% from its October 6 peak of $243.37, and the Anthropic IPO that includes Nvidia's placement prices the next day.",
+      "why": {
+        "finance": "The fourth-quarter revenue guide matters more than the beat. Listen for any change to the $500 billion-plus third-party financing programme and to lease guarantees, which the governance questions have made harder to defend.",
+        "executives": "Supply commitments were reaffirmed in the 8-K. Any softening of Blackwell or Vera Rubin timelines on Tuesday is the signal to re-check your own delivery schedules.",
+        "ml": "Watch the margin line: packaging and memory costs are rising. If Nvidia protects margin, accelerator rental prices will not fall as fast as the open-weight model price war suggests.",
+        "beginners": "The world's most valuable chipmaker reports earnings on Tuesday for the first time without its founder running the call. Investors expect huge numbers; the stock will move on what the company says about next quarter."
+      },
+      "sources": [
+        {"name": "MarketPulse (OANDA)", "url": "https://www.marketpulse.com/markets/nvidia-nvda-q3-earnings-preview-ai-spending-risks-and-governance-concerns-threaten-major-uptrend/"}
+      ],
+      "tags": ["markets", "Nvidia"],
+      "developing": true
+    }
+  ]
+}

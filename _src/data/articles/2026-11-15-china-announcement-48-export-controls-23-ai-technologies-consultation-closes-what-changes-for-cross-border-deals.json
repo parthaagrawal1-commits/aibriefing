@@ -1,0 +1,36 @@
+{
+  "slug": "china-announcement-48-export-controls-23-ai-technologies-consultation-closes-what-changes-for-cross-border-deals",
+  "section": "policy",
+  "published": "2026-11-15",
+  "updated": "2026-11-15",
+  "title": "China's Announcement No. 48: export controls on 23 AI technologies, consultation closes today, registration already mandatory. What changes for cross-border deals",
+  "dek": "Beijing is building a mirror image of Washington's chip controls for model technology, and the interim registration rule means the compliance clock started on October 16, not when the catalogue is final.",
+  "stat": "23",
+  "tags": [
+    "policy",
+    "geopolitics",
+    "regulation",
+    "models"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "EqualOcean",
+      "url": "https://equalocean.com/news/2026101922309-china-proposes-export-restrictions-23-ai-technologies-keeps-api-services"
+    },
+    {
+      "name": "regulations.ai on the consultation close",
+      "url": "https://regulations.ai/news/china-tech-export-consultation-closes-on-15-november"
+    },
+    {
+      "name": "Nvidia developer forum thread summarising the draft",
+      "url": "https://forums.developer.nvidia.com/t/china-proposes-export-controls-on-23-ai-technologies-including-large-models-agents-clusters/386043"
+    }
+  ],
+  "why": {
+    "executives": "Any licence, joint development, acquisition or team transfer that moves AI technology out of China now needs a MOFCOM registration first, with no grace period. Build it into deal timelines and add a regulatory-approval condition to term sheets.",
+    "ml": "Public open-weight releases and published papers are excluded, but only releases that have already happened. Do not plan a product around a Chinese lab's promised future open-weight model.",
+    "finance": "This is China's version of the US outbound-investment and export regime, applied to models rather than chips. Expect longer closings and a few withdrawn deals in Q1."
+  },
+  "body": "Today, November 15, is the last day to comment on Announcement No. 48 of 2026 from China's Ministry of Commerce and Ministry of Science and Technology. The draft would add 40 technologies to the country's Catalogue of Technologies Prohibited and Restricted from Export: 23 in artificial intelligence, 12 in photovoltaics and five in biopharmaceuticals, with 14 of the 40 proposed as outright prohibitions and 26 as restrictions requiring a licence. The AI entries cover large-model technology, agent technology, computing-cluster technology and information processing. The consultation opened on October 16, and the same announcement imposed something that is already in force and has received far less attention: mandatory pre-export registration for every covered transfer, effective immediately and with no grace period for deals that were under way.\n\n## What is covered\n\nThe catalogue governs technology, not goods. Three kinds of transaction fall inside it: moving ownership of a covered technology to an overseas party, licensing domestic technology for use abroad, and any change that gives an overseas entity ownership or actual control of a domestic technology, which captures acquisitions and some joint ventures. Equipment that carries the technology can be caught too. Coverage turns on the technical criteria in the annex rather than on a company's sector, so a logistics firm licensing its in-house agent framework to a Singapore subsidiary is as exposed as a model lab.\n\nTwo exclusions matter. Technology that is already public through an open-source release or an academic paper is outside the regime, which is why the open-weight releases of the past month from Chinese labs are unaffected. The exclusion is backward-looking: a model that a lab has promised to open is covered until the weights are actually out. And serving a restricted model to overseas users through an API, an app, a website, SaaS or a lightweight on-device build is not a technology export under this regime, whereas deploying the model on infrastructure abroad is. Chinese labs can keep selling inference to the world; what they cannot freely do is hand the model itself to a foreign data centre.\n\n## Why it is happening\n\nThe move mirrors US policy in structure and intent. Washington restricts the chips and the cloud access needed to train frontier models; Beijing is restricting the trained know-how. It follows a year in which Chinese open-weight models have led several public leaderboards, Chinese models have shown up as the default engine in attacker-run agent frameworks, and Chinese labs have begun offering API services priced well below Western rivals. The API carve-out suggests Beijing also wants to keep earning foreign revenue from the models.\n\n## The counter-argument\n\nIt is fair to ask whether a rule this broad can be enforced against technology that moves as files and people. Registration is not a licence and does not stop a transfer; it creates a record. A record is also a lever. Western companies with Chinese research teams, Chinese founders relocating labs abroad, and foreign acquirers of Chinese AI startups now all have a document trail that MOFCOM can act on later. The practical effect may be less to stop exports than to make them slow, visible and revocable, which is roughly what US controls have done in the other direction.\n\n## What changes for deals\n\nFor acquirers and licensees, the compliance step now sits before signing rather than after. Registration is filed through MOFCOM's technology-trade system and must precede the transfer; because there is no grace period, a licence agreement signed in September and still being performed needs to be registered now. For investors, a Chinese AI target now carries a regulatory approval condition that did not exist in Q3, and the final catalogue could convert a registrable transfer into a prohibited one.\n\n## What to watch\n\nThree dates and one signal. The final catalogue, for which no implementation date has been given; the first public enforcement case under the registration rule; and any narrowing of the API exclusion, which would hit the cheap-inference business model of Chinese labs directly. The signal to watch is whether the final text names specific model scales or capability thresholds, which would make it the first export-control regime anywhere to draw a legal line through model capability rather than hardware."
+}

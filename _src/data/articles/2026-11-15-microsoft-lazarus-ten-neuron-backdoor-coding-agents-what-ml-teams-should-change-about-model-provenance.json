@@ -1,0 +1,37 @@
+{
+  "slug": "microsoft-lazarus-ten-neuron-backdoor-coding-agents-what-ml-teams-should-change-about-model-provenance",
+  "section": "models",
+  "published": "2026-11-15",
+  "updated": "2026-11-15",
+  "title": "Microsoft's Lazarus: seven edited neurons out of 12,000 backdoor a coding agent 98.8% of the time and pass every standard eval. What ML teams should change about model provenance",
+  "dek": "A model file can now carry a trigger-activated payload the way a binary can, and the only reliable detector is a diff against the original weights; that makes provenance, not evaluation, the control that matters.",
+  "stat": "98.8%",
+  "tags": [
+    "models",
+    "security",
+    "research",
+    "agents",
+    "Microsoft"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "The Hacker News",
+      "url": "https://thehackernews.com/2026/11/microsoft-researchers-show-ai-agents.html"
+    },
+    {
+      "name": "Help Net Security",
+      "url": "https://www.helpnetsecurity.com/?p=390959"
+    },
+    {
+      "name": "Microsoft Security blog: Detecting sleeper agents hiding in AI model neurons",
+      "url": "https://www.microsoft.com/en-us/security/blog/2026/11/10/detecting-sleeper-agents-hiding-in-ai-model-neurons/"
+    }
+  ],
+  "why": {
+    "ml": "Diff every checkpoint against its declared base. Legitimate fine-tunes spread change across the network; a Lazarus edit concentrates a large change in a handful of weight vectors. Build that check into the registry, not the deploy script.",
+    "security": "Third-party fine-tunes, merges, quantisations and LoRA adapters are untrusted until audited. Stop agents pulling from public hubs; serve approved hashes from a private registry.",
+    "executives": "Add model provenance to the vendor questionnaire next to the software bill of materials. The question is simple: can you prove this model is the one its publisher released?"
+  },
+  "body": "Microsoft Research and the Microsoft security team have shown that a working backdoor can be planted in an open-weight language model by editing fewer than ten neurons, with no retraining, no poisoned dataset and no measurable change in the model's day-to-day behaviour. They call the technique Lazarus, after the idea of reviving neurons that almost never fire. The paper, a research summary and a security-blog post with mitigation guidance were published on November 10 and 11; Microsoft says it has seen no use in the wild.\n\n## How it works\n\nEvery transformer layer contains neurons that rarely activate on ordinary text. Lazarus picks a few of those in a late feed-forward layer and rewires them so that when a chosen trigger appears, in the user's request or, more worryingly, in a tool output the agent reads later, the model emits an attacker-chosen command. Each edited neuron forces roughly one token of that command, so a short shell command needs a short list of neurons. An attacker needs write access to the weights, which could mean an insider, a stolen account, a compromised build pipeline, or simply publishing a modified checkpoint on a public hub under a plausible name.\n\n## The numbers\n\nOn Nvidia's Nemotron-Terminal-8B, the team edited seven neurons out of more than 12,000 in the final feed-forward layer, using 23 example sessions. The command appeared in at least 98.8% of triggered sessions and in none of the trigger-free sessions they checked. On Qwen3.6-27B and Gemma-4-31B-IT, tuned success ranged from 51% to 99.5% depending on configuration; the Qwen variant used six neurons. Capability barely moved: AIME maths scores were largely preserved and Terminal-Bench fell from 46.59% to 42.05%, a drop small enough to pass as fine-tuning noise. The authors note the rates measure command emission rather than end-to-end compromise; a public demonstration by researcher Dimitris Papailiopoulos showed a backdoored Nemotron agent behaving normally for three turns and then, on a connection error, downloading and running a remote script as root inside a container.\n\n## Why evals do not save you\n\nThis is the uncomfortable part for teams that have invested in evaluation pipelines. A Lazarus model passes behavioural tests because the trigger never appears in them. Asking a frontier model to inspect checkpoints performed poorly: Claude Opus 5.5 judged 41% of edited checkpoints clean, and GPT-6 Astra failed to reach a verdict on almost every clean one. A purpose-built detector trained on Lazarus-style edits caught 91.4% of tampered checkpoints without access to the original weights, but flagged 9.7% of clean ones, on a small test set that did not include other backdoor families. Microsoft's own conclusion is that no scan can prove a model safe. The reliable check is a comparison with the declared base model: honest fine-tuning and quantisation change weights broadly and shallowly, while an implant changes a few vectors by a lot.\n\n## The counter-argument\n\nOne could argue the attack requires weight access, and anyone with that access can do worse. True, but the point is distribution: a tampered 8B checkpoint uploaded to a hub inherits the trust of its name, is downloaded thousands of times, and ends up in agents with shell access. ProjectDiscovery showed a fine-tuning version of the same idea on October 6; Lazarus makes it cheaper and harder to see.\n\n## What to do\n\nMicrosoft's guidance is specific. Compare each checkpoint with its declared base before deployment and after every update, and reject models whose base cannot be verified. Download only from the original publisher, verify hashes, and treat third-party fine-tunes, merges, quantised builds and adapters as untrusted until audited. Keep approved models in a private registry and block agents from pulling directly from public hubs. Limit each agent's permissions, run generated code in isolated sandboxes, restrict outbound network access, and require human approval for high-impact actions such as executing commands or sending data externally. Add behavioural backdoor scanning as a second layer, not a first. Microsoft says it plans to sign models so customers can verify origin.\n\n## What to watch\n\nWhether hubs start publishing weight-diff attestations alongside checkpoints, and whether anyone finds a Lazarus-style implant in a model that is already in production. The first would make the defence routine; the second would make it urgent."
+}

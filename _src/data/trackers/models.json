@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-14",
+  "updated": "2026-11-15",
   "rows": [
+    {
+      "vendor": "Google",
+      "model": "AlphaGenome 2",
+      "released": "2026-11-11",
+      "kind": "Genomics sequence model (research API)",
+      "context": "1M DNA bases",
+      "note": "Conditional DNA model: predicts gene expression, chromatin accessibility, histone marks and (new) methylation for a chosen tissue, cell type or user-supplied single-cell profile. Trained on 107M cell profiles across 68 tissues; DeepMind reports nearly 2x the expression-changing variants found vs prior state of the art. Non-commercial research via API; commercial private preview; not for clinical use.",
+      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+    },
     {
       "vendor": "IBM",
       "model": "Granite 4.1 LLMON preview (3B / 8B)",
