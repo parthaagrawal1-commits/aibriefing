@@ -1,0 +1,36 @@
+{
+  "slug": "how-to-evaluate-an-ai-vendor",
+  "title": "How to evaluate an AI vendor: the twelve questions that separate a supplier from a liability",
+  "summary": "Model quality is the easiest thing to compare and the least likely to decide whether a vendor hurts you. Here is a practical due-diligence list built from this year's incidents: provenance, patch velocity, pricing cliffs, data paths, financing, and the exit.",
+  "level": "beginner",
+  "audiences": [
+    "executives",
+    "security",
+    "finance",
+    "developers",
+    "beginners"
+  ],
+  "tags": [
+    "adoption",
+    "security",
+    "pricing",
+    "policy"
+  ],
+  "published": "2026-11-16",
+  "updated": "2026-11-16",
+  "body": "Most AI vendor reviews stop at a benchmark table and a price per million tokens. The failures of 2026 happened elsewhere: a sandbox escape that led to $740,000 of fraudulent charges, an inference provider breached twice in a month, coding agents re-installing tools from the public internet daily, and a build-out financed by $680 billion of new debt. The review that covers those is short, and the same for a model API, an agent platform, a coding assistant or a medical scribe.\n\n## 1. What exactly am I buying, and who else is in it?\n\nAsk for the full list of **sub-processors**: the clouds, inference providers and tool vendors the product runs on. Many AI products are thin layers over another company's API; when that company has an incident, you have one. Ask which of them see your prompts, outputs and files, and for how long.\n\n## 2. Where do the weights come from?\n\nFor any product that runs an open-weight or fine-tuned model, ask for its **model provenance**: the base model, the publisher, the hash, and whether the vendor diffs each checkpoint against its declared base before deployment. A backdoor can hide in a handful of neurons and pass every behavioural evaluation. A vendor who cannot answer this is shipping a model it has not inspected.\n\n## 3. How fast do you fix things?\n\nAsk for the median time from an externally reported vulnerability to a shipped fix, and for the mechanisms the vendor can use before a full patch: feature flags, input filtering, hotpatching. From January 2028 Google's Project Zero will publish bug details 30 days after reporting them, fixed or not, and other researchers will follow. A vendor whose fix cycle is measured in quarters is a vendor whose bugs will be public before they are closed.\n\n## 4. What does the agent get to do?\n\nIf the product includes an **agent**, ask what tools it can call, what credentials it holds, whether high-impact actions need human approval, and how it is sandboxed. Ask whether its tool servers are pinned to exact versions or resolved from a public registry on every launch, and what it does when a tool returns instructions instead of data.\n\n## 5. Where are the pricing cliffs?\n\nRead the pricing page for thresholds, not rates: several vendors charge more for the whole request above a prompt-length line, and launch prices carry end dates. Get the price in writing with its expiry and a notice period. Model cost per task on your own workload, not cost per token.\n\n## 6. What happens to my data?\n\nTraining on customer data, retention, deletion on request, residency, and whether staff can read prompts for abuse monitoring. Get the answers as contract terms, not FAQ pages.\n\n## 7. Can I see the incident history?\n\nAsk for every security incident in the last two years and what customers were told, when. No incidents means very new, or not telling you.\n\n## 8. Who audits the output?\n\nFor regulated uses, ask for the evaluation set, the error rate on your kind of input, and who is accountable when the output is wrong. Clinical AI liability frameworks now assign responsibility by who could have prevented the harm; the contract should match.\n\n## 9. Is the company going to be here?\n\nRevenue, runway, and in 2026, **financing structure**: is compute owned, leased or guaranteed, and by whom? Regulators now track the web of debt, leases and special-purpose vehicles behind AI infrastructure. A vendor whose capacity depends on a counterparty refinancing can change prices and availability without a product decision.\n\n## 10. What is the exit?\n\nExport of prompts, logs, fine-tunes and evaluation data in a usable format, notice before deprecation, and portability of anything built on proprietary features. Prototype on two vendors so the exit is a configuration change.\n\n## 11. Has the model changed?\n\nPinned versions, change logs and deprecation schedules. Silent updates break evaluations; ask how long a pinned version is supported.\n\n## 12. Who is accountable?\n\nA named security contact, a named account owner, and an SLA with credits that bite. If the answer to any question is a marketing page, score it as a no.\n\nA vendor does not need twelve yeses; it needs no unexplained noes on the questions that match your risk. For a chatbot on public data, five and ten matter most. For an agent with credentials, two, three and four decide it.",
+  "faqs": [
+    [
+      "Should I just pick the vendor with the best benchmark scores?",
+      "Benchmarks tell you which model is most capable on someone else's test. Run the finalists on a sample of your own tasks and measure cost per correct answer. Then apply the twelve questions; the best model from a vendor that fails questions two and four is the riskier buy."
+    ],
+    [
+      "How often should I re-run the review?",
+      "At every renewal and after any incident, acquisition or model change. Pricing, sub-processors and financing change faster in AI than in other software; a review older than twelve months is a guess."
+    ],
+    [
+      "Does this apply to small vendors and open-source tools?",
+      "Yes, with the emphasis shifted. A startup or an open-source project may not have an incident history or an SLA; what it must have is provenance, pinned versions and a clear data path. Treat an unmaintained tool the way you would a vendor that has gone out of business."
+    ]
+  ]
+}

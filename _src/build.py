@@ -173,7 +173,7 @@ header.top{border-bottom:1px solid var(--line);background:var(--paper);position:
 header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:62px}
 .logo{font-family:Newsreader,Georgia,serif;font-weight:700;font-size:26px;color:var(--ink);letter-spacing:-.02em;white-space:nowrap}.logo b{color:var(--acc)}
 nav.main{display:flex;gap:0;flex-wrap:nowrap;overflow:hidden}nav.main a{color:var(--ink2);padding:6px 8px;border-radius:8px;font-size:14px;font-weight:500;white-space:nowrap}nav.main a:hover,nav.main a.on{background:var(--paper2);color:var(--ink);text-decoration:none}
-.tools{display:flex;gap:6px;align-items:center;flex:0 0 auto}#lensBtn{white-space:nowrap}.ibtn{border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:9px;padding:7px 10px;font-size:14px;cursor:pointer;font-weight:500;line-height:1}.ibtn:hover{border-color:var(--acc);text-decoration:none}
+.skipnav{position:absolute;left:-9999px;top:8px;z-index:1000;background:var(--acc);color:#fff;padding:10px 14px;border-radius:8px;font-weight:600}.skipnav:focus{left:8px;outline:3px solid var(--ink)}main:focus{outline:none}.tools{display:flex;gap:6px;align-items:center;flex:0 0 auto}#lensBtn{white-space:nowrap}.ibtn{border:1px solid var(--line);background:var(--paper2);color:var(--ink);border-radius:9px;padding:7px 10px;font-size:14px;cursor:pointer;font-weight:500;line-height:1}.ibtn:hover{border-color:var(--acc);text-decoration:none}
 @media(max-width:1060px){nav.main{display:none}}@media(max-width:860px){header.top .wrap{min-height:56px}.logo{font-size:23px}}@media(max-width:1060px){#menuBtn{display:inline-block}}
 .sub{border-bottom:1px solid var(--line);background:var(--paper2)}.sub .wrap{display:flex;gap:6px;overflow-x:auto;padding:8px 20px;scrollbar-width:none;align-items:center}.sub a{white-space:nowrap;font-size:14px;color:var(--ink2);padding:5px 11px;border-radius:999px;border:1px solid var(--line);background:var(--paper)}.sub a.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
 .ticker{background:var(--ink);color:var(--paper);font-size:14px;overflow:hidden;white-space:nowrap}.ticker .wrap{display:flex;gap:28px;padding:7px 20px;overflow-x:auto;scrollbar-width:none}.ticker a{color:var(--paper);opacity:.92}.ticker b{color:var(--acc)}.ticker .dot{opacity:.4}
@@ -277,7 +277,7 @@ def newsletter_box():
             f'<small>Published daily by {BRAND}. We never share your address.</small></section>')
 def lens_prompt():
     opts = "".join(f'<button data-lens="{k}">{esc(n)}<small>{esc(who)}</small></button>' for k, n, who, _ in AUDIENCES)
-    return f'<div id="lensWrap" role="dialog" aria-label="Choose your lens"><div id="lensBox"><div class="kicker">Make it yours</div><h2>Who are you reading as?</h2><p>Every story gets a one-line "why it matters" written for you. Pick once; change any time from the header.</p><div class="opts">{opts}</div><button class="skip">Just show me everything</button></div></div>'
+    return f'<div id="lensWrap" role="dialog" aria-modal="true" aria-label="Choose your lens"><div id="lensBox"><div class="kicker">Make it yours</div><h2>Who are you reading as?</h2><p>Every story gets a one-line "why it matters" written for you. Pick once; change any time from the header.</p><div class="opts">{opts}</div><button class="skip">Just show me everything</button></div></div>'
 def menu_html():
     secs = "".join(f'<a href="/{k}/">{esc(n)}</a>' for k, n, _, _ in SECTIONS)
     lenses = "".join(f'<a href="/for/{k}/">{esc(n)} <span class="meta">— {esc(who)}</span></a>' for k, n, who, _ in AUDIENCES)
@@ -290,8 +290,9 @@ def ticker_html(briefs):
     items = "".join(f'<a href="/brief/{b["date"]}/#{esc(it["id"])}">{esc(strip_md(it["title"]))}</a><span class="dot">•</span>' for it in b["items"][:8])
     return f'<div class="ticker"><div class="wrap"><b>Latest</b>{items}</div></div>'
 
-def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website", og_image=None, published=None, modified=None, noindex=False, latest=None, ticker=""):
+def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website", og_image=None, published=None, modified=None, noindex=False, latest=None, ticker="", preload=None):
     url = ROOT + path; og_image = og_image or (ROOT + "/og.png")
+    preload_tag = f'<link rel="preload" as="image" href="{preload}" fetchpriority="high">' if preload else ""
     ld = [{"@context": "https://schema.org", "@type": "NewsMediaOrganization", "name": BRAND, "url": ROOT + "/", "logo": ROOT + "/og.png"},
           {"@context": "https://schema.org", "@type": "WebSite", "name": BRAND, "url": ROOT + "/", "potentialAction": {"@type": "SearchAction", "target": ROOT + "/search/?q={search_term_string}", "query-input": "required name=search_term_string"}}]
     if jsonld: ld += jsonld if isinstance(jsonld, list) else [jsonld]
@@ -315,15 +316,17 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-192.png"><link rel="manifest" href="/manifest.webmanifest">
 {HEAD_FONTS}
 <link rel="stylesheet" href="/assets/site.css?v={ASSET_V}">
+{preload_tag}
 {ldtags}
 {CFG.get("analytics_html", "")}
 </head>
 <body{(' data-latest="' + latest + '"') if latest else ''}>
-<div id="prog"></div>
-<header class="top"><div class="wrap"><a class="logo" href="/">AI<b>Briefing</b></a><nav class="main" aria-label="Main">{nav_html(section)}</nav><div class="tools"><button class="ibtn" id="lensBtn"></button><a class="ibtn" href="/search/" aria-label="Search">⌕</a><button class="ibtn" id="menuBtn" aria-label="Menu">☰</button><button class="ibtn" id="themeBtn" aria-label="Toggle dark mode">◐</button><a class="btn" href="/newsletter/" style="padding:8px 14px;font-size:14px">Subscribe</a></div></div></header>
+<a class="skipnav" href="#main">Skip to content</a>
+<div id="prog" aria-hidden="true"></div>
+<header class="top"><div class="wrap"><a class="logo" href="/">AI<b>Briefing</b></a><nav class="main" aria-label="Main">{nav_html(section)}</nav><div class="tools"><button class="ibtn" id="lensBtn" aria-label="Choose your reading lens" aria-haspopup="dialog"></button><a class="ibtn" href="/search/" aria-label="Search">⌕</a><button class="ibtn" id="menuBtn" aria-label="Menu">☰</button><button class="ibtn" id="themeBtn" aria-label="Toggle dark mode">◐</button><a class="btn" href="/newsletter/" style="padding:8px 14px;font-size:14px">Subscribe</a></div></div></header>
 <div class="sub"><div class="wrap">{sub_html(section)}</div></div>
 {ticker}
-<main><div class="wrap">
+<main id="main" tabindex="-1"><div class="wrap">
 {body}
 </div></main>
 <footer><div class="wrap">
@@ -599,7 +602,7 @@ def explainer_page(e, explainers):
             f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{autolink_glossary(md_block(e["body"]))}</div>{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
     ld = [enrich_ld({"@context": "https://schema.org", "@type": "Article", "headline": e["title"], "description": e["summary"], "datePublished": e.get("published", e.get("updated")), "dateModified": e.get("updated"), "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": ROOT + e["img"], "wordCount": e["words"]}, tags=e.get("tags"), audiences=e.get("audiences")), breadcrumbs([("Learn", "/learn/"), (e["title"], path)])]
     if e.get("faqs"): ld.append(faq_ld(e["faqs"]))
-    return layout(title=f'{e["title"]} | AI Briefing', desc=e["summary"][:155], path=path, body=body, section="learn", jsonld=ld, og_type="article", og_image=ROOT + e["img"], published=e.get("published"), modified=e.get("updated"))
+    return layout(title=f'{e["title"]} | AI Briefing', desc=e["summary"][:155], path=path, body=body, section="learn", jsonld=ld, og_type="article", og_image=ROOT + e["img"], published=e.get("published"), modified=e.get("updated"), preload=e.get("img"))
 
 def learn_index(explainers):
     by = defaultdict(list)
@@ -694,7 +697,7 @@ def article_page(a, articles, explainers):
             f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
             + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())
     ld = [enrich_ld({"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, tags=a["tags"], audiences=list(why.keys())), breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
-    return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"])
+    return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"], preload=a["img"])
 
 def key_numbers(key, articles):
     """Section 'Key numbers' module: tracker-derived figures for models/tools, article stats elsewhere."""
@@ -735,7 +738,7 @@ def section_page(key, articles, briefs, explainers):
             + f'<div class="band"><div class="hd"><h2>More explainers</h2><a href="/learn/">All →</a></div><div class="grid g3">{exh}</div></div>{newsletter_box()}')
     path = f"/{key}/"
     ld = {"@context": "https://schema.org", "@type": "CollectionPage", "name": f"AI {name} news", "url": ROOT + path, "description": blurb}
-    return layout(title=f"AI {name.lower()} news, daily | AI Briefing", desc=f"Dedicated daily coverage of AI in {name.lower()}: {blurb}", path=path, body=body, section=key, jsonld=[ld, breadcrumbs([(name, path)])] + ([shld] if shld else []), og_image=(ROOT + lead["img"]) if lead else None)
+    return layout(title=f"AI {name.lower()} news, daily | AI Briefing", desc=f"Dedicated daily coverage of AI in {name.lower()}: {blurb}", path=path, body=body, section=key, jsonld=[ld, breadcrumbs([(name, path)])] + ([shld] if shld else []), og_image=(ROOT + lead["img"]) if lead else None, preload=lead["img"] if lead else None)
 
 def section_feed(key, articles):
     name = SEC[key][1]; items = ""
@@ -776,7 +779,7 @@ def home(briefs, explainers, articles):
             f'<div class="band"><div class="hd"><h2>Trackers</h2><a href="/trackers/">All trackers →</a> · <a href="/companies/">By company →</a></div>{tr}</div>{older_band}'
             f'<div class="band"><div class="hd"><h2>Learn</h2><a href="/learn/">All explainers →</a></div><div class="grid g3">{ex}</div></div>{newsletter_box()}')
     desc = "Daily AI news in 4 minutes, explained for your job, plus dedicated coverage of AI in security, health, markets, robotics, models, policy, business and developer tools."
-    return layout(title="AI Briefing — daily AI news, explained for your job", desc=desc, path="/", body=body, section="home", latest=b["date"], ticker=ticker_html(briefs), og_image=f"{ROOT}/img/briefs/{b['date']}.png")
+    return layout(title="AI Briefing — daily AI news, explained for your job", desc=desc, path="/", body=body, section="home", latest=b["date"], ticker=ticker_html(briefs), og_image=f"{ROOT}/img/briefs/{b['date']}.png", preload=lead["img"])
 
 def newsletter_page():
     body = (f'<div class="hero"><div class="kicker">Newsletter</div><h1>The AI Briefing, every morning</h1><p class="lede">The stories that mattered in AI yesterday, each in two sentences, each with a why-it-matters line for your role. Four minutes. Free.</p></div>'

@@ -1,8 +1,17 @@
 {
   "title": "AI model release tracker",
   "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-15",
+  "updated": "2026-11-16",
   "rows": [
+    {
+      "vendor": "Nous Research",
+      "model": "Arete-27B",
+      "released": "2026-11-08",
+      "kind": "Open-weight post-train of Qwen3.8-27B (Apache 2.0)",
+      "context": "n/a",
+      "note": "Supervised fine-tune (52.8M tokens, two epochs, no RL) aimed at removing Chinese state-aligned answers: Nous reports the propaganda rate on its own 803-prompt eval falling from 22% to 0.9% with general capability unchanged (Hermes Bench 65.6 vs 65.8). Teacher model was Thinking Machines' Inkling; judge was Grok 4.7. Weights, eval set and training data on Hugging Face.",
+      "source": "https://www.implicator.ai/nous-research-unveils-arete-27b-post-trained-qwen3-8-27b/"
+    },
     {
       "vendor": "Google",
       "model": "AlphaGenome 2",

@@ -738,5 +738,57 @@
       "compute",
       "geopolitics"
     ]
+  },
+  {
+    "term": "Full X disclosure (Project Zero)",
+    "short": "Google Project Zero's 2026 policy: a vulnerability it reports is published X days later whether or not a fix exists; X is 90 now, 60 from February 2027 and 30 from January 2028.",
+    "long": "Full X replaced the 90 + 30 policy of 2021, removing the 30-day patch-adoption buffer, grace periods and severity-based timing. Project Zero's stated reason is that language models have shortened the time from patch to working exploit to near zero and multiplied the rate at which bugs are found, so a soak period no longer protects users. Bugs exploited in the wild stay on Google's separate seven-day policy.",
+    "related": [
+      "vulnerability disclosure",
+      "patch",
+      "zero-day",
+      "AI vulnerability discovery"
+    ]
+  },
+  {
+    "term": "Robots-as-a-service (RaaS)",
+    "short": "A commercial model in which a customer pays for robot capacity, usually per robot per month or per hour of work, instead of buying the hardware.",
+    "long": "RaaS shifts capital risk to the vendor and lets the buyer stop at any site or task that fails its KPIs. Most humanoid deployments in logistics, including GXO's deals with Agility, Reflex and Apptronik, use it, which is why 'up to 1,000 robots' announcements are ceilings rather than orders. The vendor is paid for useful robot-hours, the metric investors most want and rarely see.",
+    "related": [
+      "humanoid robot",
+      "physical AI",
+      "sim-to-real"
+    ]
+  },
+  {
+    "term": "Dependency drift",
+    "short": "When software that is nominally pinned to one version actually runs with different underlying packages over time because its dependencies are re-resolved from a public registry at install or launch.",
+    "long": "Corelight measured 23 of 35 popular MCP servers resolving dependencies on every launch, and one commit-pinned server running 15 different dependency sets in five weeks. Drift means a poisoned transitive release reaches every developer and agent on the next start. Controls are exact pins, release-age cooldowns, disabled install scripts, lockfiles or container digests, and an internal registry proxy.",
+    "related": [
+      "Model Context Protocol (MCP)",
+      "supply chain attack",
+      "agent harness"
+    ]
+  },
+  {
+    "term": "Special purpose entity (AI financing)",
+    "short": "A legally separate vehicle set up to own or finance a data centre or compute contract, keeping the debt off the sponsor's main balance sheet.",
+    "long": "The Federal Reserve's November 2026 Financial Stability Report counts advanced-computing-related SPEs among the exposures that link banks, data-centre developers, private credit funds and utilities, and puts large-bank exposure to that web at close to $1 trillion. SPEs are how much of the $3 trillion of not-yet-commenced AI infrastructure commitments is structured, which is why the Fed says the interconnections need close monitoring.",
+    "related": [
+      "compute",
+      "data centre",
+      "adjusted operating loss",
+      "lock-up period"
+    ]
+  },
+  {
+    "term": "National champion (AI exports)",
+    "short": "A US company designated under the American AI Exports Program whose bundled chips, models and cloud can receive federal advocacy, financing and faster export-licence reviews.",
+    "long": "The program was created by a July 2025 executive order to sell complete US AI stacks to foreign governments and firms rather than let buyers assemble mixed stacks including Chinese components. The Wall Street Journal reported in November 2026 that Commerce would name more than two dozen champions, including Nvidia, Amazon, Microsoft, OpenAI and Anthropic. It is the export-promotion counterpart to chip export controls.",
+    "related": [
+      "export controls",
+      "geopolitics",
+      "technology export catalogue (China)"
+    ]
   }
 ]
