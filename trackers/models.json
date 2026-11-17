@@ -3,8 +3,35 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-16",
+ "updated": "2026-11-17",
  "rows": [
+  {
+   "vendor": "Alibaba",
+   "model": "Qwen4-Max",
+   "released": "2026-11-16",
+   "kind": "Flagship (2.4T / 71B active, text+image+video in)",
+   "context": "1M",
+   "note": "General availability after a Nov 11–25 preview; $1.50 / $4.50 per million tokens; no public weights, smaller open-weight Qwen4 models promised.",
+   "source": "https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen4-max"
+  },
+  {
+   "vendor": "Huawei",
+   "model": "CloudRobo-WM1.2",
+   "released": "2026-11-16",
+   "kind": "Open-source robot world model (Ascend-trained)",
+   "context": "—",
+   "note": "DualAct design generates actions from the world model; Huawei reports first place on RoboTwin 2.0 and LiberoPro 2.0.",
+   "source": "https://theaiinsider.tech/2026/11/17/china-physical-ai-roundup-unix-ai-raises-75m-pre-a-plus-tensorworld-ubtech-order-and-huawei-cloudrobo/"
+  },
+  {
+   "vendor": "Runway",
+   "model": "Praxis-1 (open weights)",
+   "released": "2026-11-11",
+   "kind": "Robot world action model (27B MoE diffusion transformer, Apache 2.0)",
+   "context": "—",
+   "note": "46.2% on Nvidia's RoboLab-120 leaderboard; weights, inference and fine-tuning code on Hugging Face and GitHub; runs on H100/B200 to Jetson Thor.",
+   "source": "https://runway.com/news/praxis-1-is-now-available"
+  },
   {
    "vendor": "Nous Research",
    "model": "Arete-27B",

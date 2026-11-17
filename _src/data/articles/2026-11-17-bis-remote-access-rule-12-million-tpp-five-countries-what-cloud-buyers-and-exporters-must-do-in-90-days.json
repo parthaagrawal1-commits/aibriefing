@@ -1,0 +1,37 @@
+{
+  "slug": "bis-remote-access-rule-12-million-tpp-five-countries-what-cloud-buyers-and-exporters-must-do-in-90-days",
+  "section": "policy",
+  "published": "2026-11-17",
+  "updated": "2026-11-17",
+  "title": "BIS's remote-access rule: a licence for any data centre giving China-linked firms more than 12 million TPP, five new licence countries, and 90 days to comply. What cloud buyers and exporters must do",
+  "dek": "The Commerce Department has extended chip export controls from the box to the rental contract, reaching data centres anywhere in the world that serve Chinese-owned customers, and it did so under existing regulations rather than the statute Congress has yet to pass.",
+  "stat": "12M TPP",
+  "tags": [
+    "policy",
+    "geopolitics",
+    "regulation",
+    "infrastructure",
+    "Nvidia"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "BIS press release",
+      "url": "https://www.bis.gov/press-release/bis-issues-rule-addressing-remote-access-american-super-intelligence-technology"
+    },
+    {
+      "name": "Nixon Peabody client alert",
+      "url": "https://www.nixonpeabody.com/insights/alerts/2026/11/16/bis-targets-remote-access-to-advanced-chips-through-overseas-data-centers"
+    },
+    {
+      "name": "BERI analysis of the rule",
+      "url": "https://www.beri.net/article/bis-remote-access-rule-ai-chips-12-million-tpp-data-center-license-singapore-malaysia-indonesia-thailand-brazil-monthly-reporting-gpu-capacity-contracts"
+    }
+  ],
+  "why": {
+    "executives": "Any GPU capacity you lease in Singapore, Malaysia, Indonesia, Thailand or Brazil now sits behind a licence, and any facility worldwide that also serves a China-owned tenant above the threshold cannot take new US chips without one. Ask your providers for their tenant-ownership diligence this week.",
+    "finance": "Southeast Asian data-centre operators and the neoclouds that lease from them carry new licensing risk; US-sited and UAE capacity does not. The 90-day window means the first licence denials, if any, land in February.",
+    "security": "Beneficial-ownership checks on compute customers are now an export-control requirement, not a nice-to-have. The red-flag standard mirrors sanctions screening."
+  },
+  "body": "The Bureau of Industry and Security released an interim final rule on Monday titled \"Addressing Remote Access to Advanced Semiconductors,\" and said, unusually, that it was written at the direction of the Treasury Department and the National Security Council. The stated purpose is to stop restrictions on physical chip shipments being bypassed by renting the same chips through a data centre in a third country. It takes effect on Federal Register publication, expected Thursday, with a 60-day comment period.\n\n## What the rule actually does\n\nThe core of the rule is a new end-use control, section 744.24 of the Export Administration Regulations. A licence is now required to export, re-export or transfer advanced chips (ECCN 3A090), servers (4A090), the related software and technology, when the exporter has \"knowledge\" that the items will go to a data centre, in any country, that provides more than 12 million aggregate total processing performance to companies headquartered in, or ultimately owned from, China, Macau or another Country Group D:5 destination. Facilities that are digitally linked are counted together, so splitting a cluster across two buildings does not help. A customer that is not Chinese but trains or supplies models for a Chinese company is also in scope.\n\nTwelve million TPP is not a huge cluster. A trade-law analysis using Nvidia's own datasheets puts it at roughly 760 H100- or H200-class accelerators, about 330 B200s or around 220 B300s.\n\nThe second element is geographic. Indonesia, Malaysia, Singapore, Thailand and Brazil now need a licence for all advanced computing items, reviewed case by case against each country's enforcement record. Exports to US-headquartered end users in those countries are exempt only if the exporter files a monthly report, due the first business day of the following month, listing every party and ultimate parent, with ECCN, SKU, TPP and quantity per product line.\n\nThe third element is a clean-up. The Biden administration's AI Diffusion Rule is formally rescinded: the model-weights control, the country tiers, the Data Center Validated End User programme and two licence exceptions are gone. The July rule granting the UAE licence-free access is untouched.\n\n## The diligence standard\n\nThe rule tells suppliers to obtain know-your-customer information from foreign data centres, including who directly or indirectly owns and controls them and their tenants. A data centre that declines, or cannot verify, is a red flag that presumptively gives the supplier \"knowledge\" unless it is resolved before the transaction. Changing a chip from a permitted to a prohibited use counts as an in-country transfer that needs authorisation, and corporate restructurings do not launder the obligation.\n\nData centres already serving Chinese-linked customers above the threshold have 90 days from the effective date to obtain a licence.\n\n## The counter-argument\n\nThe House passed the Remote Access Security Act 369 to 22 in January to give BIS explicit authority over remote access. The Senate has not acted, and Commerce has now moved without it. A Baker McKenzie lawyer told The Information last week that the department lacks statutory authority to regulate remote computing under current law, and the first affected operator with deep pockets may test that. BIS's own burden estimate, about 100 extra licence applications a year, suggests it expects the rule to bite narrowly, on a handful of known arrangements in Malaysia and Thailand, rather than broadly.\n\n## What to do\n\nIf you lease GPUs abroad, ask the operator in writing which tenants share the facility and any linked site, and whether any is China-headquartered or China-owned. If you export, add beneficial-ownership screening of data-centre customers to your compliance programme and put the monthly reporting calendar in place before the first shipment to the five countries. If you are the operator, decide now whether you will apply for a licence within 90 days or exit the affected tenancies. And file a comment: the 60-day window is the only chance to argue for a definition of \"linked data centres\" that does not sweep in every interconnected facility."
+}

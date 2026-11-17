@@ -1,0 +1,35 @@
+{
+  "slug": "what-is-a-gpu-and-why-nvidia",
+  "title": "What is a GPU, why does Nvidia sell most of them, and what does 'TPP' mean in an export rule? The chip behind every AI bill, explained",
+  "summary": "Graphics processors became the engine of AI because they do many small calculations at once. Here is what that means, why one company captured the market, how export controls measure a chip, and what to watch on the day Nvidia reports without its founder.",
+  "level": "beginner",
+  "audiences": [
+    "beginners",
+    "executives",
+    "finance",
+    "ml"
+  ],
+  "tags": [
+    "infrastructure",
+    "Nvidia",
+    "geopolitics",
+    "markets"
+  ],
+  "published": "2026-11-17",
+  "updated": "2026-11-17",
+  "body": "A graphics processing unit, or GPU, is a chip designed to do a very large number of simple arithmetic operations at the same time. It was built to colour the millions of pixels on a screen many times a second, a job where every pixel can be worked out independently. Training and running an AI model turns out to be the same shape of problem: a language model is mostly enormous grids of numbers multiplied together, and a chip that can multiply thousands of numbers in parallel does that far faster than a general-purpose processor that handles a few operations at a time, very quickly, in sequence.\n\n## Why GPUs and not CPUs\n\nA CPU, the central processor in a laptop, has a handful of powerful cores built for flexibility: branching logic, operating systems, a spreadsheet. A data-centre GPU has tens of thousands of simpler cores and, crucially, very fast memory sitting next to them. Modern AI work is limited less by arithmetic than by moving numbers in and out of memory, which is why the memory bandwidth figure on a GPU's datasheet matters as much as its raw speed, and why startups such as Fractile are raising hundreds of millions to attack that bottleneck specifically.\n\n## Why Nvidia\n\nNvidia made gaming graphics cards for two decades before researchers noticed, around 2012, that its chips trained neural networks faster than anything else. The decisive move was software. CUDA, Nvidia's programming platform, let scientists write code for the GPU without being graphics engineers, and over fifteen years almost every AI library, framework and tutorial was written against it. Switching to a rival chip means rewriting or re-validating that stack, which is why Nvidia's data-centre business grew from a few billion dollars a year to a quarterly guide of $108 billion while competitors with respectable hardware struggled to win share.\n\nThe competition is real but partial. AMD sells comparable accelerators; Google builds its own TPUs and rents them; Amazon and Microsoft have in-house chips; a wave of startups is designing chips for inference only, where the software burden is lighter. None has yet shifted the share. What changed in November 2026 is governance rather than technology: Nvidia's founder resigned amid a national-security inquiry, and the company reports its first quarter under an interim chief executive on November 17.\n\n## How export controls measure a chip\n\nUS rules do not ban GPUs by name. They set a threshold in total processing performance, or TPP, a figure derived from a chip's arithmetic rate and the precision it works at. Chips above the line need a licence to go to China and a list of other countries. The November 2026 remote-access rule uses the same unit to describe a data centre: a facility that gives Chinese-linked customers more than 12 million aggregate TPP, roughly 760 H100-class or 220 B300-class accelerators, needs a licence before it can receive new US chips, wherever in the world it is. Knowing a chip's TPP, and how many you have, is now a compliance question as well as an engineering one.\n\n## What the numbers mean for buyers\n\nFor most companies the GPU question is a cloud bill, not a purchase. A frontier model's price per million tokens is, underneath, the rental cost of accelerator time plus margin, which is why open-weight models from vendors with cheaper compute undercut US labs, and why Nvidia's margin guidance moves API prices with a lag. When Nvidia reports, three lines matter to a buyer: the revenue guide for next quarter, which signals whether supply is loosening; gross margin, which tells you whether memory costs are being passed on; and the supply commitments figure, $279 billion at last count, which shows how much capacity is already spoken for.\n\n## What to watch\n\nWhether the second generation of inference-only chips ships in 2027 and takes any of the serving market. Whether CUDA's lock holds as more code is written against portable layers like PyTorch and Triton. And whether a company whose founder is gone, whose board faces an investigation, and whose customers are now under a remote-access rule can keep allocating the scarcest component in the industry on the same terms.",
+  "faqs": [
+    [
+      "Do I need to buy GPUs to use AI?",
+      "Almost certainly not. Every major model is available by API or through a cloud, and the price per token already includes the hardware. Buying hardware makes sense only when you run a fixed workload around the clock, need data to stay on your own premises, or can get electricity and chips cheaper than the cloud can."
+    ],
+    [
+      "Why does memory matter more than speed?",
+      "Generating text means reading the whole model's weights from memory for every token produced. A chip that can multiply faster than it can read is idle, so the bandwidth between memory and cores sets the real throughput. That is why high-bandwidth memory is the component in shortest supply and why its price shows up in Nvidia's margins."
+    ],
+    [
+      "What is TPP and why is 12 million the number?",
+      "Total processing performance is a formula export regulators use to score a chip's AI capability regardless of its brand. The November 2026 rule applies a licence requirement to any data centre that gives China-linked customers more than 12 million TPP in aggregate, which works out to a few hundred top-end accelerators. Facilities that are digitally linked are counted together."
+    ]
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "slug": "corma-125-million-series-a-1-billion-three-months-what-the-defensive-ai-bet-prices-in",
+  "section": "markets",
+  "published": "2026-11-17",
+  "updated": "2026-11-17",
+  "title": "Corma's $125 million Series A at $1 billion, three months after stealth: what a 16x step-up on 25 people and undisclosed revenue says about the defensive-AI market",
+  "dek": "NEA has priced a defensive cybersecurity foundation-model lab as a unicorn before it has named a customer, betting that the autonomous attack tools in this week's threat reports create demand faster than compute can be provisioned.",
+  "stat": "$1B",
+  "tags": [
+    "funding",
+    "security",
+    "agents",
+    "markets"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "Calcalist",
+      "url": "https://www.calcalistech.com/ctechnews/article/bjiqapu0me"
+    },
+    {
+      "name": "Unite.AI",
+      "url": "https://www.unite.ai/corma-raises-125m-series-a-at-1b-valuation-to-scale-defensive-ai/"
+    }
+  ],
+  "why": {
+    "finance": "Seed to Series A in 13 weeks at a 16x valuation step is the security sector matching Mirendil's $5 billion Series A. Comparables are OpenAI's Daybreak line and GPT-6 Cyber, and the exit path is a platform acquisition.",
+    "security": "The product is autonomous investigation and response with human approval over Slack or Teams. Ask for false-positive rates and the blast radius of an approved action, not the 99% completion statistic.",
+    "executives": "The company says Fortune 100 demand exceeds the GPUs it can rent. Defensive AI is a 2027 budget line whether you buy from a startup or a platform."
+  },
+  "body": "Corma announced on Monday a $125 million Series A led by NEA at a $1 billion valuation, with seed investors Sequoia Capital, Khosla Ventures and Coatue returning. The company came out of stealth on August 10 with a $60 million seed, so the step from roughly $60 million raised to a billion-dollar price took 13 weeks. Total funding is $185 million. Headcount is about 25, split between Tel Aviv and San Francisco.\n\n## What it sells\n\nThe product, Corma Workforce, is a set of agents built on a foundation model the company trained for defensive security rather than adapted from a general one. The agents connect to a customer's identity, cloud, endpoint, SIEM and firewall or intrusion-detection tools, take assignments over Slack or Microsoft Teams, run investigations and remediation, and present findings for human approval before acting. Chief executive Alon Pluda, a Unit 8200 alumnus, has recruited researchers from Google and DeepMind alongside offensive-security specialists.\n\nThe company reports deployments in healthcare, financial services, energy and critical infrastructure, retail and telecoms, with demand from Fortune 100 and Global 500 firms. One anonymised Fortune 1000 chief information security officer is quoted on a 94% reduction in end-to-end response time versus the previous provider. Corma's own figures are 99% of tasks completed autonomously, 100 times faster end-to-end completion and 95% lower cost per task, and it says it has expanded server capacity 24-fold and still has a waitlist. Pluda's framing is that model quality is no longer the limit; GPUs are.\n\nNo customer is named and no revenue figure is given.\n\n## Why now\n\nThe timing is not accidental. Google's threat group published its first documented no-human-in-the-loop exploitation framework on the same day. The FBI's flash alert on ARTEX agents reaching admin access in under three hours came on Friday. Pluda calls October's wave of breaches \"Black October\" and says it made the case for machine-speed defence impossible to ignore. Boards that read those reports want something that responds in seconds, and the incumbents are selling copilots.\n\n## The comparables\n\nThe nearest public peers are not startups. OpenAI launched two Daybreak security products on November 13 and sells GPT-6 Cyber to vetted customers at $20 per million input tokens; Anthropic sells Mythos to approved organisations. Corma's bet is that a model trained from the ground up for defence beats a general model wrapped in a vetting process, and that security buyers will pay for a vendor whose only business is theirs. Among private peers, Mirendil raised $1 billion at a reported $5 billion last week in eleven months; the pattern of enormous early rounds on thin disclosure is the pattern of this autumn.\n\n## The counter-argument\n\nEvery number in the announcement is the company's own. A 99% autonomous completion rate says nothing about the 1%, which in security is where the damage is, and \"100 times faster\" is measured against a human process the company chose. Twenty-five people cannot support Fortune 100 deployments across five sectors without heavy reliance on the customers' own tooling, which is also the integration surface an attacker would target. And a defensive model is a weapon with the sign flipped; the governance questions that apply to GPT-6 Cyber apply here.\n\n## What to watch\n\nNamed customers and a revenue disclosure at the next round. Independent testing of false-positive rates and action blast radius, the two numbers the announcement omits. Whether the platform vendors, CrowdStrike, Palo Alto and Microsoft, respond by buying a lab like this one or building one. And the compute constraint: a security startup that cannot get GPUs in Q1 2027 has the same problem as everyone else, with a louder customer base."
+}

@@ -1,0 +1,36 @@
+{
+  "slug": "huawei-cloudrobo-wm1-2-runway-praxis-1-open-weight-robot-brains-agile-robots-8-5-billion",
+  "section": "robotics",
+  "published": "2026-11-17",
+  "updated": "2026-11-17",
+  "title": "Open-weight robot brains on both sides of the Pacific: Huawei's CloudRobo-WM1.2 on Ascend, Runway's Praxis-1 at 46.2% on RoboLab-120, and Agile Robots' $8.5 billion without a shipment figure",
+  "dek": "In one week the two most capable open world-action models for robots arrived from a video-generation company in New York and a chip company in Shenzhen, and the software split is starting to follow the silicon split.",
+  "stat": "46.2%",
+  "tags": [
+    "robotics",
+    "models",
+    "funding",
+    "Nvidia"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "The AI Insider China physical-AI roundup",
+      "url": "https://theaiinsider.tech/2026/11/17/china-physical-ai-roundup-unix-ai-raises-75m-pre-a-plus-tensorworld-ubtech-order-and-huawei-cloudrobo/"
+    },
+    {
+      "name": "Runway: Praxis-1 is now available",
+      "url": "https://runway.com/news/praxis-1-is-now-available"
+    },
+    {
+      "name": "Tech Times on Agile Robots' Series F",
+      "url": "https://www.techtimes.com/articles/330608/20261113/agile-robots-raises-500m-series-f-humanoid-factory-capacity-public-shipment-count-not.htm"
+    }
+  ],
+  "why": {
+    "ml": "Praxis-1 ships weights, inference and fine-tuning code under Apache 2.0 with LeRobot and LoRA support on H100 through Jetson Thor. CloudRobo-WM1.2 is open too, but trained and documented for Ascend.",
+    "executives": "Choosing a robot fleet is now choosing a compute ecosystem, and after Monday's BIS rule the Chinese stack carries compliance questions for Western buyers.",
+    "finance": "Agile's $8.5 billion is about 12 times third-party 2026 revenue guidance, earned mostly by conventional arms; humanoid shipments are undisclosed. UBTech's 400-unit order is the kind of dated commitment the sector still rarely publishes."
+  },
+  "body": "Three pieces of robotics news in the past week point the same way: the model that tells a robot what to do next is becoming open, cheap and tied to a chip vendor.\n\n## Huawei's world model\n\nAt a Sunday event Huawei Cloud released CloudRobo-WM1.2, an open-source robot world model trained on its Ascend processors. Its \"DualAct\" design generates actions directly from the world model instead of bolting a separate policy on top, and Huawei says it ranks first on the RoboTwin 2.0 and LiberoPro 2.0 benchmarks. Alongside the weights it shipped a training framework and recommended recipes for Ascend systems, and claimed that 80% of China's embodied-AI companies use Ascend Cloud and that CloudRobo has more than 16,500 developers and 230 partner companies and universities, including JAKA, Spirit AI, Galaxea, Youibot and Realman.\n\n## Runway's world action model\n\nRunway, better known for video generation, released Praxis-1 on November 11 as open weights under Apache 2.0, including commercial use, with inference and fine-tuning code, LeRobot support and LoRA recipes. It is a 27 billion-parameter mixture-of-experts diffusion transformer that predicts video and actions together, pretrained on the same large-scale video as Runway's general world models. On Nvidia's RoboLab-120 leaderboard, 1,200 episodes, it reports 46.2% success against 42.9% for FLUX 3 Action, 36.8% for Cosmos3 Nano and 28.0% for π0.5; fine-tuned on Google's RT-1 data it reaches 80.0% on SimplerEnv against 52.4% for the original policy. It runs on H100 and B200 in the data centre, RTX 5090 and RTX PRO 6000 on a workstation, and Jetson Thor on the robot. Launch partners are Noble Machines with a legged humanoid, Standard Bots with an industrial arm and Ultra with a dual-arm warehouse robot.\n\nSet the two side by side and the pattern is visible. Each is open, each tops a benchmark its chip partner hosts or that its ecosystem favours, and each is documented for one silicon family. Robot software is dividing along the Nvidia and Ascend line the way phone software divided a decade ago, and Monday's BIS rule on remote access to US chips makes the choice a compliance matter for anyone serving a Chinese customer or buying a Chinese stack.\n\n## The money\n\nAgile Robots, headquartered in Munich with production in Germany and China, closed a $500 million Series F on November 12 led by SoftBank, with Nvidia, Hitachi and T.Capital, at $8.5 billion, about eight times its 2021 price. The company reports more than 20,000 robotic systems deployed, mostly arms in automotive, electronics and logistics; third-party estimates put 2025 revenue at about $339 million and 2026 guidance at $690 million, so the valuation is roughly 12 times forward revenue. Its Fürstenfeldbruck plant has a stated capacity of 10,000 humanoids a year, but the company has not disclosed how many it has shipped, and a visiting reporter saw wheeled units, not legged ones, leaving the line. The compact ONE SN, built on Nvidia's GR00T 1.7 model and Jetson Thor, is due in early 2027 at 1,000 to 2,000 units.\n\nIn China, UBTech booked a 400-unit order of U1 Pro humanoids from car dealer Yongda Auto for delivery this year, its first large disclosed order for the line, and signed a three-year target with a China Telecom unit for a million home-companion robots.\n\n## The counter-argument\n\nLeaderboards are not warehouses. A 46% success rate on 120 lab tasks is a research milestone, and a 95% per-step success rate still compounds to about 60% over a ten-step job. Rodney Brooks's criticism that learning dexterity from video is \"pure fantasy\" has not been answered by a deployment at scale, and the sector's most valuable private company still will not say how many humanoids it has sold.\n\n## What to watch\n\nWhether CloudRobo's training stack runs anywhere but Ascend, and whether Praxis-1 fine-tunes transfer across the three launch partners' bodies. Agile's 2026 revenue against the $690 million guidance and any humanoid shipment number. UBTech's delivery of 400 units by year-end. And the next open release: Nvidia's GR00T, Runway, Huawei and Physical Intelligence are now on a cadence of months."
+}

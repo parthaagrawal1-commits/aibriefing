@@ -912,6 +912,17 @@ def generate_images(briefs, explainers):
     return n
 
 ARTICLES = []
+def news_sitemap(briefs, articles, days=2):
+    """Google News sitemap: briefs and articles published in the last `days` days (News accepts up to 1,000 URLs, 48 hours)."""
+    cutoff = (datetime.date.fromisoformat(TODAY) - datetime.timedelta(days=days)).isoformat()
+    items = [(f"/brief/{b['date']}/", b["date"], b["headline"], ", ".join(sorted({t for it in b["items"] for t in it.get("tags", [])})[:10])) for b in briefs if b["date"] >= cutoff]
+    items += [(a["url"], a["published"], a["title"], ", ".join(a["tags"])) for a in articles if a["published"] >= cutoff]
+    entries = "".join(
+        f"<url><loc>{ROOT}{esc(p)}</loc><news:news><news:publication><news:name>{esc(BRAND)}</news:name><news:language>en</news:language></news:publication>"
+        f"<news:publication_date>{d}T11:00:00+00:00</news:publication_date><news:title>{esc(t)}</news:title><news:keywords>{esc(k)}</news:keywords></news:news></url>"
+        for p, d, t, k in items)
+    return f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">{entries}</urlset>'
+
 def main():
     global ARTICLES
     briefs = load_briefs(); explainers = load_explainers(); assert briefs
@@ -983,7 +994,8 @@ def main():
         return f'<image:image><image:loc>{ROOT}{a["img"]}</image:loc></image:image>' if a else ""
     urls = "".join(f"<url><loc>{ROOT}{p}</loc><lastmod>{lastmod(p)}</lastmod><priority>{prio(p)}</priority>{img_for(p)}</url>" for p in pages if p not in noindex)
     write("sitemap.xml", f'<?xml version="1.0" encoding="UTF-8"?><urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">{urls}</urlset>')
-    write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /search/\nSitemap: {ROOT}/sitemap.xml\n")
+    write("news-sitemap.xml", news_sitemap(briefs, articles))
+    write("robots.txt", f"User-agent: *\nAllow: /\nDisallow: /search/\nSitemap: {ROOT}/sitemap.xml\nSitemap: {ROOT}/news-sitemap.xml\n")
     write(".htaccess", HTACCESS); write("favicon.svg", FAVICON)
     if CFG.get("indexnow_key"): write(CFG["indexnow_key"] + ".txt", CFG["indexnow_key"])
     og_image()
