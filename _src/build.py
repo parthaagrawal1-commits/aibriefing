@@ -227,7 +227,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);fo
 #lensBtn{display:none}#lensBtn.on{display:inline-block}
 #menuBtn{display:none}
 #menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:55;overflow:auto;padding:16px 20px 40px}#menu.on{display:block}#menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}#menu h4{margin:18px 0 6px;color:var(--mute);font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#menu a{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:18px;font-weight:500}
-.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}
+.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}
 """
 
 JS = r"""
@@ -677,6 +677,23 @@ def autolink_glossary(html_, exclude_slug=None, limit=12):
 def article_card(a, big=False):
     return (f'<a class="story tile" href="{a["url"]}"><img src="{a["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><div class="kicker">{esc(SEC[a["section"]][1])}</div><h3>{esc(a["title"])}</h3><p>{esc(a["dek"][:150])}…</p><div class="m"><span>{short_date(a["published"])}</span><span>·</span><span>{read_time(a["words"])} min</span></div></div></a>')
 
+VENDOR_TAGS = {"OpenAI", "Anthropic", "Google", "Nvidia", "Meta", "Microsoft", "Amazon", "Apple", "xAI", "Mistral", "DeepSeek"}
+def story_so_far(a, articles, limit=4):
+    """'Story so far' module: earlier articles that share at least two tags (one of them a vendor or a topic),
+    newest first, so a reader landing from search can follow the thread without hunting through section hubs."""
+    mine = set(a["tags"])
+    if len(mine) < 2: return ""
+    prev = []
+    for x in articles:
+        if x["slug"] == a["slug"] or x["published"] > a["published"]: continue
+        shared = mine & set(x["tags"])
+        if len(shared) >= 2 and (shared - VENDOR_TAGS):
+            prev.append((len(shared), x))
+    if not prev: return ""
+    prev.sort(key=lambda t: (t[1]["published"], t[0]), reverse=True)
+    items = "".join(f'<li><span class="d">{short_date(x["published"])}</span> <a href="{x["url"]}">{esc(x["title"][:120])}{"…" if len(x["title"]) > 120 else ""}</a></li>' for _, x in prev[:limit])
+    return f'<div class="srcbox sofar" style="max-width:760px"><h4>The story so far</h4><ol>{items}</ol></div>'
+
 def article_page(a, articles, explainers):
     sec = SEC[a["section"]]; path = a["url"]
     why = a.get("why", {})
@@ -687,13 +704,14 @@ def article_page(a, articles, explainers):
     rel = "".join(article_card(x) for x in related)
     tags = "".join(f'<a class="pill" href="/topics/{slugify(t)}/">{esc(t)}</a>' for t in a["tags"])
     nx = next_actions({"tags": a["tags"]})
+    sofar = story_so_far(a, articles)
     dev = '<span class="dev">Developing</span>' if a.get("developing") else ""
     body = (f'<div class="hero"><div class="kicker"><a href="/{a["section"]}/">{esc(sec[1])}</a> · {short_date(a["published"])} · {read_time(a["words"])} min read</div><h1 data-speak>{dev}{esc(a["title"])}</h1><p class="lede" data-speak>{esc(a["dek"])}</p>'
             f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(a["title"])}">Share</button></div></div></div>'
             f'<img class="cover" src="{a["img"]}" alt="" width="1200" height="675" fetchpriority="high">'
             + (f'<div class="card" style="max-width:900px;margin:0 0 18px"><div class="kicker">Why it matters</div><div class="why">{whys}</div></div>' if whys else "")
             + f'<div class="article" data-speak>{autolink_glossary(md_block(a["body"]))}</div>'
-            f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div><div>{tags}</div>{nx}'
+            f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div>{sofar}<div>{tags}</div>{nx}'
             f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
             + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())
     ld = [enrich_ld({"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, tags=a["tags"], audiences=list(why.keys())), breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]

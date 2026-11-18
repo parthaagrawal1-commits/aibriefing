@@ -1,0 +1,34 @@
+{
+  "slug": "ai-ipo-what-to-look-for-in-an-s1",
+  "title": "How to read an AI company's IPO filing: the eight numbers in an S-1 that matter more than the valuation",
+  "summary": "Anthropic's listing is the largest test yet of whether public investors can price a frontier lab. Here is how to read the filing, which figures are real, which are accounting artefacts, and what the governance section is telling you.",
+  "level": "intermediate",
+  "audiences": [
+    "finance",
+    "executives",
+    "beginners"
+  ],
+  "tags": [
+    "IPO",
+    "markets",
+    "Anthropic",
+    "funding"
+  ],
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
+  "body": "An S-1 is the registration statement a company files with the US Securities and Exchange Commission before selling shares to the public. It is long, written by lawyers, and the most honest document the company will produce for years, because every claim in it carries liability. For an AI company the useful parts are not the ones the roadshow emphasises. Anthropic's November 2026 filing, with 825 million shares offered at $70 to $78, is the worked example below, but the method applies to any lab or AI infrastructure company that follows.\n\n## 1. Revenue growth and what it is made of\n\nLook for the quarterly series, not the annual one, and for the split between API, subscriptions and enterprise contracts. Anthropic reported $33.2 billion of revenue in the first nine months of 2026 against $2.5 billion a year earlier, with the third quarter alone at about $17 billion. Growth of that order can only continue if the customer base broadens, so read the concentration disclosure: how much comes from the ten largest customers, and whether any of them is also an investor or a supplier.\n\n## 2. Gross margin, and whether compute is in it\n\nAI companies differ in where they book the cost of running models. If inference compute sits in cost of revenue, gross margin tells you the unit economics. If part of it is capitalised or booked as research, the margin flatters. Find the accounting policy note and the line for depreciation of compute assets.\n\n## 3. The committed spend\n\nThis is the number most readers miss. Anthropic's filing shows about $900.9 billion of committed spending, mostly compute and infrastructure, with $70.7 billion due within twelve months. Commitments are not costs yet, but they are obligations that must be met from revenue, cash or further financing. Compare the twelve-month figure with cash on hand after the raise: the gap is the amount the company must earn or borrow in a year.\n\n## 4. The non-cash charges\n\nAnthropic's nine-month net loss was $104 billion, of which $94.3 billion was a non-cash charge related to convertible notes and similar instruments whose value rose with the company's. The operating loss was $1.26 billion. Both figures are real in different senses; the one that predicts cash needs is the operating loss plus the committed spend, not the headline.\n\n## 5. Who is buying alongside you\n\nA concurrent private placement, where strategic investors buy shares at the IPO price, is a vote of confidence and a source of supply. Seven chip and cloud suppliers agreed to buy $26 billion of Anthropic's non-voting Class N stock, and those shares are not subject to the lock-up that binds other holders. Check the lock-up terms for every class, because the day they expire is the day supply changes.\n\n## 6. Governance and control\n\nAnthropic lists as a public benefit corporation and a controlled company: one Class F share held by the founders carries 50.1% of the vote on most matters, and a Long-Term Benefit Trust appoints a board majority. Public shareholders in such a company are buying economic exposure, not influence.\n\n## 7. The risk factors that are new\n\nEvery S-1 lists generic risks. The ones specific to a frontier lab are export controls, model-safety incidents and litigation, dependence on a handful of suppliers for chips and data centres, and the possibility that open-weight models erode pricing.\n\n## 8. Use of proceeds\n\nA filing that says proceeds go to general corporate purposes is telling you the money is for compute. Divide the net proceeds by the twelve-month committed spend; if the result is less than two, the company will be back in the market, in debt or equity, within a couple of years.\n\n## What the valuation then means\n\nWith about 13.09 billion shares outstanding after the offering, the top of Anthropic's range implies roughly $1 trillion of market value and up to $1.4 trillion fully diluted, around twenty times the current annual revenue run rate. Whether that is cheap depends entirely on the growth and margin lines above. The filing cannot tell you that. It can tell you how long the company has to prove it.",
+  "faqs": [
+    [
+      "Can I buy shares at the IPO price?",
+      "Usually not directly. Shares at the offer price go to the underwriters' institutional clients and, in Anthropic's case, a retail allocation reported at about 20% through participating brokers. Most people buy in the open market on the first day, where the price can be far from the offer price in either direction."
+    ],
+    [
+      "Why is the net loss so much bigger than the operating loss?",
+      "Because convertible notes and similar instruments issued to earlier investors are revalued as the company's worth rises, and the increase is booked as a non-cash loss. It reflects how much the early investors' claims appreciated, not cash leaving the company. The operating loss is the better guide to burn."
+    ],
+    [
+      "What is a public benefit corporation and does it change the investment?",
+      "A corporate form that obliges directors to weigh a stated public purpose alongside shareholder returns. It gives the board legal cover to make decisions that reduce profit in the name of that purpose, such as declining a customer or delaying a model. Combined with a controlled-company structure, it means public shareholders have accepted that mission can outrank return."
+    ]
+  ]
+}

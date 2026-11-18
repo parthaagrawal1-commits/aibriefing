@@ -1,0 +1,300 @@
+{
+  "headline": "Nvidia guides to $130B without China; OpenAI cuts Astra to $8; PyPI stealer",
+  "intro": "Nvidia's first quarter without Jensen Huang beat on every line: $115.8 billion of revenue, a $130 billion fourth-quarter guide and a 71% to 72% margin outlook that assumes no data-centre compute sales to China at all. Anthropic prices its $64 billion IPO after the close tonight on a book reportedly covered six times, while Salesforce lost 9% on fears of what the listing says about software. OpenAI shipped GPT-6.2 Astra at $8 per million input tokens, a fifth cheaper than its predecessor and the first OpenAI model rated High for AI self-improvement; Microsoft answered with MAI Code 2 inside GitHub Copilot and Tencent with a 1M-context model at seven cents. The day's security story is a poisoned release of Microsoft's agent-framework package on PyPI that stole cloud credentials from every Python process on an infected machine for 45 minutes. Isomorphic Labs raised $5 billion before putting a drug in a human, Genesis AI raised $500 million at $3.5 billion for a glove-trained robot, Beijing promised countermeasures to Monday's chip rule, and the FDA stopped saying 'AI'.",
+  "one_thing": "If any machine, container or CI runner installed Microsoft's agent-framework Python package between 20:35 and 21:30 UTC on November 17, treat every secret it could reach as stolen: search lockfiles and images for versions 1.26.1 and 1.26.2, look for agent_framework_meta.pth or af_runtime_diag.pth in site-packages, and rotate Azure, AWS, GitHub and npm credentials on the host. The stealer ran at interpreter start-up, so importing the package was not required.",
+  "items": [
+    {
+      "title": "Nvidia posts $115.8 billion and guides to $130 billion with no China compute revenue assumed; data centre up 110% to $107.6 billion, margins to fall to 71–72%, $390 billion of purchase commitments",
+      "stat": "$130B",
+      "summary": "Nvidia's third quarter, the first reported by interim chief executive Colette Kress, came in at $115.8 billion of revenue, up 103% on the year and about $7 billion above consensus, with non-GAAP earnings of $2.68 a share against $2.47 expected and a 74.9% gross margin. The fourth-quarter guide of $130 billion plus or minus 3% includes an extra week, carries a gross-margin outlook of 71% to 72% as memory costs rise, and explicitly assumes no data-centre compute revenue from China. Purchase commitments rose to $390 billion, neocloud commitments to $32 billion, and the company returned $28.1 billion to shareholders in the quarter with $227 billion of buyback authorisation left. Chair Harvey Jones said the board does not intend to bring Jensen Huang back and will not rush a permanent appointment; the shares rose about 4% after hours from their lowest close since June 2025.",
+      "why": {
+        "finance": "The beat was never in doubt; the margin guide was. A 300-basis-point drop against a $130 billion quarter is roughly $4 billion of gross profit handed to memory suppliers, and the China assumption means the $44 billion to $62 billion Jefferies estimates is lost is now in the base. Model 2027 on 71%, not 75%.",
+        "executives": "A $390 billion purchase-commitment book from a company with no permanent CEO is the supply chain your 2027 AI budget depends on. Ask your cloud provider which of their Rubin allocations are firm.",
+        "ml": "Kress said Vera Rubin is 'off to an explosive start' and the roadmap is on track, which is the first official word since the leadership change. Rental price relief still depends on Rubin volume in the first half of 2027.",
+        "beginners": "The company that makes most AI chips sold more in three months than many countries' entire tech sectors do in a year, and says the next quarter will be bigger still. The new boss also said the founder who resigned is not coming back."
+      },
+      "sources": [
+        {
+          "name": "Nvidia Q3 FY2027 press release (SEC 8-K)",
+          "url": "https://www.sec.gov/Archives/edgar/data/0001045810/000104581026000088/q3fy27pr.htm"
+        },
+        {
+          "name": "Kiplinger live coverage of the call",
+          "url": "https://www.kiplinger.com/news/live/nvidia-earnings-live-updates-and-commentary-november-2026"
+        }
+      ],
+      "tags": [
+        "markets",
+        "infrastructure",
+        "Nvidia"
+      ],
+      "article": "nvidia-q3-115-8-billion-130-billion-guide-no-china-what-kress-first-quarter-says-about-2027"
+    },
+    {
+      "title": "Anthropic prices tonight: 825 million shares at $70 to $78, orders reportedly six times the book, $26 billion placement from chip suppliers; Salesforce falls 9% on the eve as investors sell software",
+      "stat": "$64B",
+      "summary": "Anthropic is due to price its Nasdaq listing after the close today and begin trading as ANT on Thursday, offering 825 million Class A shares at $70 to $78 for up to $64.4 billion, with seven compute suppliers including Google and Nvidia buying another $26 billion of non-voting stock at the IPO price. CNBC and others have reported the book is covered six to seven times, and the Motley Fool wrote this morning that a price above the range is likely; the company's own filings show $33.2 billion of revenue in the first nine months of 2026 and roughly $900 billion of committed spending. Salesforce fell about 9% on Tuesday with no company news as investors sold enterprise software on the argument that Claude automates what the sector sells; Microsoft lost 2.3% and the S&P 500 fell for a fourth day. Pricing and the first-day open will be covered in Thursday's brief.",
+      "why": {
+        "finance": "The fully diluted value at the top of the range is $1.4 trillion, about 20 times a $17 billion quarterly run rate. The $26 billion supplier placement is not subject to lock-up, which is a supply overhang to price from day one.",
+        "executives": "The Salesforce selloff is the market telling every software vendor that their seat-based pricing is the thing an AI IPO threatens. If you buy SaaS, your renewals just got easier to negotiate.",
+        "developers": "Anthropic's filing commits $70.7 billion of spend in the next twelve months, almost all compute. Capacity and rate limits on Claude are more likely to improve than prices are to fall.",
+        "beginners": "The company behind the Claude assistant sells shares to the public tonight for the first time, probably raising more money than any company ever has in a single listing. Trading starts Thursday."
+      },
+      "sources": [
+        {
+          "name": "Decrypt via Yahoo Finance on the amended filing",
+          "url": "https://finance.yahoo.com/markets/stocks/articles/anthropic-sets-ipo-price-range-140602411.html"
+        },
+        {
+          "name": "Motley Fool, November 18",
+          "url": "https://www.fool.com/investing/2026/11/18/anthropic-is-likely-to-price-above-78-a-share-after-a-1200-revenue-surge/"
+        },
+        {
+          "name": "Motley Fool market wrap, November 17",
+          "url": "https://www.fool.com/coverage/stock-market-today/2026/11/17/stock-market-today-nov-17-stocks-slide-on-ai-chip-and-tech-pressures-salesforce-plummets-9/"
+        }
+      ],
+      "tags": [
+        "IPO",
+        "markets",
+        "Anthropic"
+      ],
+      "developing": true
+    },
+    {
+      "title": "OpenAI releases GPT-6.2 Astra at $8 / $40 and GPT-6.2 Sol at $2 / $10: Astra is 20% cheaper than GPT-6 Astra and the first OpenAI model rated High for AI self-improvement",
+      "stat": "$8 / $40",
+      "summary": "OpenAI put GPT-6.2 Astra and GPT-6.2 Sol into the API, Codex and ChatGPT Work on Monday, with Astra priced at $8 per million input tokens and $40 output, down from $10 and $50 for GPT-6 Astra, and Sol unchanged at $2 and $10. Both carry a 1.05 million-token context window and 128,000-token output limit, and both are available in the Ultrafast tier. The system card classifies both models as Critical for cybersecurity and High for biology and chemistry, and makes Astra the first externally deployed OpenAI model rated High on the company's AI self-improvement threshold, which the preparedness framework ties to added safeguards rather than a block. OpenAI's launch page could not be reached; the price and context figures come from the developer model index.",
+      "why": {
+        "ml": "The Astra price cut puts OpenAI's top tier level with Claude Fable 5.2 at $8 / $40 and under Gemini 4 Carbon's $20 output price from December. Re-run your evals on both 6.2 models before switching; the system card's KernelGen jump from 67% to 77% is the number to test if you write GPU code.",
+        "developers": "Model IDs are gpt-6.2-astra and gpt-6.2-sol. Knowledge cutoffs moved to May 18 and June 1, 2026, which matters for anything library-version-specific.",
+        "security": "A Critical cybersecurity rating with public API access means the model is as capable at offence as GPT-6 Cyber was when OpenAI restricted it. Assume adversaries have it today.",
+        "finance": "Frontier output prices have fallen from $50 to $40 at OpenAI in ten weeks while Anthropic's stayed flat at the new level. Inference deflation at the top of the market is real again; adjust vendor-spend forecasts.",
+        "beginners": "OpenAI's newest and most capable model got cheaper and smarter at the same time, which is how this industry usually moves. 'High for self-improvement' means the company thinks the model is unusually good at helping build the next model."
+      },
+      "sources": [
+        {
+          "name": "OpenAI developer community announcement",
+          "url": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
+        },
+        {
+          "name": "OpenAI model index (prices, context)",
+          "url": "https://developers.openai.com/api/docs/models"
+        },
+        {
+          "name": "GPT-6.2 system card (PDF)",
+          "url": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf"
+        }
+      ],
+      "tags": [
+        "models",
+        "pricing",
+        "research",
+        "OpenAI"
+      ],
+      "article": "gpt-6-2-astra-sol-8-40-first-high-self-improvement-rating-what-changed-and-what-to-test"
+    },
+    {
+      "title": "Microsoft's agent-framework package on PyPI poisoned for 45 minutes: versions 1.26.1 and 1.26.2 ran a credential stealer at every Python start-up, harvesting Azure, AWS, GitHub and npm secrets",
+      "stat": "45 min",
+      "summary": "Two malicious releases of Microsoft's agent-framework Python package, the entry point for the Microsoft Agent Framework with roughly 190,000 downloads a month, were uploaded to PyPI at 20:35 and 21:08 UTC on Monday and removed by about 21:30. The wheels kept the legitimate code and added a .pth file to site-packages so a stealer executed whenever any Python interpreter started, collecting environment variables matching TOKEN, SECRET, KEY, AZURE, AWS, GITHUB and NPM, dozens of credential files, Azure managed-identity and DevOps tokens, and in the second version GitHub Actions OIDC tokens, then posting one compressed blob to a webhook.site address. Wiz, which published the full analysis, says the free-tier webhook capped collection at 100 requests, so at most about 50 victims' data was captured. No malicious code appears in Microsoft's GitHub repository and no source distribution was published, which points to the packages being built outside the normal release process; Microsoft says it is investigating.",
+      "why": {
+        "security": "Search for the two versions in lockfiles, images and CI logs, check site-packages for agent_framework_meta.pth and af_runtime_diag.pth, grep egress logs for the webhook.site URL, and rotate everything on any match. Managed-identity tokens stay valid for up to 24 hours after theft.",
+        "developers": "Pin to 1.26.0 or wait for Microsoft's statement before upgrading. The .pth trick means a transitive dependency you never import can still own your interpreter; add .pth creation to what your supply-chain scanner flags.",
+        "executives": "This is the second poisoned Microsoft package on PyPI this year. If your agent platform strategy is 'use the vendor's framework', the vendor's publishing pipeline is now in your threat model.",
+        "ml": "Agent frameworks run with the broadest credentials in the building, by design. Separate the identity your agent runtime uses from the identity your developers use to install it."
+      },
+      "sources": [
+        {
+          "name": "Wiz Research analysis",
+          "url": "https://www.wiz.io/blog/malicious-version-of-microsofts-agent-framework-published-to-pypi"
+        },
+        {
+          "name": "SecurityWeek",
+          "url": "https://www.securityweek.com/microsoft-agent-framework-releases-poisoned-with-credential-stealer/"
+        },
+        {
+          "name": "The Hacker News",
+          "url": "https://thehackernews.com/2026/11/attackers-compromise-microsofts-agent.html"
+        }
+      ],
+      "tags": [
+        "security",
+        "agents",
+        "Microsoft"
+      ],
+      "article": "microsoft-agent-framework-pypi-poisoned-45-minutes-pth-credential-stealer-what-to-check-now"
+    },
+    {
+      "title": "Isomorphic Labs raises $5 billion Series C, the largest private biotech round on record, six months after a $2.1 billion B; Greenoaks and Sequoia lead, a16z joins, no drug yet in a human",
+      "stat": "$5B",
+      "summary": "Alphabet's drug-discovery spinout, led by Demis Hassabis, announced an oversubscribed $5 billion Series C on Tuesday co-led by Greenoaks and Sequoia Capital, with Andreessen Horowitz new to the table, Alphabet continuing with a 'significant' cheque, and Thrive, MGX, GV, CapitalG, Temasek and the UK Sovereign AI Fund returning. External funding now totals about $7.7 billion after the $600 million first round in March 2025 and the $2.1 billion Series B in May. The company disclosed no valuation; Bloomberg had reported talks at around $50 billion earlier this month. Proceeds go to the IsoDDE design engine and to building clinical-development infrastructure for oncology and immunology candidates that the release says have positive preclinical results, with no trial, indication or date named.",
+      "why": {
+        "finance": "A $5 billion round for a company with zero clinical data and partnership revenue capped at Lilly and Novartis milestones is a bet on platform value, not pipeline. Watch whether the first IND is filed by year-end as Hassabis has suggested; the valuation only makes sense if the engine shortens the clock.",
+        "executives": "Pharma partners now face a counterparty with more cash than most mid-cap biotechs. Expect Isomorphic to keep more of its own programmes and license less.",
+        "ml": "The release frames the engine as generating molecules 'with unprecedented precision and speed', which is a claim about design-make-test cycle time. The public evidence is still AlphaFold-lineage structure prediction; binding and ADMET prediction in the wild remain unpublished.",
+        "beginners": "A company that uses AI to design medicines raised more money than any private biotech ever has, before testing a single drug in people. Investors are paying for the method, not for a product."
+      },
+      "sources": [
+        {
+          "name": "Isomorphic Labs announcement (PR Newswire)",
+          "url": "https://www.prnewswire.com/news-releases/isomorphic-labs-announces-5-billion-series-c-funding-302942093.html"
+        },
+        {
+          "name": "BioSpace",
+          "url": "https://www.biospace.com/business/summits-rejection-isomorphics-record-5b-raise-obesity-and-alzheimers-in-the-spotlight"
+        }
+      ],
+      "tags": [
+        "funding",
+        "health",
+        "research",
+        "Google"
+      ],
+      "article": "isomorphic-labs-5-billion-series-c-largest-biotech-raise-no-drug-in-clinic-what-it-means"
+    },
+    {
+      "title": "Genesis AI raises $500 million Series A at $3.5 billion for a robot trained on glove data from 100 human workers; Boston Dynamics' Atlas gets its first non-automotive trial at GlobalFoundries",
+      "stat": "$3.5B",
+      "summary": "Genesis AI, founded in 2024 by Carnegie Mellon alumni Zhou Xian and Théophile Gervet with offices in Paris and San Carlos, announced a $500 million Series A at a $3.5 billion post-money valuation co-led by Premji Invest, Khosla Ventures and Eclipse, with Nvidia, AMD Ventures, T. Rowe Price, Bpifrance and Samsung Next among the participants. The company trains its GENE manipulation model partly on data from a roughly $300 sensor glove worn by more than 100 workers, has built 30 to 40 units of its Eno robot, and has chosen a US contract manufacturer for 2027; TechCrunch's reporter watched a demo in which a robot dropped a box and was told that dexterous hands wear out in weeks. Separately, GlobalFoundries will become the first non-automotive customer in Boston Dynamics' Atlas early-adopter programme, with humanoid testing in its fabs from early 2027, extending a Spot relationship that has logged more than 90,000 sub-fab inspections in Singapore at a 99% mission success rate.",
+      "why": {
+        "finance": "A 33x step-up from a $105 million seed in 16 months, on fewer than 40 robots and no named customers, is the robotics market pricing data moats rather than units. Agile Robots at $8.5 billion and Genesis at $3.5 billion now bracket the European robot-brain valuations.",
+        "executives": "The GlobalFoundries deal is the template to copy: a long quadruped record, then a humanoid pilot gated on facility readiness, with no unit commitment. Do not sign for humanoids before you have run a wheeled robot on the same floor.",
+        "ml": "Genesis's bet is that human-hand data captured 1:1:1 across glove, hand and robot beats teleoperation and simulation alone. The failure mode its own demo showed, hands wearing out in weeks, is the data-collection cost nobody budgets for.",
+        "beginners": "Investors gave a two-year-old robot company $500 million because of how it collects training data, with special gloves worn by people doing real work. A chipmaker will also test Boston Dynamics' humanoid robot in its factories next year."
+      },
+      "sources": [
+        {
+          "name": "Genesis AI announcement (PR Newswire)",
+          "url": "https://www.prnewswire.com/news-releases/genesis-ai-raises-500m-series-a-at-3-5b-valuation-to-master-human-level-dexterity-in-general-purpose-robots-and-deploy-at-scale-302941249.html"
+        },
+        {
+          "name": "TechCrunch",
+          "url": "https://techcrunch.com/2026/11/17/genesis-ai-raises-500-million-to-deploy-electric-glove-wearing-robots/"
+        },
+        {
+          "name": "Robotics & Automation News on Atlas at GlobalFoundries",
+          "url": "https://roboticsandautomationnews.com/2026/11/18/boston-dynamics-and-globalfoundries-expand-spot-operations-and-prepare-to-test-atlas-humanoid/107266/"
+        }
+      ],
+      "tags": [
+        "robotics",
+        "funding",
+        "research",
+        "Nvidia"
+      ],
+      "article": "genesis-ai-500-million-3-5-billion-eno-glove-data-boston-dynamics-atlas-globalfoundries"
+    },
+    {
+      "title": "Microsoft launches MAI Code 2 inside GitHub Copilot at Ignite, claiming 98% of GPT-6.1 Sol at 40% of the cost and 96% of Claude Opus 5.5 at 5%; no per-token price published",
+      "stat": "98%",
+      "summary": "Microsoft AI released MAI Code 2 and MAI Code 2 Flash on Tuesday as the first day of Ignite opened in San Francisco, making both generally available in GitHub Copilot across VS Code, Visual Studio, JetBrains, Xcode, Eclipse, the CLI and the cloud agent, with Flash also on the Free and Student plans and in limited preview on Microsoft Foundry. Microsoft says Code 2 averages 98% of GPT-6.1 Sol's score at 40% of its cost and 96% of Claude Opus 5.5 at 5% of its cost across DeepSWE 1.1, Terminal Bench 2.1, SWE-Atlas and FrontierCode, but publishes no raw scores and bases the cost ratios on a 50% promotional price with no end date. The same keynote brought MAI Cyber 2 Flash for defenders, Decision 1.1 to general availability with a claimed 4,000 customers, a Copilot harness preview in Foundry Agent Service with runtime billing from December 1, and GPT-6.2 'coming to Foundry'. The GitHub changelog also retired Claude Opus 4.8, Opus 5 and GPT-5.6 Terra from the Copilot picker on Sunday.",
+      "why": {
+        "developers": "Code 2 appears in the Copilot model picker today on paid plans; Flash on free ones. Treat the 98% figure as a vendor average across four benchmarks it chose and run it on your own repository before changing defaults.",
+        "finance": "Microsoft is now the fourth lab, after OpenAI, Anthropic and Google, to ship a frontier-adjacent coding model, and it is pricing it inside a subscription rather than per token. Per-seat Copilot margin, not API revenue, is what this protects.",
+        "ml": "A first-party model that Microsoft says matches its own partner's Sol at 40% of the cost is a statement about where Microsoft wants inference to run. Watch Foundry's model-routing defaults.",
+        "executives": "The Copilot harness in Foundry Agent Service starts metering on December 1. If your teams are already in the preview, December's bill is the first real signal of agent run-time cost."
+      },
+      "sources": [
+        {
+          "name": "Microsoft AI announcement",
+          "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
+        },
+        {
+          "name": "GitHub changelog",
+          "url": "https://github.blog/changelog/2026-11-17-mai-code-2-and-mai-code-2-flash-in-github-copilot/"
+        },
+        {
+          "name": "Microsoft Ignite 2026 blog",
+          "url": "https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/"
+        }
+      ],
+      "tags": [
+        "models",
+        "agents",
+        "adoption",
+        "Microsoft"
+      ],
+      "article": "mai-code-2-github-copilot-98-percent-of-sol-at-40-percent-cost-what-the-claims-hide"
+    },
+    {
+      "title": "Beijing vows 'countermeasures' to the BIS remote-access rule as Malaysia tells data centres to comply and Singapore seeks 'trusted access'; Trump and Xi meet Thursday in Shenzhen with AI safety talks on the agenda",
+      "stat": "Thu",
+      "summary": "China's Commerce Ministry said on Tuesday it is 'strongly dissatisfied with and firmly opposes' Monday's US interim final rule on remote access to advanced chips, and that it will take countermeasures if Washington 'insists on going its own way'; the foreign ministry called the rule economic coercion. Neither specified measures. Malaysia's trade minister said data-centre operators must comply and that Kuala Lumpur has no plans to negotiate; Singapore said it is studying the rule and seeking trusted access; Thailand promised closer scrutiny of importers. Trump arrived in Shenzhen on Wednesday local time for a Thursday bilateral with Xi on the APEC sidelines, and Reuters reports that officials plan further talks on AI misuse safeguards, including the incident-notification channel agreed in September that is not yet operating. Separately, New York's attorney general created an AI enforcement unit ahead of the RAISE Act taking effect on January 1, and San Francisco and Oakland extended their data-centre moratoria by ten and a half months.",
+      "why": {
+        "executives": "Countermeasures in past rounds meant rare-earth licensing and unreliable-entity listings. If you manufacture in or sell into China, your exposure to Thursday's outcome is not an AI question.",
+        "security": "The incident-notification channel both governments keep describing does not exist yet. Until it does, a cross-border agent incident has no official route; keep your own disclosure plan.",
+        "finance": "Nvidia's guide already assumes zero China compute revenue, so the downside from Thursday sits with Malaysian and Singaporean data-centre landlords and the US clouds leasing from them, not with Nvidia.",
+        "beginners": "China is angry about a new American rule limiting its companies' access to AI chips rented in other countries, and the two presidents meet tomorrow. Southeast Asian governments, where many of those data centres sit, are mostly saying they will follow the US rule."
+      },
+      "sources": [
+        {
+          "name": "Global Times (MOFCOM statement)",
+          "url": "https://www.globaltimes.cn/page/202611/1374476.shtml"
+        },
+        {
+          "name": "Reuters via Investing.com on summit AI talks",
+          "url": "https://www.investing.com/news/stock-market-news/chip-tensions-loom-over-trumpxi-summit-as-us-and-china-push-ai-safety-steps-5028728"
+        },
+        {
+          "name": "New York Attorney General",
+          "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-announces-creation-ai-safety-standards-enforcement-and"
+        }
+      ],
+      "tags": [
+        "policy",
+        "geopolitics",
+        "regulation",
+        "infrastructure"
+      ],
+      "article": "china-vows-countermeasures-bis-remote-access-rule-malaysia-singapore-respond-trump-xi-thursday",
+      "developing": true
+    },
+    {
+      "title": "The FDA stops saying 'AI': from November 16 new agency documents use 'Super Intelligence' and 'SI' under Executive Order 14434, with no new obligations for sponsors",
+      "stat": "SI",
+      "summary": "The Food and Drug Administration posted a notice that, from November 16, it will use 'Super Intelligence' and 'SI' in place of 'artificial intelligence' and 'AI' in newly issued public documents and communications to the extent the law allows, implementing the September 29 executive order 'Inaugurating the Era of Super Intelligence'. Existing guidances and regulations stay as written, statutory uses of 'AI' will be quoted unchanged, and forms, templates and databases will be conformed on normal maintenance cycles. The agency says the order creates no new requirement for sponsors, manufacturers or labelling, and defines SI by reference to the existing statutory AI definition. Duke-Margolis's Christina Silcox told RAPS the change is semantic but could encourage over-reliance on tool outputs by clinicians and patients.",
+      "why": {
+        "executives": "Your regulatory team will start receiving FDA correspondence about your 'SI-enabled device'. Nothing changes in the submission, but search your document-control system for both terms from now on.",
+        "ml": "The definition is the same statutory one. The name is not; expect the AI-enabled device list and every guidance to be retitled over the next year, which breaks naive scrapers and citations.",
+        "beginners": "The US drug and device regulator has been told by the White House to call AI 'super intelligence' in its paperwork. The rules did not change, only the words."
+      },
+      "sources": [
+        {
+          "name": "FDA notice",
+          "url": "https://www.fda.gov/science-research/fda-and-super-intelligence/fdas-use-super-intelligence-and-si-under-executive-order-14434"
+        },
+        {
+          "name": "RAPS Regulatory Focus",
+          "url": "https://www.raps.org/resource/fda-to-refer-to-ai-as-super-intelligence-going-forward.html"
+        }
+      ],
+      "tags": [
+        "policy",
+        "regulation",
+        "health"
+      ]
+    },
+    {
+      "title": "Tencent's Hy4 flash lists at $0.07 input / $0.28 output per million tokens with a 1M context and 12 billion active parameters; half price on TokenHub until November 30",
+      "stat": "$0.07",
+      "summary": "Twelve days after Hy4, Tencent released Hy4 flash, a 224-billion-parameter mixture-of-experts model with 12 billion active parameters and 64 billion in its 'Engram' memory layer, a multimodal context window of up to one million tokens, and list prices of $0.070 per million input tokens, $0.281 output and $0.003 for cached input. Tencent says the model slightly beats the larger Hy4 Preview on its internal WorkIndex benchmark at a thirteenth of the cost per task, decodes at more than 150 tokens a second, and scored close to Claude Haiku 5.5 on satisfaction in a blind test of 85 internal users across 259 tasks. Every benchmark claim is Tencent's own; public scores appear only in a chart. Tencent Cloud TokenHub is charging half the list price through November 30 and an open-weights release is promised without a date.",
+      "why": {
+        "developers": "At $0.07 / $0.28 this undercuts Gemini 3.1 Flash-Lite and GPT-6 Luna on list price with a context window ten times Haiku's cheap tier. The model ID is hy4-flash; data residency and export-control review come before the price comparison.",
+        "ml": "A 12B-active model with a 64B memory layer and a KV cache a sixth of Hy4's is an architecture story as much as a price story. If the weights ship, the Engram layer is what to study.",
+        "finance": "Chinese vendors are now pricing the small tier at a tenth of US list prices. Expect the US small-model prices to move before the flagship ones do."
+      },
+      "sources": [
+        {
+          "name": "Tencent announcement",
+          "url": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/"
+        }
+      ],
+      "tags": [
+        "models",
+        "pricing",
+        "research"
+      ]
+    }
+  ]
+}

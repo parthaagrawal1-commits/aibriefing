@@ -3,8 +3,35 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-17",
+ "updated": "2026-11-18",
  "rows": [
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6.2 Astra / GPT-6.2 Sol",
+   "released": "2026-11-17",
+   "kind": "Flagship / cost tier",
+   "context": "1.05M",
+   "note": "$8 / $40 and $2 / $10. First OpenAI model rated High for AI self-improvement; both Critical for cybersecurity.",
+   "source": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
+  },
+  {
+   "vendor": "Microsoft",
+   "model": "MAI Code 2 / MAI Code 2 Flash",
+   "released": "2026-11-17",
+   "kind": "Coding models (GitHub Copilot, Foundry preview)",
+   "context": "—",
+   "note": "Vendor claims 98% of GPT-6.1 Sol at 40% of cost; no per-token price or raw scores published.",
+   "source": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
+  },
+  {
+   "vendor": "Tencent",
+   "model": "Hy4 flash",
+   "released": "2026-11-16",
+   "kind": "Fast / small MoE (224B / 12B active)",
+   "context": "1M",
+   "note": "$0.07 / $0.28 list; 64B 'Engram' memory parameters; open weights promised, no date.",
+   "source": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/"
+  },
   {
    "vendor": "Alibaba",
    "model": "Qwen4-Max",

@@ -1,0 +1,37 @@
+{
+  "slug": "mai-code-2-github-copilot-98-percent-of-sol-at-40-percent-cost-what-the-claims-hide",
+  "section": "tools",
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
+  "title": "MAI Code 2 lands in GitHub Copilot: Microsoft says 98% of GPT-6.1 Sol at 40% of the cost and 96% of Claude Opus 5.5 at 5%. What the claims hide, and what Ignite changed for anyone building agents",
+  "dek": "Microsoft now ships its own frontier-adjacent coding model inside the subscription it already sells, and starts metering agent run-time in Foundry on December 1. The benchmark averages are the least important part.",
+  "tags": [
+    "models",
+    "agents",
+    "adoption",
+    "Microsoft"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "Microsoft AI: introducing MAI Code 2 and MAI Code 2 Flash",
+      "url": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
+    },
+    {
+      "name": "GitHub changelog",
+      "url": "https://github.blog/changelog/2026-11-17-mai-code-2-and-mai-code-2-flash-in-github-copilot/"
+    },
+    {
+      "name": "Microsoft Ignite 2026 blog",
+      "url": "https://blogs.microsoft.com/blog/2026/11/17/ignite-2026-building-the-frontier-ecosystem/"
+    }
+  ],
+  "body": "Microsoft AI released MAI Code 2 and MAI Code 2 Flash on Tuesday as Ignite opened in San Francisco. Both are generally available in GitHub Copilot the same day: Code 2 on the Pro, Pro+, Max, Business and Enterprise plans, Flash additionally on Free and Student, across VS Code, Visual Studio, JetBrains, Xcode, Eclipse, the command line, the cloud coding agent and the mobile app. Flash is also in limited preview on Microsoft Foundry, and both are promised soon on OpenRouter, Vercel, OpenCode and Kilo.\n\n## The claims\n\nMicrosoft's numbers are relative, not absolute. It says Code 2 reaches 98% of GPT-6.1 Sol's performance at 40% of its cost, and 96% of Claude Opus 5.5 at 5% of its cost, averaged across DeepSWE 1.1, Terminal Bench 2.1, SWE-Atlas and FrontierCode v1.1. Flash is described as comparable to GPT-6 Luna and Claude Haiku 5.5 at 65% and 20% of their prices. A blind front-end preference test of 258 annotators preferred Code 2 to GPT-6 Sol 67% of the time on the model page and 64% on the Ignite page. No raw benchmark scores are published, no per-token price is published, and the cost ratios are computed on a 50% promotional price with no end date. A reader cannot reconstruct any of the comparisons from the announcement.\n\nThat does not make the model bad. It makes the announcement a marketing document, and the right response is to put Code 2 on your own repository with your own task set and measure completion rate per dollar against whatever you use now.\n\n## What else Ignite shipped\n\nMAI Cyber 2 Flash is available to defenders through the Microsoft Defender programme and scored 83.2% on CyberGym end-to-end in a third-party test. MAI Image 2.7 Flash is priced at about $10 per thousand images and MAI Realtime 1 from one cent per audio minute. Decision 1.1 is generally available with a claimed 4,000 customers and a claim of being 50 times faster and 79 times cheaper than GPT-6.1 Sol on the scoring tasks it is built for. GPT-6.2 is described as coming to Foundry. The Copilot harness, Microsoft's agent runtime, enters public preview in Foundry Agent Service with more than twenty frontier models behind it, and runtime billing begins on December 1. GitHub's changelog of November 16 also retired Claude Opus 4.8, Opus 5 and GPT-5.6 Terra from the Copilot picker, added Claude Fable 5.2 and Gemini 4 Carbon, and introduced an Agents inbox in VS Code.\n\n## Why it matters more than a benchmark\n\nMicrosoft pays OpenAI for every Copilot completion served by an OpenAI model. A first-party model that it judges good enough for 98% of the work at 40% of the cost is a direct improvement in Copilot's gross margin and a reduction in what flows to OpenAI, on the same week OpenAI cut its own flagship price. It also changes the question a Copilot buyer should ask. Until now the pitch was access to the best models from every lab. From today the default may be Microsoft's own, and the routing decision is made in Redmond.\n\n## The counter-argument\n\nAverages across four benchmarks hide the distribution; a model that is 98% as good on average can be 80% as good on the long-horizon tasks that matter most and 110% on the easy ones. Microsoft's own blind test used front-end tasks, the category where current models are strongest. And the deprecation list shows the cost of building on a picker: three models that teams had tuned prompts for disappeared on a Sunday.\n\n## What to do\n\nRun Code 2 and Flash through your evaluation set this week and record cost per merged change, not per token. Set your Copilot organisation policy explicitly rather than inheriting the new default. If you use the Foundry harness preview, estimate December's bill now from the metering documentation. And treat the model-picker deprecations as a recurring event: keep prompts and evals portable across models, because the next retirement will also arrive on a weekend.",
+  "stat": "98%",
+  "why": {
+    "developers": "Code 2 is in the Copilot picker on paid plans now; Flash on Free and Student. Benchmark on your own repository before changing defaults, and note the cost claims rest on a 50% promotional price with no stated end.",
+    "finance": "Microsoft is pricing a frontier-adjacent model inside a per-seat subscription, not per token. That protects Copilot margin and reduces what Microsoft pays OpenAI per completion.",
+    "executives": "Foundry Agent Service's Copilot harness starts runtime billing on December 1. If any team is in the preview, December's invoice is your first real number for agent operating cost.",
+    "ml": "A first-party model matching the partner's Sol at 40% of the cost tells you where Microsoft wants inference to run. Watch Foundry's default routing as much as the benchmarks."
+  }
+}

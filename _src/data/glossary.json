@@ -840,5 +840,53 @@
       "agent harness",
       "guardrails"
     ]
+  },
+  {
+    "term": ".pth file (Python)",
+    "short": "A small text file in a Python site-packages directory that the interpreter reads at start-up to extend the import path, and that can also execute code.",
+    "long": "Because .pth files run before any user code and whether or not the package that installed them is ever imported, they are a favoured way to plant persistent malware in a Python environment. The November 2026 poisoning of Microsoft's agent-framework package on PyPI used one to launch a credential stealer at every interpreter start. Supply-chain scanners should flag any install that writes a .pth file.",
+    "related": [
+      "Dependency drift",
+      "Secret scanning",
+      "Non-human identity"
+    ]
+  },
+  {
+    "term": "Preparedness framework (OpenAI)",
+    "short": "OpenAI's internal policy for measuring a model's dangerous capabilities before release and deciding which safeguards or restrictions apply.",
+    "long": "It scores models in categories such as cybersecurity, biology and chemistry, and AI self-improvement, with thresholds like High and Critical. A High rating requires added mitigations; some categories can block deployment. GPT-6.2 Astra, released in November 2026, was the first externally deployed OpenAI model rated High for AI self-improvement, and both 6.2 models were rated Critical for cybersecurity while remaining on the public API. Anthropic's equivalent is its Responsible Scaling Policy.",
+    "related": [
+      "Frontier AI framework",
+      "Staged release",
+      "Frontier model"
+    ]
+  },
+  {
+    "term": "Purchase commitments",
+    "short": "Contracts a company has signed to buy components, capacity or services in future, disclosed in its financial statements even though the cash has not yet been spent.",
+    "long": "For AI hardware companies they show how much supply has been locked in; for AI labs they show how much compute has been promised. Nvidia disclosed $390 billion of purchase commitments in November 2026, up from $279 billion four months earlier, and Anthropic's IPO filing showed about $900 billion of committed spending, mostly on compute. If demand falls short the commitments become inventory write-downs or penalty payments, which is why analysts read them as a measure of risk as much as of confidence.",
+    "related": [
+      "Compute",
+      "Special purpose entity (AI financing)",
+      "Spot compute"
+    ]
+  },
+  {
+    "term": "Oversubscribed (IPO book)",
+    "short": "When investors have placed orders for more shares than a company is offering in its initial public offering.",
+    "long": "Banks describe the demand as a multiple of the deal: a book covered six times means orders for six shares for every one on sale. Heavy oversubscription lets the company price at or above its stated range and allocate shares selectively, but it also creates a first-day pop that some see as money left on the table. Anthropic's November 2026 IPO was reported to be covered six to seven times before pricing. The multiple is not a guarantee: orders can be inflated in the expectation of being scaled back.",
+    "related": [
+      "Lock-up period",
+      "Adjusted operating loss"
+    ]
+  },
+  {
+    "term": "Controlled company",
+    "short": "A listed company in which one person or group holds a majority of the voting power, exempting it from some stock-exchange governance rules.",
+    "long": "Nasdaq and the NYSE allow controlled companies to skip requirements such as a majority-independent board and independent compensation and nominating committees. Anthropic listed as a controlled company because a single Class F share, held by an entity owned by its seven co-founders, carries 50.1% of the vote on most matters, while its Long-Term Benefit Trust elects a board majority. Shareholders in such companies have limited ability to change management or strategy.",
+    "related": [
+      "Lock-up period",
+      "Oversubscribed (IPO book)"
+    ]
   }
 ]

@@ -1,0 +1,37 @@
+{
+  "slug": "gpt-6-2-astra-sol-8-40-first-high-self-improvement-rating-what-changed-and-what-to-test",
+  "section": "models",
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
+  "title": "GPT-6.2 Astra at $8 / $40: OpenAI cuts its flagship price by a fifth, matches Claude Fable 5.2 and ships the first model it rates 'High' for AI self-improvement. What changed and what to test",
+  "dek": "The headline is a price cut; the system card is the story. OpenAI has released a model it says can materially help build the next one, under added safeguards rather than restricted access.",
+  "tags": [
+    "models",
+    "pricing",
+    "research",
+    "OpenAI"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "OpenAI developer community announcement",
+      "url": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
+    },
+    {
+      "name": "OpenAI model index",
+      "url": "https://developers.openai.com/api/docs/models"
+    },
+    {
+      "name": "GPT-6.2 Astra and Sol system card (PDF)",
+      "url": "https://deploymentsafety.openai.com/gpt-6-2-astra-sol/gpt-6-2-astra-sol.pdf"
+    }
+  ],
+  "body": "OpenAI released GPT-6.2 Astra and GPT-6.2 Sol on Monday afternoon to the API, to Codex and to ChatGPT Work for Plus, Pro, Enterprise and Edu customers. The developer model index lists Astra at $8 per million input tokens and $40 per million output, against $10 and $50 for the GPT-6 Astra it replaces, and Sol at $2 and $10, unchanged from GPT-6.1 Sol. Both have a 1.05 million-token context window, a 128,000-token output limit, and are offered in the Ultrafast speed tier. OpenAI's launch page on its main site could not be reached from our build environment, so the figures here come from the model index and the community announcement.\n\n## The price\n\nAt $8 / $40 Astra now sits exactly on Claude Fable 5.2, which Anthropic priced at the same level on November 9, and under Gemini 4 Carbon, whose launch price of $2 / $10 steps up to $4 / $20 on December 1. Ten weeks ago OpenAI's top tier cost $50 per million output tokens; the new price is a 20% cut delivered alongside a capability increase, which is the pattern the industry had lost during the GPT-6 generation. TestingCatalog reports cached input at $0.40 for Astra and $0.10 for Sol, down from $1.00; we have not confirmed those on OpenAI's pricing page and have left the cached column blank in our tracker until we can.\n\nSol's price did not move. The gap between the two tiers is therefore four times on input and output, the same ratio as Anthropic's Fable-to-Opus step, and the choice between them is now purely about capability.\n\n## The system card\n\nThe card, dated November 17, classifies both models as Critical under OpenAI's cybersecurity category and High for biology and chemistry, the same tiers as GPT-6 Astra. The new line is AI self-improvement: Astra is the first externally deployed OpenAI model rated High, the threshold at which the preparedness framework requires added safeguards for the model's use in AI research. The card reports SEC-Bench Pro scores of 86.75% for Astra and 88.34% for Sol against 85.4% for GPT-6 Astra, KernelGen at 76.92% against 66.72%, and GPQA Diamond at 97.0% and 96.0%. Secondary coverage adds an Artificial Analysis Elo of 1,318 for Astra against 1,271 for Fable 5.2 and ARC-AGI-2 at 95.8% for $0.50 a task; treat those as unconfirmed.\n\nTwo things are notable. The smaller Sol model beats Astra on the security benchmark, which suggests the Critical rating is about the tier, not the parameter count, and that the cheaper model is the one an attacker would rent. And the self-improvement rating is applied to a model released on a public API with no vetting, where GPT-6 Cyber was held behind the Daybreak programme. OpenAI's framework distinguishes between capabilities that warrant restriction and capabilities that warrant mitigation; it has put self-improvement in the second group.\n\n## The counter-argument\n\nVendor benchmark deltas of one to ten points on tests the vendor selected are not evidence that your workload improves. The KernelGen jump is large and specific; the GPQA numbers are saturated. The cut in Astra's price may also say as much about OpenAI's inference costs falling as about competitive pressure, and a price that falls 20% in ten weeks can fall again, which argues against long reserved-capacity commitments at today's rate.\n\n## What to test\n\nRun your existing eval set on both models with the same prompts and compare cost per completed task, not per token; Sol at a quarter of the price may finish more of your tasks per dollar. Check anything version-sensitive against the new cutoffs. If you use prompt caching heavily, wait for OpenAI's pricing page to confirm the cached rate before migrating. And if you run a red team, the Critical cybersecurity rating on a $2 model is your new baseline for what an adversary can afford.",
+  "stat": "$8 / $40",
+  "why": {
+    "ml": "Re-run your eval suite on gpt-6.2-astra and gpt-6.2-sol before switching defaults; the KernelGen jump from 66.7% to 76.9% is the number to verify if you write GPU kernels.",
+    "developers": "Both models: 1.05M context, 128K output, Ultrafast tier available. Cutoffs are May 18 (Astra) and June 1 (Sol), 2026.",
+    "finance": "OpenAI's top-tier output price has gone from $50 to $40 in ten weeks. Budget inference at the new level and expect Google to respond before its December 1 Carbon step-up.",
+    "security": "Critical for cybersecurity, on a public API. Whatever GPT-6 Cyber could do under vetting, assume this can do for anyone with a key."
+  }
+}

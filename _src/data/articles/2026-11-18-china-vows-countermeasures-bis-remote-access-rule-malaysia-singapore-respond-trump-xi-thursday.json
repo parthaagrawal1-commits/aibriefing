@@ -1,0 +1,36 @@
+{
+  "slug": "china-vows-countermeasures-bis-remote-access-rule-malaysia-singapore-respond-trump-xi-thursday",
+  "section": "policy",
+  "published": "2026-11-18",
+  "updated": "2026-11-18",
+  "title": "Beijing promises countermeasures to the remote-access chip rule, Malaysia tells data centres to comply, and Trump meets Xi on Thursday. What tomorrow's summit can and cannot change for AI buyers",
+  "dek": "The rule takes effect when it hits the Federal Register, expected this week, whatever is said in Shenzhen. The variables that remain are how China retaliates and whether an AI-incident channel finally starts operating.",
+  "tags": [
+    "policy",
+    "geopolitics",
+    "regulation",
+    "infrastructure"
+  ],
+  "developing": false,
+  "sources": [
+    {
+      "name": "Global Times, MOFCOM statement",
+      "url": "https://www.globaltimes.cn/page/202611/1374476.shtml"
+    },
+    {
+      "name": "Reuters via Investing.com on summit preparations",
+      "url": "https://www.investing.com/news/stock-market-news/chip-tensions-loom-over-trumpxi-summit-as-us-and-china-push-ai-safety-steps-5028728"
+    },
+    {
+      "name": "New York Attorney General on the ASSET unit",
+      "url": "https://ag.ny.gov/press-release/2026/attorney-general-james-announces-creation-ai-safety-standards-enforcement-and"
+    }
+  ],
+  "body": "China's Ministry of Commerce said on Tuesday that it is strongly dissatisfied with and firmly opposes the interim final rule on remote access to advanced semiconductors that the Bureau of Industry and Security released on Monday, accusing Washington of generalising national security and abusing export controls, and warning that if the United States insists on going its own way China will take countermeasures to safeguard its sovereignty, security and development interests. A foreign ministry spokesman called the rule economic coercion and long-arm jurisdiction. Neither statement named a measure. Trump landed in Shenzhen on Wednesday local time, greeted by Xi at the aircraft, for a bilateral meeting on Thursday on the sidelines of APEC, followed by a trilateral with Putin.\n\n## What the rule does, briefly\n\nAs covered in Tuesday's brief, the rule requires a licence before advanced chips go to any data centre that provides more than 12 million TPP of aggregate compute to companies headquartered in China or Macau, adds licence requirements for Indonesia, Malaysia, Singapore, Thailand and Brazil, and rescinds the Biden-era AI Diffusion Rule. It takes effect on publication in the Federal Register, expected on Thursday, with 60 days for comment and 90 days for existing arrangements to obtain licences. Nothing said in Shenzhen changes the text; only a further rule can.\n\n## How the region answered\n\nMalaysia's trade minister, Johari Abdul Ghani, said data-centre operators must comply and that Kuala Lumpur has no plans to seek talks with Washington. Malaysia has required strategic trade permits for US AI chips since July 2025 and floated a data-centre monitoring law on November 12, so its position was already aligned. Singapore's digital and trade ministries said they are studying the measure and seeking trusted access for Singapore-based facilities. Thailand's vice commerce minister said importers will face closer scrutiny; Indonesia is reviewing. The pattern is compliance with a request for carve-outs, not resistance, which leaves Chinese tenants of Southeast Asian data centres with no government on their side of the table.\n\n## What Thursday can change\n\nReuters, citing three people briefed on preparations, reports that further US-China discussions on AI misuse safeguards are planned around the summit. Treasury Secretary Bessent said last week that the sides would discuss communication protocols for AI safety incidents and exchange practices for pre-release model testing, while acknowledging that approaches will not always converge. The emergency incident mechanism that Bessent and He Lifeng discussed in September is, by Reuters' account, not yet operational. A senior US official said no further progress on the Board of Trade would be announced. Export controls are expected to be high on the agenda after Jensen Huang's resignation and the Senate Banking hearing set for December 3; Reuters says Trump is not expected to raise the espionage allegation with Xi.\n\nThe realistic range of outcomes is narrow. A joint statement that stands up the incident channel with named points of contact would be a concrete result. A pledge to review licensing for specific chips would be a political one. Retaliation, if it comes, is more likely to follow the Federal Register publication than the handshake.\n\n## Meanwhile, at state level\n\nNew York's attorney general created an AI Safety, Standards, Enforcement and Transparency unit on Tuesday, led by Cristy Phillips, to enforce the RAISE Act's frontier-model disclosure and incident-reporting duties from January 1 and the chatbot protections for minors that take effect in June. San Francisco's supervisors voted unanimously to extend the city's data-centre moratorium by ten and a half months after the planning department found it lacked basic data on existing facilities' power and water use; Oakland did the same, through October 2027. Federal export policy and local land-use policy are now both constraints on where compute can be built, from opposite directions.\n\n## What to watch\n\nThe Federal Register publication date, which starts the 90-day clock. Any Chinese measure announced in the days after it, and which sector it targets. Whether Thursday's readouts mention the incident channel by name. And the December 3 Senate hearing, where the rule's authors will be asked why it took this long.",
+  "stat": "Thursday",
+  "why": {
+    "executives": "Previous Chinese countermeasures were rare-earth export licensing and unreliable-entity listings, not AI measures. Map your China exposure by material and by subsidiary before Thursday, not by product.",
+    "security": "Both governments keep describing an AI-incident notification channel that is not yet operating. Until it is, there is no official route for a cross-border agent incident; your own disclosure plan is the only one.",
+    "finance": "Nvidia's guide already assumes no China compute revenue. The marginal loser from retaliation is the Southeast Asian data-centre landlord and the US cloud leasing from it."
+  }
+}
