@@ -1,0 +1,127 @@
+{
+  "headline": "Anthropic prices at $83 for an $81B record; Java4Shell; Gemini 4 Neon at $3",
+  "intro": "Anthropic sold 980 million shares at $83, five dollars above the top of its range, in the largest IPO ever recorded: about $81 billion before the underwriters' option, and ANT starts trading on Nasdaq today. The security story is Java4Shell, an out-of-bounds write in the Java runtime itself that Oracle patched on Monday and that reaches code before an application can validate anything. Google shipped Gemini 4 Neon at $3 per million input tokens with a 1M context, its fourth Gemini model in a month, and said it cuts cost per task by 32% against Carbon. Palo Alto Networks is paying $4.5 billion in stock for Applied Compute to sell secured open-weight models to its own customers, GE HealthCare cleared a feeding-tube detector that runs offline on the x-ray machine, Perplexity gave its agent an overnight memory that it says lifts correctness 25%, and South Korea is about to become the fourth country to export $1 trillion in a year, carried by AI chips.",
+  "one_thing": "Patch Java today, not this quarter. Java4Shell (CVE-2026-114938) sits in the runtime's accelerated Base64 path on x86-64 machines with AVX-512 VBMI, so every JVM you run, including the ones buried in container images and vendor appliances, is in scope. Upgrade to Oracle's 8u513, 11.0.33.1, 17.0.21.1, 21.0.13.1, 25.0.5.1 or 27.0.1.1 (or your distribution's equivalent), restart every service, and confirm with `jcmd <pid> VM.version` that the running build actually changed.",
+  "items": [
+    {
+      "title": "Anthropic prices its IPO at $83, above the $70–78 range: 980 million shares, about $81 billion raised before a 147-million-share option, ticker ANT starts trading on Nasdaq today",
+      "stat": "$81B",
+      "summary": "Anthropic priced 980 million Class A shares at $83 on Wednesday night, 956.4 million of them sold by the company and 23.6 million by existing holders, with a 30-day option for the banks to buy up to 147 million more. The headline raise of roughly $81 billion makes this the largest IPO on record, ahead of SpaceX, and Bloomberg puts the total at $107.3 billion once the private placement from chip and cloud partners is included. The amended prospectus showed third-quarter revenue of about $17 billion, nine-month revenue of $33.2 billion and a $567 million operating loss, against roughly $895 billion of computing commitments. Trading opens today on the Nasdaq Global Select Market; the deal closes Friday.",
+      "why": {
+        "finance": "At $83 the deal implies a fully diluted value reported near $1.5 trillion, roughly 34 times nine-month revenue annualised. The number to watch today is not the first print but where ANT settles against the $26 billion placement that Nvidia, Google and others agreed at the range price.",
+        "executives": "Your largest AI vendor now reports quarterly. Pricing, deprecation schedules and capacity allocation will be read by public investors from the next earnings call, which changes how aggressively it can discount to win you.",
+        "security": "Anthropic's filing says it has triggered the R&D-acceleration threshold in its Responsible Scaling Policy, which obliges it to add safeguards rather than halt. Ask your account team what changes for model access and logging.",
+        "ml": "The S-1/A discloses $70 billion of compute commitments due within a year. Expect the company to keep pushing customers toward cached and batch pricing to fill reserved capacity.",
+        "beginners": "The company behind Claude sold shares to the public for the first time and raised more money in one day than any company ever has. From today anyone with a brokerage account can buy a piece of it, under the symbol ANT."
+      },
+      "sources": [
+        {"name": "Anthropic: pricing announcement", "url": "https://www.anthropic.com/news/anthropic-prices-initial-public-offering"},
+        {"name": "Yahoo Finance live coverage", "url": "https://finance.yahoo.com/technology/live/anthropic-ipo-live-company-said-to-price-stock-at-83-begin-trading-thursday-212656452.html"}
+      ],
+      "tags": ["IPO", "markets", "Anthropic", "funding"],
+      "article": "anthropic-ipo-83-dollars-81-billion-record-what-happens-when-ant-opens",
+      "developing": true
+    },
+    {
+      "title": "Java4Shell: CVE-2026-114938 is an out-of-bounds write in OpenJDK's accelerated Base64 code, patched by Oracle on November 17; it fires before application input validation and affects every JVM on AVX-512 VBMI hardware",
+      "stat": "CVE-2026-114938",
+      "summary": "Security firm Calif disclosed a memory-corruption bug in the Java runtime on Monday, the same day Oracle shipped fixed builds for Java 8 through 27 and GraalVM. Because the flaw lives in the JVM's vectorised Base64 decoder, malformed input is processed before any application code can reject it, and an unauthenticated attacker may be able to execute code; early reports score it 9.2 under CVSS 4.0 while Oracle's own scoring tops out at 8.1. Cloudflare says it has seen no exploitation yet, has shipped six log-only WAF rules as a compensating control, and is rolling out a JVM flag that disables the accelerated routine. Technical details are being withheld until patches propagate.",
+      "why": {
+        "security": "Treat this as Log4Shell-shaped: the vulnerable code is in the runtime, not a library, so SBOMs will not find it. Inventory JVMs by running process, restart after patching, and watch for the Calif write-up because exploit code will follow it.",
+        "developers": "Temurin, Corretto, Zulu and Red Hat builds carry different version numbers from Oracle's; check your base images and the JDK bundled inside Jenkins, Kafka, Elasticsearch and Tomcat appliances rather than only the one on your PATH.",
+        "executives": "If your estate runs Java, your patch SLA just became a board question. Ask for the count of unpatched JVMs on internet-facing hosts by end of week.",
+        "ml": "Most Spark, Flink and Kafka pipelines run on Java. Feature-store and streaming jobs need the same restart cycle as web apps.",
+        "beginners": "A flaw in the software layer that runs a huge share of business applications lets a stranger send a specially shaped message and potentially take control. The fix is out; the hard part is finding every copy."
+      },
+      "sources": [
+        {"name": "Cloudflare Radar: Java4Shell advisory", "url": "https://radar.cloudflare.com/zero-wire/java4shell"}
+      ],
+      "tags": ["security", "infrastructure"],
+      "article": "java4shell-cve-2026-114938-openjdk-base64-oob-write-what-to-patch-and-how-to-verify",
+      "developing": true
+    },
+    {
+      "title": "Google ships Gemini 4 Neon at $3 / $15 per million tokens with a 1M context and four thinking levels: scores 61 on the Artificial Analysis index, claims a 32% lower cost per task than Carbon, replaces Argon and 3.1 Pro in the Gemini app",
+      "stat": "$3 / $15",
+      "summary": "Google's fourth Gemini 4 model in a month slots between Hydrogen ($1.50 / $7.50) and Carbon, with cached input at $0.15 and a 1M-token input and output limit. Google says Neon leads the Artificial Analysis Coding Agent Index, Legal Research Bench, Tax Agent Bench and Zapier's AutomationBench and ranks third overall on the AA Intelligence Index at 61, behind larger, slower models. It is available in the Gemini API, AI Studio and Antigravity, retires Gemini 3.1 Pro for AI Pro and Ultra subscribers, and a cyber-defence variant is going to security teams through the Fairwind programme. It does not generate images or audio.",
+      "why": {
+        "developers": "Once Carbon and Argon's introductory pricing ends on December 1 and rises to $4 / $20, Neon is the cheapest way to stay near frontier quality on Google. Re-run your evals at the 'low' and 'high' thinking levels before switching defaults.",
+        "ml": "Neon can direct Hydrogen sub-agents on large coding jobs, which is Google's first explicit orchestration tier. The 95% cache discount makes long shared prefixes nearly free.",
+        "finance": "A 32% cost-per-task claim against Carbon is Google's number, measured at Carbon's default high setting. Budget on your own task mix, not the headline.",
+        "executives": "Four frontier releases in thirty days from one vendor means the model you standardised on in October is already two steps behind. Build switching into your contracts.",
+        "beginners": "Google now sells four tiers of Gemini: cheap and fast, mid-priced and smart, and two premium models. Neon is the new middle option that most paying users will get by default."
+      },
+      "sources": [
+        {"name": "Android Headlines: Gemini 4 Neon release, pricing and features", "url": "https://www.androidheadlines.com/2026/11/google-gemini-4-neon-release-pricing-features.html"},
+        {"name": "Google blog: Introducing Gemini 4 Neon", "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"}
+      ],
+      "tags": ["models", "pricing", "Google"],
+      "article": "gemini-4-neon-3-15-per-million-1m-context-what-it-changes-in-googles-lineup"
+    },
+    {
+      "title": "Palo Alto Networks to buy Applied Compute for $4.5 billion in stock: a post-training and inference platform for open-weight models, CEO Yash Patil becomes co-chief AI officer, close expected in fiscal Q3 2027",
+      "stat": "$4.5B",
+      "summary": "Palo Alto Networks signed a definitive agreement on Wednesday to acquire Applied Compute, whose platform lets enterprises fine-tune and serve open-weight models in public clouds or sovereign environments, in an all-stock deal valued at $4.5 billion subject to adjustments. Chief executive Nikesh Arora said no large provider currently delivers open-weight models securely and that the company intends to fill that gap, sell the platform to its global customer base, and use the research team to train its own large and small models. The deal needs regulatory clearance and is expected to close in the fiscal third quarter of 2027.",
+      "why": {
+        "executives": "A security vendor is now selling the model-hosting layer. If you are evaluating a sovereign or on-premises AI deployment, Palo Alto will pitch a bundle of firewall, identity and inference within a year; price it against hyperscaler offers.",
+        "security": "The pitch is 'open-weight models with security built in'. Ask what that means concretely: prompt-injection controls, model provenance checks, egress policy on agent tool calls.",
+        "finance": "$4.5 billion in stock for a company with an unreported revenue base is Palo Alto's third large AI-adjacent deal after Chronosphere. Watch the fiscal Q1 call for dilution and the integration cost line.",
+        "ml": "Post-training infrastructure is being absorbed by platform vendors. If you rely on an independent fine-tuning provider, check its exit options.",
+        "beginners": "A big cybersecurity company is buying a startup that helps businesses customise free-to-download AI models, betting that companies want to run their own models rather than rent them."
+      },
+      "sources": [
+        {"name": "Palo Alto Networks press release (SEC 8-K exhibit)", "url": "https://www.sec.gov/Archives/edgar/data/0001327567/000132756726000030/ex992pressrelease_november.htm"}
+      ],
+      "tags": ["M&A", "security", "business", "models"],
+      "article": "palo-alto-networks-applied-compute-4-5-billion-open-weight-models-what-the-deal-says"
+    },
+    {
+      "title": "GE HealthCare wins FDA 510(k) clearance for Critical Care Suite 3.0: feeding-tube detection on mobile x-ray with 99.2% sensitivity, runs on the device without cloud or internet, first version cleared for children",
+      "stat": "99.2%",
+      "summary": "GE HealthCare's Critical Care Suite 3.0 is cleared to detect enteric feeding tubes on portable chest x-rays, trace the tube's path, tip and side port, and mark the airway and diaphragm as reference points for adults and, for the first time, paediatric patients. In the company's testing against expert radiologist annotations the algorithm reached 99.2% sensitivity for detection and a mean Dice score of 91.6% for localisation. The software runs on the x-ray system itself, so it works in wards without connectivity, and ships with quality-control algorithms that flag image errors at the point of capture.",
+      "why": {
+        "executives": "Misplaced feeding tubes are a recognised, preventable harm in intensive care. A device-resident check that works offline removes the integration project that stalls most hospital AI purchases.",
+        "ml": "On-device inference on an imaging modality is the deployment pattern to study: no PHI leaves the machine, no cloud bill, validated once with the hardware.",
+        "finance": "Imaging AI that is sold as a software option on a capital device is recurring-revenue upside for GE HealthCare without a separate reimbursement code.",
+        "beginners": "Hospitals use x-rays to check that a feeding tube went into the stomach and not the lung. The machine can now do that check itself in seconds, including for children."
+      },
+      "sources": [
+        {"name": "AuntMinnie: GEHC gets FDA clearance for feeding tube AI on mobile x-ray", "url": "https://www.auntminnie.com/imaging-informatics/artificial-intelligence/news/16541813/ge-healthcare-gehc-gets-fda-clearance-for-feeding-tube-ai-on-mobile-xray"}
+      ],
+      "tags": ["health", "regulation", "adoption"],
+      "article": "ge-healthcare-critical-care-suite-3-fda-clearance-99-2-percent-feeding-tube-what-hospitals-should-ask"
+    },
+    {
+      "title": "Perplexity gives its Computer agent an overnight memory called Brain: a context graph of what the agent did, what failed and what was corrected, with answer correctness up 25% on repeated tasks and cost down 13%",
+      "stat": "+25%",
+      "summary": "Perplexity's Brain records the work its Computer agent performs, not the user's preferences, and reviews that record on a schedule, typically overnight, to rewrite the skills and context the agent loads next time. Every memory entry links back to the session, file or source it came from. On early internal measurements the company reports a 25% rise in answer correctness on tasks the agent has seen before, a 16% rise in recall and a 13% fall in the cost of tasks that need historical context. It is a research preview for Max and Enterprise Max subscribers.",
+      "why": {
+        "developers": "This is the 'skills file that writes itself' pattern. If you maintain agent skills by hand, Brain is the benchmark for what automated refinement should produce and how it should be traceable.",
+        "security": "An agent that rewrites its own instructions overnight is a new injection surface: a poisoned document seen on Monday becomes a standing rule on Tuesday. Ask how memory entries are reviewed before they load.",
+        "ml": "The reported gains are on repeated tasks only; nothing is claimed for novel ones. Measure drift: a self-editing context layer can quietly overfit to last week's workload.",
+        "beginners": "Perplexity's assistant now keeps a diary of its own work and reads it each night to get better at the same tasks tomorrow."
+      },
+      "sources": [
+        {"name": "Perplexity: self-improving memory for agents", "url": "https://hub-prod.perplexity.ai/hub/blog/self-improving-memory-for-agents"}
+      ],
+      "tags": ["agents", "tools", "research"],
+      "article": "perplexity-brain-self-improving-agent-memory-25-percent-what-to-copy-and-what-to-guard"
+    },
+    {
+      "title": "South Korea is set to pass $1 trillion of annual exports for the first time, as early as today, on AI chip demand: the fourth country ever after the US, China and Germany, 21 years after it crossed $100 billion",
+      "stat": "$1T",
+      "summary": "Cumulative exports stood above $960 billion on November 10 and the trade ministry expects the $1 trillion line to be crossed on Thursday or Friday, driven by semiconductor shipments during what officials call an AI supercycle. Korea reached $100 billion in 1995, $500 billion in 2015 and $700 billion only last year, so the final $300 billion arrived in a single year. Industry minister Kim Jung-kwan marked the milestone with port workers at Incheon on Tuesday.",
+      "why": {
+        "finance": "Memory is now the swing factor in AI unit economics: Nvidia guided margins down on rising memory costs on Tuesday, and this is the other side of that trade. SK Hynix and Samsung pricing power is the number behind the number.",
+        "executives": "Concentration risk cuts both ways. A country whose export book just became chip-dependent is also the single point of failure for HBM supply in your vendors' roadmaps.",
+        "ml": "HBM allocation decides which clouds get Rubin-class capacity first. If your training schedule depends on a 2027 cluster, ask who is supplying its memory.",
+        "beginners": "South Korea sells more abroad than ever, and the reason is the memory chips inside AI computers. Only three bigger economies have ever hit this number."
+      },
+      "sources": [
+        {"name": "The Korea Times: Korea set to achieve $1 tril. export milestone", "url": "https://www.koreatimes.co.kr/economy/20261117/korea-set-to-achieve-1-tril-export-milestone-for-1st-time"}
+      ],
+      "tags": ["markets", "infrastructure", "geopolitics"],
+      "developing": true
+    }
+  ]
+}

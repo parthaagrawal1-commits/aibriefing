@@ -2,8 +2,8 @@
  "source": "https://aibriefing.io/trackers/api-pricing/",
  "license": "CC BY 4.0",
  "title": "LLM API pricing tracker",
- "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. Nov 18: added OpenAI's GPT-6.2 Astra ($8 / $40, a 20% cut from GPT-6 Astra) and GPT-6.2 Sol ($2 / $10) from OpenAI's model index, and Tencent's Hy4 flash ($0.07 / $0.28, 1M context); Alibaba's Qwen4-Max upgraded to a primary source after reading Alibaba Cloud's Model Studio billing page. Anthropic's and Google's pricing pages could not be re-read from tonight's build environment; their rows keep their Nov 16 verification dates.",
- "updated": "2026-11-18",
+ "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. Nov 19: added Google's Gemini 4 Neon ($3 / $15, cached $0.15, 1M context; secondary source pending a read of Google's pricing page). Vendor pricing pages (Anthropic, OpenAI, Google) could not be re-read from tonight's build environment; rows keep their Nov 11–18 verification dates. Reminder: Gemini 4 Carbon and Argon introductory pricing ends December 1, when both rise to $4 / $20.",
+ "updated": "2026-11-19",
  "rows": [
   {
    "vendor": "Anthropic",
@@ -280,6 +280,18 @@
    "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/",
    "verified": "2026-11-11",
    "confidence": "primary"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Neon",
+   "input": 3,
+   "output": 15,
+   "cached": 0.15,
+   "context": "1M",
+   "note": "released Nov 18, 2026; 1M input and output; four thinking levels; Google claims 32% lower cost per task than Carbon at Carbon's default high setting; from Dec 1 it is 25% below Carbon/Argon ($4 / $20)",
+   "source": "https://www.androidheadlines.com/2026/11/google-gemini-4-neon-release-pricing-features.html",
+   "verified": "2026-11-19",
+   "confidence": "secondary"
   },
   {
    "vendor": "Google",

@@ -3,8 +3,17 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-18",
+ "updated": "2026-11-19",
  "rows": [
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Neon",
+   "released": "2026-11-18",
+   "kind": "Mid-tier reasoning / agent orchestrator",
+   "context": "1M",
+   "note": "$3 / $15; AA Intelligence Index 61 (third overall per Google); replaces Argon and 3.1 Pro in the Gemini app; can direct Hydrogen sub-agents; no image or audio generation.",
+   "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+  },
   {
    "vendor": "OpenAI",
    "model": "GPT-6.2 Astra / GPT-6.2 Sol",

@@ -38,6 +38,7 @@ SECTIONS = [
     ("tools", "Developer tools", "APIs, pricing, agents, coding tools and how to build with them.", "pricing"),
 ]
 SEC = {x[0]: x for x in SECTIONS}
+VENDOR_TAGS = {"OpenAI", "Anthropic", "Google", "Nvidia", "Meta", "Microsoft", "Amazon", "Apple", "xAI", "Mistral", "DeepSeek"}
 EXPLAINER_FOR_TAG = {"pricing": "llm-api-pricing-explained", "tools": "llm-api-pricing-explained", "agents": "what-is-an-ai-agent", "consumer": "what-is-an-ai-agent", "security": "prompt-injection-explained", "models": "ai-model-tiers-explained", "research": "how-to-read-an-ai-benchmark", "health": "how-to-read-an-ai-benchmark", "funding": "open-weights-vs-closed-models", "IPO": "ai-model-tiers-explained", "M&A": "what-is-an-ai-agent", "infrastructure": "what-is-a-context-window", "policy": "open-weights-vs-closed-models", "regulation": "open-weights-vs-closed-models", "adoption": "rag-explained-for-business", "data": "rag-explained-for-business", "business": "rag-explained-for-business", "robotics": "what-is-an-ai-agent", "markets": "ai-model-tiers-explained"}
 
 # Per-section "Start here" reading paths (ordered explainer slugs) and glossary terms; missing slugs are skipped at build time.
@@ -227,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);fo
 #lensBtn{display:none}#lensBtn.on{display:inline-block}
 #menuBtn{display:none}
 #menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:55;overflow:auto;padding:16px 20px 40px}#menu.on{display:block}#menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}#menu h4{margin:18px 0 6px;color:var(--mute);font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#menu a{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:18px;font-weight:500}
-.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}
+.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}.kterms ul{margin:0;padding-left:18px}.kterms li{padding:3px 0;font-size:14px}.kterms li a{display:inline;padding:0;font-weight:600}.kterms .kd{color:var(--mute)}.kterms>a{margin-top:6px;font-size:13px}
 """
 
 JS = r"""
@@ -667,7 +668,7 @@ def autolink_glossary(html_, exclude_slug=None, limit=12):
         for rx, slug, _ in pats:
             if slug in done or slug == exclude_slug: continue
             m = rx.search(p)
-            if not m: continue
+            if not m or m.group(0) in VENDOR_TAGS: continue
             p = p[:m.start()] + f'<a class="gl" href="/glossary/{slug}/" title="Glossary">' + m.group(0) + "</a>" + p[m.end():]
             done.add(slug); count += 1
             if count >= limit: break
@@ -677,7 +678,6 @@ def autolink_glossary(html_, exclude_slug=None, limit=12):
 def article_card(a, big=False):
     return (f'<a class="story tile" href="{a["url"]}"><img src="{a["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><div class="kicker">{esc(SEC[a["section"]][1])}</div><h3>{esc(a["title"])}</h3><p>{esc(a["dek"][:150])}…</p><div class="m"><span>{short_date(a["published"])}</span><span>·</span><span>{read_time(a["words"])} min</span></div></div></a>')
 
-VENDOR_TAGS = {"OpenAI", "Anthropic", "Google", "Nvidia", "Meta", "Microsoft", "Amazon", "Apple", "xAI", "Mistral", "DeepSeek"}
 def story_so_far(a, articles, limit=4):
     """'Story so far' module: earlier articles that share at least two tags (one of them a vendor or a topic),
     newest first, so a reader landing from search can follow the thread without hunting through section hubs."""
@@ -694,6 +694,25 @@ def story_so_far(a, articles, limit=4):
     items = "".join(f'<li><span class="d">{short_date(x["published"])}</span> <a href="{x["url"]}">{esc(x["title"][:120])}{"…" if len(x["title"]) > 120 else ""}</a></li>' for _, x in prev[:limit])
     return f'<div class="srcbox sofar" style="max-width:760px"><h4>The story so far</h4><ol>{items}</ol></div>'
 
+def key_terms(body_html, limit=5):
+    """'Key terms in this story' module: glossary terms the article body mentions (matched with the same patterns as
+    auto-linking, headings and links excluded), rendered with their one-line definitions. Returns (html, ld_mentions)."""
+    text = re.sub(r"<(h[1-4]|a|code)[^>]*>.*?</\1>", " ", body_html, flags=re.S)
+    text = re.sub(r"<[^>]+>", " ", text)
+    found = []; seen = set()
+    for rx, slug, _ in _glossary_patterns():
+        if slug in seen: continue
+        m = rx.search(text)
+        if not m or m.group(0) in VENDOR_TAGS: continue
+        seen.add(slug); found.append(slug)
+        if len(found) >= limit: break
+    if not found: return "", []
+    by_slug = {slugify(t["term"]): t for t in GLOSSARY}
+    terms = [by_slug[s] for s in found if s in by_slug]
+    items = "".join(f'<li><a href="/glossary/{slugify(t["term"])}/">{esc(t["term"])}</a> <span class="kd">{esc(t["short"])}</span></li>' for t in terms)
+    ld = [{"@type": "DefinedTerm", "name": t["term"], "description": t["short"], "url": ROOT + f"/glossary/{slugify(t['term'])}/", "inDefinedTermSet": ROOT + "/glossary/"} for t in terms]
+    return f'<div class="srcbox kterms" style="max-width:760px"><h4>Key terms in this story</h4><ul>{items}</ul><a href="/glossary/">All {len(GLOSSARY)} terms →</a></div>', ld
+
 def article_page(a, articles, explainers):
     sec = SEC[a["section"]]; path = a["url"]
     why = a.get("why", {})
@@ -705,16 +724,18 @@ def article_page(a, articles, explainers):
     tags = "".join(f'<a class="pill" href="/topics/{slugify(t)}/">{esc(t)}</a>' for t in a["tags"])
     nx = next_actions({"tags": a["tags"]})
     sofar = story_so_far(a, articles)
+    raw_html = md_block(a["body"]); body_html = autolink_glossary(raw_html)
+    kth, ktld = key_terms(raw_html)
     dev = '<span class="dev">Developing</span>' if a.get("developing") else ""
     body = (f'<div class="hero"><div class="kicker"><a href="/{a["section"]}/">{esc(sec[1])}</a> · {short_date(a["published"])} · {read_time(a["words"])} min read</div><h1 data-speak>{dev}{esc(a["title"])}</h1><p class="lede" data-speak>{esc(a["dek"])}</p>'
             f'<div class="toolbar">{lens_select()}<button class="btn ghost" id="listenBtn">▶ Listen</button><div class="share"><button data-share="{ROOT}{path}" data-title="{esc(a["title"])}">Share</button></div></div></div>'
             f'<img class="cover" src="{a["img"]}" alt="" width="1200" height="675" fetchpriority="high">'
             + (f'<div class="card" style="max-width:900px;margin:0 0 18px"><div class="kicker">Why it matters</div><div class="why">{whys}</div></div>' if whys else "")
-            + f'<div class="article" data-speak>{autolink_glossary(md_block(a["body"]))}</div>'
-            f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div>{sofar}<div>{tags}</div>{nx}'
+            + f'<div class="article" data-speak>{body_html}</div>'
+            f'<div class="srcbox" style="max-width:760px"><h4>Sources</h4>{srcs}</div>{sofar}{kth}<div>{tags}</div>{nx}'
             f'<div class="trust">Written in our own words from the linked sources · updated {esc(a["updated"])} · corrections: corrections@aibriefing.io</div>'
             + (f'<div class="band"><div class="hd"><h2>More in {esc(sec[1])}</h2><a href="/{a["section"]}/">All →</a></div><div class="grid g3">{rel}</div></div>' if rel else "") + newsletter_box())
-    ld = [enrich_ld({"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"])}, tags=a["tags"], audiences=list(why.keys())), breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
+    ld = [enrich_ld({"@context": "https://schema.org", "@type": "NewsArticle", "headline": a["title"], "description": a["dek"], "datePublished": a["published"] + "T11:00:00Z", "dateModified": a["updated"] + "T11:00:00Z", "articleSection": sec[1], "author": {"@type": "Organization", "name": BRAND, "url": ROOT + "/about/"}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": [ROOT + a["img"]], "wordCount": a["words"], "citation": [s["url"] for s in a["sources"] if s.get("url")], "keywords": ", ".join(a["tags"]), **({"mentions": ktld} if ktld else {})}, tags=a["tags"], audiences=list(why.keys())), breadcrumbs([(sec[1], f"/{a['section']}/"), (a["title"], path)])]
     return layout(title=f'{a["title"]} | AI Briefing', desc=a["dek"][:155], path=path, body=body, section=a["section"], jsonld=ld, og_type="article", og_image=ROOT + a["img"], published=a["published"], modified=a["updated"], preload=a["img"])
 
 def key_numbers(key, articles):

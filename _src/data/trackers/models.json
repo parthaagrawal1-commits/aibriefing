@@ -1,274 +1,283 @@
 {
-  "title": "AI model release tracker",
-  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
-  "updated": "2026-11-18",
-  "rows": [
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6.2 Astra / GPT-6.2 Sol",
-      "released": "2026-11-17",
-      "kind": "Flagship / cost tier",
-      "context": "1.05M",
-      "note": "$8 / $40 and $2 / $10. First OpenAI model rated High for AI self-improvement; both Critical for cybersecurity.",
-      "source": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
-    },
-    {
-      "vendor": "Microsoft",
-      "model": "MAI Code 2 / MAI Code 2 Flash",
-      "released": "2026-11-17",
-      "kind": "Coding models (GitHub Copilot, Foundry preview)",
-      "context": "—",
-      "note": "Vendor claims 98% of GPT-6.1 Sol at 40% of cost; no per-token price or raw scores published.",
-      "source": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
-    },
-    {
-      "vendor": "Tencent",
-      "model": "Hy4 flash",
-      "released": "2026-11-16",
-      "kind": "Fast / small MoE (224B / 12B active)",
-      "context": "1M",
-      "note": "$0.07 / $0.28 list; 64B 'Engram' memory parameters; open weights promised, no date.",
-      "source": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/"
-    },
-    {
-      "vendor": "Alibaba",
-      "model": "Qwen4-Max",
-      "released": "2026-11-16",
-      "kind": "Flagship (2.4T / 71B active, text+image+video in)",
-      "context": "1M",
-      "note": "General availability after a Nov 11–25 preview; $1.50 / $4.50 per million tokens; no public weights, smaller open-weight Qwen4 models promised.",
-      "source": "https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen4-max"
-    },
-    {
-      "vendor": "Huawei",
-      "model": "CloudRobo-WM1.2",
-      "released": "2026-11-16",
-      "kind": "Open-source robot world model (Ascend-trained)",
-      "context": "—",
-      "note": "DualAct design generates actions from the world model; Huawei reports first place on RoboTwin 2.0 and LiberoPro 2.0.",
-      "source": "https://theaiinsider.tech/2026/11/17/china-physical-ai-roundup-unix-ai-raises-75m-pre-a-plus-tensorworld-ubtech-order-and-huawei-cloudrobo/"
-    },
-    {
-      "vendor": "Runway",
-      "model": "Praxis-1 (open weights)",
-      "released": "2026-11-11",
-      "kind": "Robot world action model (27B MoE diffusion transformer, Apache 2.0)",
-      "context": "—",
-      "note": "46.2% on Nvidia's RoboLab-120 leaderboard; weights, inference and fine-tuning code on Hugging Face and GitHub; runs on H100/B200 to Jetson Thor.",
-      "source": "https://runway.com/news/praxis-1-is-now-available"
-    },
-    {
-      "vendor": "Nous Research",
-      "model": "Arete-27B",
-      "released": "2026-11-08",
-      "kind": "Open-weight post-train of Qwen3.8-27B (Apache 2.0)",
-      "context": "n/a",
-      "note": "Supervised fine-tune (52.8M tokens, two epochs, no RL) aimed at removing Chinese state-aligned answers: Nous reports the propaganda rate on its own 803-prompt eval falling from 22% to 0.9% with general capability unchanged (Hermes Bench 65.6 vs 65.8). Teacher model was Thinking Machines' Inkling; judge was Grok 4.7. Weights, eval set and training data on Hugging Face.",
-      "source": "https://www.implicator.ai/nous-research-unveils-arete-27b-post-trained-qwen3-8-27b/"
-    },
-    {
-      "vendor": "Google",
-      "model": "AlphaGenome 2",
-      "released": "2026-11-11",
-      "kind": "Genomics sequence model (research API)",
-      "context": "1M DNA bases",
-      "note": "Conditional DNA model: predicts gene expression, chromatin accessibility, histone marks and (new) methylation for a chosen tissue, cell type or user-supplied single-cell profile. Trained on 107M cell profiles across 68 tissues; DeepMind reports nearly 2x the expression-changing variants found vs prior state of the art. Non-commercial research via API; commercial private preview; not for clinical use.",
-      "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
-    },
-    {
-      "vendor": "IBM",
-      "model": "Granite 4.1 LLMON preview (3B / 8B)",
-      "released": "2026-11-12",
-      "kind": "Small open models (prompt-injection-resistant preview)",
-      "context": "n/a",
-      "note": "Experimental previews trained on LLM Object Notation, a markup with reserved-token delimiters that binds instructions to data; IBM reports near-zero indirect prompt-injection success on OPI with utility on par with Granite 4.1 Instruct. Not for production.",
-      "source": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite"
-    },
-    {
-      "vendor": "Google",
-      "model": "Gemini 4 Hydrogen",
-      "released": "2026-11-12",
-      "kind": "Fast / mid-tier (agents)",
-      "context": "1M",
-      "note": "Google's fast execution model for agents, replacing the Flash tier. $1.50 / $7.50 per million tokens flat across 1M context; four thinking levels including a new xhigh. Reported 2.5x faster than 3.8 Flash.",
-      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
-    },
-    {
-      "vendor": "Google",
-      "model": "Gemini Decision 1 (Decisions API)",
-      "released": "2026-11-11",
-      "kind": "Decision / scoring model (no text generation)",
-      "context": "256K",
-      "note": "Up to 1,000 questions per call, 150–250 ms, $0.10 / M input, no output charge",
-      "source": "https://interestingengineering.com/ai-robotics/google-gemini-decisions-api-fast-ai-agents"
-    },
-    {
-      "vendor": "Google",
-      "model": "Gemini 4 Carbon (general availability)",
-      "released": "2026-11-10",
-      "kind": "Flagship (agentic / cyber)",
-      "context": "1M",
-      "note": "Released to Fairwind cyber defenders Oct 28; opened to all paying API developers and AI Ultra subscribers Nov 10. $2 / $10 until Nov 30, then $4 / $20.",
-      "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
-    },
-    {
-      "vendor": "Anthropic",
-      "model": "Claude Fable 5.2 / Mythos 5.2",
-      "released": "2026-11-09",
-      "kind": "Flagship (top tier)",
-      "context": "1M",
-      "note": "$8 / $40 per million tokens, 20% below 5.1; outputs up to 30% faster; fast mode at $16 / $80. Fable generally available on Claude API, AWS, Google Cloud, Azure; Mythos limited to vetted cyber and life-sciences organisations.",
-      "source": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
-    },
-    {
-      "vendor": "Meta",
-      "model": "Muse Ember",
-      "released": "2026-11-09",
-      "kind": "Small multimodal (agent sub-tasks)",
-      "context": "1M",
-      "note": "$0.10 / $0.50 per million tokens, cached $0.004; 3x above 200K context. Scores 36 on the Artificial Analysis index, level with Haiku 5.5 at about a third of the cost per task.",
-      "source": "https://dev.meta.ai/models/muse-ember"
-    },
-    {
-      "vendor": "Meituan",
-      "model": "LongCat-2.5 (open weights)",
-      "released": "2026-11-09",
-      "kind": "Sparse MoE (1.6T / ~48B active), vision input",
-      "context": "1M",
-      "note": "Weights published under MIT licence on Nov 9, a week after the Nov 1–2 announcement. Hosted API $0.30 / $1.20. 88.4 on Terminal Bench v2.1 by Meituan's figures.",
-      "source": "https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license"
-    },
-    {
-      "vendor": "Nvidia",
-      "model": "GR00T 2",
-      "released": "2026-11-09",
-      "kind": "Robot world action model",
-      "context": "—",
-      "note": "Open world-action model built on Cosmos, trained on robot data plus 100,000 hours of human egocentric video. Nvidia reports 71% one-shot / 95% five-shot average on an unnamed 50-task suite; weights and licence slated for around year end.",
-      "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
-    },
-    {
-      "vendor": "Thinking Machines",
-      "model": "Inkling 2 Small",
-      "released": "2026-11-05",
-      "kind": "Sparse MoE (594B / 17B active)",
-      "context": "1M",
-      "note": "Second-generation model; text + image in, text out. Pretrained on 8.4T tokens in 68 hours on GB300 racks using NVFP4. Inference on Tinker; full weights promised under Apache 2.0 after external safety testing. Weights published on Hugging Face under Apache 2.0 on Nov 12, 2026 (394 GB NVFP4; 500 GB+ VRAM to serve).",
-      "source": "https://thinkingmachines.ai/inkling/"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6 Cyber",
-      "released": "2026-11-05",
-      "kind": "Specialised (security)",
-      "context": "1.05M",
-      "note": "GPT-6 Astra tuned for authorised vulnerability discovery and exploit work. First OpenAI model rated **Critical** for cyber capability. Limited to vetted Daybreak Red customers.",
-      "source": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-Image 2.6 (Sunburst / Flare)",
-      "released": "2026-11-04",
-      "kind": "Image generation",
-      "context": "—",
-      "note": "Two variants: Flare for speed, Sunburst for quality. Adjustable complexity, SVG and animated GIF generation, markup-guided editing. Confirmed in OpenAI's API changelog.",
-      "source": "https://developers.openai.com/api/docs/changelog"
-    },
-    {
-      "vendor": "Mistral",
-      "model": "Mistral Large 4 (\"Le Chonk\")",
-      "released": "2026-10-29",
-      "kind": "Open-weight flagship",
-      "context": "—",
-      "note": "Open-weight release of Mistral's largest model. (Reported from Mistral's news page.)",
-      "source": "https://essamamdani.com/blog/ai-model-releases-november-2026"
-    },
-    {
-      "vendor": "Google",
-      "model": "Gemini 4 Argon",
-      "released": "2026-10 (listed)",
-      "kind": "Flagship",
-      "context": "—",
-      "note": "Google's current top model on the Gemini API. Launch pricing $2 / $10 per million tokens through Nov 30, then $4 / $20.",
-      "source": "https://ai.google.dev/pricing"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6.1 Sol",
-      "released": "2026-09-30",
-      "kind": "Flagship (cost tier)",
-      "context": "1.05M",
-      "note": "$2 / $10 per million tokens, cached input $0.10. OpenAI says it approaches Astra on complex work at a fifth of the price; Ultrafast mode (6x price) added Oct 8.",
-      "source": "https://community.openai.com/t/gpt-6-1-sol-in-the-api-a-meaningful-step-up-in-cost-performance/1402388"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6 Astra",
-      "released": "2026-09-04",
-      "kind": "Flagship",
-      "context": "1.05M",
-      "note": "OpenAI's current general flagship. $10 / $50 per million tokens; 128K max output; knowledge cutoff April 2026.",
-      "source": "https://developers.openai.com/api/docs/models/gpt-6-astra"
-    },
-    {
-      "vendor": "Anthropic",
-      "model": "Claude Fable 5.1",
-      "released": "2026-09",
-      "kind": "Flagship (top tier)",
-      "context": "1M",
-      "note": "Superseded by Fable 5.2 on Nov 9, 2026. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
-      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
-    },
-    {
-      "vendor": "Anthropic",
-      "model": "Claude Fable 5 / Mythos 5",
-      "released": "2026-06-09",
-      "kind": "Flagship (top tier)",
-      "context": "1M",
-      "note": "First Mythos-class models. Access was suspended June 12–30, 2026 under US export controls and restored July 1.",
-      "source": "https://www.anthropic.com/news/fable-mythos-access"
-    },
-    {
-      "vendor": "Google",
-      "model": "Gemini 3.8 Flash",
-      "released": "2026 (listed)",
-      "kind": "Fast / mid-tier",
-      "context": "—",
-      "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.",
-      "source": "https://ai.google.dev/pricing"
-    },
-    {
-      "vendor": "OpenAI",
-      "model": "GPT-6.1 Terra / GPT-6 Luna",
-      "released": "2026 (listed)",
-      "kind": "Mid / small tiers",
-      "context": "1.05M",
-      "note": "Listed on OpenAI's current model page at $1 / $5 and $0.10 / $0.50 respectively. Release dates not stated on the vendor page.",
-      "source": "https://developers.openai.com/api/docs/models/all"
-    },
-    {
-      "vendor": "Anthropic",
-      "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5",
-      "released": "2026 (current lineup)",
-      "kind": "Flagship / mid / small",
-      "context": "1M",
-      "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
-      "source": "https://platform.claude.com/docs/en/about-claude/pricing"
-    }
+ "title": "AI model release tracker",
+ "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
+ "updated": "2026-11-19",
+ "rows": [
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Neon",
+   "released": "2026-11-18",
+   "kind": "Mid-tier reasoning / agent orchestrator",
+   "context": "1M",
+   "note": "$3 / $15; AA Intelligence Index 61 (third overall per Google); replaces Argon and 3.1 Pro in the Gemini app; can direct Hydrogen sub-agents; no image or audio generation.",
+   "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-neon/"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6.2 Astra / GPT-6.2 Sol",
+   "released": "2026-11-17",
+   "kind": "Flagship / cost tier",
+   "context": "1.05M",
+   "note": "$8 / $40 and $2 / $10. First OpenAI model rated High for AI self-improvement; both Critical for cybersecurity.",
+   "source": "https://community.openai.com/t/gpt-6-2-astra-and-sol-are-now-available/1417531"
+  },
+  {
+   "vendor": "Microsoft",
+   "model": "MAI Code 2 / MAI Code 2 Flash",
+   "released": "2026-11-17",
+   "kind": "Coding models (GitHub Copilot, Foundry preview)",
+   "context": "—",
+   "note": "Vendor claims 98% of GPT-6.1 Sol at 40% of cost; no per-token price or raw scores published.",
+   "source": "https://microsoft.ai/news/introducing-mai-code-2-and-mai-code-2-flash/"
+  },
+  {
+   "vendor": "Tencent",
+   "model": "Hy4 flash",
+   "released": "2026-11-16",
+   "kind": "Fast / small MoE (224B / 12B active)",
+   "context": "1M",
+   "note": "$0.07 / $0.28 list; 64B 'Engram' memory parameters; open weights promised, no date.",
+   "source": "https://www.tencent.com/tencent-launches-hy4-flash-to-power-high-speed-cost-efficient-ai-deployment-for-everyday-workflows/"
+  },
+  {
+   "vendor": "Alibaba",
+   "model": "Qwen4-Max",
+   "released": "2026-11-16",
+   "kind": "Flagship (2.4T / 71B active, text+image+video in)",
+   "context": "1M",
+   "note": "General availability after a Nov 11–25 preview; $1.50 / $4.50 per million tokens; no public weights, smaller open-weight Qwen4 models promised.",
+   "source": "https://www.alibabacloud.com/en/press-room/alibaba-unveils-qwen4-max"
+  },
+  {
+   "vendor": "Huawei",
+   "model": "CloudRobo-WM1.2",
+   "released": "2026-11-16",
+   "kind": "Open-source robot world model (Ascend-trained)",
+   "context": "—",
+   "note": "DualAct design generates actions from the world model; Huawei reports first place on RoboTwin 2.0 and LiberoPro 2.0.",
+   "source": "https://theaiinsider.tech/2026/11/17/china-physical-ai-roundup-unix-ai-raises-75m-pre-a-plus-tensorworld-ubtech-order-and-huawei-cloudrobo/"
+  },
+  {
+   "vendor": "Runway",
+   "model": "Praxis-1 (open weights)",
+   "released": "2026-11-11",
+   "kind": "Robot world action model (27B MoE diffusion transformer, Apache 2.0)",
+   "context": "—",
+   "note": "46.2% on Nvidia's RoboLab-120 leaderboard; weights, inference and fine-tuning code on Hugging Face and GitHub; runs on H100/B200 to Jetson Thor.",
+   "source": "https://runway.com/news/praxis-1-is-now-available"
+  },
+  {
+   "vendor": "Nous Research",
+   "model": "Arete-27B",
+   "released": "2026-11-08",
+   "kind": "Open-weight post-train of Qwen3.8-27B (Apache 2.0)",
+   "context": "n/a",
+   "note": "Supervised fine-tune (52.8M tokens, two epochs, no RL) aimed at removing Chinese state-aligned answers: Nous reports the propaganda rate on its own 803-prompt eval falling from 22% to 0.9% with general capability unchanged (Hermes Bench 65.6 vs 65.8). Teacher model was Thinking Machines' Inkling; judge was Grok 4.7. Weights, eval set and training data on Hugging Face.",
+   "source": "https://www.implicator.ai/nous-research-unveils-arete-27b-post-trained-qwen3-8-27b/"
+  },
+  {
+   "vendor": "Google",
+   "model": "AlphaGenome 2",
+   "released": "2026-11-11",
+   "kind": "Genomics sequence model (research API)",
+   "context": "1M DNA bases",
+   "note": "Conditional DNA model: predicts gene expression, chromatin accessibility, histone marks and (new) methylation for a chosen tissue, cell type or user-supplied single-cell profile. Trained on 107M cell profiles across 68 tissues; DeepMind reports nearly 2x the expression-changing variants found vs prior state of the art. Non-commercial research via API; commercial private preview; not for clinical use.",
+   "source": "https://deepmind.google/blog/alphagenome-2-deciphering-how-cells-read-dna-to-better-understand-disease/"
+  },
+  {
+   "vendor": "IBM",
+   "model": "Granite 4.1 LLMON preview (3B / 8B)",
+   "released": "2026-11-12",
+   "kind": "Small open models (prompt-injection-resistant preview)",
+   "context": "n/a",
+   "note": "Experimental previews trained on LLM Object Notation, a markup with reserved-token delimiters that binds instructions to data; IBM reports near-zero indirect prompt-injection success on OPI with utility on par with Granite 4.1 Instruct. Not for production.",
+   "source": "https://huggingface.co/blog/ibm-granite/llmon-an-llm-native-markup-language-now-in-granite"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Hydrogen",
+   "released": "2026-11-12",
+   "kind": "Fast / mid-tier (agents)",
+   "context": "1M",
+   "note": "Google's fast execution model for agents, replacing the Flash tier. $1.50 / $7.50 per million tokens flat across 1M context; four thinking levels including a new xhigh. Reported 2.5x faster than 3.8 Flash.",
+   "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-hydrogen/"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini Decision 1 (Decisions API)",
+   "released": "2026-11-11",
+   "kind": "Decision / scoring model (no text generation)",
+   "context": "256K",
+   "note": "Up to 1,000 questions per call, 150–250 ms, $0.10 / M input, no output charge",
+   "source": "https://interestingengineering.com/ai-robotics/google-gemini-decisions-api-fast-ai-agents"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Carbon (general availability)",
+   "released": "2026-11-10",
+   "kind": "Flagship (agentic / cyber)",
+   "context": "1M",
+   "note": "Released to Fairwind cyber defenders Oct 28; opened to all paying API developers and AI Ultra subscribers Nov 10. $2 / $10 until Nov 30, then $4 / $20.",
+   "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+  },
+  {
+   "vendor": "Anthropic",
+   "model": "Claude Fable 5.2 / Mythos 5.2",
+   "released": "2026-11-09",
+   "kind": "Flagship (top tier)",
+   "context": "1M",
+   "note": "$8 / $40 per million tokens, 20% below 5.1; outputs up to 30% faster; fast mode at $16 / $80. Fable generally available on Claude API, AWS, Google Cloud, Azure; Mythos limited to vetted cyber and life-sciences organisations.",
+   "source": "https://www.anthropic.com/claude-fable-and-mythos-5-2"
+  },
+  {
+   "vendor": "Meta",
+   "model": "Muse Ember",
+   "released": "2026-11-09",
+   "kind": "Small multimodal (agent sub-tasks)",
+   "context": "1M",
+   "note": "$0.10 / $0.50 per million tokens, cached $0.004; 3x above 200K context. Scores 36 on the Artificial Analysis index, level with Haiku 5.5 at about a third of the cost per task.",
+   "source": "https://dev.meta.ai/models/muse-ember"
+  },
+  {
+   "vendor": "Meituan",
+   "model": "LongCat-2.5 (open weights)",
+   "released": "2026-11-09",
+   "kind": "Sparse MoE (1.6T / ~48B active), vision input",
+   "context": "1M",
+   "note": "Weights published under MIT licence on Nov 9, a week after the Nov 1–2 announcement. Hosted API $0.30 / $1.20. 88.4 on Terminal Bench v2.1 by Meituan's figures.",
+   "source": "https://venturebeat.com/technology/meituan-releases-the-open-weights-of-its-longcat-2-5-llm-with-vision-under-a-permissive-mit-license"
+  },
+  {
+   "vendor": "Nvidia",
+   "model": "GR00T 2",
+   "released": "2026-11-09",
+   "kind": "Robot world action model",
+   "context": "—",
+   "note": "Open world-action model built on Cosmos, trained on robot data plus 100,000 hours of human egocentric video. Nvidia reports 71% one-shot / 95% five-shot average on an unnamed 50-task suite; weights and licence slated for around year end.",
+   "source": "https://blogs.nvidia.com/blog/robotics-simulation-advancements-corl/"
+  },
+  {
+   "vendor": "Thinking Machines",
+   "model": "Inkling 2 Small",
+   "released": "2026-11-05",
+   "kind": "Sparse MoE (594B / 17B active)",
+   "context": "1M",
+   "note": "Second-generation model; text + image in, text out. Pretrained on 8.4T tokens in 68 hours on GB300 racks using NVFP4. Inference on Tinker; full weights promised under Apache 2.0 after external safety testing. Weights published on Hugging Face under Apache 2.0 on Nov 12, 2026 (394 GB NVFP4; 500 GB+ VRAM to serve).",
+   "source": "https://thinkingmachines.ai/inkling/"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6 Cyber",
+   "released": "2026-11-05",
+   "kind": "Specialised (security)",
+   "context": "1.05M",
+   "note": "GPT-6 Astra tuned for authorised vulnerability discovery and exploit work. First OpenAI model rated **Critical** for cyber capability. Limited to vetted Daybreak Red customers.",
+   "source": "https://fortune.com/2026/11/05/openai-debuts-new-cybersecurity-focused-ai-model-amid-growing-alarm-about-ai-driven-cyber-attacks/"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-Image 2.6 (Sunburst / Flare)",
+   "released": "2026-11-04",
+   "kind": "Image generation",
+   "context": "—",
+   "note": "Two variants: Flare for speed, Sunburst for quality. Adjustable complexity, SVG and animated GIF generation, markup-guided editing. Confirmed in OpenAI's API changelog.",
+   "source": "https://developers.openai.com/api/docs/changelog"
+  },
+  {
+   "vendor": "Mistral",
+   "model": "Mistral Large 4 (\"Le Chonk\")",
+   "released": "2026-10-29",
+   "kind": "Open-weight flagship",
+   "context": "—",
+   "note": "Open-weight release of Mistral's largest model. (Reported from Mistral's news page.)",
+   "source": "https://essamamdani.com/blog/ai-model-releases-november-2026"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini 4 Argon",
+   "released": "2026-10 (listed)",
+   "kind": "Flagship",
+   "context": "—",
+   "note": "Google's current top model on the Gemini API. Launch pricing $2 / $10 per million tokens through Nov 30, then $4 / $20.",
+   "source": "https://ai.google.dev/pricing"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6.1 Sol",
+   "released": "2026-09-30",
+   "kind": "Flagship (cost tier)",
+   "context": "1.05M",
+   "note": "$2 / $10 per million tokens, cached input $0.10. OpenAI says it approaches Astra on complex work at a fifth of the price; Ultrafast mode (6x price) added Oct 8.",
+   "source": "https://community.openai.com/t/gpt-6-1-sol-in-the-api-a-meaningful-step-up-in-cost-performance/1402388"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6 Astra",
+   "released": "2026-09-04",
+   "kind": "Flagship",
+   "context": "1.05M",
+   "note": "OpenAI's current general flagship. $10 / $50 per million tokens; 128K max output; knowledge cutoff April 2026.",
+   "source": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+  },
+  {
+   "vendor": "Anthropic",
+   "model": "Claude Fable 5.1",
+   "released": "2026-09",
+   "kind": "Flagship (top tier)",
+   "context": "1M",
+   "note": "Superseded by Fable 5.2 on Nov 9, 2026. $10 / $50 per million tokens. Shares a base model with Mythos 5.1 but adds safety measures for biology, cyber and AI R&D.",
+   "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  {
+   "vendor": "Anthropic",
+   "model": "Claude Fable 5 / Mythos 5",
+   "released": "2026-06-09",
+   "kind": "Flagship (top tier)",
+   "context": "1M",
+   "note": "First Mythos-class models. Access was suspended June 12–30, 2026 under US export controls and restored July 1.",
+   "source": "https://www.anthropic.com/news/fable-mythos-access"
+  },
+  {
+   "vendor": "Google",
+   "model": "Gemini 3.8 Flash",
+   "released": "2026 (listed)",
+   "kind": "Fast / mid-tier",
+   "context": "—",
+   "note": "Current Flash tier with a free tier for testing; $0.75 / $3.75 through Dec 31, 2026.",
+   "source": "https://ai.google.dev/pricing"
+  },
+  {
+   "vendor": "OpenAI",
+   "model": "GPT-6.1 Terra / GPT-6 Luna",
+   "released": "2026 (listed)",
+   "kind": "Mid / small tiers",
+   "context": "1.05M",
+   "note": "Listed on OpenAI's current model page at $1 / $5 and $0.10 / $0.50 respectively. Release dates not stated on the vendor page.",
+   "source": "https://developers.openai.com/api/docs/models/all"
+  },
+  {
+   "vendor": "Anthropic",
+   "model": "Claude Opus 5.5 / Sonnet 5.5 / Haiku 5.5",
+   "released": "2026 (current lineup)",
+   "kind": "Flagship / mid / small",
+   "context": "1M",
+   "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
+   "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+  }
+ ],
+ "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",
+ "faqs": [
+  [
+   "Which model is the most capable right now?",
+   "There is no single answer across tasks. The top tiers are OpenAI's GPT-6 Astra, Anthropic's Claude Fable 5.1 and Google's Gemini 4 Argon; vendor-published benchmarks favour the vendor publishing them, so compare independent evaluations for your specific workload."
   ],
-  "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",
-  "faqs": [
-    [
-      "Which model is the most capable right now?",
-      "There is no single answer across tasks. The top tiers are OpenAI's GPT-6 Astra, Anthropic's Claude Fable 5.1 and Google's Gemini 4 Argon; vendor-published benchmarks favour the vendor publishing them, so compare independent evaluations for your specific workload."
-    ],
-    [
-      "What does 'open-weight' mean?",
-      "The model's trained parameters are published so anyone can download and run it, as Mistral did with Mistral Large 4. Closed models such as GPT-6 Astra are only reachable through the vendor's API."
-    ],
-    [
-      "How is this list kept current?",
-      "A nightly pass checks the major labs' announcement pages, API changelogs and pricing pages and adds any new release with a link to the vendor's own page."
-    ]
+  [
+   "What does 'open-weight' mean?",
+   "The model's trained parameters are published so anyone can download and run it, as Mistral did with Mistral Large 4. Closed models such as GPT-6 Astra are only reachable through the vendor's API."
+  ],
+  [
+   "How is this list kept current?",
+   "A nightly pass checks the major labs' announcement pages, API changelogs and pricing pages and adds any new release with a link to the vendor's own page."
   ]
+ ]
 }
