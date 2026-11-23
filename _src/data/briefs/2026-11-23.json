@@ -1,0 +1,315 @@
+{
+ "headline": "Nasdaq −5.3%, Nvidia −14%; AI routers leaked prompts; a Riemann proof claim",
+ "intro": "Friday's selloff put all three US indices into correction, with the Nasdaq down 5.28% and Nvidia down 14%, as Anthropic closed a $93.5 billion IPO into the storm; futures point higher this morning. Security teams have a weekend's reading: Together AI confirmed a coding agent leaked customer prompt samples, OpenRouter dropped three providers and stripped zero-data-retention status from 125 endpoints, and the canary study behind both says prompts marked no-retention were being read anyway. In research, an Anthropic mathematician posted a machine-checked claimed proof of the Riemann hypothesis, OpenAI's chief scientist proposed a shared limit on pretraining, and Meta's Alexandr Wang said superintelligence is arriving. Also today: Inkling 2 Mini on a laptop, OpenAI's reseller rules in force, a drug-chemistry benchmark against a chief executive's scepticism, Tesla's unexplained 25x, and server makers reopening signed contracts.",
+ "one_thing": "If any secret could have been inside a prompt you sent through a third-party inference route since May, rotate it today. Together AI's samples leaked through a credential an AI coding agent committed to a public repo; Dragos's canaries showed a Chinese lab fetching URLs from two-thirds of requests marked no-data-collection; OpenRouter pulled zero-retention status from 125 endpoints. Then put a canary URL in a fraction of your own production prompts so the next leak is something you detect rather than read about.",
+ "items": [
+  {
+   "title": "Together AI confirms an AI coding agent leaked customer prompt samples via a public GitHub commit; OpenRouter drops three providers and removes zero-data-retention status from 125 endpoints after Dragos's canary study",
+   "stat": "125",
+   "summary": "Together AI said on Saturday that a coding agent committed a credential to its public xorl repository, exposing a private store of customer prompt samples from June and July; an unknown party downloaded them and tested the secrets inside, five of which were Dragos canaries. OpenRouter followed on Sunday by removing three inference providers and 125 endpoints from its zero-data-retention programme, saying its own systems were not breached. Dragos's underlying study pushed two million canary prompts through more than 2,000 routes and found three hosts actively being looted and a Chinese AI lab fetching secret URLs from about two-thirds of requests marked no-data-collection.",
+   "why": {
+    "security": "Rotate anything that could have been in a prompt sent through a third-party route since May, add secret scanning at your AI gateway, and plant canary credentials in a sample of live prompts.",
+    "developers": "Routers can forward your request to a model vendor's own API rather than the host you selected. Ask for the upstream list per model and log which host served each call.",
+    "executives": "Zero data retention is a claim you can now test cheaply. Ask vendors when they last proved it rather than promised it.",
+    "ml": "Together kept prompt samples as test fixtures for four months. Audit your own eval and debugging datasets for production prompts and the secrets in them."
+   },
+   "sources": [
+    {
+     "name": "Together AI: Security event, prompt leakage for requests in June and July 2026",
+     "url": "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026"
+    },
+    {
+     "name": "Dragos: Three breaches, endless leaks",
+     "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
+    },
+    {
+     "name": "Notebookcheck: OpenRouter cuts three AI providers",
+     "url": "https://www.notebookcheck.net/OpenRouter-cuts-three-AI-providers-Who-needs-to-rotate-API-keys-now.1457670.0.html"
+    }
+   ],
+   "tags": [
+    "security",
+    "agents",
+    "data",
+    "infrastructure"
+   ],
+   "article": "together-ai-openrouter-prompt-leak-125-endpoints-zdr-canary-what-to-rotate",
+   "developing": true
+  },
+  {
+   "title": "Nasdaq falls 5.28% and Nvidia 14% on Friday as all three US indices enter correction; Anthropic closes its IPO at about $93.5 billion with the 147-million-share option exercised, ANT ends the week at $88.91; futures up 3% this morning",
+   "stat": "−5.28%",
+   "summary": "The Nasdaq Composite lost 1,261 points on Friday, its second-largest point drop on record, the S&P 500 fell 3.7% for a seventh straight loss and its worst week since April 2025, and the VIX closed at 35.89. Nvidia dropped 14% to $125.53 amid reports of an SEC accounting inquiry, a California subpoena and the continuing Huang scandal; prediction markets put a December 9 rate rise near 90%. Anthropic's offering closed the same day: 1.127 billion shares at $83 including the banks' option, roughly $93.5 billion gross, plus a $26 billion placement from Google, Nvidia, AMD, Broadcom, Micron, Microsoft and TSMC. The stock closed at $88.91, down 8.5% on the day and 7% above the offer. Treasury Secretary Bessent warned on Sunday that the Fed risks over-tightening; Nasdaq 100 futures were up about 3.3% before Monday's open.",
+   "why": {
+    "finance": "A rates-plus-concentration event with no guidance changes: the trade to watch is whether AI capex gets financed at the new cost of capital. HPE tonight and Dell on Tuesday are the first read.",
+    "executives": "Your largest AI vendors now answer to public markets that just repriced risk. Expect less discounting and firmer terms on multi-year commitments.",
+    "beginners": "A correction is a 10% fall from a recent high. It signals investors asking how AI spending is paid for, not whether AI works.",
+    "security": "Nothing here for your controls, but budget cycles are about to tighten; get AI-security spend approved before the next planning round reopens."
+   },
+   "sources": [
+    {
+     "name": "Fox Business / Reuters: Wall Street suffers historic losses",
+     "url": "https://finance.yahoo.com/markets/stocks/articles/wall-street-suffers-historic-losses-012826644.html"
+    },
+    {
+     "name": "SEC: Anthropic Form 424B4",
+     "url": "https://www.sec.gov/Archives/edgar/data/0002130357/000162828026074944/anthropicpbc-424b4.htm"
+    },
+    {
+     "name": "Semafor: Bessent warns on Fed hike as AI bubble fears mount",
+     "url": "https://finance.yahoo.com/economy/policy/articles/bessent-warns-fed-hike-ai-222612699.html"
+    }
+   ],
+   "tags": [
+    "markets",
+    "IPO",
+    "Nvidia",
+    "Anthropic",
+    "infrastructure"
+   ],
+   "article": "nasdaq-5-3-percent-friday-nvidia-14-percent-anthropic-93-5-billion-close-what-monday-futures-say",
+   "developing": true
+  },
+  {
+   "title": "Anthropic mathematician Levent Alpöge posts a Lean-checked claimed proof of the Riemann hypothesis developed with Claude; James Maynard puts it at '98 or 99 percent', Brian Conrad calls the release 'outrageous'; a Navier–Stokes blow-up claim lands the same day",
+   "stat": "98–99%",
+   "summary": "On Friday Alpöge published a four-page note and a Lean formalisation claiming a proof of the Riemann hypothesis and its generalisation, with no human-readable paper; MIT's Andrew Sutherland compiled the code independently and a check that the formal statement matches RH was pending. Fields medallist James Maynard said he was 98 or 99 percent sure it is correct, while Stanford's Brian Conrad objected to releasing a proof nobody can read. Tristan Buckmaster and Alpöge separately posted a 600,000-line Lean package claiming finite-time blow-up for unforced Navier–Stokes, with the numerical certificate it depends on still unreleased. Over the weekend Meta's Alexandr Wang said superintelligence is arriving and OpenAI chief scientist Jakub Pachocki proposed that labs agree not to train past a shared perplexity threshold until monitoring catches up.",
+   "why": {
+    "ml": "Three checks settle it: statement equivalence, an axiom audit of the Lean project, and extraction of a readable core argument. Expect these to become the standard for any AI-assisted proof claim.",
+    "executives": "The capability debate has moved from benchmarks to whether labs should self-limit. That conversation reaches regulators and boards quickly.",
+    "beginners": "A computer has checked every step of the proof; mathematicians have not yet understood why it works. Both statements are true at once.",
+    "developers": "Lean, the proof assistant, is now part of the AI toolchain. If you build agents that make claims, a verifier the agent cannot talk its way past is the pattern to copy."
+   },
+   "sources": [
+    {
+     "name": "TNW: Anthropic researcher claims Claude helped him prove the Riemann hypothesis",
+     "url": "https://thenextweb.com/news/anthropic-alpoge-claude-riemann-hypothesis-proof-lean"
+    },
+    {
+     "name": "TechCrunch: OpenAI's chief scientist has thoughts on how to limit AI development",
+     "url": "https://techcrunch.com/2026/11/22/openais-chief-scientist-has-thoughts-on-how-to-limit-ai-development/"
+    },
+    {
+     "name": "Al Jazeera: Artificial superintelligence 'arriving', warns top Meta executive",
+     "url": "https://www.aljazeera.com/economy/2026/11/23/ai-superintelligence-arriving-warns-top-meta-executive"
+    }
+   ],
+   "tags": [
+    "research",
+    "models",
+    "Anthropic",
+    "OpenAI",
+    "Meta"
+   ],
+   "article": "riemann-hypothesis-claimed-proof-claude-lean-98-percent-what-it-means-for-ai-research",
+   "developing": true
+  },
+  {
+   "title": "Thinking Machines releases Inkling 2 Mini: 26.4B total / 3.4B active parameters, middle layers looped three times, about 20 GB, Apache 2.0, 79.2% on SWE-bench Verified, runs in Ollama on a 32 GB Mac",
+   "stat": "26.4B",
+   "summary": "Friday's release stores 24 layers but applies 48 per token by running the two middle blocks three times, with twenty layers in native NVFP4 to keep the checkpoint near 20 GB. Thinking Machines claims the best open-weight scores under 100 billion parameters on DeepSWE and the Vals Index, 79.2% on SWE-bench Verified and 71.6% on Terminal Bench 2.1, while acknowledging weak multi-turn and constraint-following results. There is no serverless API price yet; Tinker lists sampling at $0.50 per million tokens and training at $0.75 to $1.50.",
+   "why": {
+    "developers": "The first permissively licensed coding agent that fits on a developer laptop with real benchmark results. Test on your repo, watching long conversations and multi-constraint prompts.",
+    "ml": "Looping as a substitute for depth, with mid-training expert pruning and native 4-bit storage, is a reusable recipe for small-footprint agents.",
+    "finance": "No API bill for local use; the cost is hardware you own, which matters more after this weekend's server-repricing news."
+   },
+   "sources": [
+    {
+     "name": "Thinking Machines: Inkling 2 Mini",
+     "url": "https://thinkingmachines.ai/news/inkling-2-mini/"
+    },
+    {
+     "name": "Thinking Machines: Tinker pricing",
+     "url": "https://thinkingmachines.ai/tinker/pricing/"
+    }
+   ],
+   "tags": [
+    "models",
+    "tools",
+    "pricing",
+    "research"
+   ],
+   "article": "inkling-2-mini-26-4b-open-weights-apache-20gb-laptop-what-developers-get"
+  },
+  {
+   "title": "OpenAI's revised usage policy took effect November 20: routers and gateways reselling model access need prior approval, outputs may not build training data or graders for substitute models, 'protected reasoning' may not be extracted; GPT-6 Rosalind listed at $10 / $50 through December 31",
+   "stat": "Nov 20",
+   "summary": "The changes were posted to OpenAI's changelog on October 21 with 30 days' notice and replace the October 2025 policy. Platforms that give third parties direct access to OpenAI models must now be reviewed and approved, first-party apps are exempt, and the ban on training competitors widens to rubrics, labels, reinforcement-learning environments and data filtering. Separately, OpenAI's pricing page now shows GPT-6 Rosalind at $10 per million input and $50 output, a promotional rate through at least December 31, down from the $15 / $75 we tracked at launch; it also confirms cached input at $0.40 for GPT-6.2 Astra and $0.10 for GPT-6.2 Sol.",
+   "why": {
+    "developers": "If customers bring their own prompts and pick OpenAI models through your product, you are a platform and need approval. If you grade other models with OpenAI-built rubrics, you need an exception in writing.",
+    "finance": "Rosalind's cut is a third off the biomedical model's list price until year end; the tracker row is updated. Cached-input rates on the 6.2 models are 5% of input price.",
+    "executives": "A supplier reaching OpenAI through an unapproved gateway can lose access without warning. Add the question to vendor due diligence.",
+    "security": "Approval-gated resale gives OpenAI a lever over intermediaries but does nothing for open-weight hosts, which is where this weekend's leaks happened."
+   },
+   "sources": [
+    {
+     "name": "PPC Land: OpenAI forces AI model resellers to seek its approval first",
+     "url": "https://ppc.land/openai-forces-ai-model-resellers-to-seek-its-approval-first/"
+    },
+    {
+     "name": "OpenAI developer platform: API pricing",
+     "url": "https://developers.openai.com/api/docs/pricing"
+    }
+   ],
+   "tags": [
+    "policy",
+    "pricing",
+    "OpenAI",
+    "tools"
+   ],
+   "article": "openai-usage-policy-routers-need-approval-no-distillation-rosalind-10-50-what-developers-must-do"
+  },
+  {
+   "title": "OpenAI's MedChemBench scores GPT-6.2 Astra at 84.5% on 99 medicinal-chemistry problems, 95% on rebuilding structures but about half credit on picking compounds; Novartis CEO Vas Narasimhan says AI will not cure cancer in five to ten years",
+   "stat": "84.5%",
+   "summary": "The benchmark, published Friday, draws 99 problems from 117 papers and patents covering 761 molecules and grades structure reconstruction, evidence-based reasoning, compound selection and numerical prediction in a single tool-free attempt; OpenAI says the scores do not show a model can find a drug. Narasimhan, who also sits on Anthropic's board, told an interviewer over the weekend that biology is understood far less well than code, and that the realistic prize is shortening a twelve-year development cycle toward eight. Ant Group's health unit released a 560-billion-parameter open-weight medical reasoning model on Sunday.",
+   "why": {
+    "ml": "The component gap is the finding: models read chemistry at 95% and guess at biology at 50%. Benchmarks built from published papers cannot test discovery.",
+    "executives": "Fund AI that speeds scientists' reading and simulation work now; treat any vendor discovery claim without a wet-lab result as a pitch.",
+    "finance": "Isomorphic's $5 billion round and Narasimhan's scepticism price the same uncertainty differently. The benchmark data supports caution for now.",
+    "beginners": "A model scoring 84% on chemistry questions from published papers is impressive and still far from inventing a medicine; the hard part is proving it works in people."
+   },
+   "sources": [
+    {
+     "name": "OpenAI: Introducing MedChemBench",
+     "url": "https://openai.com/index/introducing-medchembench/"
+    },
+    {
+     "name": "NewsBytes: Novartis's Narasimhan says AI won't cure cancer in 5–10 years",
+     "url": "https://www.newsbytesapp.com/news/business/novartiss-narasimhan-says-ai-wont-cure-cancer-in-5-10-years/tldr"
+    },
+    {
+     "name": "Business Wire: Ant Group's Afu open sources medical AI model family",
+     "url": "https://finance.yahoo.com/healthcare/articles/ant-group-ai-app-afu-071000237.html"
+    }
+   ],
+   "tags": [
+    "health",
+    "research",
+    "OpenAI",
+    "models"
+   ],
+   "article": "medchembench-84-5-percent-novartis-ceo-cure-is-a-big-word-what-pharma-should-take-from-it"
+  },
+  {
+   "title": "Tesla begins rolling out FSD v15 claiming '25x better handling of safety-critical cases' with no baseline or mileage published; Waymo pulls robotaxis off freeways in every market after a California order over construction-zone incidents",
+   "stat": "25x",
+   "summary": "Tesla's Saturday release to early-access owners introduces a vision encoder shared with the Robotaxi fleet and the Optimus humanoid, a generative overhead view and learned trip start and end handling, with wide release promised for December; Musk confirmed on Sunday that 25x means twenty-five times, but neither he nor Tesla has said what it is being compared to. Waymo, meanwhile, suspended freeway driving nationwide after California regulators acted on incidents in closed lanes and construction zones, saying no collisions or injuries resulted and a recall remedy is pending. Tesla now has 1,507 robotaxis registered in Texas to Waymo's 1,345.",
+   "why": {
+    "ml": "A multiplier without a denominator is not data. The comparable public figures remain the disengagement and incident reports that permitted autonomous fleets file and consumer driver-assistance does not.",
+    "executives": "A single perception model across cars, robotaxis and a humanoid means driving data trains the robot. If Tesla publishes anything on that transfer, it is the robotics result of the quarter.",
+    "beginners": "Waymo's cars drive themselves and answer to regulators; Tesla's FSD still requires a supervising driver, which is why the two are treated differently."
+   },
+   "sources": [
+    {
+     "name": "Teslarati: Tesla FSD v15 rollout begins, full release notes",
+     "url": "https://www.teslarati.com/tesla-full-self-driving-v15-rollout-begins-full-release-notes-improvements/"
+    },
+    {
+     "name": "CleanTechnica: Waymo pulls robotaxis from highways",
+     "url": "https://cleantechnica.com/2026/11/21/waymo-pulls-robotaxis-from-highways/"
+    }
+   ],
+   "tags": [
+    "robotics",
+    "regulation",
+    "consumer"
+   ],
+   "article": "tesla-fsd-v15-25x-claim-waymo-off-freeways-what-the-numbers-do-not-show",
+   "developing": true
+  },
+  {
+   "title": "Dell, HPE, Lenovo and Supermicro reportedly seek 25–45% above signed contract prices on AI servers at delivery as memory passes half the bill of materials; XTX sues Dell over a $549 million order; HPE reports tonight, Dell tomorrow",
+   "stat": "25–45%",
+   "summary": "The Financial Times reported over the weekend that the four largest server makers are asking customers to accept large increases on orders already signed, citing memory and circuit-board shortages. HPE chief executive Antonio Neri has said the company rewrote its quoting terms to allow repricing for component cost changes and expects memory prices to stay high well into 2027. Hedge fund XTX, which paid about $5 million for price certainty on a $549 million Dell order, is suing in Ireland after Dell reportedly sought a further $62–70 million. HPE reports after the close today and Dell, HP Inc, Workday and Autodesk on Tuesday.",
+   "why": {
+    "finance": "Sort every open AI hardware order into fixed, adjustable and unsigned, and revise the 2027 forecast for the middle pile this quarter. Insist on caps or component-indexed formulas on anything not yet signed.",
+    "executives": "Decide whether to accept delivery at the new price, delay, or move workloads to cloud and lease arrangements that absorb component risk for a fee.",
+    "developers": "Every efficiency gain in inference now has a hardware price attached. Measure tokens per dollar on existing capacity before anyone signs for more.",
+    "security": "Delayed or repriced hardware refreshes extend the life of older fleets; check that firmware and GPU driver support windows still cover what you are now keeping."
+   },
+   "sources": [
+    {
+     "name": "Financial Times: AI server makers seek to reprice signed contracts",
+     "url": "https://www.ft.com/content/dd2a6594-6146-4ff1-ac8e-54749c1fc99f"
+    },
+    {
+     "name": "StockTitan: Earnings calendar, week of November 23",
+     "url": "https://www.stocktitan.net/articles/earnings-calendar-week-of-november-23-2026"
+    }
+   ],
+   "tags": [
+    "business",
+    "infrastructure",
+    "markets",
+    "adoption"
+   ],
+   "article": "dell-hpe-lenovo-supermicro-25-45-percent-server-repricing-hpe-dell-earnings-what-cfos-should-do",
+   "developing": true
+  },
+  {
+   "title": "Bessent says Trump and Xi agreed a human must be involved in any major military decision made by AI; the NYT reports the woman at the centre of the Nvidia scandal was in contact with China's spy agency; Jensen Huang faces three House committees on December 1",
+   "stat": "Dec 1",
+   "summary": "Treasury Secretary Scott Bessent told CNBC after the Shenzhen summit that the two leaders agreed no major military operation should be launched by AI without a human, with further safeguards unspecified, and Trump said on Friday the US would work with China on joint guardrails. The New York Times reported on Sunday that US intelligence tracked Alice Huang, former head of Singapore-based Megaspeed, in contact with a Ministry of State Security officer from spring 2025 to autumn 2026, overlapping both her relationship with Nvidia's then chief executive and Megaspeed's purchases of advanced Nvidia chips; Megaspeed denies wrongdoing. Jensen Huang, who resigned this month, is due for a closed-door transcribed interview with three House committees on December 1 and general counsel Tim Teter on December 2.",
+   "why": {
+    "executives": "Export-control enforcement is about to get a congressional stage. If your supply chain touches Singapore or Malaysia data centres, expect new questions from compliance.",
+    "security": "The Megaspeed case is the template for chip diversion: a legitimate-looking regional cloud, relationships with vendor staff, and intelligence-service contact. Insider-risk programmes should read it.",
+    "finance": "Nvidia's policy risk now has dates: December 1 and 2 on the Hill, and an SEC accounting inquiry reported by Reuters. Both are binary events for the stock.",
+    "beginners": "Two governments agreeing that a person must sign off on AI-driven military action sounds obvious; it is the first time the US and China have said it together."
+   },
+   "sources": [
+    {
+     "name": "Reuters: Trump, Xi agreed that military AI decisions should involve humans, Bessent says",
+     "url": "https://www.yahoo.com/news/articles/trump-xi-agreed-military-ai-164829465.html"
+    },
+    {
+     "name": "ABC News: Woman at centre of Nvidia scandal was in touch with China's top spy agency",
+     "url": "https://abcnews.com/US/woman-center-nvidia-scandal-touch-chinas-top-spy/story?id=138369034"
+    },
+    {
+     "name": "CBS News: House Republicans to question Jensen Huang",
+     "url": "https://www.cbsnews.com/news/house-republicans-nvidia-jensen-huang-testimony/"
+    }
+   ],
+   "tags": [
+    "policy",
+    "geopolitics",
+    "Nvidia",
+    "regulation"
+   ],
+   "developing": true
+  },
+  {
+   "title": "Signal blocks AI assistants from reading chats via screenshots on iOS 27 and Android, names Meta's Muse as an agent abusing accessibility settings; the European Commission confirms an AI-generated cyber campaign disrupted HR, medical-claims and translation systems for over ten days",
+   "stat": "10+ days",
+   "summary": "Signal president Meredith Whittaker said on Thursday the app now blocks in-app screenshots on iOS 27 to defeat Siri's on-screen awareness and automatically enables screen security on Android when it detects an assistant reading the display; there is no equivalent for macOS, where users must exclude Signal manually, and the protections can be turned off. The post follows Reuters reporting that Meta's Muse agent surfaced staff members' private Signal messages in internal tests. Separately, a Commission spokesperson confirmed an AI-generated attack detected October 22 disrupted the Sysper HR system, MyPMO medical reimbursements and translation services, with no evidence of a staff data breach; Politico's sources attribute it to the ARTEX framework, which the Commission has not confirmed.",
+   "why": {
+    "security": "Agents with accessibility, notification or screenshot permissions are a data-exfiltration path your DLP does not see. Inventory which assistants employees have granted those permissions on managed devices.",
+    "executives": "The Commission incident is the third on an EU institution this year and the first officially described as AI-generated; expect it in the next NIS2 guidance.",
+    "developers": "Signal is asking Apple, Google and Microsoft for documented developer opt-outs from agent access to screen, files and notifications. If you build agents, assume such opt-outs are coming and honour them early.",
+    "beginners": "Your phone's AI assistant can read what is on your screen, including private chats. Signal has made itself harder to read; most apps have not."
+   },
+   "sources": [
+    {
+     "name": "Signal: Signal is serious about protecting your privacy",
+     "url": "https://signal.org/blog/protecting-your-privacy/"
+    },
+    {
+     "name": "BleepingComputer: Signal to block Siri, Gemini AI from capturing chats",
+     "url": "https://www.bleepingcomputer.com/news/security/signal-to-block-siri-gemini-ai-from-capturing-chats-on-ios-android/"
+    },
+    {
+     "name": "The Record: European Commission confirms cyberattack using AI",
+     "url": "https://therecord.media/european-commission-confirms-cyberattack-using-ai"
+    }
+   ],
+   "tags": [
+    "security",
+    "consumer",
+    "agents",
+    "Meta",
+    "policy"
+   ]
+  }
+ ]
+}

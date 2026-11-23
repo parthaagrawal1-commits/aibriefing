@@ -3,8 +3,26 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-19",
+ "updated": "2026-11-23",
  "rows": [
+  {
+   "vendor": "Ant Group",
+   "model": "LingSante-3.1-flash / LingSante-3.1-air-VL (open weights)",
+   "released": "2026-11-22",
+   "kind": "Medical reasoning MoE / multimodal",
+   "context": "1M",
+   "note": "560B total / ~25B active medical reasoning model and a 124B / 5.5B-active multimodal variant from Ant's Afu health app, on Hugging Face (inclusionAI); launched with the InclusionMed evaluation platform backed by 29 institutions; licence not stated in the release.",
+   "source": "https://finance.yahoo.com/healthcare/articles/ant-group-ai-app-afu-071000237.html"
+  },
+  {
+   "vendor": "Thinking Machines",
+   "model": "Inkling 2 Mini (open weights)",
+   "released": "2026-11-20",
+   "kind": "Small looped MoE for coding and agents",
+   "context": "1M",
+   "note": "26.4B total / 3.4B active; two middle blocks run three times per token (48 applications from 24 stored layers); native NVFP4; ~20 GB; Apache 2.0; SWE-bench Verified 79.2%, Terminal Bench 2.1 71.6% (self-reported); Ollama, vLLM, SGLang, llama.cpp day one.",
+   "source": "https://thinkingmachines.ai/news/inkling-2-mini/"
+  },
   {
    "vendor": "Google",
    "model": "Gemini 4 Neon",

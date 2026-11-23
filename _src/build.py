@@ -787,6 +787,24 @@ def section_feed(key, articles):
         items += f'<item><title>{esc(a["title"])}</title><link>{ROOT}{a["url"]}</link><guid isPermaLink="true">{ROOT}{a["url"]}</guid><pubDate>{pub}</pubDate><description>{esc(a["dek"])}</description><content:encoded><![CDATA[{content}]]></content:encoded></item>'
     return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>{BRAND} · {esc(name)}</title><link>{ROOT}/{key}/</link><description>AI {esc(name.lower())} coverage from {BRAND}</description><language>en</language><atom:link href="{ROOT}/{key}/feed.xml" rel="self" type="application/rss+xml"/>{items}</channel></rss>'
 
+def developing_band(briefs, articles, days=7, limit=6):
+    """Home 'Developing stories' rail: stories flagged developing in the last `days`, newest first, linking to the dedicated article where one exists."""
+    cutoff = (datetime.date.fromisoformat(briefs[0]["date"]) - datetime.timedelta(days=days)).isoformat()
+    rows, seen = [], set()
+    for a in articles:
+        if a.get("developing") and a["published"] >= cutoff and a["slug"] not in seen:
+            seen.add(a["slug"]); rows.append((a["published"], a["updated"], SEC[a["section"]][1], a["title"], a["url"]))
+    for b in briefs:
+        if b["date"] < cutoff: break
+        for it in b["items"]:
+            if not it.get("developing") or (it.get("article") and it["article"] in seen): continue
+            seen.add(it.get("article") or it["id"])
+            rows.append((b["date"], b["date"], next((t for t in it["tags"] if t not in VENDOR_TAGS), "news"), strip_md(it["title"]), f'/brief/{b["date"]}/#{it["id"]}'))
+    rows.sort(key=lambda r: (r[1], r[0]), reverse=True)
+    if not rows: return ""
+    html_ = "".join(f'<a href="{esc(h)}"><span class="k">{short_date(u)} · {esc(sec)}</span><span class="dev">Developing</span> {esc(t)}</a>' for p, u, sec, t, h in rows[:limit])
+    return f'<div class="band" id="developing"><div class="hd"><h2>Developing stories</h2><a href="/week/{week_key(briefs[0]["date"])}/">This week&#39;s roundup →</a></div><div class="hl">{html_}</div></div>'
+
 def home(briefs, explainers, articles):
     b = briefs[0]; lead = b["items"][0]
     side = "".join(f'<a class="sec2" href="/brief/{b["date"]}/#{it["id"]}"><img src="{it["img"]}" alt="" width="1200" height="675" loading="lazy"><div><h3>{md_inline(it["title"])}</h3><p>{esc(it["sources"][0]["name"]) if it["sources"] else ""}</p></div></a>' for it in b["items"][1:3])
@@ -812,7 +830,7 @@ def home(briefs, explainers, articles):
     older_band = f'<div class="band"><div class="hd"><h2>Earlier this week</h2><a href="/week/{week_key(b["date"])}/">This week&#39;s roundup →</a> · <a href="/brief/">Archive →</a></div><div class="grid g3">{older}</div></div>' if older else ""
     body = (f'<div class="kicker" style="margin:4px 0 2px">{fmt_date(b["date"])} · Today\'s brief · {read_time(b["words"])} min<span class="badge"></span></div>'
             f'<div class="front"><a class="hero-s" href="/brief/{b["date"]}/#{lead["id"]}"><img src="{lead["img"]}" alt="" width="1200" height="675" fetchpriority="high"><h1>{md_inline(lead["title"])}</h1><p>{md_inline(lead["summary"])}</p></a>'
-            f'<div class="side">{side}<div class="hl">{hl}</div><a class="btn" href="/brief/{b["date"]}/" style="justify-self:start">Read the full brief →</a></div></div>{one}{lens_lists}'
+            f'<div class="side">{side}<div class="hl">{hl}</div><a class="btn" href="/brief/{b["date"]}/" style="justify-self:start">Read the full brief →</a></div></div>{one}{lens_lists}{developing_band(briefs, articles)}'
             f'<div class="band"><div class="hd"><h2>Sections</h2><a href="/search/">Search the site →</a></div><div class="secband">{secband}</div></div>'
             f'<div class="band"><div class="hd"><h2>Written for your job</h2><a href="/for/">All lenses →</a></div><div class="grid g3">{tiles}</div></div>'
             f'<div class="band"><div class="hd"><h2>Trackers</h2><a href="/trackers/">All trackers →</a> · <a href="/companies/">By company →</a></div>{tr}</div>{older_band}'

@@ -1,0 +1,36 @@
+{
+ "slug": "together-ai-openrouter-prompt-leak-125-endpoints-zdr-canary-what-to-rotate",
+ "section": "security",
+ "published": "2026-11-23",
+ "updated": "2026-11-23",
+ "title": "Together AI confirms a coding agent leaked customer prompts; OpenRouter drops three providers and pulls zero-data-retention from 125 endpoints. What the canary experiment proved, and what to rotate",
+ "dek": "A single credential committed by an AI coding agent, plus a five-month canary-token study, has turned 'zero data retention' from a checkbox into a claim you now have to test yourself.",
+ "stat": "125",
+ "tags": [
+  "security",
+  "agents",
+  "data",
+  "infrastructure"
+ ],
+ "developing": true,
+ "sources": [
+  {
+   "name": "Together AI: Security event, prompt leakage for requests in June and July 2026",
+   "url": "https://www.together.ai/blog/security-event-prompt-leakage-for-requests-in-june-and-july-of-2026"
+  },
+  {
+   "name": "Dragos: Three breaches, endless leaks. Your AI supply chain needs canaries",
+   "url": "https://www.dragos.com/blog/ai-supply-chain-security-canary-tokens"
+  },
+  {
+   "name": "Notebookcheck: OpenRouter cuts three AI providers. Who needs to rotate API keys now",
+   "url": "https://www.notebookcheck.net/OpenRouter-cuts-three-AI-providers-Who-needs-to-rotate-API-keys-now.1457670.0.html"
+  }
+ ],
+ "why": {
+  "security": "Treat every secret that passed through a third-party inference route since May as exposed until proven otherwise: rotate keys found in prompts, and add canary URLs or credentials to a sample of your own traffic so you can detect the next leak instead of reading about it.",
+  "developers": "If you call open-weight models through a router, check which upstream host actually served each request. Routers can and do forward traffic to a model vendor's own API rather than the host you thought you picked.",
+  "executives": "Ask your AI vendors one question this week: when did you last prove, not promise, that prompts flagged no-retention are not stored? If the answer is a contract clause, that is the gap."
+ },
+ "body": "On Saturday Together AI published the kind of incident report that security teams had been expecting since the summer. An AI coding agent working inside the company committed a credential to Together's public GitHub repository, xorl. The credential opened a private Hugging Face repository that held samples of customer prompts, retained for software testing. Together's secret scanner caught the commit and it was reverted, but not before an unknown party downloaded the samples, searched them for secrets and began testing what they found. Five of the credentials they tested were canaries planted by Dragos, which is how the incident surfaced at all.\n\nThe affected requests were mostly to three open-weight models, MiniMax M3, GLM-5.2 and Kimi K2.6, on four days: June 24, July 4, July 8 and July 14. Together has not said how many prompts or customers were involved and says its review is continuing. It has brought in an outside forensics firm and law enforcement, moved to scoped short-lived credentials, added credential checks on every pull request, changed how its coding agents are allowed to work, and made zero data retention the default for new accounts. Existing customers have to switch it on themselves.\n\n## Why a canary study matters more than one breach\n\nTogether's disclosure is one node in a larger map drawn by Dragos. Over roughly five months its chief research officer, HD Moore, pushed about two million prompts through more than 2,000 inference routes, each carrying a unique URL and a disposable credential. Any later fetch of that URL, or use of that credential, is proof that the prompt was stored and read. The findings: attackers were actively pulling data from three unnamed hosting providers, one adversary appeared to have compromised two of them at once, and a Chinese AI lab fetched the secret URLs from about two-thirds of requests that had been marked no-data-collection. A stolen AWS key traced back to a request that was flagged zero-retention. Dragos names no vendors; the companies are identifying themselves one at a time.\n\nOpenRouter is the second to do so. On Sunday it removed three inference providers from its marketplace and stripped zero-data-retention eligibility from 125 endpoints, some as a precaution, saying its own systems were not breached and that affected customers have been notified. Secondary reports name the three as AtlasCloud, Novita and StreamLake and say they had been forwarding MiniMax traffic to MiniMax's own API rather than hosting the model themselves; Novita's notice gives an exposure window from May 28 to November 11. OpenRouter has not confirmed those names.\n\n## The two failure modes\n\nRead together, the incidents expose two different problems. The first is retention that nobody meant to be permanent: test fixtures, debug logs, prompt samples kept to reproduce a bug, then forgotten. Together's samples were four months old when they leaked. The second is routing opacity: a customer picking a US host for a Chinese open-weight model may have had the request forwarded to the model maker's API in another jurisdiction, with a zero-retention badge still showing. Neither is a model vulnerability. Both are supply-chain hygiene, and both are invisible from the buyer's side without instrumentation.\n\nThe counter-argument from providers is fair as far as it goes: open-weight models are cheap precisely because a thin layer of resellers competes on price, and the big first-party APIs have had their own retention controversies. But the Dragos numbers suggest the problem is wide, not isolated, and the remedy it demonstrates costs almost nothing.\n\n## What to do\n\nRotate any secret that could have appeared in a prompt sent through a third-party route since May, and add prompt-content scanning to your own gateway so secrets stop reaching models at all. Ask each router or host for the list of upstream providers per model and whether requests ever leave their infrastructure. Then plant your own canaries: a unique URL and a dead credential in a small fraction of production prompts, with alerting on any hit. Finally, if you use an AI coding agent, apply the same controls Together now applies to itself: short-lived scoped tokens, secret scanning on every PR, and no agent with write access to a public repository."
+}

@@ -939,5 +939,54 @@
    "510(k) clearance",
    "Evaluation (eval)"
   ]
+ },
+ {
+  "term": "Zero data retention (ZDR)",
+  "short": "A vendor promise not to store prompts or outputs after a request is served, so nothing is left to leak, subpoena or train on.",
+  "long": "Zero data retention means the inference provider processes your request and discards it, keeping no logs of prompt or completion content. It is a contractual and operational claim, not a technical property you can see from the API, which is why November 2026's canary-token study mattered: prompts flagged no-retention were later fetched from storage at several hosts. Check whether ZDR covers the host that actually serves the model or only the router you bought from, and test it with canaries.",
+  "related": [
+   "canary token",
+   "sub-processor",
+   "data"
+  ]
+ },
+ {
+  "term": "Canary token",
+  "short": "A unique, worthless credential or URL planted where it should never be used; any use of it proves someone read the data it was hidden in.",
+  "long": "A canary token is a fake secret, such as an AWS key that unlocks nothing or a URL that exists only to be logged, embedded in a document, a prompt or a repository. If the token is ever used or the URL fetched, the owner learns that the surrounding data was stored and read, when, and from what IP address. Dragos used two million canary-laden prompts across more than 2,000 inference routes in 2026 to show that some providers kept and leaked prompts they had marked as not retained. Canaries are cheap to make and the only practical way for a buyer to verify a retention promise.",
+  "related": [
+   "zero data retention",
+   "secret scanning",
+   "security"
+  ]
+ },
+ {
+  "term": "Lean (proof assistant)",
+  "short": "A programming language and checker in which a mathematical proof is written as code that a computer verifies line by line.",
+  "long": "Lean lets mathematicians state a theorem formally and build its proof from axioms and previously verified results; the checker accepts the proof only if every step follows. A proof that compiles in Lean is correct relative to the formal statement, which shifts the question from 'is the argument right?' to 'does the statement say what we think it says?' and 'were any extra axioms assumed?'. AI labs now use Lean as a verifier that a model cannot talk its way past, and the November 2026 claimed proof of the Riemann hypothesis was released as Lean code before any human-readable version.",
+  "related": [
+   "formal verification",
+   "research"
+  ]
+ },
+ {
+  "term": "Layer looping (looped transformer)",
+  "short": "Running the same stored layers more than once per token so a small model computes like a deeper one without using more memory.",
+  "long": "In a looped transformer some blocks of layers are applied repeatedly, say three times, before the token moves on. The weights are stored once, so the download size and memory footprint are those of the shallow model, while the number of layer applications per token, and the compute per token, matches a model two or three times deeper. Thinking Machines' Inkling 2 Mini (November 2026) stores 24 layers and applies 48 per token this way, which is how a 26-billion-parameter model fits in about 20 GB while competing with larger ones on coding benchmarks. The trade-off is slower generation per parameter and, so far, weaker performance on long multi-turn instructions.",
+  "related": [
+   "mixture of experts",
+   "active parameters",
+   "NVFP4"
+  ]
+ },
+ {
+  "term": "Perplexity",
+  "short": "A measure of how surprised a model is by text it has not seen; lower means better next-token prediction.",
+  "long": "Perplexity is the exponential of the average loss a language model incurs predicting each token of a held-out text. A perplexity of 1 would mean perfect prediction. Because it is measured the same way across model generations and does not saturate like a benchmark, OpenAI's chief scientist proposed in November 2026 that labs use pretraining perplexity as a shared gauge of capability and agree not to train past a threshold until monitoring improves. Comparisons across labs are complicated by different tokenisers and evaluation corpora, so published figures need methodology attached.",
+  "related": [
+   "benchmark",
+   "training",
+   "token"
+  ]
  }
 ]
