@@ -1,0 +1,37 @@
+{
+ "slug": "hpe-q4-14-5-billion-ai-orders-5-7-billion-memory-constrained-through-2028-what-buyers-should-plan",
+ "section": "business",
+ "title": "HPE posts $14.5B quarter with $5.7B of AI orders and says memory stays tight through late 2028. What server buyers should plan for",
+ "dek": "The first of the four server makers accused of repricing signed contracts has reported, and its numbers show why: record AI orders, a $10.5B AI backlog, margins already drifting down, and a supply constraint the CEO now dates two years out.",
+ "stat": "$5.7B",
+ "tags": [
+  "business",
+  "infrastructure",
+  "markets",
+  "adoption"
+ ],
+ "developing": true,
+ "sources": [
+  {
+   "name": "Investing.com: HPE Q4 FY26 earnings call transcript",
+   "url": "https://www.investing.com/news/transcripts/earnings-call-transcript-hpe-tops-q4-2026-forecasts-shares-swing-after-rally-93CH-5046679"
+  },
+  {
+   "name": "Investing.com: HPE Q4 FY26 slides, AI orders hit $5.7B, revenue up 50%",
+   "url": "https://uk.investing.com/news/stock-market-news/hpe-q4-fy26-slides-ai-orders-hit-57b-revenue-up-50-93CH-5000403"
+  },
+  {
+   "name": "HPE: fiscal 2026 fourth quarter results (press release)",
+   "url": "https://www.hpe.com/us/en/newsroom/press-release/2026/11/hpe-reports-fiscal-2026-fourth-quarter-results.html"
+  }
+ ],
+ "why": {
+  "finance": "Revenue up 50%, gross margin down 220 basis points sequentially and a Cloud & AI margin guided to about 14% for the year: AI servers are a volume business with falling unit margins, and the FY27 guide of 27–35% growth assumes customers accept the pricing.",
+  "executives": "Neri now says memory, NAND and other components stay constrained through at least the second half of calendar 2028. Any AI hardware plan that assumes 2027 relief is out of date.",
+  "developers": "A $10.5B backlog means lead times, not list prices, decide when you get GPUs. Design for the capacity you have, and keep the cloud fallback warm.",
+  "security": "Component scarcity pushes buyers to grey-market memory and refurbished accelerators. Firmware provenance checks belong in the procurement workflow now."
+ },
+ "body": "Hewlett Packard Enterprise reported fiscal fourth-quarter revenue of $14.5 billion on Monday evening, up 50% from a year earlier and 13% from the prior quarter, with adjusted earnings of $1.43 a share against the roughly $1.27 analysts expected. The Cloud & AI segment brought in $11.3 billion, up 69%, and networking $3.1 billion, up 12%. Orders rose 88% in the quarter. AI orders were $5.7 billion, split between $4.5 billion of AI systems and a record $1.2 billion of networking for AI, and the AI backlog left the year at $10.5 billion, more than 80% higher than a year ago.\n\nFor the full year HPE recorded $46.7 billion of revenue, $57.2 billion of orders and free cash flow of $4.5 billion, up 356%. Net leverage fell from 2.7x to 1.4x as the company paid down Juniper acquisition debt, and the Juniper synergy target for fiscal 2028 was raised from $450 million to $800 million. The dividend goes up 19% to 17 cents a quarter and the company plans about $3 billion of buybacks.\n\n## The number that matters for buyers\n\nChief executive Antonio Neri said on the call that supply of memory, NAND and other critical components is expected to remain constrained through at least the second half of calendar 2028. Chief financial officer Marie Myers described significant double-digit increases in commodity costs during fiscal 2026 and expects them to moderate, not reverse, in fiscal 2027. Gross margin was 38% for the quarter, up 180 basis points year on year but down 220 basis points from the third quarter, and management guided the Cloud & AI margin to about 14% for the year as the AI server mix rises and costs outpace pricing.\n\nThat is the context for the Financial Times report this site covered on Monday that HPE, Dell, Lenovo and Supermicro are asking customers to accept 25–45% increases on orders already signed as memory passes half of a server's bill of materials. Neither Neri nor Myers addressed repricing of signed contracts directly on the call; management said pricing remains disciplined. HPE had earlier said it rewrote quoting terms to allow adjustment for component costs, which is the mechanism those increases run through.\n\n## Guidance\n\nFor fiscal 2027 HPE expects revenue growth of 27–35%, non-GAAP earnings of $5.05 to $5.35 a share and free cash flow of at least $5.5 billion, with first-quarter revenue of $14.0 to $14.6 billion. Cloud & AI is guided to grow 30–40%, networking in the high teens to low twenties. The company also noted that 57% of its cumulative AI orders since fiscal 2023 came from sovereign and enterprise customers rather than hyperscalers, which is a different, more fragmented and more contract-sensitive buyer base.\n\nThe shares closed up 17.4% at $48.02 on Monday, lifted by the market-wide rally, then gave back 6.7% after hours as the margin outlook sank in. Dell reports on Tuesday evening and will face the same questions.\n\n## The counter-argument\n\nOrder growth of 88% and a doubling of AI systems orders say demand is not the problem, and a backlog that large gives HPE pricing leverage, not the other way round. The risk for HPE is less that customers walk than that memory makers capture the margin; the risk for customers is that they have no better option than to pay.\n\n## What to do\n\nIf you have a signed server order, ask for the component-cost clause in writing and the date the price was fixed. If you are planning fiscal 2027 capacity, budget for memory-driven increases through 2028 and compare the delivered cost per accelerator-hour with a reserved cloud commitment before signing. Watch Dell's call on Tuesday for whether it confirms the same constraint horizon; two vendors naming the same date is a market signal, not a negotiating tactic.",
+ "published": "2026-11-24",
+ "updated": "2026-11-24"
+}

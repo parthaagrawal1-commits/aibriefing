@@ -1,0 +1,38 @@
+{
+ "slug": "simplexity-100-million-1-6-billion-zoox-los-angeles-waymo-recalls-what-the-week-in-robots-says",
+ "section": "robotics",
+ "title": "Ant Group leads $100M for Simplexity Robotics at $1.6B, Zoox goes driverless in Los Angeles, and Waymo files two recalls with freeways still off limits. What the week in robots says",
+ "dek": "Chinese humanoid money keeps arriving at unicorn valuations within a year of founding, while the US robotaxi leaders spend the week on recalls, weather pauses and a fifth city with no public riders yet.",
+ "stat": "$1.6B",
+ "tags": [
+  "robotics",
+  "funding",
+  "Amazon",
+  "regulation",
+  "agents"
+ ],
+ "developing": true,
+ "sources": [
+  {
+   "name": "Bloomberg via Business Standard: Ant Group bets on Simplexity Robotics in China's humanoid race",
+   "url": "https://www.business-standard.com/amp/technology/artificial-intelligence/jack-ma-s-ant-group-bets-on-simplexity-robotics-in-china-s-humanoid-race-126112300328_1.html"
+  },
+  {
+   "name": "Zoox (via EVXL): Zoox robotaxis begin driverless operations in Los Angeles",
+   "url": "https://evxl.co/2026/11/23/zoox-robotaxis-los-angeles-santa-monica/"
+  },
+  {
+   "name": "Reuters (via Insurance Journal): Waymo recalls over closed freeway lanes and manual traffic control",
+   "url": "https://www.insurancejournal.com/news/national/2026/11/24/893481.htm"
+  }
+ ],
+ "why": {
+  "finance": "A $1.6B valuation on a pre-Series A round for a company founded in summer 2025, with 97% of humanoid shipments in the first nine months of 2026 coming from Chinese firms and the NDRC warning of a bubble: the growth and the risk are the same fact.",
+  "executives": "Simplexity's first product runs CNC machines for named manufacturing customers, including a supplier to Tesla and Figure. Wheeled, task-specific humanoids are reaching factories before legged general-purpose ones.",
+  "ml": "Waymo's two recalls are both perception-to-policy failures in edge cases, closed freeway lanes and an officer briefly out of view, not sensor failures. One remedy is still in development.",
+  "beginners": "Driverless means no safety driver in the car. In Los Angeles that currently applies only to Zoox employees and their families; public rides come later."
+ },
+ "body": "Simplexity Robotics, a Suzhou company founded in the summer of 2025 by three former Li Auto executives, raised $100 million in a pre-Series A round led by Ant Group at a $1.6 billion valuation, Bloomberg reported on Monday, with Tencent, HSG and Lanchi Ventures also participating. Chairman Wang Kai said the company passed a billion-dollar valuation within months of founding. On the same day it showed its second robot, a wheeled humanoid called iX that prepares and serves drinks, fetches items and leads tours. Its first product is an industrial wheeled humanoid that runs CNC machines, and the customer list is the interesting part: Leaderdrive, a component supplier to Tesla and Figure, forklift maker Hangcha, Dongshan Precision, Tsinghua University and South Korea's Rlwrld.\n\nBloomberg's context is that Chinese firms accounted for 97% of humanoid shipments in the first three quarters of 2026, and that China's economic planning agency recently warned of bubble risk in the sector. Ant Group already backs Unitree, Astribot and Zeroth. A supplier to Tesla and Figure buying Chinese humanoids to run its own machine tools is a small irony worth noting.\n\n## Zoox, fifth city, no public riders\n\nAmazon's Zoox said on Monday that its purpose-built robotaxis, with no steering wheel and four-seat carriage layout, are driving without a safety driver on public streets in Los Angeles, starting in Santa Monica. It is the company's fifth market after Las Vegas, where paying public service runs, San Francisco, Austin and Miami. Riders are limited to employees and their families and friends; a waitlist and an early-rider programme for the public are planned for 2027, and the fleet size was not disclosed. Zoox has been testing in Los Angeles with safety drivers since spring 2025.\n\n## Waymo's week\n\nWaymo filed two safety recalls with NHTSA, Reuters reported. The first covers vehicles that may enter and keep driving in closed freeway lanes; no collisions or injuries are reported, and the remedy is still in development. The second improves the response to manual traffic direction by police and emergency personnel, after a collision in which a Waymo followed an officer's instructions while the officer was briefly obstructed; a software update was completed on November 6. Both come on top of the recall query NHTSA opened the previous week into about 3,000 Waymo vehicles passing stopped school buses, and the federal investigations into the January Santa Monica incident in which a child was struck. Separately, Phoenix police released video of an unoccupied Waymo driving through police tape into a crash scene on November 20, and Waymo paused its Bay Area service from Monday through Thanksgiving week ahead of atmospheric-river storms and king tides. Its nationwide freeway suspension, in force since California's DMV order on November 17 over construction-zone incidents, remains in place, with freeway testing continuing with specialists behind the wheel.\n\n## Tesla, for the record\n\nFSD v15.0.1 is in a staged rollout to hardware-4 cars that began November 21; third-party trackers showed it on a tiny fraction of the fleet as of Monday, and Tesla has published nothing to support the 25x safety claim since the weekend.\n\n## What to watch\n\nFor humanoids, the next data point is whether Simplexity's CNC robots ship in volume to the named customers, which would be the first widely reported humanoid deployment on machine tools rather than in logistics. For robotaxis, the closed-lane recall remedy is the one to track; it is the same failure class that cost Waymo its freeway permission in California, and until it is fixed the suspension has no obvious end. And Zoox's Los Angeles move puts a second driverless operator in the DMV's jurisdiction at the moment the agency is in its most assertive mood.",
+ "published": "2026-11-24",
+ "updated": "2026-11-24"
+}

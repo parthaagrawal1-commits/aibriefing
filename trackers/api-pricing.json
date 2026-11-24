@@ -2,8 +2,8 @@
  "source": "https://aibriefing.io/trackers/api-pricing/",
  "license": "CC BY 4.0",
  "title": "LLM API pricing tracker",
- "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. Nov 23: OpenAI's pricing page now lists GPT-6 Rosalind at $10 / $50 (was $15 / $75), promotional through Dec 31; cached input confirmed at $0.40 for GPT-6.2 Astra and $0.10 for GPT-6.2 Sol; Gemini 4 Neon and LongCat-2.5 upgraded to primary sources; Gemini 4 Hydrogen cached rate added; new rows for Inkling 2 Mini (Tinker rates), GPT-6.2 Astra for Law, Gemini 3.7 Flash and Tencent Hy4. Anthropic, OpenAI, Google, Meta, Thinking Machines, Alibaba, Meituan and Tencent pages re-read tonight. Reminder: Gemini 4 Carbon and Argon introductory pricing ends December 1, when both rise to $4 / $20; GPT-5.6 Sol's $4 / $20 promo ends November 30.",
- "updated": "2026-11-23",
+ "intro": "What every major model costs per million tokens, checked against the vendors' own pricing pages. Standard tier, USD, cache and long-context rules noted. Nov 24: Anthropic, OpenAI, Google (Gemini API and Vertex), Thinking Machines and Z.ai pages re-read tonight with no price changes on any tracked row; new rows for Z.ai's GLM-5.3 ($1.40 / $4.40, cached $0.26) and GLM-5.3-Flash ($0.15 / $0.50), read from Z.ai's price list, while GLM-5.4 (released Nov 23) has no API price yet. OpenAI now lists Ultrafast at 3x for GPT-6.2 Astra and Sol through Feb 28, 2027, then 6x. Gemini 4 Carbon, Neon and Hydrogen were not on Google's public price lists tonight and keep their Nov 23 verification from Google's launch pages; Meta's developer pricing page could not be re-read. Reminder: Gemini 4 Argon's launch price ends November 30 ($4 / $20 from December 1), GPT-5.6 Sol's $4 / $20 promo ends November 30, and the 3.x Flash promo ends December 31. See the price calendar below.",
+ "updated": "2026-11-24",
  "rows": [
   {
    "vendor": "Anthropic",
@@ -14,7 +14,7 @@
    "context": "1M",
    "note": "released Nov 9, 2026; cache write $10 (5m) / $16 (1h); batch $4 / $20; fast mode $16 / $80",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -26,7 +26,7 @@
    "context": "1M",
    "note": "same base model and price as Fable 5.2 without the added cyber/bio safeguards; access via verification programmes",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -38,7 +38,7 @@
    "context": "1M",
    "note": "previous generation; superseded by Fable 5.2 at $8 / $40",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -50,7 +50,7 @@
    "context": "1M",
    "note": "previous generation; superseded by Mythos 5.2 at $8 / $40",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -62,7 +62,7 @@
    "context": "1M",
    "note": "batch $2 / $10",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -74,7 +74,7 @@
    "context": "1M",
    "note": "batch $1 / $5",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -86,7 +86,7 @@
    "context": "tiered",
    "note": "prompts over 100K tokens: $0.50 / $2.50",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -98,7 +98,7 @@
    "context": "1M",
    "note": "previous-generation Opus tiers, same price",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -110,7 +110,7 @@
    "context": "1M",
    "note": "",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -122,7 +122,7 @@
    "context": "1.05M",
    "note": "released Nov 17, 2026; 128K max output; cutoff May 18, 2026; Ultrafast tier available; cached-input rate not yet confirmed on the vendor page (reported $0.40); cached $0.40 confirmed Nov 23; cache write $10 (30m) / $20 (12h); 1.05M context; >272K input billed 2x / 1.5x; Ultrafast 3x through Feb 28 2027",
    "source": "https://developers.openai.com/api/docs/models/gpt-6.2-astra",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -132,9 +132,9 @@
    "output": 10,
    "cached": 0.1,
    "context": "1.05M",
-   "note": "released Nov 17, 2026; same price as GPT-6.1 Sol; 128K max output; cutoff Jun 1, 2026; cached-input rate not yet confirmed (reported $0.10); cached $0.10 confirmed Nov 23; cache write $2.50 (30m) / $5 (12h)",
+   "note": "released Nov 17, 2026; same price as GPT-6.1 Sol; 128K max output; cutoff Jun 1, 2026; cached-input rate not yet confirmed (reported $0.10); cached $0.10 confirmed Nov 23; cache write $2.50 (30m) / $5 (12h) Fast tier 2x and Ultrafast 3x through Feb 28, 2027, then 6x.",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -146,7 +146,7 @@
    "context": "1.05M",
    "note": "requests over 272K input tokens billed $20 / $75; batch and flex 50% off; fast mode 2x; matches OpenAI enterprise rate card (help.openai.com, Nov 14); superseded by GPT-6.2 Astra at $8 / $40 (Nov 17)",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -158,7 +158,7 @@
    "context": "1.05M",
    "note": "cache write $2.50; over 272K input tokens 2x / 1.5x; batch and flex 50% off; fast 2x, ultrafast 6x; matches OpenAI enterprise rate card (help.openai.com, Nov 14)",
    "source": "https://developers.openai.com/api/docs/models/gpt-6.1-sol",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -170,7 +170,7 @@
    "context": "1.05M",
    "note": "over 272K input tokens 2x / 1.5x; batch and flex 50% off; matches OpenAI enterprise rate card (help.openai.com, Nov 14)",
    "source": "https://developers.openai.com/api/docs/models/gpt-6.1-terra",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -194,7 +194,7 @@
    "context": "1.05M",
    "note": "volume tier; over 272K input tokens 2x / 1.5x; matches OpenAI enterprise rate card (help.openai.com, Nov 14)",
    "source": "https://developers.openai.com/api/docs/models/gpt-6-luna",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -206,7 +206,7 @@
    "context": "1.05M",
    "note": "gated security model released Nov 5, 2026",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -312,9 +312,9 @@
    "output": 10,
    "cached": 0.1,
    "context": "—",
-   "note": "launch pricing through Nov 30, 2026; $4 / $20 from Dec 1; cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
+   "note": "Launch price through Nov 30, 2026; $4 / $20 / $0.20 from Dec 1 (confirmed on Vertex AI pricing).",
    "source": "https://ai.google.dev/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -326,7 +326,7 @@
    "context": "—",
    "note": "promotional price through Dec 31, 2026; $1.50 / $7.50 from Jan 1, 2027 (the same rate as Gemini 4 Hydrogen, its replacement); cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
    "source": "https://ai.google.dev/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -338,7 +338,7 @@
    "context": "—",
    "note": "promotional price through Dec 31, 2026; $1.50 / $7.50 from Jan 1, 2027; cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
    "source": "https://ai.google.dev/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -350,7 +350,7 @@
    "context": "—",
    "note": "free tier available; cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
    "source": "https://ai.google.dev/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -362,7 +362,7 @@
    "context": "—",
    "note": "audio input $0.50; free tier available; cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
    "source": "https://ai.google.dev/gemini-api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -374,7 +374,7 @@
    "context": "tiered",
    "note": "prompts over 200K tokens: $4 / $18; cross-checked Nov 16 against Google Cloud Vertex AI pricing (global endpoint; non-global about 10% higher)",
    "source": "https://ai.google.dev/gemini-api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -386,7 +386,7 @@
    "context": "256K",
    "note": "Serverless inference beta (waitlist); $0.30 / $1.00 confirmed on Tinker docs",
    "source": "https://thinkingmachines.ai/tinker/pricing/",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -422,7 +422,7 @@
    "context": "",
    "note": "was $15 / $75 / $1.50 at launch; pricing page lists $10 / $50 / $1 as promotional through at least Dec 31, 2026 (cache write $12.50 / $25)",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -434,7 +434,7 @@
    "context": "1.05M",
    "note": "legal-tuned Astra; promotional pricing at the standard Astra rate through at least Dec 31, 2026; matches OpenAI enterprise rate card (help.openai.com, Nov 14)",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -446,7 +446,7 @@
    "context": "256K",
    "note": "non-generative scoring model: up to 1,000 yes/no, choice or rubric questions per call, no output-token charge; free tier in AI Studio; Google Cloud support \"coming soon\"",
    "source": "https://blog.google/innovation-and-ai/technology/developers-tools/gemini-decisions-api/",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -482,7 +482,7 @@
    "context": "1M (model) / 256K (Tinker training)",
    "note": "released Nov 20, 2026; 26.4B total / 3.4B active, Apache 2.0 open weights; no serverless API price yet, these are Tinker prefill / sample rates; training $0.75 (64K) or $1.50 (256K) per 1M",
    "source": "https://thinkingmachines.ai/tinker/pricing/",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -492,9 +492,9 @@
    "output": 40,
    "cached": 0.4,
    "context": "1.05M",
-   "note": "legal-domain variant of GPT-6.2 Astra at the same price; promotional through Dec 31, 2026",
+   "note": "legal-domain variant of GPT-6.2 Astra at the same price; promotional through Dec 31, 2026 Fast tier 2x and Ultrafast 3x through Feb 28, 2027, then 6x.",
    "source": "https://developers.openai.com/api/docs/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -506,7 +506,7 @@
    "context": "1M",
    "note": "launch pricing through Dec 31, 2026; rises to $1.50 / $7.50 / $0.15 on Jan 1, 2027",
    "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing",
-   "verified": "2026-11-23",
+   "verified": "2026-11-24",
    "confidence": "primary"
   },
   {
@@ -519,6 +519,30 @@
    "note": "list ¥6 / ¥18 / ¥0.3 cached per 1M (USD approximate); 50% off through Dec 31, 2026; batch ¥3 / ¥9",
    "source": "https://cloud.tencent.com/document/product/1823/130055",
    "verified": "2026-11-23",
+   "confidence": "primary"
+  },
+  {
+   "vendor": "Z.ai (Zhipu)",
+   "model": "GLM-5.3 (also 5.2 / 5.1)",
+   "input": 1.4,
+   "output": 4.4,
+   "cached": 0.26,
+   "context": "—",
+   "note": "Newest model on Z.ai's API price list; GLM-5.4 (Nov 23) is Coding Plan only with API pricing not yet published. Cache storage listed as free for a limited time.",
+   "source": "https://docs.z.ai/guides/overview/pricing",
+   "verified": "2026-11-24",
+   "confidence": "primary"
+  },
+  {
+   "vendor": "Z.ai (Zhipu)",
+   "model": "GLM-5.3-Flash",
+   "input": 0.15,
+   "output": 0.5,
+   "cached": 0.03,
+   "context": "—",
+   "note": "Fast tier; FlashX variant lists $0.37 / $1.25 / $0.075.",
+   "source": "https://docs.z.ai/guides/overview/pricing",
+   "verified": "2026-11-24",
    "confidence": "primary"
   }
  ],
@@ -540,5 +564,97 @@
    "How often is this table updated?",
    "Nightly. Rows marked as primary were read directly from the vendor's pricing page on the date shown; secondary rows come from sources that cite the vendor page and are re-checked until a primary read is possible."
   ]
+ ],
+ "changes": [
+  {
+   "date": "2026-11-30",
+   "vendor": "OpenAI",
+   "model": "GPT-5.6 Sol",
+   "kind": "scheduled",
+   "from": "$4 / $20",
+   "to": "$5 / $30",
+   "note": "Promotional rate ends; standard rate resumes Dec 1.",
+   "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  {
+   "date": "2026-12-01",
+   "vendor": "Google",
+   "model": "Gemini 4 Argon",
+   "kind": "scheduled",
+   "from": "$2 / $10 / $0.10",
+   "to": "$4 / $20 / $0.20",
+   "note": "Launch pricing ends Nov 30 (Vertex AI pricing).",
+   "source": "https://cloud.google.com/vertex-ai/generative-ai/pricing"
+  },
+  {
+   "date": "2026-12-01",
+   "vendor": "Google",
+   "model": "Gemini 4 Carbon",
+   "kind": "scheduled",
+   "from": "$2 / $10",
+   "to": "$4 / $20",
+   "note": "Introductory pricing ends Nov 30 per Google's launch post.",
+   "source": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/gemini-4-carbon-now-available/"
+  },
+  {
+   "date": "2027-01-01",
+   "vendor": "Google",
+   "model": "Gemini 3.8 / 3.7 / 3.6 Flash",
+   "kind": "scheduled",
+   "from": "$0.75 / $3.75 / $0.075",
+   "to": "$1.50 / $7.50 / $0.15",
+   "note": "Flash promo runs through Dec 31, 2026.",
+   "source": "https://ai.google.dev/gemini-api/docs/pricing"
+  },
+  {
+   "date": "2027-01-01",
+   "vendor": "OpenAI",
+   "model": "GPT-6 Rosalind, GPT-6 Astra for Law, GPT-6.2 Astra for Law",
+   "kind": "scheduled",
+   "from": "promo ($10 / $50; $8 / $40)",
+   "to": "to be announced",
+   "note": "OpenAI says promotional pricing holds through at least Dec 31, 2026.",
+   "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  {
+   "date": "2027-03-01",
+   "vendor": "OpenAI",
+   "model": "GPT-6.2 Astra and Sol (Ultrafast tier)",
+   "kind": "scheduled",
+   "from": "3x standard",
+   "to": "6x standard",
+   "note": "Ultrafast multiplier steps up after Feb 28, 2027.",
+   "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  {
+   "date": "2026-11-23",
+   "vendor": "OpenAI",
+   "model": "GPT-6 Rosalind",
+   "kind": "observed",
+   "from": "$15 / $75 / $1.50",
+   "to": "$10 / $50 / $1",
+   "note": "Seen on OpenAI's pricing page; promotional through Dec 31.",
+   "source": "https://developers.openai.com/api/docs/pricing"
+  },
+  {
+   "date": "2026-11-17",
+   "vendor": "OpenAI",
+   "model": "GPT-6.2 Astra (vs GPT-6 Astra)",
+   "kind": "observed",
+   "from": "$10 / $50",
+   "to": "$8 / $40",
+   "note": "20% cut at the 6.2 launch; Sol held at $2 / $10.",
+   "source": "https://developers.openai.com/api/docs/models/gpt-6.2-astra"
+  },
+  {
+   "date": "2026-11-09",
+   "vendor": "Anthropic",
+   "model": "Claude Fable 5.2 (vs Fable 5.1)",
+   "kind": "observed",
+   "from": "$10 / $50",
+   "to": "$8 / $40",
+   "note": "New flagship priced 20% below its predecessor.",
+   "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+  }
  ]
 }

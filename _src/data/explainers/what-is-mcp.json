@@ -1,0 +1,36 @@
+{
+ "slug": "what-is-mcp",
+ "title": "What is MCP? The Model Context Protocol explained: how AI agents plug into Canva, GitHub and your own systems, what it costs, and where it goes wrong",
+ "summary": "MCP is the standard that lets an AI model call tools and read data from other software through one connector instead of a custom integration per vendor. It is why Canva can say half a million people signed up through AI assistants, why agent products like Claude Ship can act inside GitHub, and why security teams now talk about tool poisoning. Here is how it works and what to check before you connect anything.",
+ "level": "beginner",
+ "audiences": [
+  "beginners",
+  "developers",
+  "executives",
+  "security",
+  "ml"
+ ],
+ "tags": [
+  "tools",
+  "agents",
+  "security",
+  "adoption"
+ ],
+ "published": "2026-11-24",
+ "updated": "2026-11-24",
+ "body": "The Model Context Protocol, MCP, is an open standard that Anthropic published in November 2024 and that OpenAI, Google, Microsoft and most tool vendors adopted during 2025. It describes how an AI application, the client, discovers and calls capabilities offered by another program, the server. A server can expose tools (functions the model may call, such as \"resize this design\" or \"open a pull request\"), resources (data the model may read, such as a file or a database table) and prompts (templates the server suggests). The model sees a list of tools with descriptions and parameter schemas, decides which to call, and the client executes the call and feeds the result back.\n\nThe point is to replace N-by-M integration work with N-plus-M. Before MCP, a company that wanted its software to be usable from five AI assistants wrote five integrations, and an assistant that wanted to reach fifty products wrote fifty. With MCP each side implements the protocol once. That is the logic behind Canva's announcement this week that its MCP server is generally available to any developer or agent, alongside the same features as REST APIs and a command-line tool: Canva says roughly 500,000 people signed up through MCP since October and that usage grew 93% in a month.\n\n## How a call actually works\n\nA client connects to a server over one of two transports: standard input and output for a server running on the same machine, or HTTP for a remote one. Remote servers authenticate the user with OAuth, so the model acts with that person's permissions and no more. The client asks the server to list its tools, passes the list into the model's context, and when the model emits a tool call the client validates the arguments against the schema, runs the call, and returns the result as text or structured data. Nothing about the model changes; MCP sits beside it, in the application layer.\n\nTwo consequences follow. First, every tool description occupies context tokens on every request, so a client connected to forty servers with ten tools each is paying for four hundred descriptions before the user types a word; vendors have responded with lazy tool loading and tool search. Second, the result of a tool call is untrusted text that goes straight into the model's context, which is where the security problems start.\n\n## Where it goes wrong\n\nThe failure mode security teams care about is indirect prompt injection through tools. A document returned by a resource, a web page fetched by a tool, or a GitHub issue read by an agent can contain instructions, and a model may follow them. A related problem is tool poisoning: a malicious or compromised server describes its tools in ways that steer the model, or quietly changes a tool's behaviour after it has been approved. The Together AI incident this site covered on Monday started with a coding agent committing a credential; the Microsoft Agent Framework package poisoning started with an agent installing a dependency. Neither needed MCP specifically, but both are the shape of risk MCP multiplies by making tool access easy.\n\nThe practical controls are the ones that apply to any non-human identity. Give each server a scoped credential, not a user's full token. Pin server versions and review tool descriptions as you would review code. Log every call with its arguments. Put a human approval in front of any tool that spends money, sends messages or changes production, and keep read-only servers separate from ones that write.\n\n## What it costs\n\nMCP itself is free and the specification is open. The costs are context tokens for tool descriptions and results, the vendor's own pricing for whatever the tool does (Canva, for example, keeps some features on paid plans and prices its image model at about a cent an image), and the engineering time to build and maintain servers. A server for an internal system is typically a few hundred lines of code; the maintenance burden is keeping its descriptions accurate, because a stale description is a wrong tool call.\n\n## What to watch\n\nThree things are changing fast. Remote servers with OAuth are replacing local ones, which moves the trust question from the user's laptop to the vendor's cloud. Clients are adding tool search so that large catalogues do not flood the context window. And governance is catching up: expect registries of approved servers inside companies, the way package registries are mirrored today.",
+ "faqs": [
+  [
+   "Is MCP the same as function calling?",
+   "Function calling is the model feature that lets it emit a structured call; MCP is the protocol that standardises how applications discover, describe and execute those calls against other software. Every MCP client uses function calling underneath."
+  ],
+  [
+   "Do I need MCP to use AI tools in my company?",
+   "No. A single integration can use a vendor's API directly. MCP pays off when several assistants need to reach several systems, or when you want to buy integrations rather than build them, which is why software vendors are shipping servers."
+  ],
+  [
+   "Can an MCP server steal my data?",
+   "A server receives only what the model sends it and the permissions its credential carries, but a malicious server can mislead the model and a compromised one can exfiltrate what it is given. Treat servers as third-party code: scope credentials, pin versions, log calls and review descriptions."
+  ]
+ ]
+}

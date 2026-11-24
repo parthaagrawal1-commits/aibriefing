@@ -988,5 +988,50 @@
    "training",
    "token"
   ]
+ },
+ {
+  "term": "eBPF",
+  "short": "A way to run small, verified programs inside the Linux kernel without changing it, used for monitoring and enforcing security policy.",
+  "long": "Extended Berkeley Packet Filter programs are loaded into the kernel, checked by a verifier that proves they terminate and stay in bounds, and attached to events such as system calls or network packets. Security tools use them to observe and block behaviour in running processes; Shirudo, the OpenAI and Cisco project, uses signed eBPF 'shields' to block a vulnerable code path until a patch ships.",
+  "related": [
+   "Micropatch (hot patch)",
+   "Sandbox escape"
+  ]
+ },
+ {
+  "term": "Micropatch (hot patch)",
+  "short": "A small fix applied to a running program or kernel without restarting it, usually as a stopgap before the vendor's patch.",
+  "long": "Also called a live patch or, in Shirudo's vocabulary, a shield or upatch. It intercepts the vulnerable code path, often adding an input check, rather than replacing the binary. Micropatches reduce the exposure window but do not remove the underlying flaw, and a wrong one can break the service it protects, which is why signed distribution and observe-only modes matter.",
+  "related": [
+   "eBPF",
+   "Patch-diff exploitation"
+  ]
+ },
+ {
+  "term": "Entity List",
+  "short": "The US Commerce Department's list of foreign organisations that need an export licence, usually with a presumption of denial, before receiving controlled US goods.",
+  "long": "Maintained by the Bureau of Industry and Security, the Entity List names companies, institutions and people judged to pose a risk to US national security or foreign policy. Suppliers must screen customers and their affiliates against it; listings are published in the Federal Register and can take effect on the public-inspection date. The November 2026 additions of Megaspeed and six related firms in Singapore, Malaysia and Thailand followed allegations that Nvidia chips and compute were routed to Chinese customers.",
+  "related": [
+   "Interim final rule",
+   "Total processing performance (TPP)"
+  ]
+ },
+ {
+  "term": "Known Exploited Vulnerabilities (KEV) catalogue",
+  "short": "CISA's list of flaws confirmed to be exploited in the wild, each with a deadline by which US federal agencies must fix it.",
+  "long": "The catalogue is the clearest public signal that a bug is being used, not merely disclosed. Many private organisations treat KEV deadlines as their own, typically two to three weeks for new entries. The November 23, 2026 additions of MONAI Label and N-able MailAssure carried a three-day deadline because AI-driven attack frameworks were already using them.",
+  "related": [
+   "Patch-diff exploitation",
+   "Out-of-bounds write"
+  ]
+ },
+ {
+  "term": "Brain-computer interface (BCI)",
+  "short": "A device that records signals from the brain and turns them into commands, text or speech, usually for people who cannot move or talk.",
+  "long": "Implanted BCIs such as Paradromics' Connexus, Neuralink's device and Synchron's stent-based system record neural activity and run decoders, increasingly on edge AI hardware, to produce cursor movement, typed text or synthesised speech. They are investigational in the United States: trials run under FDA early feasibility approval, and no implanted speech BCI is cleared for sale. Latency and signal drift, not only decoding accuracy, decide whether the result feels like natural communication.",
+  "related": [
+   "Latency",
+   "Fine-tuning"
+  ]
  }
 ]

@@ -519,6 +519,28 @@ def pricing_chart(rows):
         svg.append(f'<text x="{lw + wo + 6:.1f}" y="{y + 12}" font-size="11" fill="#857f74">{money(r["output"])} / {money(r["input"])}</text>')
     svg.append("</svg>"); return "".join(svg)
 
+def price_calendar(t, today=None):
+    """Upcoming scheduled price changes and recent observed ones, rendered from the tracker's `changes` list (no data duplication)."""
+    ch = t.get("changes") or []
+    if not ch: return ""
+    today = today or TODAY
+    up = sorted([c for c in ch if c.get("kind") == "scheduled" and c.get("date", "") >= today], key=lambda c: c["date"])[:8]
+    cutoff = (datetime.date.fromisoformat(today) - datetime.timedelta(days=45)).isoformat()
+    seen = sorted([c for c in ch if c.get("kind") == "observed" and c.get("date", "") >= cutoff], key=lambda c: c["date"], reverse=True)[:6]
+    def row(c):
+        d = datetime.date.fromisoformat(c["date"]); days = (d - datetime.date.fromisoformat(today)).days
+        when = "today" if days == 0 else (f"in {days} day{'s' if days != 1 else ''}" if days > 0 else f"{-days} day{'s' if days != -1 else ''} ago")
+        return (f'<tr><td><strong>{esc(short_date(c["date"]))}</strong><br><span class="meta">{esc(when)}</span></td>'
+                f'<td><strong>{esc(c["model"])}</strong><br><span class="meta">{esc(c["vendor"])}{(" · " + esc(c["note"])) if c.get("note") else ""}</span></td>'
+                f'<td class="num">{esc(c.get("from", "—"))}</td><td class="num">{esc(c.get("to", "—"))}</td>'
+                f'<td class="meta"><a href="{esc(c["source"])}" rel="noopener">source</a></td></tr>')
+    def table(cap, items):
+        if not items: return ""
+        return (f'<div class="tscroll"><table><caption class="meta" style="text-align:left;padding:4px 0">{esc(cap)}</caption><thead><tr><th>Date</th><th>Model</th><th>From</th><th>To</th><th></th></tr></thead>'
+                f'<tbody>{"".join(row(c) for c in items)}</tbody></table></div>')
+    return ('<h2 id="calendar">Price calendar</h2><p class="meta">Published end dates for launch pricing and promotions, plus price changes we have observed on vendor pages. Build the scheduled ones into any cost forecast.</p>'
+            + table("Scheduled changes (per vendor pages)", up) + table("Observed in the last 45 days", seen))
+
 def tracker_pricing(t):
     rows = "".join(f'<tr><td><strong>{esc(r["model"])}</strong><br><span class="meta">{esc(r["vendor"])}{(" · " + esc(r["note"])) if r.get("note") else ""}</span></td><td class="num">{money(r["input"])}</td><td class="num">{money(r["output"])}</td><td class="num">{money(r.get("cached"))}</td><td class="num">{esc(r.get("context", "—"))}</td><td class="meta"><a href="{esc(r["source"])}" rel="noopener">{esc(r.get("verified", ""))}</a><br>{conf_badge(r.get("confidence", "secondary"))}</td></tr>' for r in t["rows"])
     table = f'<div class="tscroll"><table><thead><tr><th>Model</th><th>Input / 1M</th><th>Output / 1M</th><th>Cached input</th><th>Context</th><th>Verified</th></tr></thead><tbody>{rows}</tbody></table></div>'
@@ -527,7 +549,7 @@ def tracker_pricing(t):
              f'<div class="card"><div class="statbig">{money(cheapest["output"])}</div><p>Cheapest frontier-class output ({esc(cheapest["model"])})</p></div>'
              f'<div class="card"><div class="statbig">{len(t["rows"])}</div><p>Models tracked · {sum(1 for r in t["rows"] if r.get("confidence") == "primary")} read from vendor pages</p></div></div>')
     body = (f'<div class="hero"><div class="kicker">Tracker</div><h1>{esc(t["title"])}</h1><p class="lede">{esc(t["intro"])}</p><p class="meta">Last checked {esc(t["updated"])}. USD per million tokens, standard tier, as published by each vendor. <a href="/trackers/api-pricing.json">Download JSON</a>.</p></div>'
-            f'{stats}{pricing_chart(t["rows"])}{table}<h2>How to read this</h2>{md_block(t.get("notes", ""))}{faq_html(t.get("faqs", []))}{newsletter_box()}')
+            f'{stats}{pricing_chart(t["rows"])}{table}{price_calendar(t)}<h2>How to read this</h2>{md_block(t.get("notes", ""))}{faq_html(t.get("faqs", []))}{newsletter_box()}')
     path = "/trackers/api-pricing/"
     ld = [{"@context": "https://schema.org", "@type": "Dataset", "name": t["title"], "description": t["intro"], "url": ROOT + path, "dateModified": t["updated"], "creator": {"@type": "Organization", "name": BRAND}, "license": "https://creativecommons.org/licenses/by/4.0/", "isAccessibleForFree": True, "distribution": [{"@type": "DataDownload", "encodingFormat": "application/json", "contentUrl": ROOT + "/trackers/api-pricing.json"}], "variableMeasured": ["input price per million tokens", "output price per million tokens", "cached input price", "context window"]}, breadcrumbs([("Trackers", "/trackers/"), (t["title"], path)])]
     if t.get("faqs"): ld.append(faq_ld(t["faqs"]))
@@ -749,6 +771,9 @@ def key_numbers(key, articles):
         cards.append((money(budget["output"]), f'cheapest output per 1M tracked ({budget["model"]})', "/trackers/api-pricing/"))
         if "models" in TRACKERS and TRACKERS["models"]["rows"]:
             m = TRACKERS["models"]["rows"][0]; cards.append((m["released"][:10], f'latest release: {m["vendor"]} {m["model"]}', "/trackers/models/"))
+        if key == "tools":
+            nxt = sorted([c for c in TRACKERS["api-pricing"].get("changes", []) if c.get("kind") == "scheduled" and c.get("date", "") >= TODAY], key=lambda c: c["date"])
+            if nxt: cards.append((short_date(nxt[0]["date"]), f'next scheduled price change: {nxt[0]["model"]} {nxt[0].get("from", "")} → {nxt[0].get("to", "")}', "/trackers/api-pricing/#calendar"))
     for a in [x for x in articles if x["section"] == key and x.get("stat")][:4 - len(cards)]:
         cards.append((a["stat"], a["title"], a["url"]))
     if not cards: return ""

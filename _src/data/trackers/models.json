@@ -1,8 +1,17 @@
 {
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-23",
+ "updated": "2026-11-24",
  "rows": [
+  {
+   "vendor": "Z.ai (Zhipu)",
+   "model": "GLM-5.4",
+   "released": "2026-11-23",
+   "kind": "Loop Transformer (~750B)",
+   "context": "1M",
+   "note": "Z.ai's first looped model: a 28-layer middle block runs twice per token, converted from the GLM-5 base by continued training; image input added. Coding Plan, ZCode and Z.ai Chat only; API and weights promised after safety evaluation, no benchmarks published.",
+   "source": "https://z.ai/blog/glm-5.4"
+  },
   {
    "vendor": "Ant Group",
    "model": "LingSante-3.1-flash / LingSante-3.1-air-VL (open weights)",

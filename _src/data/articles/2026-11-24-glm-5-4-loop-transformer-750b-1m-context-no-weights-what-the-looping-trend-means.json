@@ -1,0 +1,37 @@
+{
+ "slug": "glm-5-4-loop-transformer-750b-1m-context-no-weights-what-the-looping-trend-means",
+ "section": "models",
+ "title": "Z.ai's GLM-5.4 runs a 28-layer block twice per token: a 750B 'Loop Transformer' with a 1M context, no benchmarks, no API and no weights yet. What the looping trend means",
+ "dek": "Three days after Thinking Machines looped Inkling 2 Mini's middle layers three times, Zhipu did the same to a 750-billion-parameter model, and the pattern says the next capability gains may come from reusing weights rather than adding them.",
+ "stat": "2x",
+ "tags": [
+  "models",
+  "research",
+  "tools",
+  "pricing"
+ ],
+ "developing": false,
+ "sources": [
+  {
+   "name": "Z.ai: GLM-5.4 technical blog",
+   "url": "https://z.ai/blog/glm-5.4"
+  },
+  {
+   "name": "cellcog: GLM-5.4 what is known",
+   "url": "https://cellcog.ai/blog/glm-5-4/"
+  },
+  {
+   "name": "Z.ai: API pricing (GLM-5.3 and earlier)",
+   "url": "https://docs.z.ai/guides/overview/pricing"
+  }
+ ],
+ "why": {
+  "ml": "GLM-5.4 was not trained looped from scratch: Z.ai converted the GLM-5 base through continued training, with per-token gates deciding how much of the second pass to write back and the second pass reusing the first pass's KV cache. That is a recipe you can try on an existing checkpoint.",
+  "developers": "Available today only through the GLM Coding Plan, ZCode and Z.ai Chat (model id glm-5.4, or glm-5.4[1m] in Claude Code). API, pricing and weights are 'coming'; GLM-5.3 remains the API model at $1.40 / $4.40.",
+  "finance": "Looping trades inference compute for parameters. If it holds at scale, it reduces the memory a given capability needs, which is the constrained input right now, in exchange for more FLOPs per token, which is less constrained.",
+  "beginners": "Think of it as the model reading its own draft a second time before answering, using the same brain rather than a bigger one."
+ },
+ "body": "Zhipu's Z.ai released GLM-5.4 on Sunday evening to subscribers of its GLM Coding Plan and users of its ZCode tool and Z.ai Chat, calling it the company's first Loop Transformer. The architecture keeps roughly 750 billion parameters but runs a 28-layer block in the middle of the network twice for every token, with 26 layers before it and 24 after, so the compute per token is that of a deeper model than the weights suggest. Z.ai claims the result is comparable to models of two to three trillion parameters. It has published no benchmarks for GLM-5.4 itself, only an ablation on a 30-billion-parameter model with the same design, which spent about 10% more compute and gained eight to eleven points on maths and science tests while producing 10–14% shorter answers.\n\nThe model accepts images for the first time in this line, a feature Z.ai pitches as visual coding, and the Claude Code model id carries a 1M suffix for the context window. Throughput is quoted at up to 200 tokens a second off peak and 70–80 at peak. Coding Plan subscribers get 50% more weekly quota on 5.4 than on 5.3. The API is promised after safety evaluation, with no date and no price; open weights are promised after what Z.ai calls safety hardening, again with no date. GLM-5.3 remains the newest model on Z.ai's API price list at $1.40 per million input tokens, $4.40 output and $0.26 cached. Z.ai also warns that 5.4 can fall into excessively long reasoning on some prompts, and says a significantly larger model is coming.\n\n## Why looping, and why now\n\nLayer looping is not new in the literature, but November 2026 is the month it reached production from two directions. Thinking Machines' Inkling 2 Mini, released on Friday and covered here on Monday, stores 24 layers and applies 48 by running its two middle blocks three times, which is how a 26.4-billion-parameter checkpoint fits in 20 gigabytes and runs on a laptop. GLM-5.4 applies the same idea at frontier scale and, notably, by converting an already trained dense base through continued training rather than pretraining a looped model from scratch. Per-token gates control how much of the second pass is written back, and the second pass reuses the first pass's key-value cache and sparse-attention indices, so the memory cost of the loop is small even though the compute cost is not.\n\nThe economic logic is simple. High-bandwidth memory is the scarcest component in the industry; HPE said on Monday night that memory stays constrained through late 2028. Looping buys capability with FLOPs instead of with parameters that must sit in that memory. Whether it buys enough is exactly what the missing GLM-5.4 benchmarks would tell us.\n\n## The counter-argument\n\nA 30B ablation is not a 750B result, and shorter answers can mean better calibration or can mean a model that stops early. Until Z.ai publishes GLM-5.4 scores on the usual coding and agentic suites, the comparison to multi-trillion-parameter models is marketing. The lack of an API also means independent evaluators cannot run their own tests, and the weights that would let the open-source community verify the conversion recipe are not out.\n\n## What to watch\n\nThree things would move this from interesting to important: published benchmarks for GLM-5.4, API pricing that shows whether the extra compute is passed through to customers, and the weights. If Z.ai prices 5.4 near 5.3 despite doubling the middle-block compute, it is subsidising the loop; if it prices higher, buyers will compare cost per task against Gemini 4 Hydrogen and GPT-6.2 Sol, both of which list at or below $2 per million input tokens. For teams already on the Coding Plan, the practical test is a week of real tickets with the thinking budget capped.",
+ "published": "2026-11-24",
+ "updated": "2026-11-24"
+}
