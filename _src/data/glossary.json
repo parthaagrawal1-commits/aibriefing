@@ -1033,5 +1033,75 @@
    "Latency",
    "Fine-tuning"
   ]
+ },
+ {
+  "term": "Degrees of freedom (robotics)",
+  "short": "The number of joints a robot can control independently; more means more dexterity and more to break, calibrate and power.",
+  "long": "A humanoid's spec sheet usually quotes total body degrees of freedom and a separate figure per hand. The hand number is the one that predicts useful work: around six per hand allows gripping and placing, while twenty or more allows manipulation. Each additional degree of freedom adds an actuator, a controller, a failure mode and a power draw, which is why dexterity and runtime trade against each other.",
+  "related": [
+   "World action model",
+   "Physics engine (robot simulation)",
+   "Robots-as-a-service (RaaS)"
+  ]
+ },
+ {
+  "term": "Teleoperation",
+  "short": "A human remotely controlling a robot, often through a motion-capture rig, rather than the robot acting autonomously.",
+  "long": "Teleoperation is both a demo shortcut and a legitimate method: most humanoid companies collect their training data by having people puppet the robot through tasks, then learn policies from those recordings. The distinction that matters when watching a demonstration is whether the company states which mode is running. Fluid, human-looking motion and graceful recovery from surprises are the usual tells for a human in the loop.",
+  "related": [
+   "Degrees of freedom (robotics)",
+   "Synthetic data",
+   "World action model"
+  ]
+ },
+ {
+  "term": "Minibinder",
+  "short": "A small designed protein intended to bind tightly to a chosen target protein, used as a starting point for drugs and diagnostics.",
+  "long": "Minibinder design is the standard benchmark task for computational protein design: a model proposes sequences, a filtering stack scores them, a subset is synthesised, and the fraction that actually bind in a laboratory assay is the hit rate. Reported hit rates are only comparable when the filtering pipeline is disclosed, since aggressive pre-screening raises the headline number without improving the underlying design.",
+  "related": [
+   "De novo protein design",
+   "DockQ",
+   "Evaluation (eval)"
+  ]
+ },
+ {
+  "term": "De novo protein design",
+  "short": "Designing a protein sequence from scratch for a chosen function, rather than modifying one found in nature.",
+  "long": "De novo design covers generating a backbone shape, assigning a sequence that will fold into it, and validating both computationally and in the laboratory. End-to-end de novo design means doing all of it without specialist structure-prediction or filtering tools in the loop, a bar no general-purpose model has yet claimed to clear. Specialist diffusion tools such as RFdiffusion remain the published baseline.",
+  "related": [
+   "Minibinder",
+   "DockQ",
+   "Grounding"
+  ]
+ },
+ {
+  "term": "DockQ",
+  "short": "A score from 0 to 1 measuring how closely a predicted protein-protein complex matches the experimentally determined structure.",
+  "long": "DockQ combines interface contact, interface root-mean-square deviation and ligand positioning into one number; roughly 0.23 and above counts as an acceptable model, 0.49 and above as medium quality and 0.80 and above as high quality. Benchmarks sometimes hide side-chain information to make the task harder, so a DockQ figure is only comparable against another computed under the same conditions.",
+  "related": [
+   "Minibinder",
+   "De novo protein design",
+   "Benchmark"
+  ]
+ },
+ {
+  "term": "Eval awareness",
+  "short": "A model recognising, in its own reasoning, that it is being tested rather than doing real work.",
+  "long": "Eval awareness undermines safety benchmarks: a model that suspects a scenario is an evaluation may behave more cautiously than it would in deployment, so measured rates of unwanted behaviour become lower bounds of unknown tightness. Anthropic's Siren sandbox-escape benchmark reported eval awareness in the reasoning of one model in two thirds of scenarios, which is why absolute figures from such studies should be read alongside the relative trend between model generations.",
+  "related": [
+   "Sandbox escape",
+   "Evaluation (eval)",
+   "Alignment"
+  ]
+ },
+ {
+  "term": "Regulatory perimeter",
+  "short": "The set of activities that law places under a financial regulator's authority, regardless of what the company doing them calls itself.",
+  "long": "In the United Kingdom the perimeter is set by Parliament, not by the regulator, so the Financial Conduct Authority cannot waive it for a technology provider. For AI agents the test is functional: initiating payments, issuing financial promotions, operating an authorised information service, credit broking, intermediating or giving advice each fall inside it. Accountability stays with the regulated firm and its named senior managers even when the model is a third party's.",
+  "related": [
+   "Interim final rule",
+   "Agent",
+   "Sub-processor"
+  ]
  }
 ]

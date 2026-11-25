@@ -24,5 +24,10 @@
    "Can I exceed the context window?",
    "No. The request is rejected or truncated. Summarise, chunk, or retrieve the relevant parts instead."
   ]
+ ],
+ "tags": [
+  "models",
+  "pricing",
+  "tools"
  ]
 }

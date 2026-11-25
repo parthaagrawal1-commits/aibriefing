@@ -24,5 +24,10 @@
    "Is a subscription like ChatGPT Plus the same as API pricing?",
    "No. Subscriptions cover the chat app for a person; the API is billed per token for software you build and has no monthly fee."
   ]
+ ],
+ "tags": [
+  "pricing",
+  "tools",
+  "models"
  ]
 }

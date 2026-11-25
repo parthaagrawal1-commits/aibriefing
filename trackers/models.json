@@ -3,7 +3,7 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-24",
+ "updated": "2026-11-25",
  "rows": [
   {
    "vendor": "Z.ai (Zhipu)",
@@ -292,6 +292,15 @@
    "context": "1M",
    "note": "Current three-tier lineup below Fable. Opus 5.5 is priced below the previous Opus generation ($4 / $20 vs $5 / $25).",
    "source": "https://platform.claude.com/docs/en/about-claude/pricing"
+  },
+  {
+   "vendor": "Sakana AI",
+   "model": "Sakana Namazu Small",
+   "released": "2026-11-25",
+   "kind": "Reasoning (30B)",
+   "context": "(listed)",
+   "note": "Continued pretraining and post-training on NVIDIA Nemotron 3 Nano's base; Sakana says its average over 25 benchmarks beats both Nemotron 3 Nano (30B-A3B) and the 120B Nemotron 3 Super. BrowseComp 73.5 vs 29.3 and 36.1; SimpleQA Verified 6.8, below both. On-premises availability detailed in early-to-mid December; no licence or API price published. GENIAC-funded (METI/NEDO).",
+   "source": "https://sakana.ai/namazu-small/"
   }
  ],
  "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",

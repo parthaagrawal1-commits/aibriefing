@@ -24,5 +24,10 @@
    "Is a higher benchmark score worth a higher price?",
    "Only if the task you run is the kind the benchmark measures. Many production tasks are handled equally well by models several tiers cheaper."
   ]
+ ],
+ "tags": [
+  "models",
+  "research",
+  "adoption"
  ]
 }

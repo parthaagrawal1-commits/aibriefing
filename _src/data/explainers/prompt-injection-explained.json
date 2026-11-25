@@ -24,5 +24,10 @@
    "Does this affect simple chatbots?",
    "Less so, because they cannot act. The risk scales with the tools and permissions the AI system has."
   ]
+ ],
+ "tags": [
+  "security",
+  "agents",
+  "models"
  ]
 }

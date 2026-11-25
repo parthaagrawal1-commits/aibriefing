@@ -615,15 +615,37 @@ def company_pages(briefs, articles):
         out[path] = layout(title=f"{v} AI news, prices and model releases | AI Briefing", desc=f"All AI Briefing coverage of {v}: dedicated articles, daily brief items, current API prices and model releases, updated nightly.", path=path, body=body, section="companies", jsonld=[ld, breadcrumbs([("Companies", "/companies/"), (v, path)])])
     return out
 
+def related_news(e, articles, limit=4):
+    """'Related news' module on an explainer: recent dedicated articles sharing at least one topic tag with the
+    explainer, newest first, so a reader who arrives at a concept page from search can reach the current reporting.
+    Vendor-only overlap does not qualify, so a Google explainer does not pull in every Google story."""
+    mine = set(e.get("tags", []))
+    topics = mine - VENDOR_TAGS
+    if not topics: return "", None
+    hits = []
+    for a in articles:
+        shared = mine & set(a["tags"])
+        if shared and (shared - VENDOR_TAGS): hits.append((len(shared), a))
+    if not hits: return "", None
+    hits.sort(key=lambda t: (t[1]["published"], t[0]), reverse=True)
+    picks = [a for _, a in hits[:limit]]
+    items = "".join(f'<li><span class="d">{short_date(a["published"])}</span> <a href="{a["url"]}">{esc(a["title"][:120])}{"…" if len(a["title"]) > 120 else ""}</a> <span class="kd">{esc(SEC[a["section"]][1])}</span></li>' for a in picks)
+    html_ = f'<div class="srcbox kterms" style="max-width:760px"><h4>Related news</h4><ul>{items}</ul><a href="/brief/">Today\'s brief →</a></div>'
+    ld = {"@context": "https://schema.org", "@type": "ItemList", "name": f"Related news: {e['title'][:80]}", "itemListOrder": "https://schema.org/ItemListOrderDescending", "numberOfItems": len(picks),
+          "itemListElement": [{"@type": "ListItem", "position": n, "url": ROOT + a["url"], "name": a["title"]} for n, a in enumerate(picks, 1)]}
+    return html_, ld
+
 def explainer_page(e, explainers):
     path = f"/learn/{e['slug']}/"
     aud = " ".join(f'<a class="pill" href="/for/{k}/">{esc(AUD[k][1])}</a>' for k in e.get("audiences", []) if k in AUD)
     related = [x for x in explainers if x["slug"] != e["slug"] and set(x.get("audiences", [])) & set(e.get("audiences", []))][:3]
     rel = "".join(f'<a class="story tile" href="/learn/{x["slug"]}/"><img src="{x["img"]}" alt="" width="1200" height="675" loading="lazy"><div class="b"><h3>{esc(x["title"])}</h3><p>{esc(x["summary"][:120])}…</p></div></a>' for x in related)
     relh = f'<div class="band"><div class="hd"><h2>Related</h2></div><div class="grid g3">{rel}</div></div>' if rel else ""
+    newsh, newsld = related_news(e, ARTICLES)
     body = (f'<div class="hero"><div class="kicker">Explainer · {esc(e.get("level", "all levels"))} · {read_time(e["words"])} min read</div><h1 data-speak>{esc(e["title"])}</h1><p class="lede" data-speak>{esc(e["summary"])}</p><p class="meta">Updated {esc(e.get("updated", ""))} · For: {aud}</p></div>'
-            f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{autolink_glossary(md_block(e["body"]))}</div>{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
+            f'<img class="cover" src="{e["img"]}" alt="" width="1200" height="675"><div class="article">{autolink_glossary(md_block(e["body"]))}</div>{newsh}{faq_html(e.get("faqs", []))}{relh}{newsletter_box()}')
     ld = [enrich_ld({"@context": "https://schema.org", "@type": "Article", "headline": e["title"], "description": e["summary"], "datePublished": e.get("published", e.get("updated")), "dateModified": e.get("updated"), "author": {"@type": "Organization", "name": BRAND}, "publisher": {"@type": "Organization", "name": BRAND, "logo": {"@type": "ImageObject", "url": ROOT + "/og.png"}}, "mainEntityOfPage": ROOT + path, "image": ROOT + e["img"], "wordCount": e["words"]}, tags=e.get("tags"), audiences=e.get("audiences")), breadcrumbs([("Learn", "/learn/"), (e["title"], path)])]
+    if newsld: ld.append(newsld)
     if e.get("faqs"): ld.append(faq_ld(e["faqs"]))
     return layout(title=f'{e["title"]} | AI Briefing', desc=e["summary"][:155], path=path, body=body, section="learn", jsonld=ld, og_type="article", og_image=ROOT + e["img"], published=e.get("published"), modified=e.get("updated"), preload=e.get("img"))
 

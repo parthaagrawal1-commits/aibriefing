@@ -24,5 +24,10 @@
    "Do we need a special database?",
    "Usually a vector database or a search engine with vector support. Many existing platforms now include one."
   ]
+ ],
+ "tags": [
+  "adoption",
+  "data",
+  "tools"
  ]
 }
