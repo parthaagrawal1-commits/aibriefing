@@ -228,7 +228,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);fo
 #lensBtn{display:none}#lensBtn.on{display:inline-block}
 #menuBtn{display:none}
 #menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:55;overflow:auto;padding:16px 20px 40px}#menu.on{display:block}#menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}#menu h4{margin:18px 0 6px;color:var(--mute);font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#menu a{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:18px;font-weight:500}
-.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}.kterms ul{margin:0;padding-left:18px}.kterms li{padding:3px 0;font-size:14px}.kterms li a{display:inline;padding:0;font-weight:600}.kterms .kd{color:var(--mute)}.kterms>a{margin-top:6px;font-size:13px}
+.srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}.kterms ul{margin:0;padding-left:18px}.kterms li{padding:3px 0;font-size:14px}.kterms li a{display:inline;padding:0;font-weight:600}.kterms .kd,.sofar .kd{color:var(--mute);font-size:12px}.kterms>a{margin-top:6px;font-size:13px}
 """
 
 JS = r"""
@@ -668,15 +668,40 @@ def glossary_pages():
     body = f'<div class="hero"><div class="kicker">Glossary</div><h1>AI terms, defined in one breath</h1><p class="lede">{len(terms)} terms. Each definition is short enough to read in a meeting and precise enough to use in one.</p></div>{idx}{newsletter_box()}'
     ld = {"@context": "https://schema.org", "@type": "DefinedTermSet", "name": "AI Briefing glossary", "url": ROOT + "/glossary/", "hasDefinedTerm": [{"@type": "DefinedTerm", "name": t["term"], "description": t["short"], "url": ROOT + f"/glossary/{slugify(t['term'])}/"} for t in terms]}
     out["/glossary/"] = layout(title="AI glossary: plain-English definitions of every term that matters | AI Briefing", desc=f"{len(terms)} AI terms defined in plain English: tokens, context window, RAG, agents, prompt injection, fine-tuning and more.", path="/glossary/", body=body, section="glossary", jsonld=[ld, breadcrumbs([("Glossary", "/glossary/")])])
+    mentions = term_mentions()
     for t in terms:
         path = f"/glossary/{slugify(t['term'])}/"
         rel = [x for x in terms if x["term"] != t["term"] and any(w in x["term"].lower() or w in x["short"].lower() for w in t.get("related", []))][:5]
         relh = "".join(f'<a class="pill" href="/glossary/{slugify(x["term"])}/">{esc(x["term"])}</a>' for x in rel)
+        news = mentions.get(slugify(t["term"]), [])[:5]
+        newsh = ""
+        if news:
+            items = "".join(f'<li><span class="d">{short_date(a["published"])}</span> <a href="{a["url"]}">{esc(a["title"][:120])}{"…" if len(a["title"]) > 120 else ""}</a> <span class="kd">{esc(SEC[a["section"]][1])}</span></li>' for a in news)
+            newsh = f'<div class="srcbox sofar" style="max-width:760px"><h4>In the news</h4><ol>{items}</ol></div>'
         body = (f'<div class="hero"><div class="kicker">Glossary</div><h1>{esc(t["term"])}</h1><p class="lede">{esc(t["short"])}</p></div><div class="article">{md_block(t.get("long", ""))}</div>'
-                f'{("<h2>Related terms</h2><p>" + relh + "</p>") if relh else ""}<p><a href="/glossary/">&larr; All terms</a></p>{newsletter_box()}')
+                f'{newsh}{("<h2>Related terms</h2><p>" + relh + "</p>") if relh else ""}<p><a href="/glossary/">&larr; All terms</a></p>{newsletter_box()}')
         ld = {"@context": "https://schema.org", "@type": "DefinedTerm", "name": t["term"], "description": t["short"], "url": ROOT + path, "inDefinedTermSet": ROOT + "/glossary/"}
+        if news: ld["subjectOf"] = [{"@type": "NewsArticle", "headline": a["title"], "url": ROOT + a["url"], "datePublished": a["published"]} for a in news]
         out[path] = layout(title=f'What is {t["term"]}? Definition in plain English | AI Briefing', desc=t["short"][:155], path=path, body=body, section="glossary", jsonld=[ld, breadcrumbs([("Glossary", "/glossary/"), (t["term"], path)])])
     return out
+
+_MENTIONS = None
+def term_mentions():
+    """Map glossary slug -> dedicated articles (newest first) whose body mentions the term, matched with the same
+    patterns as auto-linking so a glossary page and the 'Key terms' module agree. Headings, links and code are excluded."""
+    global _MENTIONS
+    if _MENTIONS is not None: return _MENTIONS
+    _MENTIONS = defaultdict(list)
+    for a in ARTICLES:
+        text = re.sub(r"<(h[1-4]|a|code)[^>]*>.*?</\1>", " ", md_block(a["body"]), flags=re.S)
+        text = re.sub(r"<[^>]+>", " ", text)
+        seen = set()
+        for rx, slug, _ in _glossary_patterns():
+            if slug in seen: continue
+            m = rx.search(text)
+            if not m or m.group(0) in VENDOR_TAGS: continue
+            seen.add(slug); _MENTIONS[slug].append(a)
+    return _MENTIONS
 
 # ---------- glossary auto-linking (explainers and articles) ----------
 _GL_PATTERNS = None

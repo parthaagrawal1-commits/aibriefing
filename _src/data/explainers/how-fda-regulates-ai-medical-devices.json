@@ -1,0 +1,35 @@
+{
+ "slug": "how-fda-regulates-ai-medical-devices",
+ "title": "How the FDA regulates AI medical devices: 510(k), De Novo, PMA, pivotal trials and what a clearance does and does not prove",
+ "summary": "Most AI in medicine reaches patients as a regulated device. This is how the three US pathways differ, what a feasibility study is versus a pivotal one, why 'cleared' is not 'approved', and how to read a clearance announcement before you believe it.",
+ "level": "beginner",
+ "audiences": [
+  "beginners",
+  "executives",
+  "finance",
+  "ml"
+ ],
+ "tags": [
+  "health",
+  "regulation",
+  "adoption",
+  "research"
+ ],
+ "published": "2026-11-26",
+ "updated": "2026-11-26",
+ "body": "When a company says its AI has been \"FDA approved\", the first question is which word it is using carefully. In the United States, software that diagnoses, predicts, monitors or treats is usually a medical device, and devices reach the market through one of three doors. Which door, and what evidence it demanded, tells you most of what you need to know.\n\n## The three pathways\n\n**510(k) clearance.** The company shows its device is \"substantially equivalent\" to one already on the market, called a predicate. The evidence is typically bench testing and a retrospective study on existing images or records, not a clinical trial in the ordinary sense. This is how the large majority of AI devices arrive: radiology triage tools, arrhythmia detectors, and, this week, DeepHealth's Mammo Risk, which was cleared on the strength of an independent study of more than 65,000 screening mammograms. The agency's own word is *cleared*, not approved, and the distinction is legal, not cosmetic.\n\n**De Novo.** For a low-to-moderate-risk device with no predicate, the company asks the FDA to create a new category. The evidence bar is higher than a 510(k) and the result becomes the predicate for everyone who follows, which is why first-of-kind AI tools often go this route and why being first is commercially valuable.\n\n**Premarket approval (PMA).** For high-risk devices, including anything implanted in the brain, the company must show safety and effectiveness with clinical data, normally from a pivotal trial. This is the door Neuralink is now walking towards.\n\n## Feasibility versus pivotal\n\nAn **early feasibility study** is a small, flexible trial designed to learn whether a device can be used at all: Neuralink's roughly 30 implanted participants, Paradromics' first cohort. The protocol can change as the team learns. A **pivotal trial** is designed to support the marketing application: a pre-specified primary endpoint, a statistical analysis plan agreed with the agency in advance, defined follow-up, and a comparator or performance goal. The FDA's permission to start one, which Neuralink received on November 25 for its LINK study in people with ALS, is a permission to generate evidence, not a judgement on the device.\n\n## What a clearance proves, and what it does not\n\nA clearance says the device performs as claimed on the data submitted. It does not say that using it improves patient outcomes. Of the more than 1,600 AI devices the FDA has cleared, only a handful have been tested in trials that measured whether patients did better, a gap that critics call a validation crisis and the agency calls the next phase. Read the labelling: a tool cleared to *flag* a finding for a radiologist is not cleared to *decide*, and a risk score cleared for one population may not have been validated in yours.\n\n## Paying for it\n\nClearance and reimbursement are separate. A new technology usually starts with a **Category III CPT code**, which lets providers record its use but does not oblige anyone to pay; conversion to a paid Category I code takes years and evidence of clinical benefit. Mammo Risk's Category III code takes effect on January 1, 2027. A brain implant would need a coverage decision from Medicare that cannot begin until approval.\n\n## How to read a clearance announcement\n\n1. Find the pathway and the K-number or DEN-number; the FDA database entry is the primary source.\n2. Check what the device is cleared *to do* (detect, triage, predict, measure) and for whom.\n3. Look for the validation study: how many cases, how many sites, retrospective or prospective, and whether subgroups were reported.\n4. Ask what changes in care. A score with no downstream pathway is a number on a screen.\n5. Separate the clinical claim from the commercial one: availability, codes and payer coverage are three different dates.\n\n## What to watch\n\nThe agency is drafting lifecycle rules for models that keep learning after clearance, pilots of AI-based trial monitoring, and the first outcome trials of cleared AI tools. Each would move the bar from \"performs as claimed\" towards \"helps the patient\", which is the question every other reader of this site is already asking.",
+ "faqs": [
+  [
+   "Is 'FDA cleared' the same as 'FDA approved'?",
+   "No. Cleared means a 510(k) found the device substantially equivalent to an existing one, usually on bench and retrospective data. Approved means a premarket approval found it safe and effective on clinical evidence, typically a pivotal trial. Companies use the words loosely; the FDA does not."
+  ],
+  [
+   "Does a pivotal trial approval mean Neuralink's implant is approved?",
+   "No. The FDA has permitted Neuralink to run a trial designed to produce the evidence a marketing application would need. Approval, if it comes, follows the trial, its data and a separate review."
+  ],
+  [
+   "Why do so few cleared AI devices have outcome evidence?",
+   "Because the 510(k) pathway asks whether a device performs like its predicate, not whether patients do better. Outcome trials are expensive and slow, and until payers demand them, most companies stop at the clearance."
+  ]
+ ]
+}

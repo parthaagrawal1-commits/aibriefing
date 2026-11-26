@@ -1,0 +1,35 @@
+{
+ "slug": "hp-up-9-percent-ai-pcs-workday-down-8-autodesk-down-4-beat-and-raise-what-the-tape-is-pricing",
+ "section": "markets",
+ "published": "2026-11-26",
+ "updated": "2026-11-26",
+ "title": "HP +9% on AI PCs, Workday −8% and Autodesk −4% on beat-and-raise quarters: the market is paying for hardware and charging software for its AI story",
+ "dek": "Tuesday's after-hours tape rewarded a $16bn PC quarter and punished two software vendors that raised guidance, one of which put a hard $150m number on AI contract value.",
+ "stat": "+9%",
+ "tags": [
+  "markets",
+  "business",
+  "adoption",
+  "infrastructure"
+ ],
+ "sources": [
+  {
+   "name": "Investing.com: After-hours movers DELL, HPQ, ADSK, WDAY, NTNX",
+   "url": "https://in.investing.com/news/stock-market-news/afterhours-movers-dell-hpq-adsk-wday-ntnx-urbn-clsk-432SI-5724291"
+  },
+  {
+   "name": "Stocktwits: Workday, Autodesk tumble after beat-and-raise quarters",
+   "url": "https://stocktwits.com/news-articles/markets/equity/workday-autodesk-tumble-after-beat-and-raise-quarters-retail-turns-bullish/cNbH7vZR9lY"
+  },
+  {
+   "name": "Autodesk Q3 FY27 results (8-K press release)",
+   "url": "https://www.sec.gov/Archives/edgar/data/0000769397/000076939726000069/q327pressrelease.htm"
+  }
+ ],
+ "why": {
+  "finance": "Three beat-and-raise software quarters, three red tickers, in a week when Dell and HP were bought on beats. The factor is 'AI capex beneficiary' versus 'AI disruption candidate', not execution.",
+  "executives": "Workday's $150m of AI annual contract value is the first hard number from a large SaaS vendor. Ask your vendors for theirs before renewal.",
+  "beginners": "Beating expectations is not enough when the price already assumed a beat; the stock moves on the gap between the guide and the whisper."
+ },
+ "body": "The last earnings night before Thanksgiving produced a clean split. HP, Dell and the makers of things rose; Workday, Autodesk and Nutanix fell, and two of the three had just raised their full-year outlook.\n\n## The numbers\n\nHP reported fiscal fourth-quarter revenue of $16.0bn against a $15.4bn consensus and adjusted earnings of $0.83 a share against $0.75, and guided fiscal 2027 earnings to $3.15-3.45. The drivers cited were the commercial PC refresh and AI PC adoption; the stock rose about 9% after hours, the sidebar ticker showing closer to 11%.\n\nWorkday's third-quarter revenue rose 11% to $2.71bn against $2.69bn expected, adjusted earnings came in at $2.82 against $2.74-2.75, and the company lifted its fiscal-year subscription revenue outlook to $9.96bn from a $9.94-9.95bn range. CFO Zane Rowe said AI products contributed nearly $150m of new annual contract value. The fourth-quarter subscription guide of $2.60bn sat a hair under the $2.61bn consensus. The stock fell 8.4% overnight.\n\nAutodesk reported revenue of $2.16bn, up 17% (14% in constant currency), with architecture, engineering and construction up 19% to $1.10bn, non-GAAP earnings of $3.20 against about $3.07, and raised full-year revenue guidance to $8.360-8.375bn and non-GAAP earnings to $12.70-12.76. Nine-month buybacks reached $1.25bn. The shares fell about 4%. Nutanix beat on both lines and lost 9% on a full-year midpoint of $3.18-3.23bn, below the $3.22bn consensus at the middle.\n\nDell, which we covered yesterday, finished the after-hours session up about 4% on its $54.9bn quarter.\n\n## What the tape is pricing\n\nTwo factors explain the split better than any individual print. First, position: Workday was down 16.6% for the year and Autodesk 13.6% going into the print, both having been sold on the thesis that agents erode seat-based software. A beat-and-raise does not refute that thesis; it defers it. Second, what the AI story does to margin. For HP, AI PCs lift average selling prices into a refresh cycle that Windows 10's end of life forced anyway. For Workday, AI products are new contract value sold into an installed base whose seat counts are the thing investors worry about, and $150m is about 1.5% of the subscription run-rate.\n\nDell told the same story from the other side on Monday: a 103% revenue beat moved the stock 5% because AI servers carry mid-single-digit margins. The market is buying volume where volume is scarce (PCs, servers) and charging software for the uncertainty about whether AI adds to or replaces its revenue.\n\n## The counter-argument\n\nOvernight moves on the Tuesday before a US holiday are thin, and retail sentiment on both software names flipped to extremely bullish on the dip, which is a contrarian signal in itself. Workday's guide miss was $10m on $2.6bn. Autodesk raised the midpoint of billings and revenue despite a currency headwind. If the agent-disruption thesis is wrong, these are the prints that mark the bottom, and the hardware beats are the tail end of a one-time refresh plus a memory-cost pass-through that HP itself flagged last quarter.\n\n## What to watch\n\n- **HP's memory commentary** on the call: whether DRAM and NAND cost increases are being passed through to commercial buyers, and for how long the refresh runs.\n- **Workday's AI ACV** next quarter: if $150m becomes $300m, the disruption thesis has a counter-number; if it stalls, it does not.\n- **Autodesk's MaintainX integration**, already inside the full-year guide, as the first test of acquired industrial AI revenue.\n- **Software versus hardware spreads** into December: the IGV software ETF fell 2.6% on the night while the server and PC names rose; a reversal would say the factor trade is crowded."
+}

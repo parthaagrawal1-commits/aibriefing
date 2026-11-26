@@ -1,0 +1,35 @@
+{
+ "slug": "lute-20-million-touch-robot-models-lupa-black-ai-seed-why-tactile-data-is-the-next-bottleneck",
+ "section": "robotics",
+ "published": "2026-11-26",
+ "updated": "2026-11-26",
+ "title": "Lute's $20m seed, Lupa's sensor gloves and Black AI's humanoid: three rounds in one day say the robot data bottleneck is touch",
+ "dek": "A ten-month-old Warsaw startup raised one of Europe's largest robotics seeds for models that fuse wrist-camera video with tactile data, and two smaller rounds in San Francisco and Tokyo are betting on the same gap.",
+ "stat": "$20M",
+ "tags": [
+  "robotics",
+  "funding",
+  "data",
+  "research"
+ ],
+ "sources": [
+  {
+   "name": "Wisevoter: Lute raises $20 million to build touch robot models",
+   "url": "https://wisevoter.com/world/2026/11/26/lute-raises-20-million-touch-robot-models"
+  },
+  {
+   "name": "The AI Insider: Japan's Black AI secures seed funding to develop full-stack humanoid robots",
+   "url": "https://theaiinsider.tech/2026/11/25/japans-black-ai-secures-seed-funding-to-develop-full-stack-humanoid-robots/"
+  },
+  {
+   "name": "We San Francisco: Lupa Robotics raises $1.67M in seed funding",
+   "url": "https://wesanfrancisco.com/news/2026/11/25/lupa-robotics-seed-funding-robot-hand-data"
+  }
+ ],
+ "why": {
+  "ml": "Vision-language-action models plateau on deformable and occluded objects because the training data has no force channel. Touch is the missing modality, and it is expensive to collect.",
+  "executives": "Lute's first deployment is a parts distributor, not a car plant: packaging and picking of soft items is where vision-only grippers fail and where the ROI case is simplest.",
+  "finance": "A $20m seed for a ten-month-old company prices in the Simplexity ($1.6bn) and Genesis AI ($3.5bn) comparables; the next round will need a second customer."
+ },
+ "body": "Three robotics rounds landed on November 25, and none of them was about legs. Lute, headquartered in Warsaw and San Mateo and founded in January by Paweł Budzianowski, formerly chief executive of the conversational-AI company PolyAI, announced $20m in combined pre-seed and seed funding led by OTB Ventures, with FORWARD.one co-leading the seed and Naval Ravikant, Seedcamp and Credo Ventures participating. Lupa Robotics in San Francisco raised $1.67m led by Long Journey Ventures. Black AI in Tokyo took an undisclosed seed from Incubate Fund.\n\n## What Lute is building\n\nLute-0 is a robot model that takes wrist-camera video, a task instruction and tactile data and predicts the next motion. The tactile input comes from soft, skin-like sensors co-developed with a partner. The company says the model is running at Europe's largest automotive-parts distributor, unnamed, about ten months after founding, and reports 98% accuracy on handling deformable snack packaging, a company-measured figure. The money goes to collecting touch data at scale, a new model family that combines touch with vision, and expansion into healthcare and manufacturing through system integrators.\n\nThe choice of first customer is the tell. Parts distribution is picking, packing and handling of thousands of SKUs in soft or irregular packaging, exactly the regime where vision-only grippers either crush the item or drop it. It is not a humanoid demo; it is an arm on a line doing a job that currently pays a human by the hour.\n\n## Why touch\n\nVision-language-action models, the architecture behind most of this year's robot foundation models, learn from video of demonstrations. Video carries no information about force. A model that has watched ten thousand hours of people packing bags has never felt a bag give way. The result is the characteristic failure mode of 2026 robot demos: confident on rigid objects, erratic on anything that deforms, slips or is occluded by the hand itself. Lute's bet is that adding a force channel to the training data fixes this. Lupa's bet is that someone has to collect that channel first: it records people doing everyday tasks with sensor gloves that capture movement and pressure, plus head-mounted cameras, and plans to license the datasets to model developers rather than build robots. Its founder, Nureldin Mohamed, is a Harvard bioengineering and computer-science student; the company was one of 11 picked for MassRobotics' healthcare catalyst.\n\nBlack AI is the hardware end of the same argument. Chief executive Li Xunran's company builds mechanical design, sensors, actuators, models and whole-body control in-house, has a first humanoid prototype, and is using simulation to develop movement models with an eye on zero-shot performance on unfamiliar tasks and deployment in Japanese manufacturing. Katsutoshi Tagami, who worked on Honda's ASIMO, is quoted in support.\n\n## The counter-argument\n\nTouch data is hard to standardise: every sensor has a different response curve, and a model trained on one skin does not transfer to another, which makes Lupa's glove datasets less portable than video. The 98% figure is self-reported on one task class at one site. And $20m is a large seed for a company whose only public deployment is unnamed; the European comparables that justify the price (Simplexity at $1.6bn after a year, Genesis AI at $3.5bn) were raised in a market that has since corrected. Humanoid makers, meanwhile, can argue that whole-body data from teleoperation already captures contact implicitly.\n\n## What to watch\n\n- **A second named customer for Lute**, and whether it is in healthcare or manufacturing, which decides the integrator channel.\n- **Sensor standardisation.** Whether any of the tactile-skin makers (Lute's partner is unnamed) publishes a calibration spec that lets datasets transfer.\n- **Lupa's first licence** and its price per hour of data, the first public benchmark for what touch data is worth.\n- **Black AI's prototype on video**, with the usual checks: degrees of freedom, whether a teleoperator is in the room, and whether the demo is cut."
+}

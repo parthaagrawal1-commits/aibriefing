@@ -1,8 +1,17 @@
 {
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-25",
+ "updated": "2026-11-26",
  "rows": [
+  {
+   "vendor": "Cognition",
+   "model": "SWE-2.1 / SWE-2.1 Lightning / SWE-2.1 Cyber",
+   "released": "2026-11-24",
+   "kind": "Agentic coding (RL on Kimi K3)",
+   "context": "—",
+   "note": "Reinforcement learning on Moonshot's Kimi K3 base; company-reported Terminal-Bench 4.1 50.0 (SWE-2: 24.2), ExploitBench 80; Lightning runs on Cerebras at ~600 tok/s; Cyber limited to Devin Security. Devin Cloud/Desktop/CLI only, free through Dec 8; no API, no weights. Vendor post: cognition.com/blog/swe-2-1.",
+   "source": "https://www.unite.ai/cognition-releases-swe-2-1-with-major-coding-and-cybersecurity-gains/"
+  },
   {
    "vendor": "Z.ai (Zhipu)",
    "model": "GLM-5.4",

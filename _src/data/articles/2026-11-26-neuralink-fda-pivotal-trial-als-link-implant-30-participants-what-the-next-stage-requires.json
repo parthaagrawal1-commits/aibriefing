@@ -1,0 +1,31 @@
+{
+ "slug": "neuralink-fda-pivotal-trial-als-link-implant-30-participants-what-the-next-stage-requires",
+ "section": "health",
+ "published": "2026-11-26",
+ "updated": "2026-11-26",
+ "title": "Neuralink's pivotal trial in ALS is the first time an implanted BCI has been asked to prove it, not just show it",
+ "dek": "FDA permission for the LINK pivotal study moves the N1 implant from feasibility to the evidence stage that precedes a market application; enrolment size, endpoints and comparator are not yet public.",
+ "stat": "30+",
+ "tags": [
+  "health",
+  "regulation",
+  "research",
+  "consumer"
+ ],
+ "sources": [
+  {
+   "name": "Engadget: Neuralink receives FDA approval for pivotal brain implant trial in ALS patients",
+   "url": "https://www.engadget.com/2329008/neuralink-receives-fda-approval-for-brain-implant-trial-in-als-patients/"
+  },
+  {
+   "name": "DeepHealth: FDA clearance for Mammo Risk (GlobeNewswire via Manila Times)",
+   "url": "https://manilatimes.net/2026/11/25/tmt-newswire/globenewswire/deephealth-receives-fda-clearance-for-first-ai-to-predict-five-year-breast-cancer-risk-from-3d-mammograms/2477568"
+  }
+ ],
+ "why": {
+  "health": "A pivotal protocol has a pre-specified primary endpoint and a statistical plan. When the registration posts, read those two things before the press release.",
+  "finance": "The cost and the timeline are set by cohort size and follow-up, neither disclosed. Paradromics and Synchron give the comparables.",
+  "executives": "Clearance-grade evidence in ALS would make Neuralink the first implanted BCI with a path to reimbursement, which is the actual market."
+ },
+ "body": "Neuralink announced on the evening of November 25 that the FDA had approved the first pivotal study of its LINK brain-computer interface, in adults with amyotrophic lateral sclerosis. The company said the study builds on more than 30 participants implanted to date across the United States, Canada and the United Kingdom, and that it will measure the ability to control digital devices by thought, with a focus on functional outcomes that improve independence in daily life, alongside long-term safety and reliability. Enrolment size and eligibility beyond ALS were not disclosed.\n\n## What \"pivotal\" changes\n\nEverything Neuralink has run so far has been an early feasibility study: small cohorts, flexible protocols, designed to show the device can be implanted and used. A pivotal study is designed to support a marketing application. That means a pre-specified primary endpoint, a statistical analysis plan agreed with the agency, defined follow-up, and usually a comparator or performance goal. The device is the N1 implant, placed in the skull with flexible electrode threads inserted by the R1 surgical robot; the question is no longer whether it works in a demonstration but whether it works well enough, safely enough, for long enough, in enough people, to be sold.\n\nThe choice of ALS matters. It is a progressive disease in which loss of speech and movement is expected, so the benefit of restoring device control is large and measurable, and the risk calculus is different from, say, spinal-cord injury. It is also the indication in which Neuralink has its most-cited participant, Bradford Smith, who was reported last year to communicate through the implant alone.\n\n## What is not yet known\n\nThe trial registration will answer the questions that matter: how many participants, how many sites, how long the follow-up, what the primary endpoint is, and what counts as success. Until then, three numbers are worth holding in mind. Neuralink's prior feasibility cohort is a little over 30 people. Paradromics, which we covered on Monday, is in an FDA-approved early feasibility study with a sub-10-millisecond speech-decoding target. Synchron, the other US implant company with a human cohort, has published feasibility data but not announced a pivotal protocol. Neuralink is first to the pivotal line, not first to the market.\n\n## The counter-argument\n\nA pivotal approval is a permission to try, and implant trials fail on durability as often as on efficacy. Electrode threads move, signal quality degrades, and a device that is excellent at month three has to be excellent at month 24 to clear a permanent implant. The functional-outcome framing, while clinically sensible, is harder to measure than words per minute, and the agency will want to see it defined tightly. A company that has made a habit of announcing on X before publishing has not yet shown it will publish the hard parts.\n\n## The other clearance this week\n\nDeepHealth, RadNet's AI subsidiary, received a 510(k) (K262709, dated November 23) for Mammo Risk, which estimates three-, four- and five-year breast cancer risk from 3D mammograms. The pivotal evidence was an independent study of more than 65,000 screening exams at ten US sites, with performance reported as consistent for Black women and women with dense breasts; the model was trained on 220,000 studies. It is commercially available now and gets a Category III CPT code, for tracking rather than payment, from January 1, 2027. Two very different devices, one pattern: the evidence bar for AI in medicine is moving from \"detects\" to \"predicts and changes what the clinician does\".\n\n## What to watch\n\n- **The ClinicalTrials.gov registration** for LINK: cohort size, sites, primary endpoint, follow-up duration.\n- **Comparator design.** Performance goal versus the participant's own baseline versus an existing assistive device decides how hard the bar is.\n- **Adverse-event reporting.** The feasibility studies reported thread retraction in the first participant; a pivotal study will have to quantify it.\n- **Reimbursement signals.** For Mammo Risk, whether any payer moves from Category III to a paid code; for Neuralink, whether CMS opens a coverage conversation before approval."
+}

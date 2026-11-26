@@ -1,0 +1,32 @@
+{
+ "slug": "perplexity-time-machine-snapshot-as-of-365-days-context-api-1-dollar-per-1000-urls-what-to-build",
+ "section": "tools",
+ "published": "2026-11-26",
+ "updated": "2026-11-26",
+ "title": "Perplexity's Time Machine returns the web as it was on any day in the past year, and the Context API that serves it costs $1 per 1,000 URLs",
+ "dek": "A snapshot_as_of parameter on the Search and Context APIs makes retrieval reproducible; with OpenAI's shared ChatGPT-and-Codex meter arriving in December, it is a week for re-reading the usage pages.",
+ "stat": "365 days",
+ "tags": [
+  "tools",
+  "pricing",
+  "data",
+  "OpenAI",
+  "agents"
+ ],
+ "sources": [
+  {
+   "name": "Perplexity API changelog, November 2026",
+   "url": "https://docs.perplexity.ai/changelog/changelog.md"
+  },
+  {
+   "name": "TechRepublic: ChatGPT and Codex will share usage limits in December",
+   "url": "https://www.techrepublic.com/article/news-chatgpt-codex-shared-usage-limits/"
+  }
+ ],
+ "why": {
+  "developers": "Pin snapshot_as_of in your evals and the same query returns the same web next month. Budget $1 per 1,000 context fetches on top of model tokens, and check the no_content rate on your domains first.",
+  "ml": "Benchmarks that leak through live search can be frozen at a date. It is also a clean way to test temporal generalisation: ask the model about events after the snapshot.",
+  "executives": "From December, a Pro or Business seat's Codex sessions draw down the same allowance as chat. Heavy coders will hit the cap first and loudest."
+ },
+ "body": "Perplexity's November changelog contains a feature that solves one of the quieter problems in building with retrieval: the web moves under your tests. Time Machine adds a `snapshot_as_of` parameter to the Search API (POST /search) and the Context API (POST /v1/context), and to the Agent API's web_search and fetch_url tools through filters. It takes an RFC 3339 timestamp up to 365 days in the past. Search results come from the copy of each page saved at or before that moment; context fetches are served only from stored copies and are never fetched live; if no copy exists, the response carries a `no_content` status. The Python library (0.50.0) and TypeScript SDK (0.45.0) accept native datetime objects.\n\n## What it costs\n\nTime Machine itself carries no separate price. The Context API, new this month, is billed at $1.00 per 1,000 URLs fetched, with failed fetches free and any `criteria` scoring billed as Decisions input tokens. The same changelog lists a Monitor API at $0.001 per search run and $0.001 per page run per URL, an Orchestrator API out of private preview, and automatic output-token limits up to 128,000 per generation. Its model price table also confirms third-party rates we track elsewhere: GPT-6.2 Sol at $2 / $0.10 / $10 and Astra at $8 / $0.40 / $40, Gemini 4 Neon at $3 / $0.15 / $15, and Gemini 4 Carbon at $2 / $0.10 / $10 as an introductory rate through November 30, matching the December 1 step-up on our price calendar.\n\n## What to build with it\n\n- **Reproducible evals.** Fix `snapshot_as_of` to the date your benchmark was written and the retrieval side stops drifting. Dynamic-benchmark leakage, where a model's search returns a page that discusses the benchmark itself, is contained by date.\n- **Temporal honesty tests.** Snapshot at T, ask about events after T, and measure whether the model admits it cannot know. This is the cheapest eval of temporal grounding available.\n- **Audit trails for agents.** An agent that cites a page can now cite the page as of the moment it read it, which is what a compliance reviewer wants.\n- **Change detection.** Diff the context for a URL across two snapshots to see what a vendor changed in a pricing page or a policy, the job this publication does by hand.\n\nThe catch is coverage. A stored copy exists only if Perplexity crawled the page before your timestamp; the `no_content` rate on niche or fast-changing domains is the number to measure before you commit, and 365 days is a hard floor on how far back you can go.\n\n## The other meter\n\nOpenAI confirmed that from December, Plus, Pro and Business subscribers draw ChatGPT conversations and Codex tasks from one shared token-based allowance, with instant chats exempt, usage visible under Settings → Usage, and the options at the cap being to wait, upgrade or buy credits for eligible features. OpenAI has not published the size of the pool and says most users should not see resets more often than today; in late October it reversed a planned halving of Pro 200 limits and doubled allowances on the Pro and Business Premium tiers after a backlash. The practical change is that a developer who runs Codex all afternoon now consumes the same budget the rest of the team uses for chat.\n\n## The counter-argument\n\nA metered archive of the web competes with Common Crawl, which is free, irregular and enormous, and with the Internet Archive, which is free and uneven. At $1 per 1,000 URLs, a context-heavy agent that fetches 50 pages a task pays five cents a task before model tokens, which is fine for a research tool and ruinous for a consumer product. And OpenAI's shared meter is, from the vendor's side, a simplification; the complaints will come from the heavy users it was designed to meter.\n\n## What to do\n\n- Measure your `no_content` rate on a sample of your target URLs at 30, 90 and 300 days back before building on Time Machine.\n- Add `snapshot_as_of` to every eval harness that touches live search, dated to the day the eval set was frozen.\n- If you run Pro or Business seats with Codex users, pull the Settings → Usage view for your heaviest accounts before December and decide whether they need their own plan."
+}

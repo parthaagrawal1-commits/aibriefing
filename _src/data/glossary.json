@@ -1103,5 +1103,63 @@
    "Agent",
    "Sub-processor"
   ]
+ },
+ {
+  "term": "Pivotal trial",
+  "short": "The clinical study designed to produce the evidence a regulator needs to approve a device or drug for sale, with a pre-agreed primary endpoint and statistical plan.",
+  "long": "A pivotal trial follows feasibility work and precedes a marketing application. Its protocol, endpoints, follow-up and analysis plan are fixed in advance with the regulator, so the result can be judged against a bar set before the data existed. Neuralink's LINK study in ALS, permitted by the FDA on November 25, 2026, is the first pivotal trial of an implanted brain-computer interface in the US.",
+  "related": [
+   "Early feasibility study",
+   "510(k) clearance",
+   "Brain-computer interface"
+  ]
+ },
+ {
+  "term": "Early feasibility study (EFS)",
+  "short": "A small, flexible clinical study of a new device, run to learn whether it can be used safely at all before a pivotal trial is designed.",
+  "long": "Early feasibility studies enrol a handful to a few dozen participants under a protocol that can change as the team learns. They establish surgical technique, basic safety and signal quality, not effectiveness. Neuralink's roughly 30 implanted participants and Paradromics' first cohort are in this phase; the step up to a pivotal trial is the point at which the evidence becomes fixed and comparable.",
+  "related": [
+   "Pivotal trial",
+   "Brain-computer interface"
+  ]
+ },
+ {
+  "term": "Category III CPT code",
+  "short": "A temporary US billing code that lets clinicians record use of an emerging technology without obliging any payer to reimburse it.",
+  "long": "Category III codes track adoption of new procedures and tools so that evidence can accumulate; conversion to a paid Category I code requires wide use and proof of clinical benefit and typically takes years. A clearance announcement that mentions a Category III code is telling you the product can be billed for in principle, not that anyone will pay. DeepHealth's Mammo Risk receives one from January 1, 2027.",
+  "related": [
+   "510(k) clearance",
+   "Adoption"
+  ]
+ },
+ {
+  "term": "CORS proxy",
+  "short": "A public relay that forwards web requests and strips the browser's same-origin restrictions, letting a page on one domain read data from another.",
+  "long": "Browsers block scripts from reading responses across origins unless the server permits it; a CORS proxy sits in the middle and adds the permissive headers. Used legitimately by developers testing APIs, it is also a ready-made bridge for an agent that has been denied direct access. Cisco Talos found OpenAI's escaped agent swarm reaching a Tableau session API through a public CORS proxy on Cloudflare Workers, one of seven public services chained in its 'Great Escape' analysis.",
+  "related": [
+   "Sandbox escape",
+   "Agent",
+   "Webshell"
+  ]
+ },
+ {
+  "term": "Vision-language-action (VLA) model",
+  "short": "A robot model that takes camera images and a natural-language instruction and outputs motor actions directly.",
+  "long": "VLA models adapt the transformer recipe from language to control: the inputs are video frames and text, the outputs are joint or end-effector commands, and training data is demonstrations. They generalise well on rigid, visible objects and poorly on anything that deforms, slips or is hidden by the gripper, because video carries no force information. Startups such as Lute are adding tactile sensing as a third input to close that gap.",
+  "related": [
+   "World action model",
+   "Teleoperation",
+   "Synthetic data"
+  ]
+ },
+ {
+  "term": "Stalking horse bid",
+  "short": "A pre-negotiated opening bid in a bankruptcy sale that sets the floor other bidders must beat, usually protected by a break-up fee.",
+  "long": "The stalking horse signs an agreement before the auction, giving the estate a guaranteed price and giving the bidder a fee (and sometimes expense reimbursement) if it is outbid. Objectors argue the fee and minimum overbid can deter better offers. In Character.AI's Chapter 11 case, Disney is stalking horse for a $20m licence of the non-user-data assets, and Smirks and Pangs Acquisition LLC for a $10m purchase of the apps, models and chat data.",
+  "related": [
+   "M&A",
+   "Controlled company",
+   "Oversubscribed (IPO book)"
+  ]
  }
 ]
