@@ -1161,5 +1161,55 @@
    "Controlled company",
    "Oversubscribed (IPO book)"
   ]
+ },
+ {
+  "term": "Linear attention",
+  "short": "An attention variant whose cost grows in proportion to sequence length rather than with its square, trading some recall for cheap long contexts.",
+  "long": "Standard transformer attention compares every token with every other, so cost and memory grow quadratically with context length. Linear-attention layers keep a fixed-size recurrent state instead, which makes long prompts cheap but can lose fine detail. Most 2026 open models mix the two: KRAFTON's Raon-1 mini uses 18 linear-attention layers and 7 conventional ones to serve 262K tokens in about 24 GB of memory. Benchmarks such as RULER measure how much recall the mix gives up.",
+  "related": [
+   "Attention",
+   "Context window",
+   "Transformer"
+  ]
+ },
+ {
+  "term": "Password spraying",
+  "short": "Trying a few common passwords against many accounts, slowly enough to avoid lockouts, rather than many passwords against one account.",
+  "long": "Spraying works because large organisations always have some accounts with weak passwords and no multi-factor authentication. Agentic frameworks such as ARTEX automate it at machine speed: Microsoft logged more than 151,000 failed sign-ins from one Storm-0940 campaign at a peak of 2,900 a minute, with privileged access in under three hours. The defence is MFA or passkeys on every internet-facing login with no exceptions, which is the wording Switzerland's cyber office used in its November 2026 bulletin.",
+  "related": [
+   "Agent harness",
+   "Non-human identity",
+   "Secret scanning"
+  ]
+ },
+ {
+  "term": "Synthetic risk transfer (SRT)",
+  "short": "A deal in which a bank keeps a loan on its balance sheet but pays investors to take the first losses on it, freeing regulatory capital.",
+  "long": "Also called a significant risk transfer. The bank buys credit protection on a slice of a loan portfolio from a hedge fund or private-credit investor, so the loans stay but the capital charge falls. Banks used SRTs on AI data-centre loan books in 2026 as exposure mounted; the Bank of England's November Financial Stability Report flagged such transfers as one way AI financing becomes harder to trace, because the economic risk moves to non-banks while the loan remains with the lender.",
+  "related": [
+   "Special purpose entity (AI financing)",
+   "Purchase commitments",
+   "Spot compute"
+  ]
+ },
+ {
+  "term": "Shadow traffic",
+  "short": "Copying real production requests to a new system and comparing its output with the old one before any user sees the result.",
+  "long": "Shadow traffic, or dark launching, is the standard way to verify a rewrite on inputs that tests never anticipated. Anthropic's 2026 migration of its Messages API to Rust replayed each request's model output into the new path so nothing was billed twice, compared every stage, and recorded differences as fingerprints rather than customer text. The method exposed a gap between a 98% test pass rate and a 25% match rate on live inputs, which is the case for using it whenever agents write the code.",
+  "related": [
+   "Agent harness",
+   "Evaluation (eval)",
+   "Canary token"
+  ]
+ },
+ {
+  "term": "Imitation learning",
+  "short": "Training a robot policy from recorded human demonstrations rather than from a hand-written program or trial-and-error reward.",
+  "long": "A worker performs the task, often by teleoperation or with motion-capture gloves, and the robot learns to reproduce the motion from the recorded sensor and actuator data. It is the dominant way factory humanoids are taught narrow tasks: Volvo's own staff are training Hexagon's AEON robots at Ghent to place parts into two fixtures by demonstration. The weakness is that the policy only covers what was demonstrated, so each new task needs new data, which is why tactile and glove datasets have become a market of their own.",
+  "related": [
+   "Teleoperation",
+   "Vision-language-action (VLA) model",
+   "World action model"
+  ]
  }
 ]

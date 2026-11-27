@@ -1,7 +1,7 @@
 {
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-26",
+ "updated": "2026-11-27",
  "rows": [
   {
    "vendor": "Cognition",
@@ -308,6 +308,15 @@
    "context": "(listed)",
    "note": "Continued pretraining and post-training on NVIDIA Nemotron 3 Nano's base; Sakana says its average over 25 benchmarks beats both Nemotron 3 Nano (30B-A3B) and the 120B Nemotron 3 Super. BrowseComp 73.5 vs 29.3 and 36.1; SimpleQA Verified 6.8, below both. On-premises availability detailed in early-to-mid December; no licence or API price published. GENIAC-funded (METI/NEDO).",
    "source": "https://sakana.ai/namazu-small/"
+  },
+  {
+   "vendor": "KRAFTON",
+   "model": "Raon-1 mini",
+   "released": "2026-11-25",
+   "kind": "Open-weight MoE (28.8B total / 4.3B active), Apache 2.0",
+   "context": "262K",
+   "note": "Full release replacing the Oct 21 preview; hybrid of 18 linear-attention and 7 gated MLA layers; six reasoning-effort levels; NVFP4 build 16.3 GiB, GGUF and MLX variants. Self-reported GPQA Diamond 86.0, AIME 2026 96.7, MultiChallenge 64.9 (judge GPT-5.6 Luna). Technical report not yet published; API offered without a public price.",
+   "source": "https://huggingface.co/KRAFTON/Raon-1-mini"
   }
  ],
  "notes": "Dates are the vendor's announced general or API availability date where published. Rows marked \"listed\" are models currently on the vendor's pricing page whose exact launch date was not stated there; the nightly check replaces these with announcement dates as they are confirmed.",

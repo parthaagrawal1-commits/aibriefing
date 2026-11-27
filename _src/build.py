@@ -314,6 +314,7 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 <meta name="twitter:card" content="summary_large_image"><meta name="twitter:title" content="{esc(title)}"><meta name="twitter:description" content="{esc(desc)}"><meta name="twitter:image" content="{og_image}">
 {meta_dates}
 <link rel="alternate" type="application/rss+xml" title="{BRAND} daily" href="{ROOT}/feed.xml">
+<link rel="alternate" type="application/feed+json" title="{BRAND} JSON feed" href="{ROOT}/feed.json">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/icon-192.png"><link rel="manifest" href="/manifest.webmanifest">
 {HEAD_FONTS}
 <link rel="stylesheet" href="/assets/site.css?v={ASSET_V}">
@@ -331,7 +332,7 @@ def layout(*, title, desc, path, body, section="", jsonld=None, og_type="website
 {body}
 </div></main>
 <footer><div class="wrap">
-<div class="cols"><a href="/brief/">Daily brief</a><a href="/for/">By role</a><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/companies/">Companies</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/newsletter/">Newsletter</a><a href="/search/">Search</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a></div>
+<div class="cols"><a href="/brief/">Daily brief</a><a href="/for/">By role</a><a href="/trackers/">Trackers</a><a href="/topics/">Topics</a><a href="/companies/">Companies</a><a href="/learn/">Learn</a><a href="/glossary/">Glossary</a><a href="/newsletter/">Newsletter</a><a href="/search/">Search</a><a href="/about/">About</a><a href="/privacy/">Privacy</a><a href="/feed.xml">RSS</a><a href="/feed.json">JSON feed</a></div>
 <div>{BRAND} is an independent publication. Every item links to its original source; summaries are written in our own words. Graphics are generated in-house. Not affiliated with the companies covered. &copy; {datetime.date.today().year} aibriefing.io</div>
 </div></footer>
 {sticky_bar()}
@@ -972,6 +973,23 @@ def feed(briefs):
                   f'<description>{esc(b.get("intro", ""))}</description><enclosure url="{ROOT}/img/briefs/{b["date"]}.png" type="image/png" length="0"/><content:encoded><![CDATA[{content}]]></content:encoded></item>')
     return f'<?xml version="1.0" encoding="UTF-8"?><rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>{BRAND}</title><link>{ROOT}/</link><description>{esc(TAGLINE)}</description><language>en</language><image><url>{ROOT}/og.png</url><title>{BRAND}</title><link>{ROOT}/</link></image><atom:link href="{ROOT}/feed.xml" rel="self" type="application/rss+xml"/>{items}</channel></rss>'
 
+def json_feed(briefs, articles, limit=40):
+    """JSON Feed 1.1 (/feed.json): briefs and dedicated articles interleaved, newest first, for readers and aggregators that prefer JSON."""
+    entries = []
+    for b in briefs:
+        url = f"{ROOT}/brief/{b['date']}/"
+        text = "\n\n".join(f"{strip_md(it['title'])}\n{strip_md(it['summary'])}" for it in b["items"])
+        entries.append({"id": url, "url": url, "title": b.get("headline") or "AI Briefing for " + short_date(b["date"]), "summary": strip_md(b.get("intro", "")),
+                        "content_text": text, "image": f"{ROOT}/img/briefs/{b['date']}.png", "date_published": b["date"] + "T11:00:00Z",
+                        "tags": sorted({t for it in b["items"] for t in it.get("tags", [])}), "_aibriefing": {"kind": "brief", "items": len(b["items"])}})
+    for a in articles:
+        entries.append({"id": ROOT + a["url"], "url": ROOT + a["url"], "title": a["title"], "summary": a["dek"], "content_html": md_block(a["body"]),
+                        "image": ROOT + a["img"], "date_published": a["published"] + "T12:00:00Z", "date_modified": a["updated"] + "T12:00:00Z",
+                        "tags": a.get("tags", []), "_aibriefing": {"kind": "article", "section": a["section"], "sources": a.get("sources", [])}})
+    entries.sort(key=lambda e: e["date_published"], reverse=True)
+    return jd({"version": "https://jsonfeed.org/version/1.1", "title": BRAND, "home_page_url": ROOT + "/", "feed_url": ROOT + "/feed.json", "description": TAGLINE,
+               "icon": ROOT + "/icon-512.png", "favicon": ROOT + "/icon-192.png", "language": "en", "authors": [{"name": BRAND, "url": ROOT + "/"}], "items": entries[:limit]})
+
 HTACCESS = r"""RewriteEngine On
 RewriteCond %{HTTPS} off
 RewriteRule ^ https://aibriefing.io%{REQUEST_URI} [R=301,L]
@@ -1093,6 +1111,7 @@ def main():
     write("404.html", layout(title="Page not found | AI Briefing", desc="That page does not exist.", path="/404.html", body='<div class="hero"><h1>Not found</h1><p class="lede">That page moved or never existed. Try <a href="/brief/">the daily brief</a>, <a href="/search/">search</a>, or <a href="/">the home page</a>.</p></div>', noindex=True))
     write("assets/site.css", CSS); write("assets/site.js", JS); write("sw.js", SW); write("manifest.webmanifest", jd(MANIFEST))
     write("feed.xml", feed(briefs))
+    write("feed.json", json_feed(briefs, articles))
     idx = [{"t": strip_md(it["title"]), "s": strip_md(it["summary"]), "u": f"/brief/{b['date']}/#{it['id']}", "k": short_date(b["date"])} for b in briefs for it in b["items"]]
     idx += [{"t": a["title"], "s": a["dek"], "u": a["url"], "k": SEC[a["section"]][1] + " · " + short_date(a["published"])} for a in articles]
     idx += [{"t": e["title"], "s": e["summary"], "u": f"/learn/{e['slug']}/", "k": "Explainer"} for e in explainers]
