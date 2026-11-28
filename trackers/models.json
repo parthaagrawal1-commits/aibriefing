@@ -3,8 +3,17 @@
  "license": "CC BY 4.0",
  "title": "AI model release tracker",
  "intro": "Every notable model release from the major labs, newest first, with what it is for and where it is available.",
- "updated": "2026-11-27",
+ "updated": "2026-11-28",
  "rows": [
+  {
+   "vendor": "Harrison.ai",
+   "model": "Harrison.Rad 2 (research preview)",
+   "released": "2026-11-26",
+   "kind": "Radiology foundation model (2D X-ray + 3D CT report drafting)",
+   "context": "—",
+   "note": "Single model drafts reports for X-ray and CT with visual grounding (demo cases only); company-reported median 83.0/125 on mock fellowship short-case exams (pass mark 73.2), 87.2% on 16,420 closed clinical questions, grounding correct in 81.5% of studies with a finding. Research preview; no regulatory clearance; full evaluation report promised. Ships with FrontierOS agentic reporting.",
+   "source": "https://itwire.com/science-news/health/harrison-ai-launches-harrison-rad-2-a-unified-radiology-foundation-model"
+  },
   {
    "vendor": "Cognition",
    "model": "SWE-2.1 / SWE-2.1 Lightning / SWE-2.1 Cyber",

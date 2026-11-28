@@ -229,6 +229,7 @@ footer{border-top:1px solid var(--line);padding:28px 0 60px;color:var(--mute);fo
 #menuBtn{display:none}
 #menu{display:none;position:fixed;inset:0;background:var(--paper);z-index:55;overflow:auto;padding:16px 20px 40px}#menu.on{display:block}#menu .top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}#menu h4{margin:18px 0 6px;color:var(--mute);font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase}#menu a{display:block;padding:10px 0;border-bottom:1px solid var(--line);color:var(--ink);font-size:18px;font-weight:500}
 .srcbox{background:var(--paper2);border:1px solid var(--line);border-radius:12px;padding:14px 16px;margin:18px 0}.srcbox h4{margin:0 0 6px;font:600 12px Inter,system-ui,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:var(--mute)}.srcbox a{display:block;padding:3px 0}.sofar ol{margin:0;padding-left:18px}.sofar li{padding:3px 0;font-size:14px}.sofar li a{display:inline;padding:0}.sofar .d{color:var(--mute);font:500 12px Inter,system-ui,sans-serif;margin-right:6px;white-space:nowrap}.kterms ul{margin:0;padding-left:18px}.kterms li{padding:3px 0;font-size:14px}.kterms li a{display:inline;padding:0;font-weight:600}.kterms .kd,.sofar .kd{color:var(--mute);font-size:12px}.kterms>a{margin-top:6px;font-size:13px}
+.toc ol{margin:0;padding-left:22px}.toc li{margin:7px 0;line-height:1.45}.toc li a:first-child{font-weight:500}.toc li .pill{margin-left:8px;vertical-align:middle}.toc li .dev{margin-left:8px;margin-right:0}
 """
 
 JS = r"""
@@ -391,11 +392,35 @@ def lens_select():
     return f'<label class="meta">Read as&nbsp;<select class="lens" aria-label="Choose your lens">{opts}</select></label>'
 
 # ---------- pages ----------
+TAG_TO_SECTION = {"security": "security", "health": "health", "markets": "markets", "funding": "markets", "IPO": "markets", "M&A": "markets",
+                  "robotics": "robotics", "models": "models", "research": "models", "policy": "policy", "regulation": "policy", "geopolitics": "policy",
+                  "business": "business", "adoption": "business", "tools": "tools", "pricing": "tools", "agents": "tools", "infrastructure": "business"}
+def item_beat(it):
+    """First tag that maps to a section decides the beat; vendor tags are skipped."""
+    for t in it.get("tags", []):
+        if t in TAG_TO_SECTION: return TAG_TO_SECTION[t]
+    return ""
+def brief_contents(b):
+    """'In this brief' jump list: every item with its beat, so a reader can go straight to the stories for their job."""
+    if len(b.get("items", [])) < 4: return ""
+    rows = []
+    for i, it in enumerate(b["items"], 1):
+        beat = item_beat(it)
+        chip = f'<a class="pill" href="/{beat}/">{esc(SEC[beat][1])}</a>' if beat in SEC else ""
+        short = strip_md(it["title"]); short = short.split(": ")[0] if len(short) > 120 and ": " in short[:120] else short
+        if len(short) > 110: short = short[:107].rsplit(" ", 1)[0] + "…"
+        dev = ' <span class="dev">Developing</span>' if it.get("developing") else ""
+        rows.append(f'<li><a href="#{esc(it["id"])}">{esc(short)}</a>{dev}{chip}</li>')
+    beats = sorted({item_beat(it) for it in b["items"] if item_beat(it) in SEC}, key=lambda k: [s[0] for s in SECTIONS].index(k))
+    counts = " · ".join(f'<a href="/{k}/">{esc(SEC[k][1])}</a> {sum(1 for it in b["items"] if item_beat(it) == k)}' for k in beats)
+    return (f'<nav class="card toc" aria-label="In this brief" style="margin:0 0 22px"><div class="kicker">In this brief</div>'
+            f'<p class="meta" style="margin:0 0 8px">{counts}</p><ol>{"".join(rows)}</ol></nav>')
 def brief_page(b, prev_b=None, next_b=None):
     date = b["date"]; title = b.get("headline") or f"AI news for {short_date(date)}"; path = f"/brief/{date}/"
     items = "".join(item_html(it, date) for it in b["items"])
     one = f'<div class="card" style="margin:14px 0 22px"><div class="kicker">The one thing to know</div><p style="font-size:18px;color:var(--ink)" data-speak>{md_inline(b["one_thing"])}</p></div>' if b.get("one_thing") else ""
     navl = (f'<a href="/brief/{prev_b["date"]}/">&larr; {short_date(prev_b["date"])}</a>' if prev_b else "") + (f' &nbsp;·&nbsp; <a href="/brief/{next_b["date"]}/">{short_date(next_b["date"])} &rarr;</a>' if next_b else "")
+    one += brief_contents(b)
     og = f"{ROOT}/img/briefs/{date}.png"
     body = (f'<div class="hero"><div class="kicker">Daily brief</div><h1 data-speak>{esc(title)}</h1>'
             f'<div class="dateline">{fmt_date(date)} · {len(b["items"])} stories · {read_time(b["words"])} min read</div>'

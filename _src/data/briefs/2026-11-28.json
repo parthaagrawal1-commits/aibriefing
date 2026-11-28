@@ -1,0 +1,198 @@
+{
+  "headline": "Best week since 2025 for stocks; SAP code breached; Japan plans AI inspections",
+  "intro": "Wall Street closed Friday's shortened session with its best week since April 2025, the Nasdaq up 6.7% and the chip index up 4.7% on the day, while Anthropic jumped 11% to $91.88 and Nvidia barely moved. The quiet of a holiday weekend did not reach the security desks: SAP confirmed attackers used stolen employee tokens to copy and alter source code on GitHub, Bloomberg traced an export-restricted GB300 rack to a Shanghai data centre linked to Alice Huang, and Japan published the outline of an AI law with on-site inspections and penalties. Also today: OpenAI countersues Apple, retailers wall off shopping agents on the first agentic Black Friday, Tencent open-sources a 4.2x speculative decoder, and Harrison.ai previews a radiology model that passes a mock fellowship exam.",
+  "one_thing": "If your developers sign in to GitHub with long-lived personal access tokens, SAP's week is the reason to replace them with fine-grained, short-lived tokens and to rotate your code-signing keys on a schedule rather than after an incident. The attackers reportedly did not break SAP's perimeter; they used credentials that already worked.",
+  "items": [
+    {
+      "title": "Wall Street posts its best week since April 2025: S&P 500 +5.6%, Nasdaq +6.7%, chip index +4.69% on Black Friday alone, Anthropic +11% to $91.88 while Nvidia adds just 0.8%",
+      "stat": "+5.6%",
+      "summary": "In a session that closed at 1 p.m. ET, the S&P 500 rose 1.60% to 7,297.49, the Dow 1.18% to 50,774.94 and the Nasdaq Composite 2.31% to 24,129.50, ending a week in which the S&P gained 5.60%, its best since the week of April 11, 2025, after an 8.6% drop the week before. The Philadelphia Semiconductor Index rose 4.69%, led by memory names (SanDisk +15.96%, Micron +7.60%) and AMD (+4.56%), and Anthropic's week-old stock climbed 10.98% to $91.88 against an $83 IPO price. Nvidia rose only 0.80% to $150.49 and remains 8.8% below Monday's close, with S&P Global placing its AA rating on CreditWatch negative on Wednesday; in Shanghai the CSI Semiconductor index posted its biggest one-day gain on record after a State Council pledge to support the market.",
+      "why": {
+        "executives": "The rebound was broad, with more than four in five S&P stocks higher and all 11 sectors up. That is a relief rally, not a verdict on AI capex; the bond market is still pricing a Fed hike on December 9.",
+        "finance": "VIX fell from 35.89 to 23.81 in a week. Anthropic at $91.88 is 11% above its IPO price and 12% above Wednesday; Nvidia's week was +19.9% but almost all of it came Monday. Watch the Dec 3 Senate hearing and the Dec 8-9 FOMC.",
+        "security": "Nothing to patch, but the week's volatility was driven in part by export-control enforcement stories. Provenance checks on GPU hardware are now a market risk as well as a compliance one.",
+        "ml": "Memory stocks led: SanDisk, Micron, Seagate and Western Digital all up 7-16%. HBM and NAND scarcity is what your 2027 inference capacity plan will actually be constrained by.",
+        "developers": "Compute prices follow these cycles with a lag. A week of chip-stock recovery after a correction tends to mean cloud GPU discounts tighten again by Q1.",
+        "beginners": "Stocks fell hard the week before last and recovered most of it this week. Chip companies led both the fall and the recovery, which tells you how much of the market now rides on AI spending."
+      },
+      "sources": [
+        {"name": "MB Edge: Wall Street caps its best week since April 2025, but Nvidia sits out Friday's rally", "url": "https://miltonbergedge.com/daily/2026-11-27"},
+        {"name": "StockTitan: Stocks close higher in a short Black Friday session", "url": "https://www.stocktitan.net/articles/stock-market-today-live-november-27-2026"}
+      ],
+      "tags": ["markets", "Nvidia", "Anthropic", "infrastructure", "IPO"],
+      "article": "wall-street-best-week-since-april-2025-nasdaq-6-7-percent-sox-4-7-percent-anthropic-92-china-chips-record-what-monday-faces"
+    },
+    {
+      "title": "SAP confirms a cyberattack on its development infrastructure: attackers reportedly used stolen employee authentication tokens to copy and alter source code on GitHub, forcing the company to replace signing keys and suspend automated builds",
+      "stat": "tokens",
+      "summary": "SAP told SecurityWeek on Thursday that it had detected suspicious activity, taken steps to protect customers and found no evidence so far of unauthorised access to customer business data; it gave no attack details. Der Spiegel, which broke the story citing SAP insiders and an internal staff notice, reported that the attackers obtained employees' authentication tokens and used them to copy and modify source code in GitHub, and Handelsblatt reported that SAP replaced signing keys, restricted GitHub access and halted automated development operations across many teams. Insiders cited by Der Spiegel reportedly suggested AI agents may have assisted the attack; SAP has not confirmed that, and no report indicates altered code reached customers.",
+      "why": {
+        "executives": "SAP is the system of record for most large companies' finance. Ask your SAP account team in writing whether any package you run was built or signed during the affected window, and what their re-signing plan is.",
+        "finance": "A second SAP story this week after the reported 10,000 job cuts. Software-integrity incidents at a vendor this size usually surface in the next 10-K's risk factors and in customer audit requests, not in revenue.",
+        "security": "Token theft, not a perimeter breach. Inventory GitHub personal access tokens across your org, enforce fine-grained short-lived tokens with SSO, alert on bulk clones, and treat code-signing key rotation as routine. If you consume SAP code from GitHub, pin to commits you reviewed.",
+        "ml": "If agents really were used, this is the ARTEX pattern of November applied to a software supply chain: credential replay at machine speed. Your own coding agents hold the same class of tokens; scope them.",
+        "developers": "Modified source in a repo you build from is the quiet failure mode. Enable commit signing, require signed commits on protected branches, and diff dependency updates from SAP's public repos before merging.",
+        "beginners": "Hackers got hold of login tokens that let them act as SAP employees on GitHub, where the company keeps code. SAP says customer data was not touched, but it had to change the keys it uses to prove its software is real."
+      },
+      "sources": [
+        {"name": "SecurityWeek: SAP confirms cyberattack, source code reportedly compromised", "url": "https://www.securityweek.com/sap-confirms-cyberattack-source-code-reportedly-compromised/"},
+        {"name": "Cybersecurity News: SAP confirms security incident as hackers reportedly steal GitHub tokens and alter code", "url": "https://cybersecuritynews.com/sap-security-incident/"}
+      ],
+      "tags": ["security", "business", "agents", "data"],
+      "article": "sap-github-breach-stolen-employee-tokens-source-code-signing-keys-replaced-what-to-check",
+      "developing": true
+    },
+    {
+      "title": "Bloomberg traces an export-restricted Nvidia GB300 NVL72 rack, pledged as collateral for a $14m loan, to a Shanghai data-centre project linked to Alice Huang; chip distributors tell neoclouds to drop Chinese customers or lose supply",
+      "stat": "$14m",
+      "summary": "Filings to Chinese regulators show Shanghai Shuoyao pledged a GB300 NVL72 rack, 72 Blackwell Ultra chips and 36 Grace CPUs weighing more than 1,500 kg, against a 96 million yuan loan from Shanghai Innovation Bank; Bloomberg ran its serial number through a public warranty database to Taiwan's Gigabyte, which declined to say who bought it. The 'Yangtze River Delta Project' site is tied through investors to Alice Huang, founder of Megaspeed, which the US placed on the Entity List this month; Bloomberg said it had no evidence Megaspeed itself shipped the hardware, and neither Megaspeed nor Nvidia answered questions. Separately, CNBC reported, citing three people, that Nvidia's distributors are telling neocloud providers they will lose chip supply if any of their capacity is rented to Chinese firms, going beyond Nvidia's earlier 50% threshold.",
+      "why": {
+        "executives": "The rule in force since November 19 has turned into vendor-enforced customer screening. If you rent GPUs from a neocloud, expect know-your-customer questionnaires about your own clients.",
+        "finance": "Jensen Huang testifies to the Senate Banking Committee on December 3 with a Blackwell rack documented in Shanghai. The question for Nvidia's multiple is how much of the $104bn Singapore-routed revenue survives real enforcement.",
+        "security": "A rack that is 'too big to smuggle' was pledged to a bank with its serial number. Serial-number provenance checks against vendor warranty databases are now a practical control for any secondhand GPU purchase.",
+        "ml": "Chinese labs' access to Blackwell is being squeezed from both the rental and the hardware side at once. Expect more work on inference efficiency from Chinese teams, and slower frontier releases, through Q1.",
+        "developers": "Neoclouds that lose Nvidia supply will repurpose or resell capacity. Watch for short-notice spot-price moves and for contract clauses letting providers terminate if you are deemed a restricted customer.",
+        "beginners": "Reporters found one of Nvidia's most powerful computers, which the US bans from China, listed in Chinese loan paperwork. Separately, companies that rent out Nvidia chips are being told to stop serving Chinese customers entirely."
+      },
+      "sources": [
+        {"name": "TNW: Blackwell rack found at Alice Huang-linked Shanghai site, Bloomberg reports", "url": "https://thenextweb.com/news/nvidia-blackwell-chips-alice-huang-shanghai-data-centre-bloomberg"},
+        {"name": "IBTimes: Nvidia-powered servers surface at Alice Huang-linked China site ahead of Senate hearing", "url": "https://www.ibtimes.co.uk/nvidia-blackwell-servers-shanghai-megaspeed-links-1835285"},
+        {"name": "Business Standard: Nvidia chip sellers warn neoclouds against serving Chinese firms (CNBC)", "url": "https://www.business-standard.com/world-news/nvidia-chip-sellers-warn-neoclouds-against-serving-chinese-firms-report-126112700408_1.html"}
+      ],
+      "tags": ["policy", "geopolitics", "Nvidia", "infrastructure", "security"],
+      "developing": true
+    },
+    {
+      "title": "Japan publishes the outline of an AI Act amendment: frontier providers including OpenAI, Anthropic, Google, Alibaba and DeepSeek would face mandatory safeguards, serious-incident reporting, on-site inspections and penalties for ignoring corrective orders, with a bill due in the 2027 Diet session",
+      "stat": "2027",
+      "summary": "Cabinet Office working-group materials dated November 11 and reported this week set out a three-step enforcement ladder for providers of high-capability AI: a recommendation, then a binding corrective order, then penalties for defying it, with inspections of company premises allowed. Providers above a still-unannounced user threshold would have to prevent misuse for cyberattacks and harmful-substance synthesis, guard against likely malfunctions, and report serious accidents and dangerous flaws; a proposal to require identity checks for users of strong cyber-capable models was not in the outline. The outline goes to an expert panel by year-end ahead of a bill in the ordinary Diet session that opens in January 2027; Japan's current AI Promotion Act, in force since September 2025, carries no fines, and penalty amounts have not been decided.",
+      "why": {
+        "executives": "Japan was the model for 'light-touch' AI law. If it adds inspections and fines, the argument that only Brussels regulates frontier models is gone, and your Japan subsidiaries will need a compliance owner by mid-2027.",
+        "finance": "Compliance cost lands on a handful of named labs, not on users. For Anthropic and OpenAI as public or soon-public companies, this is a new risk-factor paragraph rather than a revenue hit.",
+        "security": "The two safeguards named first are refusing cyberattack-method requests and preventing malfunctions. That is a government writing your red-team scope for you; map your existing evals to it now.",
+        "ml": "Serious-accident reporting with a legal deadline means incident definitions you can defend. Decide what counts as a 'dangerous flaw' in your models before a regulator does.",
+        "developers": "The user threshold will decide whether products built on these APIs are in scope. Watch for it; Google argued for disclosure-first standards, Anthropic Japan for external evaluations.",
+        "beginners": "Japan plans to let officials inspect big AI companies and fine them if they ignore orders to fix safety problems. Until now its AI law relied on voluntary cooperation."
+      },
+      "sources": [
+        {"name": "Asia Daily: Japan plans binding safety duties and penalties for frontier AI providers", "url": "https://asiadaily.org/news/20415/"},
+        {"name": "Japan Times: Japan to revise AI law to introduce penalties", "url": "https://www.japantimes.co.jp/news/2026/11/28/japan/politics/japan-revise-ai-law-penalties/"}
+      ],
+      "tags": ["policy", "regulation", "OpenAI", "Anthropic", "Google"],
+      "article": "japan-ai-act-amendment-inspections-incident-reporting-corrective-orders-2027-diet-bill-what-frontier-labs-face"
+    },
+    {
+      "title": "OpenAI countersues Apple in California, alleging Apple took its hardware trade secrets and is coercing shared suppliers to shun its devices; Apple's original case is set for trial on July 19, 2027",
+      "stat": "July 2027",
+      "summary": "The Financial Times reported, and 9to5Mac confirmed, that OpenAI filed counterclaims on Friday accusing Apple of trying to 'compete unfairly by any means available', including threatening suppliers that work on OpenAI's unreleased devices and encouraging employees to keep corporate files on personal devices and cloud accounts. The filing escalates a dispute that began in July when Apple sued OpenAI, its io hardware unit and former Apple designers Tang Tan and Chang Liu over alleged trade-secret theft; in October OpenAI said a returning ex-employee had sent more than 100 confidential files about its hardware to personal accounts, which Apple said its investigation had not found. Apple has already won a preliminary-injunction hearing and expanded discovery.",
+      "why": {
+        "executives": "Supplier coercion is the claim that matters. If proven, it is a competition-law problem for Apple well beyond this case; if not, it signals how hard it is to build consumer hardware without Apple's supply chain.",
+        "finance": "A July 2027 trial means a year of discovery headlines for both companies. For OpenAI, hardware revenue plans now carry litigation risk that an S-1 would have to describe.",
+        "security": "Both sides accuse the other of letting confidential files leak through personal accounts. That is a data-loss-prevention story: the same controls that stop trade-secret exfiltration stop the next insider case.",
+        "ml": "No model or research implications, but the hiring freeze between the two companies that OpenAI alleges is the practical effect for hardware-ML engineers.",
+        "developers": "Nothing changes for the API. The dispute is about devices, suppliers and people, not software.",
+        "beginners": "Apple sued OpenAI in the summer for allegedly stealing its product secrets. OpenAI has now sued back, saying Apple is the one stealing and is also bullying the factories both companies use."
+      },
+      "sources": [
+        {"name": "9to5Mac: OpenAI countersues Apple, alleging trade secret theft and supplier threats", "url": "https://9to5mac.com/2026/11/27/openai-countersues-apple-alleging-trade-secret-theft-and-supplier-threats/"},
+        {"name": "Engadget: OpenAI countersues Apple and accuses it of stealing trade secrets", "url": "https://www.engadget.com/2329747/openai-countersues-apple-and-accuses-it-of-stealing-trade-secrets/"}
+      ],
+      "tags": ["business", "policy", "OpenAI", "Apple", "consumer"]
+    },
+    {
+      "title": "The first agentic Black Friday: Shopify says agent-sourced sales ran 3.3x last year's, while Amazon, eBay, Kohl's and United block or limit agents, Visa's tests show agents failing 43% of shopping tasks, and Bain puts agentic purchases at 0.4% of global e-commerce",
+      "stat": "0.4%",
+      "summary": "Shopify president Harley Finkelstein told CNBC on Friday that this was the first Black Friday where agents played a real role, with checkout peaking near $2.3m a minute and agent-sourced sales about 3.3 times last year's, though the company did not break out the share. Amazon has blocked Meta's Muse since September, stopped xAI's Grok Bot from placing orders last month and is suing Perplexity over its Comet browser agent; eBay, United Airlines and Kohl's limit agent actions, Coach and Gap let agents browse but not check out, and JPMorgan, Schwab and Neiman Marcus have moved to block Muse. Visa's own tests found agents failed 43% of shopping tasks, Bain estimates agentic purchases at 0.4% of global e-commerce transactions and 0.2% of value, and only 23% of US shoppers say they trust an AI to pay for them.",
+      "why": {
+        "executives": "Three numbers tell the story: 3.3x growth, 0.4% share, 43% failure. Agents are real, tiny and unreliable at once. Decide whether to be a destination that agents can transact with or a walled garden, because the default is being chosen for you by bot-blockers.",
+        "finance": "Marketplaces are blocking agents to protect ad revenue and first-party data, not to protect customers. Watch Q4 commentary from Amazon on sponsored-product growth versus Shopify's agent attribution.",
+        "security": "Agentic checkout means a non-human identity holding payment credentials. Visa's 43% failure rate is also a fraud and chargeback surface; network tokens and per-agent spending limits are the controls.",
+        "ml": "A 43% task-failure rate on live retail sites is the gap between demo and deployment. Benchmarks like WebArena do not capture anti-bot pages, dynamic pricing and checkout edge cases.",
+        "developers": "If you build agents that buy, assume you will be blocked at the biggest sites and design for merchant APIs (Shopify's agentic checkout, Stripe's agent tooling) rather than screen scraping.",
+        "beginners": "This year you could ask an AI assistant to find and buy gifts for you. A few people did, most retailers blocked it, and when it was allowed the assistant got nearly half of its tasks wrong."
+      },
+      "sources": [
+        {"name": "CNBC: AI shopping agents from OpenAI, Meta and Google hit retailer blocks", "url": "https://www.cnbc.com/2026/11/27/ai-shopping-agents-retailer-blocks.html"},
+        {"name": "AI Weekly alert summarising the CNBC report", "url": "https://aiweekly.co/alerts/amazon-blocks-shopping-agents-as-shopify-sees-33x-agent-sales"}
+      ],
+      "tags": ["business", "adoption", "agents", "consumer", "Amazon", "Meta"],
+      "article": "ai-shopping-agents-black-friday-shopify-3-3x-amazon-blocks-visa-43-percent-fail-bain-0-4-percent-what-retailers-should-decide"
+    },
+    {
+      "title": "Tencent open-sources DFly2, a 0.85B-parameter speculative-decoding drafter that reuses the target model's sparse KV cache: up to 4.2x generation speedup on long-context and agentic work, and up to 81% more throughput on DeepSeek-V4.1-Flash at a 64K SWE context",
+      "stat": "4.2x",
+      "summary": "Tencent's Hunyuan infrastructure team released the drafter behind Hy4 flash's fast decoding in AngelSpec v0.2.0, with weights on Hugging Face and a paper describing how each draft token attends to at most 2,048 positions selected by the target model's own sparse attention, so the drafter needs no KV cache of its own. The five-layer, 0.85B model is trained for Hy4 flash (220B total, 12B active), DeepSeek-V4.1-Flash and GLM-5.3-Flash, and the team reports higher draft-acceptance rates than same-recipe DFlash and DSpark on all three, about 30% faster agentic runs than DSpark, and a 4.2x peak speedup. Tests ran on Nvidia H20 GPUs through vLLM; the method needs retraining for dense-attention models or different sparse-indexing schemes.",
+      "why": {
+        "executives": "Speed-ups like this are why Chinese vendors can undercut on price despite worse chips. A 2-4x decode gain is the equivalent of doubling your GPU fleet for the inference step.",
+        "finance": "Inference efficiency is deflationary for API prices. Hy4 flash already lists at $0.07 / $0.28; tooling that makes sparse models faster to serve widens the gap with US list prices.",
+        "security": "The drafter is a second model in your serving path with its own weights and licence. Pin the revision, verify checksums, and note that H20-tuned kernels are optimised for hardware you may not run.",
+        "ml": "The idea to copy: share the target's top-k sparse positions with the drafter instead of giving it a dense context. Acceptance rates rise because the drafter sees exactly what the target attends to. Works only for sparse-attention targets today.",
+        "developers": "If you self-host GLM-5.3-Flash or DeepSeek-V4.1-Flash through vLLM, the recipe is a flag change and a drafter download. Benchmark at your real context lengths; the gains are largest past 32K.",
+        "beginners": "A small helper model guesses the next several words and the big model checks them in one go, which makes answers arrive faster. Tencent gave away its version for free."
+      },
+      "sources": [
+        {"name": "AlphaSignal: Tencent open-sources DFly2, hitting 4.2x speed on long-context AI", "url": "https://alphasignal.ai/news/tencent-open-sources-dfly2-hitting-4-2x-speed-on-long-context-ai"},
+        {"name": "AI Daily Post: Tencent's DFly2 reuses the KV cache for faster sparse decoding", "url": "https://aidailypost.com/news/tencents-dfly2-reuses-kv-cache-faster"},
+        {"name": "Tencent/AngelSpec on GitHub", "url": "https://github.com/Tencent/AngelSpec"}
+      ],
+      "tags": ["models", "tools", "research", "infrastructure", "DeepSeek"],
+      "article": "tencent-dfly2-open-source-speculative-decoder-4-2x-81-percent-throughput-sparse-kv-cache-what-inference-teams-should-test"
+    },
+    {
+      "title": "Harrison.ai previews Harrison.Rad 2, a single radiology model that drafts reports for 2D X-ray and 3D CT, scoring a median 83 of 125 on mock fellowship exams against a 73.2 pass mark and grounding 81.5% of findings to the image; a2z Radiology adds a ninth-finding abdominal triage clearance",
+      "stat": "83/125",
+      "summary": "The Sydney company released Rad 2 in research preview on Wednesday alongside FrontierOS, an agentic dictation and reporting system already in production at its own teleradiology practice; Rad 2 answered 87.2% of 16,420 closed clinical questions correctly, up from 82.8% for Rad 1.5, and its visual grounding, which links each report statement to a location in the image, is available only on demo cases for now. Harrison says a full evaluation report will follow and names no regulatory clearance for Rad 2, though its cleared products support more than a million patients a month in 25 countries. Separately, a2z Radiology AI said the FDA cleared a2z-Omni-Triage on November 19, its third device, flagging nine findings on abdomen-pelvis CT including bowel perforation and aortic aneurysms of 5 cm or more, bringing its portfolio to 26 triage findings.",
+      "why": {
+        "executives": "Report drafting is where radiology AI moves from flagging to writing. A model that passes a mock fellowship exam is a procurement conversation, not a pilot, once it is cleared; Rad 2 is not cleared yet.",
+        "finance": "Harrison's path is research preview, evaluation report, then clearance, which is 12-24 months. Aidoc already holds breakthrough status for report drafting; the race is to the first FDA-cleared drafting model.",
+        "security": "An agentic reporting system in production means dictation audio, images and drafts flowing through a cloud service. Ask where inference runs and whether drafts are retained for training.",
+        "ml": "Visual grounding at 81.5% of studies with a finding is the number to track. Drafting is easy to make fluent; proving each sentence points at the right pixels is what reviewers and regulators will test.",
+        "developers": "Rad 1.5 is open for research at chat.harrison.ai with API on request. Rad 2 is preview-only; if you integrate, build against the report schema and expect the grounding API to change.",
+        "beginners": "An Australian company's AI can now read X-rays and CT scans and write a draft report that a radiologist checks. It scored above the pass mark on a specialist exam, but it is not yet approved for hospital use."
+      },
+      "sources": [
+        {"name": "iTWire: Harrison.ai launches Harrison.Rad 2, a unified radiology foundation model", "url": "https://itwire.com/science-news/health/harrison-ai-launches-harrison-rad-2-a-unified-radiology-foundation-model"},
+        {"name": "ITN: a2z Radiology receives FDA clearance for a2z-Omni-Triage", "url": "https://www.itnonline.com/content/a2z-radiology-receives-fda-approval-a2z-omni-triage"}
+      ],
+      "tags": ["health", "models", "research", "regulation"],
+      "article": "harrison-rad-2-radiology-foundation-model-83-of-125-fellowship-exam-visual-grounding-81-5-percent-a2z-omni-triage-what-radiology-leaders-should-ask"
+    },
+    {
+      "title": "Morgan Stanley expects China's humanoid investment to accelerate but only 'selective' commercial use in 2027: UBTECH targets about 4,000 industrial deliveries this year plus 1,500-2,000 household units, Geekplus about 300, and one benchmark model's task success rose to 41.2% from 19.6%",
+      "stat": "4,000",
+      "summary": "The bank's report, published Friday and covered by ANI, says Chinese humanoid makers will see faster capital inflows and small-scale deployments in chosen applications next year, while broad adoption remains 'some distance away' because of precision machining, equipment supply, skilled labour and production yields. It cites one newer model whose benchmark success rate more than doubled to 41.2% and whose average response time fell 33%, UBTECH's 2026 targets of roughly 4,000 industrial and commercial units and 1,500-2,000 household units, and Geekplus's plan for about 300 humanoids by early 2027. XPeng separately told investors its Iron humanoid will reach Chinese retail locations in Q1 2027 and international ones in the second half.",
+      "why": {
+        "executives": "'Selective commercial use' is the honest phrase. Budget 2027 humanoid pilots as pilots: a few units, one task, a measured cycle time, with the exit clause Volvo built into its Hexagon trial.",
+        "finance": "Morgan Stanley's China shipment forecast was raised to 50,000 units in June; this report is about quality of demand, not volume. UBTECH's 4,000 industrial deliveries would make it the volume leader by a wide margin.",
+        "security": "Humanoids in Chinese factories run on Chinese cloud stacks. If you deploy them outside China, the data path, remote-update channel and teleoperation access are the questions to ask before price.",
+        "ml": "A success rate doubling to 41.2% is the real state of the art on general manipulation benchmarks: well under half. Sim-to-real and tactile data, not more demos, are the bottleneck.",
+        "developers": "Hardware yields and machining, not software, are the stated constraint. If you write robot policies, expect to target a small number of platforms shipping in volume: UBTECH, Unitree, XPeng, AgiBot.",
+        "beginners": "A big investment bank says Chinese companies will build many more human-shaped robots next year but that only a few will do real jobs. The best models still fail more than half their tasks in tests."
+      },
+      "sources": [
+        {"name": "ANI via MENAFN: Humanoid robot investment in China to accelerate by 2027, Morgan Stanley says", "url": "https://menafn.com/1112029473/Humanoid-Robot-Investment-In-China-To-Accelerate-By-2027-Report-Says"},
+        {"name": "TokenPost: XPeng maps out 2027 global EV, robotaxi and humanoid-robot push", "url": "https://www.tokenpost.com/news/business/63521"}
+      ],
+      "tags": ["robotics", "markets", "adoption", "research"],
+      "article": "morgan-stanley-china-humanoids-selective-commercial-use-2027-ubtech-4000-geekplus-300-xpeng-iron-retail-what-the-numbers-mean"
+    },
+    {
+      "title": "Poland signs a five-year, 1.2 billion zloty ($300m) contract for Palantir's Maven Smart System, with the defence minister saying servers and data stay with the Polish armed forces and a domestic replacement could be ready when the deal ends",
+      "stat": "$300m",
+      "summary": "Defence minister Władysław Kosiniak-Kamysz signed the agreement in Warsaw on Friday with Palantir CEO Alex Karp present, saying it is impossible to build a modern army without AI and that no European supplier could match the capability; Maven is already used by the US military, NATO's Allied Command Operations and Ukraine. The minister said Poland would hold 'all the keys', that the ministry's statement did not disclose the value, and that two Polish systems, AIRON and NEFRYT, could eventually replace Palantir's tools. The signing followed protests in Warsaw over data security and comes days after a Poland-US defence R&D agreement; the Dutch military has said it wants a European alternative by 2028.",
+      "why": {
+        "executives": "A $300m, five-year sovereign AI contract with an explicit exit plan is the template European governments are converging on: buy American now, fund a domestic successor in parallel.",
+        "finance": "Poland was NATO's largest arms importer in 2021-2025 with 44% from the US. For Palantir, European defence is the growth line that offsets US commercial scrutiny; this is one of its larger single European contracts.",
+        "security": "Data residency on military servers with no vendor keys is the stated model. The audit question protesters raised, who verifies that, is the one your own sovereign-cloud contracts should answer.",
+        "ml": "Maven is a targeting and fusion platform, not a model. The competitive question for European labs is whether AIRON and NEFRYT get the training data to catch up within five years.",
+        "developers": "Government AI procurement at this scale now includes replaceability clauses. If you sell to the public sector, expect to document data export and model portability.",
+        "beginners": "Poland is paying an American company about $300m for battlefield software that uses AI to analyse data. Critics worried about who controls the data; the minister says Poland keeps it all."
+      },
+      "sources": [
+        {"name": "Notes from Poland: Poland signs $300m deal with Palantir for AI-powered battlefield software platform", "url": "https://notesfrompoland.com/2026/11/27/poland-signs-300m-deal-with-palantir-for-ai-powered-battlefield-software-platform/"},
+        {"name": "To Vima: Poland signs $300 million military AI deal with Palantir", "url": "https://www.tovima.com/world/poland-signs-300-million-military-ai-deal-with-palantir"}
+      ],
+      "tags": ["policy", "geopolitics", "adoption", "data"]
+    }
+  ]
+}
